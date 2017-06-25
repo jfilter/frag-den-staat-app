@@ -1,6 +1,7 @@
-import React, { PropTypes } from 'react';
-import { connect } from 'react-redux';
+import React from 'react';
 import { Button, StyleSheet, Text, View } from 'react-native';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
 
 const styles = StyleSheet.create({

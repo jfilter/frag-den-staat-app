@@ -1,16 +1,69 @@
 import React from 'react';
+import { View } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { addNavigationHelpers, StackNavigator } from 'react-navigation';
+import { addNavigationHelpers, TabNavigator } from 'react-navigation';
+import { NavigationComponent } from 'react-native-material-bottom-navigation';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
-import LoginScreen from '../components/LoginScreen';
-import MainScreen from '../components/MainScreen';
-import ProfileScreen from '../components/ProfileScreen';
+import ProfileNavigator from './ProfileNavigator';
 
-export const AppNavigator = StackNavigator({
-  Login: { screen: LoginScreen },
-  Main: { screen: MainScreen },
-  Profile: { screen: ProfileScreen },
+class Requests extends React.Component {
+  static navigationOptions = {
+    tabBarLabel: 'Requests',
+    tabBarIcon: () => (<Icon size={24} color="black" name="list" />)
+  }
+
+  render() { return <View></View> }
+}
+
+class Search extends React.Component {
+  static navigationOptions = {
+    tabBarLabel: 'Search',
+    tabBarIcon: () => (<Icon size={24} color="black" name="search" />)
+  }
+
+  render() { return <View></View> }
+}
+
+class NewRequest extends React.Component {
+  static navigationOptions = {
+    tabBarLabel: 'New',
+    tabBarIcon: () => (<Icon size={24} color="black" name="add" />)
+  }
+
+  render() { return <View></View> }
+}
+
+export const AppNavigator = TabNavigator({
+  Requests: { screen: Requests },
+  Search: { screen: Search },
+  NewRequest: { screen: NewRequest },
+  Profile: { screen: ProfileNavigator },
+}, {
+  tabBarComponent: NavigationComponent,
+  tabBarPosition: 'bottom',
+  tabBarOptions: {
+    bottomNavigationOptions: {
+      labelColor: '#0d47a1',
+      rippleColor: 'white',
+      backgroundColor: '#EEEEEE',
+      tabs: {
+        Requests: {
+          activeIcon: <Icon size={24} color="#0d47a1" name="list" />,
+        },
+        Search: {
+          activeIcon: <Icon size={24} color="#0d47a1" name="search" />,
+        },
+        NewRequest: {
+          activeIcon: <Icon size={24} color="#0d47a1" name="add" />,
+        },
+        Profile: {
+          activeIcon: <Icon size={24} color="#0d47a1" name="person" />,
+        },
+      },
+    },
+  },
 });
 
 const AppWithNavigationState = ({ dispatch, nav }) => (
