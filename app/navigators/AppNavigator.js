@@ -7,6 +7,7 @@ import { NavigationComponent } from 'react-native-material-bottom-navigation';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import ProfileNavigator from './ProfileNavigator';
+import { primaryColor } from '../styles/colors';
 
 class Requests extends React.Component {
   static navigationOptions = {
@@ -45,21 +46,21 @@ export const AppNavigator = TabNavigator({
   tabBarPosition: 'bottom',
   tabBarOptions: {
     bottomNavigationOptions: {
-      labelColor: '#0d47a1',
+      labelColor: primaryColor,
       rippleColor: 'white',
       backgroundColor: '#EEEEEE',
       tabs: {
         Requests: {
-          activeIcon: <Icon size={24} color="#0d47a1" name="list" />,
+          activeIcon: <Icon size={24} color={primaryColor} name="list" />,
         },
         Search: {
-          activeIcon: <Icon size={24} color="#0d47a1" name="search" />,
+          activeIcon: <Icon size={24} color={primaryColor} name="search" />,
         },
         NewRequest: {
-          activeIcon: <Icon size={24} color="#0d47a1" name="add" />,
+          activeIcon: <Icon size={24} color={primaryColor} name="add" />,
         },
         Profile: {
-          activeIcon: <Icon size={24} color="#0d47a1" name="person" />,
+          activeIcon: <Icon size={24} color={primaryColor} name="person" />,
         },
       },
     },
