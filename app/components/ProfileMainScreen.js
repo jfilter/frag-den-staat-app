@@ -1,7 +1,6 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 
-import LoginStatusMessage from './LoginStatusMessage';
 import AuthButton from './AuthButton';
 
 const styles = StyleSheet.create({
@@ -15,13 +14,15 @@ const styles = StyleSheet.create({
 
 const MainScreen = () => (
   <View style={styles.container}>
-    <LoginStatusMessage />
     <AuthButton />
+    <Text>Über FragDenStaat.de</Text>
+    <Text>Kontakt und Impressum</Text>
+    <Text>Feedback</Text>
   </View>
 );
 
 MainScreen.navigationOptions = {
-  title: 'Home Screen',
+  title: 'Profile & More',
 };
 
 export default MainScreen;

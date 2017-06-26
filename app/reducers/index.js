@@ -1,45 +1,27 @@
 import { combineReducers } from 'redux';
-import { NavigationActions } from 'react-navigation';
 
 import { AppNavigator } from '../navigators/AppNavigator';
 
-const nav = (state, action) => AppNavigator.router.getStateForAction(action, state);
+// const nav = (state, action) => AppNavigator.router.getStateForAction(action, state);
 
 // // Start with two routes: The Main screen, with the Login screen on top.
-// const firstAction = AppNavigator.router.getActionForPathAndParams('Requests');
-// const initialNavState = AppNavigator.router.getStateForAction(firstAction);
+const firstAction = AppNavigator.router.getActionForPathAndParams('Requests');
+const initialNavState = AppNavigator.router.getStateForAction(firstAction);
 
-// function nav(state = initialNavState, action) {
-//   let nextState;
-//   switch (action.type) {
-//     case 'Login':
-//       nextState = AppNavigator.router.getStateForAction(
-//         NavigationActions.back(),
-//         state
-//       );
-//       break;
-//     case 'Logout':
-//       nextState = AppNavigator.router.getStateForAction(
-//         NavigationActions.navigate({ routeName: 'LoginScreen' }),
-//         state
-//       );
-//       break;
-//     default:
-//       nextState = AppNavigator.router.getStateForAction(action, state);
-//       break;
-//   }
+function nav(state = initialNavState, action) {
+  const nextState = AppNavigator.router.getStateForAction(action, state);
 
-//   // Simply return the original `state` if `nextState` is null or undefined.
-//   return nextState || state;
-// }
+  // Simply return the original `state` if `nextState` is null or undefined.
+  return nextState || state;
+}
 
 const initialAuthState = { isLoggedIn: false };
 
 function auth(state = initialAuthState, action) {
   switch (action.type) {
-    case 'Login':
+    case 'LOGIN':
       return { ...state, isLoggedIn: true };
-    case 'Logout':
+    case 'LOGOUT':
       return { ...state, isLoggedIn: false };
     default:
       return state;
