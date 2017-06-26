@@ -1,4 +1,4 @@
-package com.fragdenstaatapp;
+package com.fragdenstaat;
 
 import android.app.Application;
 
