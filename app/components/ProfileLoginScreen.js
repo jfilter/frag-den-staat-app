@@ -63,7 +63,7 @@ ProfileLoginScreen.navigationOptions = {
 };
 
 const mapStateToProps = state => ({
-  isLoggedIn: state.auth.isLoggedIn,
+  isLoggedIn: state.authentication.isLoggedIn,
 });
 
 const mapDispatchToProps = dispatch => ({
