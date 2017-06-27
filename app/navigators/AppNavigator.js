@@ -7,16 +7,17 @@ import { NavigationComponent } from 'react-native-material-bottom-navigation';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import ProfileNavigator from './ProfileNavigator';
+import FoiaRequestsNavigator from './FoiaRequestsNavigator';
 import { primaryColor } from '../styles/colors';
 
-class Requests extends React.Component {
-  static navigationOptions = {
-    tabBarLabel: 'Requests',
-    tabBarIcon: () => (<Icon size={24} color="black" name="list" />)
-  }
+// class Requests extends React.Component {
+//   static navigationOptions = {
+//     tabBarLabel: 'Requests',
+//     tabBarIcon: () => (<Icon size={24} color="black" name="list" />)
+//   }
 
-  render() { return <View></View> }
-}
+//   render() { return <View></View> }
+// }
 
 class Search extends React.Component {
   static navigationOptions = {
@@ -37,7 +38,7 @@ class NewRequest extends React.Component {
 }
 
 export const AppNavigator = TabNavigator({
-  Requests: { screen: Requests },
+  Requests: { screen: FoiaRequestsNavigator },
   Search: { screen: Search },
   NewRequest: { screen: NewRequest },
   Profile: { screen: ProfileNavigator },

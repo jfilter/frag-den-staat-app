@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const LoginScreen = ({ navigation, isLoggedIn, login, goBack }) => {
+const ProfileLoginScreen = ({ navigation, isLoggedIn, login, goBack }) => {
   let content;
   if (isLoggedIn) {
     content = (
@@ -54,11 +54,11 @@ const LoginScreen = ({ navigation, isLoggedIn, login, goBack }) => {
   );
 };
 
-LoginScreen.propTypes = {
+ProfileLoginScreen.propTypes = {
   navigation: PropTypes.object.isRequired,
 };
 
-LoginScreen.navigationOptions = {
+ProfileLoginScreen.navigationOptions = {
   title: 'Log In',
 };
 
@@ -71,4 +71,4 @@ const mapDispatchToProps = dispatch => ({
   goBack: () => dispatch(NavigationActions.back()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileLoginScreen);

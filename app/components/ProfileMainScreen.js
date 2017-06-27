@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const MainScreen = () => (
+const ProfileMainScreen = () => (
   <View style={styles.container}>
     <AuthButton />
     <Text>Über FragDenStaat.de</Text>
@@ -21,8 +21,8 @@ const MainScreen = () => (
   </View>
 );
 
-MainScreen.navigationOptions = {
+ProfileMainScreen.navigationOptions = {
   title: 'Profile & More',
 };
 
-export default MainScreen;
+export default ProfileMainScreen;
