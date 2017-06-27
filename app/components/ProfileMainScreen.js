@@ -12,14 +12,13 @@ const styles = StyleSheet.create({
   },
 });
 
-const ProfileMainScreen = () => (
+const ProfileMainScreen = () =>
   <View style={styles.container}>
     <AuthButton />
     <Text>Über FragDenStaat.de</Text>
     <Text>Kontakt und Impressum</Text>
     <Text>Feedback</Text>
-  </View>
-);
+  </View>;
 
 ProfileMainScreen.navigationOptions = {
   title: 'Profile & More',

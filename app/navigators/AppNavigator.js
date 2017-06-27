@@ -22,55 +22,63 @@ import { primaryColor } from '../styles/colors';
 class Search extends React.Component {
   static navigationOptions = {
     tabBarLabel: 'Search',
-    tabBarIcon: () => (<Icon size={24} color="black" name="search" />)
-  }
+    tabBarIcon: () => <Icon size={24} color="black" name="search" />,
+  };
 
-  render() { return <View></View> }
+  render() {
+    return <View />;
+  }
 }
 
 class NewRequest extends React.Component {
   static navigationOptions = {
     tabBarLabel: 'New',
-    tabBarIcon: () => (<Icon size={24} color="black" name="add" />)
-  }
+    tabBarIcon: () => <Icon size={24} color="black" name="add" />,
+  };
 
-  render() { return <View></View> }
+  render() {
+    return <View />;
+  }
 }
 
-export const AppNavigator = TabNavigator({
-  Requests: { screen: FoiaRequestsNavigator },
-  Search: { screen: Search },
-  NewRequest: { screen: NewRequest },
-  Profile: { screen: ProfileNavigator },
-}, {
-  tabBarComponent: NavigationComponent,
-  tabBarPosition: 'bottom',
-  tabBarOptions: {
-    bottomNavigationOptions: {
-      labelColor: primaryColor,
-      rippleColor: 'white',
-      backgroundColor: '#EEEEEE',
-      tabs: {
-        Requests: {
-          activeIcon: <Icon size={24} color={primaryColor} name="list" />,
-        },
-        Search: {
-          activeIcon: <Icon size={24} color={primaryColor} name="search" />,
-        },
-        NewRequest: {
-          activeIcon: <Icon size={24} color={primaryColor} name="add" />,
-        },
-        Profile: {
-          activeIcon: <Icon size={24} color={primaryColor} name="person" />,
+export const AppNavigator = TabNavigator(
+  {
+    Requests: { screen: FoiaRequestsNavigator },
+    Search: { screen: Search },
+    NewRequest: { screen: NewRequest },
+    Profile: { screen: ProfileNavigator },
+  },
+  {
+    tabBarComponent: NavigationComponent,
+    tabBarPosition: 'bottom',
+    tabBarOptions: {
+      bottomNavigationOptions: {
+        labelColor: primaryColor,
+        rippleColor: 'white',
+        backgroundColor: '#EEEEEE',
+        tabs: {
+          Requests: {
+            activeIcon: <Icon size={24} color={primaryColor} name="list" />,
+          },
+          Search: {
+            activeIcon: <Icon size={24} color={primaryColor} name="search" />,
+          },
+          NewRequest: {
+            activeIcon: <Icon size={24} color={primaryColor} name="add" />,
+          },
+          Profile: {
+            activeIcon: <Icon size={24} color={primaryColor} name="person" />,
+          },
         },
       },
     },
-  },
-});
-
-const AppWithNavigationState = ({ dispatch, navigation }) => (
-  <AppNavigator navigation={addNavigationHelpers({ dispatch, state: navigation })} />
+  }
 );
+
+const AppWithNavigationState = ({ dispatch, navigation }) =>
+  <AppNavigator
+    navigation={addNavigationHelpers({ dispatch, state: navigation })}
+  />;
 
 AppWithNavigationState.propTypes = {
   dispatch: PropTypes.func.isRequired,

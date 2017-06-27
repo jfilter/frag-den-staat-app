@@ -24,25 +24,15 @@ const ProfileLoginScreen = ({ navigation, isLoggedIn, login, goBack }) => {
     content = (
       <View>
         <Text>You are now logged in!</Text>
-        <Button
-          onPress={goBack}
-          title="Go back"
-        />
+        <Button onPress={goBack} title="Go back" />
       </View>
     );
   } else {
     content = (
       <View>
-        <Text style={styles.welcome}>
-          Screen Login
-        </Text>
-        <Text style={styles.instructions}>
-          Your instructions are here.
-        </Text>
-        <Button
-          onPress={login}
-          title="Log in"
-        />
+        <Text style={styles.welcome}>Screen Login</Text>
+        <Text style={styles.instructions}>Your instructions are here.</Text>
+        <Button onPress={login} title="Log in" />
       </View>
     );
   }

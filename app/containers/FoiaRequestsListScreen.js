@@ -16,28 +16,30 @@ class FoiaRequestsListScreen extends React.Component {
       return (
         <View>
           <Text>ERROR!</Text>
-          <Text>{this.props.error}</Text>
+          <Text>
+            {this.props.error}
+          </Text>
         </View>
       );
     }
 
     if (this.props.isPending) {
-        return (<Text>Loading…</Text>);
+      return <Text>Loading…</Text>;
     }
 
     return (
       <View>
-        {this.props.requests.map((request) => (
+        {this.props.requests.map(request =>
           <Text key={request.id}>
             {request.id}
           </Text>
-        ))}
+        )}
       </View>
     );
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     requests: state.foiaRequests.requests,
     error: state.foiaRequests.error,
@@ -45,10 +47,12 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
   return {
-    fetchData: () => dispatch(foiaRequestsFetchData())
+    fetchData: () => dispatch(foiaRequestsFetchData()),
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(FoiaRequestsListScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(
+  FoiaRequestsListScreen
+);

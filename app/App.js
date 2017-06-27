@@ -15,7 +15,8 @@ class App extends React.Component {
   store = createStore(
     AppReducer,
     initialState,
-    applyMiddleware(thunkMiddleware, this.loggerMiddleware));
+    applyMiddleware(thunkMiddleware, this.loggerMiddleware)
+  );
 
   render() {
     return (

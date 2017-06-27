@@ -21,11 +21,11 @@ export function foiaRequestsSuccess(requests) {
 const URL = 'https://fragdenstaat.de/api/v1/request/';
 
 export function foiaRequestsFetchData() {
-  return (dispatch) => {
+  return dispatch => {
     dispatch(foiaRequestsPending());
 
     fetch(URL)
-      .then((response) => {
+      .then(response => {
         if (!response.ok) {
           throw Error(response.status);
         }

@@ -4,12 +4,11 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
 
-const AuthButton = ({ logout, loginScreen, isLoggedIn }) => (
+const AuthButton = ({ logout, loginScreen, isLoggedIn }) =>
   <Button
     title={isLoggedIn ? 'Log Out' : 'Open Login Screen'}
     onPress={isLoggedIn ? logout : loginScreen}
-  />
-);
+  />;
 
 AuthButton.propTypes = {
   isLoggedIn: PropTypes.bool.isRequired,
