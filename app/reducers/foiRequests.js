@@ -1,4 +1,9 @@
-const initialState = { isPending: false, requests: [], error: '', nextUrl: '' };
+const initialState = {
+  isPending: false,
+  requests: [],
+  error: '',
+  nextUrl: '',
+};
 
 function foiRequests(state = initialState, action) {
   switch (action.type) {

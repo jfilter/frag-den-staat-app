@@ -8,8 +8,9 @@ import {
 } from 'react-native';
 import { ListItem } from 'react-native-elements';
 import moment from 'moment';
-
 import { connect } from 'react-redux';
+import { NavigationActions } from 'react-navigation';
+
 import {
   foiRequestsFetchFirstData,
   foiRequestsFetchMoreData,
@@ -25,7 +26,7 @@ const styles = StyleSheet.create({
   },
 });
 
-class foiRequestsListScreen extends React.Component {
+class FoiRequestsListScreen extends React.Component {
   constructor(props) {
     super(props);
     this._renderItem = this._renderItem.bind(this);
@@ -83,6 +84,8 @@ class foiRequestsListScreen extends React.Component {
         avatar={{
           uri: imagePath,
         }}
+        onPress={() =>
+          this.props.navigateToDetails({ indexInArray: index, id: item.id })}
         // avatarStyle={{ marginTop: 20 }}
         // TODO: Not possible right now, come back later to check if they have fixed it.
         // avatarStyle={{ overlayContainerStyle: { backgroundColor: 'white' } }}
@@ -118,6 +121,10 @@ class foiRequestsListScreen extends React.Component {
   }
 }
 
+FoiRequestsListScreen.navigationOptions = {
+  title: 'Requests',
+};
+
 const mapStateToProps = state => {
   return {
     requests: state.foiRequests.requests,
@@ -131,9 +138,11 @@ const mapDispatchToProps = dispatch => {
   return {
     fetchFirstData: () => dispatch(foiRequestsFetchFirstData()),
     fetchMoreData: nextUrl => dispatch(foiRequestsFetchMoreData(nextUrl)),
+    navigateToDetails: params =>
+      dispatch(NavigationActions.navigate({ routeName: 'Details', params })),
   };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(
-  foiRequestsListScreen
+  FoiRequestsListScreen
 );

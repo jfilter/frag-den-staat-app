@@ -3,12 +3,12 @@ import { StackNavigator } from 'react-navigation';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import FoiRequestsListScreen from '../containers/FoiRequestsListScreen';
-// import foiRequestsDetailsScreen from '../containers/foiRequestsListScreen';
+import FoiRequestDetailsScreen from '../containers/FoiRequestDetailsScreen';
 
 const FoiRequestsNavigator = StackNavigator(
   {
     List: { screen: FoiRequestsListScreen },
-    // Detail: { screen: ProfileLoginScreen },
+    Details: { screen: FoiRequestDetailsScreen },
   },
   {
     navigationOptions: {
