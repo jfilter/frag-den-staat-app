@@ -51,6 +51,7 @@ export const AppNavigator = TabNavigator(
   {
     tabBarComponent: NavigationComponent,
     tabBarPosition: 'bottom',
+    lazy: true,
     tabBarOptions: {
       bottomNavigationOptions: {
         labelColor: primaryColor,

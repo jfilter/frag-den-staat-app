@@ -32,13 +32,14 @@ class foiRequestsListScreen extends React.Component {
     this._fetchMoreData = this._fetchMoreData.bind(this);
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.props.fetchFirstData();
   }
 
   _fetchMoreData() {
-    console.log('called');
-    this.props.fetchMoreData(this.props.nextUrl);
+    if (!this.props.isPending) {
+      this.props.fetchMoreData(this.props.nextUrl);
+    }
   }
 
   _renderPendingActivity = () => {
@@ -48,8 +49,6 @@ class foiRequestsListScreen extends React.Component {
       <View
         style={{
           paddingVertical: 20,
-          borderTopWidth: 1,
-          borderColor: '#CED0CE',
         }}
       >
         <ActivityIndicator animating size="large" />
@@ -110,9 +109,9 @@ class foiRequestsListScreen extends React.Component {
           data={this.props.requests}
           renderItem={this._renderItem}
           onEndReached={this._fetchMoreData}
-          onEndReachedThreshold={0.1}
+          onEndReachedThreshold={0}
           ListFooterComponent={this._renderPendingActivity}
-          ListEmptyComponent={this._renderPendingActivity}
+          style={{ backgroundColor: 'white' }} // this fixes a bug with not appearing activity spinner
         />
       </View>
     );

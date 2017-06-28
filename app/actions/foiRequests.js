@@ -27,6 +27,7 @@ function foiRequestsFetchData(url) {
         if (!response.ok) {
           throw Error(response.status);
         }
+        setTimeout(() => null, 0); // workaround for issue-6679
         return response;
       })
       .then(response => response.json())
