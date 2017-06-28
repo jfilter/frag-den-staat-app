@@ -1,10 +1,19 @@
 import React from 'react';
-import { FlatList, Text, View, StyleSheet, Image } from 'react-native';
+import {
+  FlatList,
+  Text,
+  View,
+  StyleSheet,
+  ActivityIndicator,
+} from 'react-native';
 import { ListItem } from 'react-native-elements';
 import moment from 'moment';
 
 import { connect } from 'react-redux';
-import { foiRequestsFetchData } from '../actions/foiRequests';
+import {
+  foiRequestsFetchFirstData,
+  foiRequestsFetchMoreData,
+} from '../actions/foiRequests';
 import publicBodyFile from '../../scraper/public_bodies/public_bodies_cleaned.json';
 
 const styles = StyleSheet.create({
@@ -20,12 +29,33 @@ class foiRequestsListScreen extends React.Component {
   constructor(props) {
     super(props);
     this._renderItem = this._renderItem.bind(this);
-    // this._loadMoreData = this._loadMoreData.bind(this);
+    this._fetchMoreData = this._fetchMoreData.bind(this);
   }
 
   componentDidMount() {
-    this.props.fetchData();
+    this.props.fetchFirstData();
   }
+
+  _fetchMoreData() {
+    console.log('called');
+    this.props.fetchMoreData(this.props.nextUrl);
+  }
+
+  _renderPendingActivity = () => {
+    if (!this.props.isPending) return null;
+
+    return (
+      <View
+        style={{
+          paddingVertical: 20,
+          borderTopWidth: 1,
+          borderColor: '#CED0CE',
+        }}
+      >
+        <ActivityIndicator animating size="large" />
+      </View>
+    );
+  };
 
   _renderItem = ({ item, index }) => {
     const imagePath = `${item.status}`;
@@ -74,13 +104,16 @@ class foiRequestsListScreen extends React.Component {
       );
     }
 
-    if (this.props.isPending) {
-      return <Text>Loading…</Text>;
-    }
-
     return (
       <View>
-        <FlatList data={this.props.requests} renderItem={this._renderItem} />
+        <FlatList
+          data={this.props.requests}
+          renderItem={this._renderItem}
+          onEndReached={this._fetchMoreData}
+          onEndReachedThreshold={0.1}
+          ListFooterComponent={this._renderPendingActivity}
+          ListEmptyComponent={this._renderPendingActivity}
+        />
       </View>
     );
   }
@@ -91,12 +124,14 @@ const mapStateToProps = state => {
     requests: state.foiRequests.requests,
     error: state.foiRequests.error,
     isPending: state.foiRequests.isPending,
+    nextUrl: state.foiRequests.nextUrl,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchData: () => dispatch(foiRequestsFetchData()),
+    fetchFirstData: () => dispatch(foiRequestsFetchFirstData()),
+    fetchMoreData: nextUrl => dispatch(foiRequestsFetchMoreData(nextUrl)),
   };
 };
 

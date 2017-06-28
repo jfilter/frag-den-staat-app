@@ -1,4 +1,4 @@
-const initialState = { isPending: false, requests: [], error: '' };
+const initialState = { isPending: false, requests: [], error: '', nextUrl: '' };
 
 function foiRequests(state = initialState, action) {
   switch (action.type) {
@@ -7,7 +7,16 @@ function foiRequests(state = initialState, action) {
     case 'FOI_REQUESTS_PENDING':
       return { ...state, isPending: true };
     case 'FOI_REQUESTS_SUCCESS':
-      return { ...state, isPending: false, requests: action.requests.objects };
+      let nextUrl = '';
+      if (action.requests.meta.next) {
+        nextUrl = action.requests.meta.next;
+      }
+      return {
+        ...state,
+        isPending: false,
+        requests: [...state.requests, ...action.requests.objects],
+        nextUrl,
+      };
     default:
       return state;
   }
