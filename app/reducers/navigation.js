@@ -1,7 +1,9 @@
+import { NavigationActions } from 'react-navigation';
 import { AppNavigator } from '../navigators/AppNavigator';
 
-const firstAction = AppNavigator.router.getActionForPathAndParams('Requests');
-const initialNavState = AppNavigator.router.getStateForAction(firstAction);
+const initialNavState = AppNavigator.router.getStateForAction(
+  NavigationActions.navigate({ routeName: 'Requests' })
+);
 
 function navigation(state = initialNavState, action) {
   const nextState = AppNavigator.router.getStateForAction(action, state);
