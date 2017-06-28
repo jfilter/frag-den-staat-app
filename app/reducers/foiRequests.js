@@ -3,6 +3,7 @@ const initialState = {
   requests: [],
   error: '',
   nextUrl: '',
+  isRefreshing: false,
 };
 
 function foiRequests(state = initialState, action) {
@@ -11,7 +12,7 @@ function foiRequests(state = initialState, action) {
       return { ...state, isPending: false, error: action.error };
     case 'FOI_REQUESTS_PENDING':
       return { ...state, isPending: true };
-    case 'FOI_REQUESTS_SUCCESS':
+    case 'FOI_REQUESTS_SUCCESS': {
       let nextUrl = '';
       if (action.requests.meta.next) {
         nextUrl = action.requests.meta.next;
@@ -22,6 +23,24 @@ function foiRequests(state = initialState, action) {
         requests: [...state.requests, ...action.requests.objects],
         nextUrl,
       };
+    }
+    case 'FOI_REQUESTS_REFRESHING':
+      return {
+        ...state,
+        isRefreshing: true,
+      };
+    case 'FOI_REQUESTS_REFRESHING_SUCCESS': {
+      let nextUrl = '';
+      if (action.requests.meta.next) {
+        nextUrl = action.requests.meta.next;
+      }
+      return {
+        ...state,
+        isRefreshing: false,
+        requests: action.requests.objects,
+        nextUrl,
+      };
+    }
     default:
       return state;
   }

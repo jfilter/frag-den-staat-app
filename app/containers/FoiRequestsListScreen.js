@@ -12,8 +12,8 @@ import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
 
 import {
-  foiRequestsFetchFirstData,
-  foiRequestsFetchMoreData,
+  foiRequestsFetchData,
+  foiRequestsRefreshData,
 } from '../actions/foiRequests';
 import publicBodyFile from '../../scraper/public_bodies/public_bodies_cleaned.json';
 
@@ -27,21 +27,19 @@ const styles = StyleSheet.create({
 });
 
 class FoiRequestsListScreen extends React.Component {
-  constructor(props) {
-    super(props);
-    this._renderItem = this._renderItem.bind(this);
-    this._fetchMoreData = this._fetchMoreData.bind(this);
-  }
-
   componentWillMount() {
-    this.props.fetchFirstData();
+    this.props.fetchData();
   }
 
-  _fetchMoreData() {
+  _fetchData = () => {
     if (!this.props.isPending) {
-      this.props.fetchMoreData(this.props.nextUrl);
+      this.props.fetchData(this.props.nextUrl);
     }
-  }
+  };
+
+  _refreshData = () => {
+    this.props.refreshData();
+  };
 
   _renderPendingActivity = () => {
     if (!this.props.isPending) return null;
@@ -111,9 +109,11 @@ class FoiRequestsListScreen extends React.Component {
         <FlatList
           data={this.props.requests}
           renderItem={this._renderItem}
-          onEndReached={this._fetchMoreData}
+          onEndReached={this._fetchData}
           onEndReachedThreshold={0}
           ListFooterComponent={this._renderPendingActivity}
+          onRefresh={this._refreshData}
+          refreshing={this.props.isRefreshing}
           style={{ backgroundColor: 'white' }} // this fixes a bug with not appearing activity spinner
         />
       </View>
@@ -131,13 +131,14 @@ const mapStateToProps = state => {
     error: state.foiRequests.error,
     isPending: state.foiRequests.isPending,
     nextUrl: state.foiRequests.nextUrl,
+    isRefreshing: state.foiRequests.isRefreshing,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchFirstData: () => dispatch(foiRequestsFetchFirstData()),
-    fetchMoreData: nextUrl => dispatch(foiRequestsFetchMoreData(nextUrl)),
+    fetchData: nextUrl => dispatch(foiRequestsFetchData(nextUrl)),
+    refreshData: () => dispatch(foiRequestsRefreshData()),
     navigateToDetails: params =>
       dispatch(NavigationActions.navigate({ routeName: 'Details', params })),
   };
