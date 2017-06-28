@@ -7,7 +7,7 @@ import { NavigationComponent } from 'react-native-material-bottom-navigation';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import ProfileNavigator from './ProfileNavigator';
-import FoiaRequestsNavigator from './FoiaRequestsNavigator';
+import foiRequestsNavigator from './FoiRequestsNavigator';
 import { primaryColor } from '../styles/colors';
 
 // class Requests extends React.Component {
@@ -43,7 +43,7 @@ class NewRequest extends React.Component {
 
 export const AppNavigator = TabNavigator(
   {
-    Requests: { screen: FoiaRequestsNavigator },
+    Requests: { screen: foiRequestsNavigator },
     Search: { screen: Search },
     NewRequest: { screen: NewRequest },
     Profile: { screen: ProfileNavigator },

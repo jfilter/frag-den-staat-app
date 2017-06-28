@@ -2,12 +2,12 @@ import React from 'react';
 import { StackNavigator } from 'react-navigation';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-import FoiaRequestsListScreen from '../containers/FoiaRequestsListScreen';
-// import FoiaRequestsDetailsScreen from '../containers/FoiaRequestsListScreen';
+import FoiRequestsListScreen from '../containers/FoiRequestsListScreen';
+// import foiRequestsDetailsScreen from '../containers/foiRequestsListScreen';
 
-const FoiaRequestsNavigator = StackNavigator(
+const FoiRequestsNavigator = StackNavigator(
   {
-    List: { screen: FoiaRequestsListScreen },
+    List: { screen: FoiRequestsListScreen },
     // Detail: { screen: ProfileLoginScreen },
   },
   {
@@ -18,4 +18,4 @@ const FoiaRequestsNavigator = StackNavigator(
   }
 );
 
-export default FoiaRequestsNavigator;
+export default FoiRequestsNavigator;

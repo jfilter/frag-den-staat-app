@@ -2,12 +2,12 @@ import { combineReducers } from 'redux';
 
 import navigation from './navigation';
 import authentication from './authentication';
-import foiaRequests from './foiaRequests';
+import foiRequests from './foiRequests';
 
 const AppReducer = combineReducers({
   navigation,
   authentication,
-  foiaRequests,
+  foiRequests,
 });
 
 export default AppReducer;

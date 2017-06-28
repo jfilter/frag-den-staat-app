@@ -4,7 +4,7 @@ import { ListItem } from 'react-native-elements';
 import moment from 'moment';
 
 import { connect } from 'react-redux';
-import { foiaRequestsFetchData } from '../actions/foiaRequests';
+import { foiRequestsFetchData } from '../actions/foiRequests';
 import publicBodyFile from '../../scraper/public_bodies/public_bodies_cleaned.json';
 
 const styles = StyleSheet.create({
@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
   },
 });
 
-class FoiaRequestsListScreen extends React.Component {
+class foiRequestsListScreen extends React.Component {
   constructor(props) {
     super(props);
     this._renderItem = this._renderItem.bind(this);
@@ -88,18 +88,18 @@ class FoiaRequestsListScreen extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    requests: state.foiaRequests.requests,
-    error: state.foiaRequests.error,
-    isPending: state.foiaRequests.isPending,
+    requests: state.foiRequests.requests,
+    error: state.foiRequests.error,
+    isPending: state.foiRequests.isPending,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchData: () => dispatch(foiaRequestsFetchData()),
+    fetchData: () => dispatch(foiRequestsFetchData()),
   };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(
-  FoiaRequestsListScreen
+  foiRequestsListScreen
 );

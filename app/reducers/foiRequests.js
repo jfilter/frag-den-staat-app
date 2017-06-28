@@ -1,16 +1,16 @@
 const initialState = { isPending: false, requests: [], error: '' };
 
-function foiaRequests(state = initialState, action) {
+function foiRequests(state = initialState, action) {
   switch (action.type) {
-    case 'FOIA_REQUESTS_ERROR':
+    case 'FOI_REQUESTS_ERROR':
       return { ...state, isPending: false, error: action.error };
-    case 'FOIA_REQUESTS_PENDING':
+    case 'FOI_REQUESTS_PENDING':
       return { ...state, isPending: true };
-    case 'FOIA_REQUESTS_SUCCESS':
+    case 'FOI_REQUESTS_SUCCESS':
       return { ...state, isPending: false, requests: action.requests.objects };
     default:
       return state;
   }
 }
 
-export default foiaRequests;
+export default foiRequests;
