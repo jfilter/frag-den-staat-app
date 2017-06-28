@@ -38,7 +38,6 @@
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		C38FF8521F00164C000266C2 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C38FF8511F00164C000266C2 /* MaterialIcons.ttf */; };
 		C38FF8531F00164C000266C2 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C38FF8511F00164C000266C2 /* MaterialIcons.ttf */; };
-		C3DDF0681F014D8700EE96BC /* FDS_Logo_small.png in Resources */ = {isa = PBXBuildFile; fileRef = C3DDF0671F014D8700EE96BC /* FDS_Logo_small.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -273,7 +272,6 @@
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		C38FF8511F00164C000266C2 /* MaterialIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
-		C3DDF0671F014D8700EE96BC /* FDS_Logo_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = FDS_Logo_small.png; path = ../logo/FDS_Logo_small.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -484,7 +482,6 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				C3DDF0671F014D8700EE96BC /* FDS_Logo_small.png */,
 				C38FF8511F00164C000266C2 /* MaterialIcons.ttf */,
 				13B07FAE1A68108700A75B9A /* FragDenStaat */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
@@ -884,7 +881,6 @@
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
-				C3DDF0681F014D8700EE96BC /* FDS_Logo_small.png in Resources */,
 				C38FF8521F00164C000266C2 /* MaterialIcons.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
