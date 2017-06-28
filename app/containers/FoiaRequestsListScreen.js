@@ -1,6 +1,7 @@
 import React from 'react';
 import { FlatList, Text, View, StyleSheet, Image } from 'react-native';
 import { ListItem } from 'react-native-elements';
+import moment from 'moment';
 
 import { connect } from 'react-redux';
 import { foiaRequestsFetchData } from '../actions/foiaRequests';
@@ -29,8 +30,8 @@ class FoiaRequestsListScreen extends React.Component {
   _renderItem = ({ item, index }) => {
     const imagePath = `${item.status}`;
     const lastContact = item.last_message || item.first_message;
-
-    let subtitle = `${item.status},\n ${lastContact},`;
+    const timeAgo = moment(lastContact).fromNow();
+    let subtitle = `${item.status}, ${timeAgo}`;
 
     if (item.public_body) {
       const startToSlice = '/api/v1/publicbody/'.length;
