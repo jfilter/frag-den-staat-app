@@ -4,6 +4,7 @@ import { ListItem } from 'react-native-elements';
 
 import { connect } from 'react-redux';
 import { foiaRequestsFetchData } from '../actions/foiaRequests';
+import publicBodyFile from '../../scraper/public_bodies/public_bodies_cleaned.json';
 
 const styles = StyleSheet.create({
   container: {
@@ -28,7 +29,19 @@ class FoiaRequestsListScreen extends React.Component {
   _renderItem = ({ item, index }) => {
     const imagePath = `${item.status}`;
     const lastContact = item.last_message || item.first_message;
-    const subtitle = `${item.status},\n ${lastContact},\n${item.public_body}`;
+
+    let subtitle = `${item.status},\n ${lastContact},`;
+
+    if (item.public_body) {
+      const startToSlice = '/api/v1/publicbody/'.length;
+      const endSlice = item.public_body.length - 1;
+      const publicBodyId = item.public_body.slice(startToSlice, endSlice);
+      const publicBodyObject = publicBodyFile[publicBodyId];
+      const publicBodyName = publicBodyObject.publicBodyName;
+      const jurisdictionName = publicBodyObject.jurisdictionName;
+
+      subtitle += `\n${publicBodyName} (${jurisdictionName})`;
+    }
 
     return (
       <ListItem
