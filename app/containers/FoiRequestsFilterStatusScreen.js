@@ -1,18 +1,10 @@
 import React from 'react';
-import {
-  FlatList,
-  Text,
-  View,
-  StyleSheet,
-  ActivityIndicator,
-} from 'react-native';
-import moment from 'moment';
-import { Share } from 'react-native';
+import { View, StyleSheet, FlatList } from 'react-native';
 import { connect } from 'react-redux';
-import { NavigationActions } from 'react-navigation';
-import { Icon } from 'react-native-elements';
+import { ListItem, Icon, Text } from 'react-native-elements';
 
 import publicBodyFile from '../../scraper/public_bodies/public_bodies_cleaned.json';
+import jurisdictionList from '../data/jurisdiction';
 
 // import Icon from 'react-native-vector-icons/Ionicons';
 
@@ -27,17 +19,31 @@ const styles = StyleSheet.create({
   },
 });
 
-class FoiRequestsFilterScreen extends React.Component {
+class FoiRequestsFilterStatusScreen extends React.Component {
   render() {
     return (
       <View>
-        <Text>Filter</Text>
-        <Text />
+        <FlatList
+          data={jurisdictionList}
+          renderItem={({ item }) =>
+            <ListItem
+              title={item.name}
+              key={item.id}
+              hideChevron
+              switchButton
+            />}
+        />
       </View>
     );
   }
 }
 
+FoiRequestsFilterStatusScreen.navigationOptions = {
+  title: 'Filter',
+  tabBarLabel: 'Status',
+  tabBarIcon: ({ tintColor }) =>
+    <Icon name="chart-gantt" type="material-community" color={tintColor} />,
+};
 const mapStateToProps = state => {
   return {
     requests: state.foiRequests.requests,
@@ -52,5 +58,5 @@ const mapDispatchToProps = dispatch => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(
-  FoiRequestsFilterScreen
+  FoiRequestsFilterStatusScreen
 );
