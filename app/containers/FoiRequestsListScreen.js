@@ -6,9 +6,10 @@ import {
   StyleSheet,
   ActivityIndicator,
 } from 'react-native';
-import moment from 'moment';
 import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
+import { ListItem } from 'react-native-elements';
+import moment from 'moment';
 
 import {
   foiRequestsFetchData,
