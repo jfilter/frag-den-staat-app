@@ -4,6 +4,8 @@ const initialState = {
   error: '',
   nextUrl: '',
   isRefreshing: false,
+  firstPageFetchedAt: null,
+  filter: { status: null, jurisdiction: null, category: null },
 };
 
 function foiRequests(state = initialState, action) {
@@ -22,6 +24,7 @@ function foiRequests(state = initialState, action) {
         isPending: false,
         requests: [...state.requests, ...action.requests.objects],
         nextUrl,
+        firstPageFetchedAt: Date.now(),
       };
     }
     case 'FOI_REQUESTS_REFRESHING':

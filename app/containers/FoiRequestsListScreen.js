@@ -28,13 +28,17 @@ const styles = StyleSheet.create({
 });
 
 class FoiRequestsListScreen extends React.Component {
-  componentWillMount() {
+  componentDidMount() {
     this.props.fetchData();
   }
 
   _fetchData = () => {
     if (!this.props.isPending) {
-      this.props.fetchData(this.props.nextUrl);
+      const timeDif = Date.now() - this.props.firstPageFetchedAt;
+      // Prevent fetching data twice on initalizition because the `onEndReachEd` event fires with an empy list
+      if (timeDif > 2000) {
+        this.props.fetchData(this.props.nextUrl);
+      }
     }
   };
 
@@ -134,6 +138,7 @@ const mapStateToProps = state => {
     isPending: state.foiRequests.isPending,
     nextUrl: state.foiRequests.nextUrl,
     isRefreshing: state.foiRequests.isRefreshing,
+    firstPageFetchedAt: state.foiRequests.firstPageFetchedAt,
   };
 };
 
