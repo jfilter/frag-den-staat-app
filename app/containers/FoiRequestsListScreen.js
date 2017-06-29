@@ -37,7 +37,7 @@ class FoiRequestsListScreen extends React.Component {
       const timeDif = Date.now() - this.props.firstPageFetchedAt;
       // Prevent fetching data twice on initalizition because the `onEndReachEd` event fires with an empy list
       if (timeDif > 2000) {
-        this.props.fetchData(this.props.nextUrl);
+        this.props.fetchData();
       }
     }
   };
@@ -144,7 +144,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchData: nextUrl => dispatch(foiRequestsFetchData(nextUrl)),
+    fetchData: () => dispatch(foiRequestsFetchData()),
     refreshData: () => dispatch(foiRequestsRefreshData()),
     navigateToDetails: params =>
       dispatch(NavigationActions.navigate({ routeName: 'Details', params })),

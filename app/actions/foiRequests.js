@@ -39,8 +39,10 @@ function foiRequestsFilterChangeAction(filter) {
 }
 
 const PAGE_SIZE = 20;
+const ORIGIN = 'https://fragdenstaat.de';
+const DEFAULT_PATH = '/api/v1/request/';
 
-function fetchAndDispatch(url, beforeFetch, onSuccessFetch) {
+function fetchAndDispatch(beforeFetch, onSuccessFetch) {
   return (dispatch, getState) => {
     dispatch(beforeFetch());
 
@@ -52,7 +54,7 @@ function fetchAndDispatch(url, beforeFetch, onSuccessFetch) {
     if (isRefreshing) {
       offset = 0;
     }
-
+    const url = `${ORIGIN}${DEFAULT_PATH}`;
     const baseParam = `?limit=${PAGE_SIZE}&offset=${offset}&is_foi=true`; // filter out crap
     let params = baseParam;
 
@@ -70,7 +72,6 @@ function fetchAndDispatch(url, beforeFetch, onSuccessFetch) {
     // }
 
     const fullUrl = `${url}${params}`;
-    console.log('fullUrl', fullUrl);
 
     fetch(fullUrl)
       .then(response => {
@@ -86,22 +87,12 @@ function fetchAndDispatch(url, beforeFetch, onSuccessFetch) {
   };
 }
 
-const ORIGIN = 'https://fragdenstaat.de';
-const DEFAULT_PATH = '/api/v1/request/';
-
-function foiRequestsFetchData(path = DEFAULT_PATH) {
-  return fetchAndDispatch(
-    `${ORIGIN}${path}`,
-    // filter,
-    foiRequestsPendingAction,
-    foiRequestsSuccessAction
-  );
+function foiRequestsFetchData() {
+  return fetchAndDispatch(foiRequestsPendingAction, foiRequestsSuccessAction);
 }
 
-function foiRequestsRefreshData(filter) {
+function foiRequestsRefreshData() {
   return fetchAndDispatch(
-    `${ORIGIN}${DEFAULT_PATH}`,
-    // filter,
     foiRequestsRefreshingAction,
     foiRequestsRefreshingSuccessAction
   );
