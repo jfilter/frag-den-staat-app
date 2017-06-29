@@ -31,11 +31,48 @@ function foiRequestsRefreshingSuccessAction(requests) {
   };
 }
 
+function foiRequestsFilterChangeAction(filter) {
+  return {
+    type: 'FOI_REQUESTS_FILTER_CHANGE',
+    filter,
+  };
+}
+
+const PAGE_SIZE = 20;
+
 function fetchAndDispatch(url, beforeFetch, onSuccessFetch) {
-  return dispatch => {
+  return (dispatch, getState) => {
     dispatch(beforeFetch());
 
-    fetch(url)
+    const { filter, nPage, isRefreshing } = getState().foiRequests;
+
+    let offset = PAGE_SIZE * nPage;
+
+    // page is still the former value in case the refresh fails
+    if (isRefreshing) {
+      offset = 0;
+    }
+
+    const baseParam = `?limit=${PAGE_SIZE}&offset=${offset}&is_foi=true`; // filter out crap
+    let params = baseParam;
+
+    if (filter.jurisdiction) {
+      params += `&jurisdiction=${filter.jurisdiction}`;
+    }
+
+    if (filter.status) {
+      params += `&status=${filter.status}`;
+    }
+
+    // TODO: Not supported by the API?
+    // if (filter.category) {
+    //   params += `&category=${filter.category}`;
+    // }
+
+    const fullUrl = `${url}${params}`;
+    console.log('fullUrl', fullUrl);
+
+    fetch(fullUrl)
       .then(response => {
         if (!response.ok) {
           throw Error(response.status);
@@ -55,17 +92,27 @@ const DEFAULT_PATH = '/api/v1/request/';
 function foiRequestsFetchData(path = DEFAULT_PATH) {
   return fetchAndDispatch(
     `${ORIGIN}${path}`,
+    // filter,
     foiRequestsPendingAction,
     foiRequestsSuccessAction
   );
 }
 
-function foiRequestsRefreshData() {
+function foiRequestsRefreshData(filter) {
   return fetchAndDispatch(
     `${ORIGIN}${DEFAULT_PATH}`,
+    // filter,
     foiRequestsRefreshingAction,
     foiRequestsRefreshingSuccessAction
   );
 }
 
-export { foiRequestsFetchData, foiRequestsRefreshData };
+function foiRequestsFilterChange(filter) {
+  return dispatch => dispatch(foiRequestsFilterChangeAction(filter));
+}
+
+export {
+  foiRequestsFetchData,
+  foiRequestsRefreshData,
+  foiRequestsFilterChange,
+};
