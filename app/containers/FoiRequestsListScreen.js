@@ -6,7 +6,6 @@ import {
   StyleSheet,
   ActivityIndicator,
 } from 'react-native';
-import { ListItem } from 'react-native-elements';
 import moment from 'moment';
 import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
@@ -16,6 +15,7 @@ import {
   foiRequestsRefreshData,
 } from '../actions/foiRequests';
 import publicBodyFile from '../../scraper/public_bodies/public_bodies_cleaned.json';
+import FoiRequestsFilterButton from './FoiRequestsFilterButton';
 
 const styles = StyleSheet.create({
   container: {
@@ -123,6 +123,7 @@ class FoiRequestsListScreen extends React.Component {
 
 FoiRequestsListScreen.navigationOptions = {
   title: 'Requests',
+  headerRight: <FoiRequestsFilterButton />,
 };
 
 const mapStateToProps = state => {
