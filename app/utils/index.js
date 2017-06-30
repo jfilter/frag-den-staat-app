@@ -1,9 +1,5 @@
-function mapToRealStatus(fakeStatus, fakeResolution) {
-  if (fakeStatus === 'resolved') {
-    return fakeResolution;
-  }
-  return fakeStatus;
-}
+const mapToFakeStatus = (fakeStatus, fakeResolution) =>
+  fakeStatus === 'resolved' ? fakeResolution : fakeStatus;
 
 const needToAlter = [
   'successful',
