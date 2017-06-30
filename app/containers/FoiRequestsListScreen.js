@@ -36,7 +36,8 @@ class FoiRequestsListScreen extends React.Component {
     if (!this.props.isPending) {
       const timeDif = Date.now() - this.props.firstPageFetchedAt;
       // Prevent fetching data twice on initalizition because the `onEndReachEd` event fires with an empy list
-      if (timeDif > 2000) {
+      // value in mili seconds
+      if (timeDif > 1000) {
         this.props.fetchData();
       }
     }
