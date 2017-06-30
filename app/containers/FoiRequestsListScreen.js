@@ -55,7 +55,10 @@ class FoiRequestsListScreen extends React.Component {
   };
 
   _renderItem = ({ item, index }) => {
-    const imagePath = `${item.status}`;
+    // fix because that it's complicated with the status. see utils/index.js for more information.
+    const imagePath =
+      item.status === 'resolved' ? item.resolution : item.status;
+
     const lastContact = item.last_message || item.first_message;
     const timeAgo = moment(lastContact).fromNow();
     let subtitle = `${item.status}, ${timeAgo}`;
