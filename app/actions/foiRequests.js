@@ -1,3 +1,5 @@
+import { mapToFakeStatus } from '../utils';
+
 function foiRequestsErrorAction(error) {
   return {
     type: 'FOI_REQUESTS_ERROR',
@@ -63,7 +65,14 @@ function fetchAndDispatch(beforeFetch, onSuccessFetch) {
     }
 
     if (filter.status) {
-      params += `&status=${filter.status}`;
+      // fake status and resolition
+      const { status, resolution } = mapToFakeStatus(filter.status);
+
+      params += `&status=${status}`;
+      if (resolution) {
+        params += `&resolution=${resolution}`;
+      }
+      console.log('params', params);
     }
 
     // TODO: Not supported by the API?

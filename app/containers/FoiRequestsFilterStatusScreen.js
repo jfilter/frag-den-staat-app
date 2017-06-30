@@ -1,37 +1,42 @@
 import React from 'react';
-import { View, StyleSheet, FlatList } from 'react-native';
+import { View, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 import { ListItem, Icon, Text } from 'react-native-elements';
 
-import publicBodyFile from '../../scraper/public_bodies/public_bodies_cleaned.json';
-import jurisdictionList from '../data/jurisdiction';
-
-// import Icon from 'react-native-vector-icons/Ionicons';
-
-import { primaryColor } from '../styles/colors.js';
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-});
+import statusList from '../data/status.json';
+import { foiRequestsFilterChange } from '../actions/foiRequests';
 
 class FoiRequestsFilterStatusScreen extends React.Component {
+  _onSwitch = (id, switched) => {
+    let newFilter = { status: null };
+
+    if (!switched) {
+      newFilter = { status: id };
+    }
+    this.props.changeFilter(newFilter);
+  };
+
+  _renderItem = ({ item }) => {
+    const switched = this.props.currentFilter === item.id;
+    return (
+      <ListItem
+        title={item.name}
+        key={item.id}
+        hideChevron
+        switchButton
+        switched={switched}
+        onSwitch={() => this._onSwitch(item.id, switched)}
+      />
+    );
+  };
+
   render() {
     return (
       <View>
         <FlatList
-          data={jurisdictionList}
-          renderItem={({ item }) =>
-            <ListItem
-              title={item.name}
-              key={item.id}
-              hideChevron
-              switchButton
-            />}
+          data={statusList}
+          extraData={this.props.currentFilter}
+          renderItem={this._renderItem}
         />
       </View>
     );
@@ -44,17 +49,17 @@ FoiRequestsFilterStatusScreen.navigationOptions = {
   tabBarIcon: ({ tintColor }) =>
     <Icon name="chart-gantt" type="material-community" color={tintColor} />,
 };
+
 const mapStateToProps = state => {
   return {
-    requests: state.foiRequests.requests,
-    error: state.foiRequests.error,
-    isPending: state.foiRequests.isPending,
-    nextUrl: state.foiRequests.nextUrl,
+    currentFilter: state.foiRequests.filter.status,
   };
 };
 
 const mapDispatchToProps = dispatch => {
-  return {};
+  return {
+    changeFilter: filter => dispatch(foiRequestsFilterChange(filter)),
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(

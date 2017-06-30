@@ -1,0 +1,54 @@
+[
+  {
+    "id": "successful",
+    "name": "Request Successful",
+    "title_long": "The request has been successful.",
+  },
+  {
+    "id": "partially_successful",
+    "name": "Request partially successful",
+    "title_long": "The request has been partially successful (some information was provided, but not all)",
+  },
+  {
+    "id": "refused",
+    "name": "Request refused",
+    "title_long": "The Public Body refuses to provide the information.",
+  },
+  {
+    "id": "user_withdrew",
+    "name": "Request was withdrawn",
+    "title_long": "User withdrew the request for other reasons.",
+  },
+  {
+    "id": "user_withdrew_costs",
+    "name": "Request was withdrawn due to costs",
+    "title_long": "User withdrew the request due to the associated costs.",
+  },
+  { "id": "publicbody_needed", "name": "Public Body needed" },
+  { "id": "awaiting_response", "name": "Awaiting response" },
+  {
+    "id": "awaiting_classification",
+    "name": "Request awaits classification",
+  },
+  { "id": "asleep", "name": "Request asleep" },
+  {
+    "id": "not_held",
+    "name": "Information not held",
+    "title_long": "The Public Body stated that it does not possess the information.",
+  },
+]
+
+// https://fragdenstaat.de/api/v1/request/?costs=0
+// cannot filter for costs
+// {
+//   "id": "has_fee",
+//   "name": "Fee charged",
+//   "title_long": "This request is connected with a fee.",
+// },
+
+// cannot simply get all overdue
+// {
+//   "id": "overdue",
+//   "name": "Response overdue",
+//   "title_long": "The request has not been answered in time.",
+// },

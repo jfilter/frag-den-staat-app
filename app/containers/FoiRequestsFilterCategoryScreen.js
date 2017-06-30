@@ -5,6 +5,7 @@ import { ListItem, Icon, Text } from 'react-native-elements';
 
 import publicBodyFile from '../../scraper/public_bodies/public_bodies_cleaned.json';
 import jurisdictionList from '../data/jurisdiction';
+import { foiRequestsFilterChange } from '../actions/foiRequests';
 
 // import Icon from 'react-native-vector-icons/Ionicons';
 
@@ -58,7 +59,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => {
-  return {};
+  changeFilter: foiRequestsFilterChange;
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(
