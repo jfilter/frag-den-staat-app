@@ -7,6 +7,12 @@ function foiRequestsErrorAction(error) {
   };
 }
 
+function foiRequestsInvalidateDataAction() {
+  return {
+    type: 'FOI_REQUESTS_INVALIDATE_DATA',
+  };
+}
+
 function foiRequestsPendingAction() {
   return {
     type: 'FOI_REQUESTS_PENDING',
@@ -108,7 +114,13 @@ function foiRequestsRefreshData() {
 }
 
 function foiRequestsFilterChange(filter) {
-  return dispatch => dispatch(foiRequestsFilterChangeAction(filter));
+  return dispatch => {
+    dispatch(foiRequestsFilterChangeAction(filter));
+    // first delete old data
+    dispatch(foiRequestsInvalidateDataAction());
+    //  and second fetch new one
+    dispatch(foiRequestsFetchData());
+  };
 }
 
 export {

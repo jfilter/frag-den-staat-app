@@ -3,6 +3,7 @@ const initialState = {
   requests: [],
   error: '',
   nPage: 0,
+  nResults: -1,
   isRefreshing: false,
   firstPageFetchedAt: null,
   filter: { status: null, jurisdiction: null, category: null },
@@ -17,6 +18,13 @@ function foiRequests(state = initialState, action) {
         isRefreshing: false,
         error: action.error,
       };
+    case 'FOI_REQUESTS_INVALIDATE_DATA':
+      return {
+        ...state,
+        requests: [],
+        nResults: -1,
+        nPage: 0,
+      };
     case 'FOI_REQUESTS_PENDING':
       return { ...state, isPending: true };
     case 'FOI_REQUESTS_SUCCESS': {
@@ -25,6 +33,7 @@ function foiRequests(state = initialState, action) {
         isPending: false,
         requests: [...state.requests, ...action.requests.objects],
         nPage: state.nPage + 1,
+        nResults: action.requests.meta.total_count,
         firstPageFetchedAt: Date.now(),
       };
     }
@@ -39,6 +48,7 @@ function foiRequests(state = initialState, action) {
         isRefreshing: false,
         requests: action.requests.objects,
         nPage: 1, // because we already got 1
+        nResults: action.requests.meta.total_count,
       };
     }
     case 'FOI_REQUESTS_FILTER_CHANGE': {
