@@ -6,6 +6,7 @@ const initialState = {
   nResults: -1,
   isRefreshing: false,
   firstPageFetchedAt: null,
+  showHeader: true,
   filter: { status: null, jurisdiction: null, category: null },
 };
 
@@ -58,6 +59,12 @@ function foiRequests(state = initialState, action) {
           ...state.filter,
           ...action.filter,
         },
+      };
+    }
+    case 'FOI_REQUESTS_LIST_HEADER_TOGGLE': {
+      return {
+        ...state,
+        showHeader: !state.showHeader,
       };
     }
     default:

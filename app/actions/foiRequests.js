@@ -46,6 +46,12 @@ function foiRequestsFilterChangeAction(filter) {
   };
 }
 
+function foiRequestsListHeaderToggleAction() {
+  return {
+    type: 'FOI_REQUESTS_LIST_HEADER_TOGGLE',
+  };
+}
+
 const PAGE_SIZE = 20;
 const ORIGIN = 'https://fragdenstaat.de';
 const DEFAULT_PATH = '/api/v1/request/';
@@ -123,8 +129,15 @@ function foiRequestsFilterChange(filter) {
   };
 }
 
+function foiRequestsListHeaderToggle() {
+  return dispatch => {
+    dispatch(foiRequestsListHeaderToggleAction());
+  };
+}
+
 export {
   foiRequestsFetchData,
   foiRequestsRefreshData,
   foiRequestsFilterChange,
+  foiRequestsListHeaderToggle,
 };

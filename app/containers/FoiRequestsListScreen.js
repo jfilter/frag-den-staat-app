@@ -14,12 +14,15 @@ import moment from 'moment';
 import {
   foiRequestsFetchData,
   foiRequestsRefreshData,
+  foiRequestsListHeaderToggle,
 } from '../actions/foiRequests';
 import publicBodyFile from '../../scraper/public_bodies/public_bodies_cleaned.json';
 import jurisdictionFile from '../data/jurisdiction.json';
 import statusFile from '../data/status.json';
 import FoiRequestsListFilterButton from './FoiRequestsListFilterButton';
 import { getItemById, mapToRealStatus } from '../utils';
+import FoiRequestsListHeader from './FoiRequestsListHeader';
+console.log('FoiRequestsListHeader', FoiRequestsListHeader);
 
 class FoiRequestsListScreen extends React.Component {
   componentDidMount() {
@@ -96,6 +99,27 @@ class FoiRequestsListScreen extends React.Component {
     );
   };
 
+  _onScroll = event => {
+    const currentOffset = event.nativeEvent.contentOffset.y;
+    const dif = currentOffset - (this.offset || 0);
+
+    if (Math.abs(dif) < 3) {
+      console.log('unclear');
+    } else if (dif < 0) {
+      console.log('up');
+      if (!this.props.showHeader) {
+        this.props.toggleHeader();
+      }
+    } else {
+      console.log('down');
+      if (this.props.showHeader) {
+        this.props.toggleHeader();
+      }
+    }
+
+    this.offset = currentOffset;
+  };
+
   render() {
     if (this.props.error !== '') {
       return (
@@ -108,42 +132,11 @@ class FoiRequestsListScreen extends React.Component {
       );
     }
 
-    let filterText = '';
-
-    const filterJurisdiction = this.props.filter.jurisdiction;
-    if (filterJurisdiction) {
-      const jurisdictionName = jurisdictionFile.find(
-        getItemById(filterJurisdiction)
-      ).name;
-      filterText += `filter jurisdiction: only ${jurisdictionName},`;
-    }
-
-    const filterStatus = this.props.filter.status;
-    if (filterStatus) {
-      const statusName = statusFile.find(getItemById(filterStatus)).name;
-      filterText += `status: only ${statusName},`;
-    }
-
-    if (!filterText) {
-      filterText = 'no filter';
-    }
+    const h = this.props.showHeader ? <FoiRequestsListHeader /> : null;
 
     return (
       <View>
-        <View
-          style={{
-            // position: 'absolute',
-            // top: 0,
-            // height: 100,
-          }}
-        >
-          <Text>
-            {filterText}
-          </Text>
-          <Text>
-            Num:{this.props.nResults}
-          </Text>
-        </View>
+        {h}
         <FlatList
           data={this.props.requests}
           renderItem={this._renderItem}
@@ -152,6 +145,8 @@ class FoiRequestsListScreen extends React.Component {
           ListFooterComponent={this._renderPendingActivity}
           onRefresh={this._refreshData}
           refreshing={this.props.isRefreshing}
+          onScroll={this._onScroll}
+          scrollEventThrottle={100} // iOS only, between onScroll calls are at least 500ms
           style={{ backgroundColor: 'white' }} // this fixes a bug with not appearing activity spinner
         />
       </View>
@@ -176,6 +171,7 @@ const mapDispatchToProps = dispatch => {
     refreshData: () => dispatch(foiRequestsRefreshData()),
     navigateToDetails: params =>
       dispatch(NavigationActions.navigate({ routeName: 'Details', params })),
+    toggleHeader: () => dispatch(foiRequestsListHeaderToggle()),
   };
 };
 
