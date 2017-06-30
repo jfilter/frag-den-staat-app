@@ -147,7 +147,7 @@ class FoiRequestsListScreen extends React.Component {
           data={this.props.requests}
           renderItem={this._renderItem}
           onEndReached={this._fetchData}
-          onEndReachedThreshold={0}
+          onEndReachedThreshold={0.5}
           ListFooterComponent={this._renderPendingActivity}
           onRefresh={this._refreshData}
           refreshing={this.props.isRefreshing}
