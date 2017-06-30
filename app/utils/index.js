@@ -1,4 +1,4 @@
-const mapToFakeStatus = (fakeStatus, fakeResolution) =>
+const mapToRealStatus = (fakeStatus, fakeResolution) =>
   fakeStatus === 'resolved' ? fakeResolution : fakeStatus;
 
 const needToAlter = [
