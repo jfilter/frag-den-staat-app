@@ -28,4 +28,6 @@ function mapToFakeStatus(realStatus) {
   };
 }
 
-export { mapToRealStatus, mapToFakeStatus };
+const getItemById = id => x => x.id === id;
+
+export { mapToRealStatus, mapToFakeStatus, getItemById };

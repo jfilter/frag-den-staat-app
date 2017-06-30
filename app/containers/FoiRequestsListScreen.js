@@ -19,6 +19,7 @@ import publicBodyFile from '../../scraper/public_bodies/public_bodies_cleaned.js
 import jurisdictionFile from '../data/jurisdiction.json';
 import statusFile from '../data/status.json';
 import FoiRequestsFilterButton from './FoiRequestsFilterButton';
+import { getItemById } from '../utils';
 
 class FoiRequestsListScreen extends React.Component {
   componentDidMount() {
@@ -108,19 +109,17 @@ class FoiRequestsListScreen extends React.Component {
 
     let filterText = '';
 
-    const findEqual = id => x => x.id === id;
-
     const filterJurisdiction = this.props.filter.jurisdiction;
     if (filterJurisdiction) {
       const jurisdictionName = jurisdictionFile.find(
-        findEqual(filterJurisdiction)
+        getItemById(filterJurisdiction)
       ).name;
       filterText += `filter jurisdiction: only ${jurisdictionName},`;
     }
 
     const filterStatus = this.props.filter.status;
     if (filterStatus) {
-      const statusName = statusFile.find(findEqual(filterStatus)).name;
+      const statusName = statusFile.find(getItemById(filterStatus)).name;
       filterText += `status: only ${statusName},`;
     }
 
