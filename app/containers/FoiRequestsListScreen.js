@@ -16,6 +16,8 @@ import {
   foiRequestsRefreshData,
 } from '../actions/foiRequests';
 import publicBodyFile from '../../scraper/public_bodies/public_bodies_cleaned.json';
+import jurisdictionFile from '../data/jurisdiction.json';
+import statusFile from '../data/status.json';
 import FoiRequestsFilterButton from './FoiRequestsFilterButton';
 
 class FoiRequestsListScreen extends React.Component {
@@ -101,8 +103,44 @@ class FoiRequestsListScreen extends React.Component {
       );
     }
 
+    let filterText = '';
+
+    const findEqual = id => x => x.id === id;
+
+    const filterJurisdiction = this.props.filter.jurisdiction;
+    if (filterJurisdiction) {
+      const jurisdictionName = jurisdictionFile.find(
+        findEqual(filterJurisdiction)
+      ).name;
+      filterText += `filter jurisdiction: only ${jurisdictionName},`;
+    }
+
+    const filterStatus = this.props.filter.status;
+    if (filterStatus) {
+      const statusName = statusFile.find(findEqual(filterStatus)).name;
+      filterText += `status: only ${statusName},`;
+    }
+
+    if (!filterText) {
+      filterText = 'no filter';
+    }
+
     return (
       <View>
+        <View
+          style={{
+            // position: 'absolute',
+            // top: 0,
+            // height: 100,
+          }}
+        >
+          <Text>
+            {filterText}
+          </Text>
+          <Text>
+            Num:{this.props.nResults}
+          </Text>
+        </View>
         <FlatList
           data={this.props.requests}
           renderItem={this._renderItem}
