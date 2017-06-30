@@ -15,6 +15,7 @@ const FoiRequestsFilterNavigator = TabNavigator(
   },
   {
     lazy: true,
+    backBehavior: 'none',
     tabBarPosition: 'top',
     tabBarOptions: {
       activeTintColor: primaryColor,
