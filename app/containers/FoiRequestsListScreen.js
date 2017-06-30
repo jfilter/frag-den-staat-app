@@ -18,15 +18,6 @@ import {
 import publicBodyFile from '../../scraper/public_bodies/public_bodies_cleaned.json';
 import FoiRequestsFilterButton from './FoiRequestsFilterButton';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-});
-
 class FoiRequestsListScreen extends React.Component {
   componentDidMount() {
     this.props.fetchData();
@@ -134,12 +125,7 @@ FoiRequestsListScreen.navigationOptions = {
 
 const mapStateToProps = state => {
   return {
-    requests: state.foiRequests.requests,
-    error: state.foiRequests.error,
-    isPending: state.foiRequests.isPending,
-    nextUrl: state.foiRequests.nextUrl,
-    isRefreshing: state.foiRequests.isRefreshing,
-    firstPageFetchedAt: state.foiRequests.firstPageFetchedAt,
+    ...state.foiRequests,
   };
 };
 
