@@ -1,23 +1,10 @@
 import React from 'react';
-import { View, StyleSheet, FlatList } from 'react-native';
+import { View, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 import { ListItem, Icon, Text } from 'react-native-elements';
 
-import publicBodyFile from '../../scraper/public_bodies/public_bodies_cleaned.json';
 import jurisdictionList from '../data/jurisdiction';
-
 import { foiRequestsFilterChange } from '../actions/foiRequests';
-
-import { primaryColor } from '../styles/colors.js';
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-});
 
 class FoiRequestsFilterJurisdictionScreen extends React.Component {
   _onSwitch = (id, switched) => {
