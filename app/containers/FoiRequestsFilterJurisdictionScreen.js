@@ -6,7 +6,7 @@ import { ListItem, Icon, Text } from 'react-native-elements';
 import publicBodyFile from '../../scraper/public_bodies/public_bodies_cleaned.json';
 import jurisdictionList from '../data/jurisdiction';
 
-// import Icon from 'react-native-vector-icons/Ionicons';
+import { foiRequestsFilterChange } from '../actions/foiRequests';
 
 import { primaryColor } from '../styles/colors.js';
 
@@ -20,18 +20,36 @@ const styles = StyleSheet.create({
 });
 
 class FoiRequestsFilterJurisdictionScreen extends React.Component {
+  _onSwitch = (id, switched) => {
+    let newFilter = { jurisdiction: null };
+
+    if (!switched) {
+      newFilter = { jurisdiction: id };
+    }
+    this.props.changeFilter(newFilter);
+  };
+
+  _renderItem = ({ item }) => {
+    const switched = this.props.currentFilter === item.id;
+    return (
+      <ListItem
+        title={item.name}
+        key={item.id}
+        hideChevron
+        switchButton
+        switched={switched}
+        onSwitch={() => this._onSwitch(item.id, switched)}
+      />
+    );
+  };
+
   render() {
     return (
       <View>
         <FlatList
           data={jurisdictionList}
-          renderItem={({ item }) =>
-            <ListItem
-              title={item.name}
-              key={item.id}
-              hideChevron
-              switchButton
-            />}
+          extraData={this.props.currentFilter}
+          renderItem={this._renderItem}
         />
       </View>
     );
@@ -47,15 +65,14 @@ FoiRequestsFilterJurisdictionScreen.navigationOptions = {
 
 const mapStateToProps = state => {
   return {
-    requests: state.foiRequests.requests,
-    error: state.foiRequests.error,
-    isPending: state.foiRequests.isPending,
-    nextUrl: state.foiRequests.nextUrl,
+    currentFilter: state.foiRequests.filter.jurisdiction,
   };
 };
 
 const mapDispatchToProps = dispatch => {
-  return {};
+  return {
+    changeFilter: filter => dispatch(foiRequestsFilterChange(filter)),
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(
