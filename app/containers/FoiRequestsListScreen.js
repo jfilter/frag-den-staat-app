@@ -18,7 +18,7 @@ import {
 import publicBodyFile from '../../scraper/public_bodies/public_bodies_cleaned.json';
 import jurisdictionFile from '../data/jurisdiction.json';
 import statusFile from '../data/status.json';
-import FoiRequestsFilterButton from './FoiRequestsFilterButton';
+import FoiRequestsListFilterButton from './FoiRequestsListFilterButton';
 import { getItemById, mapToRealStatus } from '../utils';
 
 class FoiRequestsListScreen extends React.Component {
@@ -161,7 +161,7 @@ class FoiRequestsListScreen extends React.Component {
 
 FoiRequestsListScreen.navigationOptions = {
   title: 'Requests',
-  headerRight: <FoiRequestsFilterButton />,
+  headerRight: <FoiRequestsListFilterButton />,
 };
 
 const mapStateToProps = state => {
