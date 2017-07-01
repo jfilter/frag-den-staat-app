@@ -3,6 +3,7 @@ import { Text, View, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
+import { Icon } from 'react-native-elements';
 
 import jurisdictionFile from '../data/jurisdiction.json';
 import statusFile from '../data/status.json';
@@ -47,19 +48,43 @@ class FoiRequestsListHeader extends React.Component {
           }}
         >
           <View style={[styles.item, styles.firstItem]}>
-            <Text style={styles.label}>JURISDICTION</Text>
+            <View style={styles.align}>
+              <Text style={styles.label}>JURISDICTION</Text>
+              <Icon
+                name="arrow-drop-down"
+                color={greyDark}
+                height={20}
+                width={20}
+              />
+            </View>
             <Text style={styles.selection}>
               {filterJurisdictionText}
             </Text>
           </View>
           <View style={styles.item}>
-            <Text style={styles.label}>STATUS</Text>
+            <View style={styles.align}>
+              <Text style={styles.label}>STATUS</Text>
+              <Icon
+                name="arrow-drop-down"
+                color={greyDark}
+                height={20}
+                width={20}
+              />
+            </View>
             <Text style={styles.selection}>
               {filterStatusText}
             </Text>
           </View>
           <View style={styles.item}>
-            <Text style={styles.label}>CATEGORY</Text>
+            <View style={styles.align}>
+              <Text style={styles.label}>CATEGORY</Text>
+              <Icon
+                name="arrow-drop-down"
+                color={greyDark}
+                height={20}
+                width={20}
+              />
+            </View>
             <Text style={styles.selection}>
               {filterCategoryText}
             </Text>
@@ -102,7 +127,7 @@ const styles = StyleSheet.create({
     borderLeftWidth: 1,
     borderColor: greyDark,
     paddingHorizontal: 10,
-    paddingVertical: 5,
+    paddingBottom: 5,
   },
   firstItem: {
     borderLeftWidth: 0,
@@ -114,5 +139,10 @@ const styles = StyleSheet.create({
   selection: {
     color: primaryColor,
     fontSize: 12,
+  },
+  align: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'flex-end',
   },
 });
