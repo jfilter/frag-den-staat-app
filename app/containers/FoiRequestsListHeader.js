@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import { Text, View, StyleSheet, TouchableHighlight } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
@@ -48,46 +48,60 @@ class FoiRequestsListHeader extends React.Component {
           }}
         >
           <View style={[styles.item, styles.firstItem]}>
-            <View style={styles.align}>
-              <Text style={styles.label}>JURISDICTION</Text>
-              <Icon
-                name="arrow-drop-down"
-                color={greyDark}
-                height={20}
-                width={20}
-              />
-            </View>
-            <Text style={styles.selection}>
-              {filterJurisdictionText}
-            </Text>
+            <TouchableHighlight
+              onPress={this.props.navigateToFilterJurisdiction}
+            >
+              <View>
+                <View style={styles.align}>
+                  <Text style={styles.label}>JURISDICTION</Text>
+                  <Icon
+                    name="arrow-drop-down"
+                    color={greyDark}
+                    height={20}
+                    width={20}
+                  />
+                </View>
+                <Text style={styles.selection}>
+                  {filterJurisdictionText}
+                </Text>
+              </View>
+            </TouchableHighlight>
           </View>
           <View style={styles.item}>
-            <View style={styles.align}>
-              <Text style={styles.label}>STATUS</Text>
-              <Icon
-                name="arrow-drop-down"
-                color={greyDark}
-                height={20}
-                width={20}
-              />
-            </View>
-            <Text style={styles.selection}>
-              {filterStatusText}
-            </Text>
+            <TouchableHighlight onPress={this.props.navigateToFilterStatus}>
+              <View>
+                <View style={styles.align}>
+                  <Text style={styles.label}>STATUS</Text>
+                  <Icon
+                    name="arrow-drop-down"
+                    color={greyDark}
+                    height={20}
+                    width={20}
+                  />
+                </View>
+                <Text style={styles.selection}>
+                  {filterStatusText}
+                </Text>
+              </View>
+            </TouchableHighlight>
           </View>
           <View style={styles.item}>
-            <View style={styles.align}>
-              <Text style={styles.label}>CATEGORY</Text>
-              <Icon
-                name="arrow-drop-down"
-                color={greyDark}
-                height={20}
-                width={20}
-              />
-            </View>
-            <Text style={styles.selection}>
-              {filterCategoryText}
-            </Text>
+            <TouchableHighlight onPress={this.props.navigateToFilterCategory}>
+              <View>
+                <View style={styles.align}>
+                  <Text style={styles.label}>CATEGORY</Text>
+                  <Icon
+                    name="arrow-drop-down"
+                    color={greyDark}
+                    height={20}
+                    width={20}
+                  />
+                </View>
+                <Text style={styles.selection}>
+                  {filterCategoryText}
+                </Text>
+              </View>
+            </TouchableHighlight>
           </View>
         </View>
       </View>
@@ -104,8 +118,12 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    navigateToFilter: () =>
-      dispatch(NavigationActions.navigate({ routeName: 'Filter' })),
+    navigateToFilterJurisdiction: () =>
+      dispatch(NavigationActions.navigate({ routeName: 'Jurisdiction' })),
+    navigateToFilterStatus: () =>
+      dispatch(NavigationActions.navigate({ routeName: 'Status' })),
+    navigateToFilterCategory: () =>
+      dispatch(NavigationActions.navigate({ routeName: 'Category' })),
   };
 };
 
