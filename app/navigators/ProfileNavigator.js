@@ -4,6 +4,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import ProfileLoginScreen from '../components/ProfileLoginScreen';
 import ProfileMainScreen from '../components/ProfileMainScreen';
+import { greyDark } from '../styles/colors';
 
 const ProfileNavigator = StackNavigator(
   {
@@ -13,7 +14,7 @@ const ProfileNavigator = StackNavigator(
   {
     navigationOptions: {
       tabBarLabel: 'Profile',
-      tabBarIcon: () => <Icon size={24} color="black" name="person" />,
+      tabBarIcon: () => <Icon size={24} color={greyDark} name="person" />,
     },
   }
 );

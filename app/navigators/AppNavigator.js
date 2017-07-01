@@ -8,7 +8,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import ProfileNavigator from './ProfileNavigator';
 import foiRequestsNavigator from './FoiRequestsNavigator';
-import { primaryColor } from '../styles/colors';
+import { primaryColor, greyDark } from '../styles/colors';
 
 // class Requests extends React.Component {
 //   static navigationOptions = {
@@ -22,7 +22,7 @@ import { primaryColor } from '../styles/colors';
 class Search extends React.Component {
   static navigationOptions = {
     tabBarLabel: 'Search',
-    tabBarIcon: () => <Icon size={24} color="black" name="search" />,
+    tabBarIcon: () => <Icon size={24} color={greyDark} name="search" />,
   };
 
   render() {
@@ -33,7 +33,7 @@ class Search extends React.Component {
 class NewRequest extends React.Component {
   static navigationOptions = {
     tabBarLabel: 'New',
-    tabBarIcon: () => <Icon size={24} color="black" name="add" />,
+    tabBarIcon: () => <Icon size={24} color={greyDark} name="add" />,
   };
 
   render() {
