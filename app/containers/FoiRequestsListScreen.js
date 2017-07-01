@@ -5,6 +5,8 @@ import {
   View,
   StyleSheet,
   ActivityIndicator,
+  Animated,
+  RefreshControl,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
@@ -24,7 +26,39 @@ import { getItemById, mapToRealStatus } from '../utils';
 import FoiRequestsListHeader from './FoiRequestsListHeader';
 console.log('FoiRequestsListHeader', FoiRequestsListHeader);
 
+const NAVBAR_HEIGHT = 64;
+
+const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
+
 class FoiRequestsListScreen extends React.Component {
+  constructor(props) {
+    super(props);
+
+    const scrollAnim = new Animated.Value(0);
+    const offsetAnim = new Animated.Value(0);
+
+    this.state = {
+      scrollAnim,
+      offsetAnim,
+      clampedScroll: Animated.diffClamp(
+        Animated.add(
+          scrollAnim.interpolate({
+            inputRange: [0, 1],
+            outputRange: [0, 1],
+            extrapolateLeft: 'clamp',
+          }),
+          offsetAnim
+        ),
+        0,
+        NAVBAR_HEIGHT
+      ),
+    };
+  }
+
+  _clampedScrollValue = 0;
+  _offsetValue = 0;
+  _scrollValue = 0;
+
   componentDidMount() {
     this.props.fetchData();
   }
@@ -121,6 +155,20 @@ class FoiRequestsListScreen extends React.Component {
   };
 
   render() {
+    const { clampedScroll } = this.state;
+
+    const navbarTranslate = clampedScroll.interpolate({
+      inputRange: [0, NAVBAR_HEIGHT],
+      outputRange: [0, -NAVBAR_HEIGHT],
+      extrapolate: 'clamp',
+    });
+
+    const navbarOpacity = clampedScroll.interpolate({
+      inputRange: [0, NAVBAR_HEIGHT],
+      outputRange: [1, 0],
+      extrapolate: 'clamp',
+    });
+
     if (this.props.error !== '') {
       return (
         <View>
@@ -136,19 +184,40 @@ class FoiRequestsListScreen extends React.Component {
 
     return (
       <View>
-        {h}
-        <FlatList
+        <AnimatedFlatList
+          refreshControl={
+            <RefreshControl
+              refreshing={this.props.isRefreshing}
+              onRefresh={this._refreshData}
+              progressViewOffset={{ top: NAVBAR_HEIGHT }}
+            />
+          } // progresViewOffset for anodroid
+          contentInset={{ top: NAVBAR_HEIGHT }} // iOS
           data={this.props.requests}
           renderItem={this._renderItem}
           onEndReached={this._fetchData}
           onEndReachedThreshold={0.5}
           ListFooterComponent={this._renderPendingActivity}
-          onRefresh={this._refreshData}
-          refreshing={this.props.isRefreshing}
-          onScroll={this._onScroll}
-          scrollEventThrottle={100} // iOS only, between onScroll calls are at least 500ms
-          style={{ backgroundColor: 'white' }} // this fixes a bug with not appearing activity spinner
+          // onRefresh={this._refreshData}
+          // refreshing={this.props.isRefreshing}
+          // onScroll={this._onScroll}
+          onScroll={Animated.event(
+            [{ nativeEvent: { contentOffset: { y: this.state.scrollAnim } } }],
+            { useNativeDriver: true }
+          )}
+          scrollEventThrottle={10} // iOS only, between onScroll calls are at least 500ms
+          style={{ backgroundColor: 'white', marginTop: 0 }} // this fixes a bug with not appearing activity spinner
         />
+        <Animated.View
+          style={[
+            styles.navbar,
+            { transform: [{ translateY: navbarTranslate }] },
+          ]}
+        >
+          <Animated.Text style={[styles.title, { opacity: navbarOpacity }]}>
+            PLACES
+          </Animated.Text>
+        </Animated.View>
       </View>
     );
   }
@@ -178,3 +247,21 @@ const mapDispatchToProps = dispatch => {
 export default connect(mapStateToProps, mapDispatchToProps)(
   FoiRequestsListScreen
 );
+
+const styles = StyleSheet.create({
+  navbar: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    alignItems: 'center',
+    backgroundColor: 'white',
+    borderBottomColor: '#dedede',
+    borderBottomWidth: 1,
+    height: NAVBAR_HEIGHT,
+    justifyContent: 'center',
+  },
+  title: {
+    color: '#333333',
+  },
+});
