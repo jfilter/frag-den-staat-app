@@ -93,7 +93,7 @@ class FoiRequestsListScreen extends React.Component {
           paddingVertical: 20,
         }}
       >
-        <ActivityIndicator animating size="large" />
+        <ActivityIndicator animating size="large" color={primaryColorLight} />
       </View>
     );
   };
@@ -129,6 +129,7 @@ class FoiRequestsListScreen extends React.Component {
         avatar={{
           uri: imagePath,
         }}
+        chevronColor={primaryColor}
         onPress={() =>
           this.props.navigateToDetails({ indexInArray: index, id: item.id })}
         // avatarStyle={{ marginTop: 20 }}
