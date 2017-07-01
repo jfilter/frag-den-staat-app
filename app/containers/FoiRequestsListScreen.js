@@ -24,6 +24,7 @@ import statusFile from '../data/status.json';
 import FoiRequestsListFilterButton from './FoiRequestsListFilterButton';
 import { getItemById, mapToRealStatus } from '../utils';
 import FoiRequestsListHeader from './FoiRequestsListHeader';
+import { greyDark } from '../styles/colors';
 
 const LIST_HEADER_HEIGHT = 64;
 
@@ -71,6 +72,16 @@ class FoiRequestsListScreen extends React.Component {
 
   _refreshData = () => {
     this.props.refreshData();
+  };
+
+  _renderNumberOfResultHeader = () => {
+    const nResultsText =
+      this.props.nResults !== -1 ? `${this.props.nResults} REQUESTS` : null;
+    return (
+      <Text style={styles.nResults}>
+        {nResultsText}
+      </Text>
+    );
   };
 
   _renderPendingActivity = () => {
@@ -155,7 +166,7 @@ class FoiRequestsListScreen extends React.Component {
     }
 
     return (
-      <View>
+      <View onLayout={event => console.log(event.nativeEvent.layout.height)}>
         <AnimatedFlatList
           refreshControl={
             <RefreshControl
@@ -170,6 +181,7 @@ class FoiRequestsListScreen extends React.Component {
           onEndReached={this._fetchData}
           onEndReachedThreshold={0.5}
           ListFooterComponent={this._renderPendingActivity}
+          ListHeaderComponent={this._renderNumberOfResultHeader}
           // onRefresh={this._refreshData}
           // refreshing={this.props.isRefreshing}
           onScroll={Animated.event(
@@ -186,7 +198,9 @@ class FoiRequestsListScreen extends React.Component {
           ]}
         >
           <Animated.View style={[styles.title, { opacity: headerOpacity }]}>
-            <FoiRequestsListHeader />
+            <FoiRequestsListHeader
+              onLayout={event => console.log(event.nativeEvent.layout.height)}
+            />
           </Animated.View>
         </Animated.View>
       </View>
@@ -225,12 +239,14 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
     right: 0,
-    backgroundColor: 'white',
-    borderBottomColor: '#dedede',
-    borderBottomWidth: 1,
     height: LIST_HEADER_HEIGHT,
   },
-  title: {
-    color: '#333333',
+  nResults: {
+    textAlign: 'center',
+    color: greyDark,
+    fontWeight: '400',
+    fontSize: 12,
+    marginTop: 10,
+    marginBottom: 5,
   },
 });
