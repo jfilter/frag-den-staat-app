@@ -24,7 +24,7 @@ import statusFile from '../data/status.json';
 import FoiRequestsListFilterButton from './FoiRequestsListFilterButton';
 import { getItemById, mapToRealStatus } from '../utils';
 import FoiRequestsListHeader from './FoiRequestsListHeader';
-import { primaryColor, greyDark } from '../styles/colors';
+import { primaryColor, primaryColorLight, greyDark } from '../styles/colors';
 
 const LIST_HEADER_HEIGHT = 64;
 
@@ -173,8 +173,8 @@ class FoiRequestsListScreen extends React.Component {
               refreshing={this.props.isRefreshing}
               onRefresh={this._refreshData}
               progressViewOffset={LIST_HEADER_HEIGHT}
-              tintColor={primaryColor}
-              progressBackgroundColor={primaryColor}
+              tintColor={primaryColorLight}
+              progressBackgroundColor={primaryColorLight}
             />
           } // progresViewOffset for anodroid
           contentInset={{ top: LIST_HEADER_HEIGHT }} // iOS
