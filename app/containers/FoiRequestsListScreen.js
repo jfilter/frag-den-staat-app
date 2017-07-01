@@ -24,9 +24,8 @@ import statusFile from '../data/status.json';
 import FoiRequestsListFilterButton from './FoiRequestsListFilterButton';
 import { getItemById, mapToRealStatus } from '../utils';
 import FoiRequestsListHeader from './FoiRequestsListHeader';
-console.log('FoiRequestsListHeader', FoiRequestsListHeader);
 
-const NAVBAR_HEIGHT = 64;
+const LIST_HEADER_HEIGHT = 64;
 
 const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
 
@@ -50,14 +49,10 @@ class FoiRequestsListScreen extends React.Component {
           offsetAnim
         ),
         0,
-        NAVBAR_HEIGHT
+        LIST_HEADER_HEIGHT
       ),
     };
   }
-
-  _clampedScrollValue = 0;
-  _offsetValue = 0;
-  _scrollValue = 0;
 
   componentDidMount() {
     this.props.fetchData();
@@ -133,38 +128,17 @@ class FoiRequestsListScreen extends React.Component {
     );
   };
 
-  _onScroll = event => {
-    const currentOffset = event.nativeEvent.contentOffset.y;
-    const dif = currentOffset - (this.offset || 0);
-
-    if (Math.abs(dif) < 3) {
-      console.log('unclear');
-    } else if (dif < 0) {
-      console.log('up');
-      if (!this.props.showHeader) {
-        this.props.toggleHeader();
-      }
-    } else {
-      console.log('down');
-      if (this.props.showHeader) {
-        this.props.toggleHeader();
-      }
-    }
-
-    this.offset = currentOffset;
-  };
-
   render() {
     const { clampedScroll } = this.state;
 
-    const navbarTranslate = clampedScroll.interpolate({
-      inputRange: [0, NAVBAR_HEIGHT],
-      outputRange: [0, -NAVBAR_HEIGHT],
+    const headerTranslate = clampedScroll.interpolate({
+      inputRange: [0, LIST_HEADER_HEIGHT],
+      outputRange: [0, -LIST_HEADER_HEIGHT],
       extrapolate: 'clamp',
     });
 
-    const navbarOpacity = clampedScroll.interpolate({
-      inputRange: [0, NAVBAR_HEIGHT],
+    const headerOpacity = clampedScroll.interpolate({
+      inputRange: [0, LIST_HEADER_HEIGHT],
       outputRange: [1, 0],
       extrapolate: 'clamp',
     });
@@ -180,8 +154,6 @@ class FoiRequestsListScreen extends React.Component {
       );
     }
 
-    const h = this.props.showHeader ? <FoiRequestsListHeader /> : null;
-
     return (
       <View>
         <AnimatedFlatList
@@ -189,10 +161,10 @@ class FoiRequestsListScreen extends React.Component {
             <RefreshControl
               refreshing={this.props.isRefreshing}
               onRefresh={this._refreshData}
-              progressViewOffset={{ top: NAVBAR_HEIGHT }}
+              progressViewOffset={{ top: LIST_HEADER_HEIGHT }}
             />
           } // progresViewOffset for anodroid
-          contentInset={{ top: NAVBAR_HEIGHT }} // iOS
+          contentInset={{ top: LIST_HEADER_HEIGHT }} // iOS
           data={this.props.requests}
           renderItem={this._renderItem}
           onEndReached={this._fetchData}
@@ -200,7 +172,6 @@ class FoiRequestsListScreen extends React.Component {
           ListFooterComponent={this._renderPendingActivity}
           // onRefresh={this._refreshData}
           // refreshing={this.props.isRefreshing}
-          // onScroll={this._onScroll}
           onScroll={Animated.event(
             [{ nativeEvent: { contentOffset: { y: this.state.scrollAnim } } }],
             { useNativeDriver: true }
@@ -210,13 +181,13 @@ class FoiRequestsListScreen extends React.Component {
         />
         <Animated.View
           style={[
-            styles.navbar,
-            { transform: [{ translateY: navbarTranslate }] },
+            styles.header,
+            { transform: [{ translateY: headerTranslate }] },
           ]}
         >
-          <Animated.Text style={[styles.title, { opacity: navbarOpacity }]}>
-            PLACES
-          </Animated.Text>
+          <Animated.View style={[styles.title, { opacity: headerOpacity }]}>
+            <FoiRequestsListHeader />
+          </Animated.View>
         </Animated.View>
       </View>
     );
@@ -249,17 +220,15 @@ export default connect(mapStateToProps, mapDispatchToProps)(
 );
 
 const styles = StyleSheet.create({
-  navbar: {
+  header: {
     position: 'absolute',
     top: 0,
     left: 0,
     right: 0,
-    alignItems: 'center',
     backgroundColor: 'white',
     borderBottomColor: '#dedede',
     borderBottomWidth: 1,
-    height: NAVBAR_HEIGHT,
-    justifyContent: 'center',
+    height: LIST_HEADER_HEIGHT,
   },
   title: {
     color: '#333333',
