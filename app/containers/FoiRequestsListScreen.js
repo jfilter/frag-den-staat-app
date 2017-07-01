@@ -7,6 +7,7 @@ import {
   ActivityIndicator,
   Animated,
   RefreshControl,
+  Alert,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
@@ -17,6 +18,7 @@ import {
   foiRequestsFetchData,
   foiRequestsRefreshData,
   foiRequestsListHeaderToggle,
+  foiRequestsErrorClearAction,
 } from '../actions/foiRequests';
 import publicBodyFile from '../../scraper/public_bodies/public_bodies_cleaned.json';
 import jurisdictionFile from '../data/jurisdiction.json';
@@ -155,14 +157,15 @@ class FoiRequestsListScreen extends React.Component {
       extrapolate: 'clamp',
     });
 
-    if (this.props.error !== '') {
-      return (
-        <View>
-          <Text>ERROR!</Text>
-          <Text>
-            {this.props.error}
-          </Text>
-        </View>
+    const hasError = this.props.error !== '';
+    if (hasError) {
+      const errorText = `Sorry, there has been an error with the message '${this
+        .props.error}'`;
+      Alert.alert(
+        'Error',
+        errorText,
+        [{ text: 'OK', onPress: this.props.clearError }],
+        { cancelable: false }
       );
     }
 
@@ -224,6 +227,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    clearError: () => dispatch(foiRequestsErrorClearAction()),
     fetchData: () => dispatch(foiRequestsFetchData()),
     refreshData: () => dispatch(foiRequestsRefreshData()),
     navigateToDetails: params =>

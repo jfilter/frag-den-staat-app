@@ -60,6 +60,11 @@ function foiRequests(state = initialState, action) {
         },
       };
     }
+    case 'FOI_REQUETS_ERROR_CLEAR':
+      return {
+        ...state,
+        error: '',
+      };
     default:
       return state;
   }

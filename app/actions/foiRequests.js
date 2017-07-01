@@ -7,6 +7,12 @@ function foiRequestsErrorAction(error) {
   };
 }
 
+function foiRequestsErrorClearAction() {
+  return {
+    type: 'FOI_REQUETS_ERROR_CLEAR',
+  };
+}
+
 function foiRequestsInvalidateDataAction() {
   return {
     type: 'FOI_REQUESTS_INVALIDATE_DATA',
@@ -127,4 +133,5 @@ export {
   foiRequestsFetchData,
   foiRequestsRefreshData,
   foiRequestsFilterChange,
+  foiRequestsErrorClearAction,
 };
