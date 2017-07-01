@@ -24,16 +24,7 @@ class FoiRequestsFilterCategoryScreen extends React.Component {
   render() {
     return (
       <View>
-        <FlatList
-          data={jurisdictionList}
-          renderItem={({ item }) =>
-            <ListItem
-              title={item.name}
-              key={item.id}
-              hideChevron
-              switchButton
-            />}
-        />
+        <Text>Not yet implemented. Come back later. ;)</Text>
       </View>
     );
   }
@@ -59,7 +50,9 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => {
-  changeFilter: foiRequestsFilterChange;
+  return {
+    changeFilter: filter => dispatch(foiRequestsFilterChange(filter)),
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(
