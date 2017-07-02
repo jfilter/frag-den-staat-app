@@ -8,7 +8,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import ProfileNavigator from './ProfileNavigator';
 import foiRequestsNavigator from './FoiRequestsNavigator';
-import { primaryColor, greyDark } from '../styles/colors';
+import { primaryColor, greyDark, greyLight } from '../styles/colors';
 
 // class Requests extends React.Component {
 //   static navigationOptions = {
@@ -59,7 +59,7 @@ export const AppNavigator = TabNavigator(
         backgroundColor: 'white',
         style: {
           borderTopWidth: 1,
-          borderTopColor: greyDark,
+          borderTopColor: greyLight,
         },
         tabs: {
           Requests: {

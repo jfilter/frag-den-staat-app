@@ -8,7 +8,7 @@ import { Icon } from 'react-native-elements';
 import jurisdictionFile from '../data/jurisdiction.json';
 import statusFile from '../data/status.json';
 import { getItemById, mapToRealStatus } from '../utils';
-import { primaryColor, greyDark } from '../styles/colors';
+import { primaryColor, greyDark, greyLight } from '../styles/colors';
 
 class FoiRequestsListHeader extends React.Component {
   render() {
@@ -135,15 +135,13 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: 'white',
     borderBottomWidth: 1,
-    borderTopWidth: 1,
-    borderBottomColor: greyDark,
-    borderTopColor: greyDark,
+    borderBottomColor: greyLight,
   },
   item: {
     flexGrow: 1,
     flexBasis: 0,
     borderLeftWidth: 1,
-    borderColor: greyDark,
+    borderColor: greyLight,
     paddingHorizontal: 10,
     paddingBottom: 5,
   },

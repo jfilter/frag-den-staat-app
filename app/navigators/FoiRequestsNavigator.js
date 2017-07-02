@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import FoiRequestsListScreen from '../containers/FoiRequestsListScreen';
 import FoiRequestDetailsScreen from '../containers/FoiRequestDetailsScreen';
 import FoiRequestsFilterNavigator from './FoiRequestsFilterNavigator';
-import { primaryColor, greyDark } from '../styles/colors';
+import { primaryColor, greyDark, greyLight } from '../styles/colors';
 
 const FoiRequestsNavigator = StackNavigator(
   {
@@ -15,6 +15,13 @@ const FoiRequestsNavigator = StackNavigator(
   },
   {
     navigationOptions: {
+      headerStyle: {
+        backgroundColor: 'white',
+        borderBottomWidth: 1,
+        borderBottomColor: greyLight,
+        elevation: 0, //remove shadow on Android
+        shadowOpacity: 0, //remove shadow on iOS
+      },
       headerTintColor: primaryColor,
       headerTitleStyle: { color: 'black' }, // change the color back to black from the overriden primary color
       tabBarLabel: 'Requests',
