@@ -68,11 +68,7 @@ class FoiRequestsListScreen extends React.Component {
 
   componentDidUpdate() {
     // https://github.com/facebook/react-native/issues/1878
-    if (
-      this.props.requests.length <= 20 &&
-      !this.props.isRefreshing &&
-      !this.props.isPending
-    ) {
+    if (this.props.requests.length <= 20 && !this.props.isRefreshing) {
       this.listRef.getNode().scrollToOffset({
         offset: -LIST_HEADER_HEIGHT,
         animated: false,
