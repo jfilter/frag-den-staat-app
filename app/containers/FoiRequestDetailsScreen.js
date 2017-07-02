@@ -18,7 +18,7 @@ import publicBodyFile from '../../scraper/public_bodies/public_bodies_cleaned.js
 
 // import Icon from 'react-native-vector-icons/Ionicons';
 
-import { primaryColor, secondaryColor } from '../styles/colors.js';
+import { primaryColor, secondaryColor, greyDark } from '../styles/colors.js';
 
 class FoiRequestDetailsScreen extends React.Component {
   constructor(props) {
@@ -61,19 +61,38 @@ class FoiRequestDetailsScreen extends React.Component {
     };
   };
 
-  _renderHeader = () =>
-    <View>
-      <Text>Header</Text>
+  _renderMessageHeader = msg =>
+    <View style={styles.msgHeader}>
+      <Text style={styles.msgHeaderText}>
+        {msg.timestamp}
+      </Text>
     </View>;
 
-  _renderContent = () =>
-    <View>
-      <Text>Header</Text>
+  _renderMessageContent = msg =>
+    <View style={styles.msgContent}>
+      <Text>
+        {msg.sender}
+      </Text>
+      <Text>
+        {msg.subject}
+      </Text>
+      <Text>
+        {msg.timestamp}
+      </Text>
+      <Text>
+        {msg.content}
+      </Text>
+      <Text>
+        {msg.pdfs.map(x =>
+          <Text>
+            {x}
+          </Text>
+        )}
+      </Text>
     </View>;
 
-  render() {
+  _buildTable = () => {
     const r = this.request;
-
     const tableData = [
       ['TO', r.public_body],
       ['LAW', r.law],
@@ -86,7 +105,7 @@ class FoiRequestDetailsScreen extends React.Component {
       ['COSTS', r.costs],
     ];
 
-    const table = (
+    return (
       <View style={styles.table}>
         {tableData.map(x =>
           <View style={styles.row}>
@@ -104,6 +123,62 @@ class FoiRequestDetailsScreen extends React.Component {
         )}
       </View>
     );
+  };
+
+  _buildMessages = () => {
+    const r = this.request;
+
+    const filtedMessages = r.messages.filter(x => !x.not_publishable);
+    const messages = filtedMessages.map(
+      ({ sender, subject, content, timestamp, is_response, attachments }) => {
+        const filteredAttachments = attachments.filter(
+          x => x.approved && x.filetype === 'application/pdf'
+        );
+        const pdfs = filteredAttachments.map(x => x.site_url);
+        return {
+          sender,
+          subject,
+          content,
+          timestamp,
+          isRespsone: is_response,
+          pdfs,
+        };
+      }
+    );
+
+    return (
+      <View style={styles.msgContainer}>
+        <Accordion
+          align={'center'}
+          duration={1000}
+          sections={messages}
+          renderHeader={this._renderMessageHeader}
+          renderContent={this._renderMessageContent}
+        />
+      </View>
+    );
+  };
+
+  render() {
+    const r = this.request;
+
+    const filtedMessages = r.messages.filter(x => !x.not_publishable);
+    const messages = filtedMessages.map(
+      ({ sender, subject, content, timestamp, is_response, attachments }) => {
+        const filteredAttachments = attachments.filter(
+          x => x.approved && x.filetype === 'application/pdf'
+        );
+        const pdfs = filteredAttachments.map(x => x.site_url);
+        return {
+          sender,
+          subject,
+          content,
+          timestamp,
+          isRespsone: is_response,
+          pdfs,
+        };
+      }
+    );
 
     return (
       <ScrollView style={styles.scrollView}>
@@ -111,16 +186,11 @@ class FoiRequestDetailsScreen extends React.Component {
           <Text style={styles.heading}>
             {r.title}
           </Text>
-          {table}
+          {this._buildTable()}
           <Text>
             {r.description}
           </Text>
-
-          <Accordion
-            sections={['Section 1', 'Section 2', 'Section 3']}
-            renderHeader={this._renderHeader}
-            renderContent={this._renderContent}
-          />
+          {this._buildMessages()}
         </View>
       </ScrollView>
     );
@@ -158,6 +228,7 @@ const styles = StyleSheet.create({
   scrollView: {
     backgroundColor: 'white',
     padding: 10,
+    paddingBottom: 100,
   },
   row: {
     flex: 1,
@@ -170,5 +241,26 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginBottom: 20,
     textAlign: 'center',
+  },
+  msgContainer: {
+    // borderColor: greyDark,
+    // borderWidth: 1,
+    // marginTop: 20,
+  },
+  msgHeader: {
+    padding: 10,
+    borderColor: greyDark,
+    borderWidth: 1,
+    marginTop: 20,
+  },
+  msgHeaderText: {
+    textAlign: 'center',
+    color: primaryColor,
+  },
+  msgContent: {
+    padding: 10,
+    borderColor: secondaryColor,
+    borderWidth: 1,
+    marginTop: 20,
   },
 });
