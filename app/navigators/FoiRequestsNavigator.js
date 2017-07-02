@@ -5,7 +5,12 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import FoiRequestsListScreen from '../containers/FoiRequestsListScreen';
 import FoiRequestDetailsScreen from '../containers/FoiRequestDetailsScreen';
 import FoiRequestsFilterNavigator from './FoiRequestsFilterNavigator';
-import { primaryColor, greyDark, greyLight } from '../styles/colors';
+import {
+  primaryColor,
+  secondaryColor,
+  greyDark,
+  greyLight,
+} from '../styles/colors';
 
 const FoiRequestsNavigator = StackNavigator(
   {
@@ -23,7 +28,8 @@ const FoiRequestsNavigator = StackNavigator(
         shadowOpacity: 0, //remove shadow on iOS
       },
       headerTintColor: primaryColor,
-      headerTitleStyle: { color: 'black' }, // change the color back to black from the overriden primary color
+      // headerTitleStyle: { color: primaryColorDark }, // change the color back to black from the overriden primary color
+      headerTitleStyle: { color: secondaryColor }, // change the color back to black from the overriden primary color
       tabBarLabel: 'Requests',
       tabBarIcon: () => <Icon size={24} color={greyDark} name="list" />,
     },

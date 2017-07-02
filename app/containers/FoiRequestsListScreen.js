@@ -26,7 +26,12 @@ import statusFile from '../data/status.json';
 import FoiRequestsListFilterButton from './FoiRequestsListFilterButton';
 import { getItemById, mapToRealStatus } from '../utils';
 import FoiRequestsListHeader from './FoiRequestsListHeader';
-import { primaryColor, primaryColorLight, greyDark } from '../styles/colors';
+import {
+  primaryColor,
+  primaryColorLight,
+  greyDark,
+  greyLight,
+} from '../styles/colors';
 
 const LIST_HEADER_HEIGHT = 64;
 
@@ -63,7 +68,11 @@ class FoiRequestsListScreen extends React.Component {
 
   componentDidUpdate() {
     // https://github.com/facebook/react-native/issues/1878
-    if (this.props.requests.length <= 20) {
+    if (
+      this.props.requests.length <= 20 &&
+      !this.props.isRefreshing &&
+      !this.props.isPending
+    ) {
       this.listRef.getNode().scrollToOffset({
         offset: -LIST_HEADER_HEIGHT,
         animated: false,
@@ -147,7 +156,22 @@ class FoiRequestsListScreen extends React.Component {
         // avatarStyle={{ marginTop: 20 }}
         // TODO: Not possible right now, come back later to check if they have fixed it.
         // avatarStyle={{ overlayContainerStyle: { backgroundColor: 'white' } }}
-        containerStyle={{ alignItems: 'center', justifyContent: 'center' }}
+        containerStyle={{
+          alignItems: 'center',
+          justifyContent: 'center',
+          borderBottomWidth: 0,
+        }}
+      />
+    );
+  };
+
+  renderSeparator = () => {
+    return (
+      <View
+        style={{
+          height: 0.5,
+          backgroundColor: greyLight,
+        }}
       />
     );
   };
@@ -180,7 +204,7 @@ class FoiRequestsListScreen extends React.Component {
     }
 
     return (
-      <View>
+      <View style={{ backgroundColor: 'white', height: '100%' }}>
         <AnimatedFlatList
           refreshControl={
             <RefreshControl
@@ -198,6 +222,7 @@ class FoiRequestsListScreen extends React.Component {
           onEndReachedThreshold={0.5}
           ListFooterComponent={this._renderPendingActivity}
           ListHeaderComponent={this._renderNumberOfResultHeader}
+          ItemSeparatorComponent={this.renderSeparator}
           ref={ref => (this.listRef = ref)}
           // onRefresh={this._refreshData}
           // refreshing={this.props.isRefreshing}
@@ -206,7 +231,7 @@ class FoiRequestsListScreen extends React.Component {
             { useNativeDriver: true }
           )}
           scrollEventThrottle={10} // iOS only, between onScroll calls are at least 500ms
-          style={{ backgroundColor: 'white', marginTop: 0 }} // this fixes a bug with not appearing activity spinner
+          style={{ backgroundColor: 'white' }} // this fixes a bug with not appearing activity spinner
         />
         <Animated.View
           style={[
