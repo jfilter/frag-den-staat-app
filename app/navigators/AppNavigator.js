@@ -56,7 +56,11 @@ export const AppNavigator = TabNavigator(
       bottomNavigationOptions: {
         labelColor: primaryColor,
         rippleColor: 'white',
-        backgroundColor: '#EEEEEE',
+        backgroundColor: 'white',
+        style: {
+          borderTopWidth: 1,
+          borderTopColor: greyDark,
+        },
         tabs: {
           Requests: {
             activeIcon: <Icon size={24} color={primaryColor} name="list" />,
