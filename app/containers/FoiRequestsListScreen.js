@@ -61,6 +61,16 @@ class FoiRequestsListScreen extends React.Component {
     this.props.fetchData();
   }
 
+  componentDidUpdate() {
+    // https://github.com/facebook/react-native/issues/1878
+    if (this.props.requests.length <= 20) {
+      this.listRef.getNode().scrollToOffset({
+        offset: -LIST_HEADER_HEIGHT,
+        animated: false,
+      });
+    }
+  }
+
   _fetchData = () => {
     if (!this.props.isPending) {
       const timeDif = Date.now() - this.props.firstPageFetchedAt;
@@ -170,7 +180,7 @@ class FoiRequestsListScreen extends React.Component {
     }
 
     return (
-      <View onLayout={event => console.log(event.nativeEvent.layout.height)}>
+      <View>
         <AnimatedFlatList
           refreshControl={
             <RefreshControl
@@ -188,6 +198,7 @@ class FoiRequestsListScreen extends React.Component {
           onEndReachedThreshold={0.5}
           ListFooterComponent={this._renderPendingActivity}
           ListHeaderComponent={this._renderNumberOfResultHeader}
+          ref={ref => (this.listRef = ref)}
           // onRefresh={this._refreshData}
           // refreshing={this.props.isRefreshing}
           onScroll={Animated.event(
