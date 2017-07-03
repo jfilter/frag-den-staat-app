@@ -6,6 +6,8 @@ import {
   StyleSheet,
   ActivityIndicator,
   ScrollView,
+  TouchableHighlight,
+  Linking,
 } from 'react-native';
 import moment from 'moment';
 import { Share } from 'react-native';
@@ -68,28 +70,49 @@ class FoiRequestDetailsScreen extends React.Component {
       </Text>
     </View>;
 
-  _renderMessageContent = msg =>
-    <View style={styles.msgContent}>
-      <Text>
-        {msg.sender}
-      </Text>
-      <Text>
-        {msg.subject}
-      </Text>
-      <Text>
-        {msg.timestamp}
-      </Text>
-      <Text>
-        {msg.content}
-      </Text>
-      <Text>
-        {msg.pdfs.map(x =>
-          <Text>
-            {x}
-          </Text>
-        )}
-      </Text>
-    </View>;
+  _renderMessageContent = msg => {
+    const pdfViews = msg.pdfs.map(uri =>
+      <View>
+        <TouchableHighlight
+          onPress={() => this.props.navigateToPdfViewer({ uri })}
+        >
+          <Text>VIEW PDF</Text>
+        </TouchableHighlight>
+        <TouchableHighlight
+          onPress={() =>
+            Linking.openURL(uri).catch(err =>
+              console.error('An error occurred', err)
+            )}
+        >
+          <Text>DOWNLOAD PDF</Text>
+        </TouchableHighlight>
+      </View>
+    );
+    return (
+      <View style={styles.msgContent}>
+        {pdfViews}
+        <Text>
+          {msg.sender}
+        </Text>
+        <Text>
+          {msg.subject}
+        </Text>
+        <Text>
+          {msg.timestamp}
+        </Text>
+        <Text>
+          {msg.content}
+        </Text>
+        <Text>
+          {msg.pdfs.map(x =>
+            <Text>
+              {x}
+            </Text>
+          )}
+        </Text>
+      </View>
+    );
+  };
 
   _buildTable = () => {
     const r = this.request;
@@ -213,7 +236,15 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => {
-  return {};
+  return {
+    navigateToPdfViewer: params =>
+      dispatch(
+        NavigationActions.navigate({
+          routeName: 'FoiRequestsPdfViewer',
+          params,
+        })
+      ),
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(
@@ -235,7 +266,6 @@ const styles = StyleSheet.create({
   scrollView: {
     backgroundColor: 'white',
     padding: 10,
-    paddingBottom: 100,
   },
   row: {
     flex: 1,
@@ -260,9 +290,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   msgContainer: {
-    // borderColor: greyDark,
-    // borderWidth: 1,
-    // marginTop: 20,
+    marginBottom: 100,
   },
   msgHeader: {
     padding: 10,

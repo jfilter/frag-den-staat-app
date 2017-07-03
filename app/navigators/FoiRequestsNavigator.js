@@ -5,6 +5,8 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import FoiRequestsListScreen from '../containers/FoiRequestsListScreen';
 import FoiRequestDetailsScreen from '../containers/FoiRequestDetailsScreen';
 import FoiRequestsFilterNavigator from './FoiRequestsFilterNavigator';
+import PdfViewer from '../components/PdfViewer';
+
 import {
   primaryColor,
   secondaryColor,
@@ -17,6 +19,7 @@ const FoiRequestsNavigator = StackNavigator(
     List: { screen: FoiRequestsListScreen },
     Details: { screen: FoiRequestDetailsScreen },
     Filter: { screen: FoiRequestsFilterNavigator },
+    FoiRequestsPdfViewer: { screen: PdfViewer },
   },
   {
     navigationOptions: {
