@@ -94,7 +94,7 @@ class FoiRequestDetailsScreen extends React.Component {
   _buildTable = () => {
     const r = this.request;
     const tableData = [
-      ['TO', r.public_body],
+      // ['TO', r.public_body],
       ['LAW', r.law],
       ['STARTED ON', r.first_message],
       ['STATUS', r.status],
@@ -186,6 +186,12 @@ class FoiRequestDetailsScreen extends React.Component {
           <Text style={styles.heading}>
             {r.title}
           </Text>
+          <View>
+            <Text style={styles.subheadingTo}>to</Text>
+            <Text style={styles.subheading}>
+              {r.public_body}
+            </Text>
+          </View>
           {this._buildTable()}
           <Text>
             {r.description}
@@ -220,9 +226,10 @@ const styles = StyleSheet.create({
   table: {
     width: '100%',
     marginBottom: 20,
-    borderWidth: 1,
+    borderTopWidth: 1,
+    borderBottomWidth: 1,
     borderColor: secondaryColor,
-    padding: 3,
+    paddingVertical: 5,
     marginHorizontal: 0,
   },
   scrollView: {
@@ -239,8 +246,18 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: '600',
     marginTop: 10,
-    marginBottom: 20,
+    marginBottom: 10,
     textAlign: 'center',
+  },
+  subheading: {
+    fontSize: 18,
+    textAlign: 'center',
+    color: primaryColor,
+    marginBottom: 20,
+  },
+  subheadingTo: {
+    textAlign: 'center',
+    marginBottom: 10,
   },
   msgContainer: {
     // borderColor: greyDark,
