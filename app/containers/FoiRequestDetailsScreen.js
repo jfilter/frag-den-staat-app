@@ -4,11 +4,11 @@ import {
   View,
   StyleSheet,
   ScrollView,
-  TouchableHighlight,
   Linking,
+  Share,
 } from 'react-native';
 import moment from 'moment';
-import { Share } from 'react-native';
+import deLocal from 'moment/locale/de';
 import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
 import { Icon, Button, Divider } from 'react-native-elements';
@@ -24,6 +24,8 @@ import {
   greyDark,
   greyLight,
 } from '../styles/colors';
+
+moment.locale('de', deLocal);
 
 class FoiRequestDetailsScreen extends React.Component {
   constructor(props) {
@@ -157,15 +159,14 @@ class FoiRequestDetailsScreen extends React.Component {
   _renderTable = () => {
     const r = this.request;
     const tableData = [
-      // ['TO', r.public_body],
-      ['LAW', r.law],
-      ['STARTED ON', r.first_message],
       ['STATUS', r.status],
       ['RESOLUTION', r.resolution],
       ['REFUSAL REASON', r.refusal_reason],
-      ['LAST MESSAGE', r.last_message],
-      ['DUE DATE', r.due_date],
       ['COSTS', r.costs],
+      ['LAW', r.law],
+      ['STARTED ON', moment(r.first_message).format('LLL')],
+      ['LAST MESSAGE', moment(r.last_message).format('LLL')],
+      ['DUE DATE', moment(r.due_date).format('LLL')],
     ];
 
     return (
