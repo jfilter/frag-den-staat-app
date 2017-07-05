@@ -12,27 +12,27 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
+            <rect key="frame" x="0.0" y="0.0" width="480" height="488"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" image="FDS_Logo_small.png" translatesAutoresizingMaskIntoConstraints="NO" id="0hv-Nn-mDr">
-                    <rect key="frame" x="89.454497780968723" y="91.218476413397639" width="300.00000000000006" height="300.00000000000011"/>
-                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Frag Den Staat" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qMW-3L-Zhx">
+                    <rect key="frame" x="183" y="235" width="114" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <accessibility key="accessibilityConfiguration">
                 <accessibilityTraits key="traits" image="YES"/>
             </accessibility>
             <constraints>
-                <constraint firstItem="0hv-Nn-mDr" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Cje-RT-ZCC"/>
-                <constraint firstItem="0hv-Nn-mDr" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="Jwe-CE-0TA"/>
+                <constraint firstItem="qMW-3L-Zhx" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="bKB-6g-CLy"/>
+                <constraint firstItem="qMW-3L-Zhx" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="poa-JZ-Uif"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="548" y="455"/>
+            <point key="canvasLocation" x="548" y="451"/>
         </view>
     </objects>
-    <resources>
-        <image name="FDS_Logo_small.png" width="300" height="300"/>
-    </resources>
 </document>
