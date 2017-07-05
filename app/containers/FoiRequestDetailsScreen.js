@@ -1,10 +1,8 @@
 import React from 'react';
 import {
-  FlatList,
   Text,
   View,
   StyleSheet,
-  ActivityIndicator,
   ScrollView,
   TouchableHighlight,
   Linking,
@@ -13,14 +11,19 @@ import moment from 'moment';
 import { Share } from 'react-native';
 import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
-import { Icon } from 'react-native-elements';
+import { Icon, Button, Divider } from 'react-native-elements';
 import Accordion from 'react-native-collapsible/Accordion';
 
-import publicBodyFile from '../../scraper/public_bodies/public_bodies_cleaned.json';
+// import publicBodyFile from '../../scraper/public_bodies/public_bodies_cleaned.json';
 
 // import Icon from 'react-native-vector-icons/Ionicons';
 
-import { primaryColor, secondaryColor, greyDark } from '../styles/colors.js';
+import {
+  primaryColor,
+  secondaryColor,
+  greyDark,
+  greyLight,
+} from '../styles/colors';
 
 class FoiRequestDetailsScreen extends React.Component {
   constructor(props) {
@@ -66,55 +69,92 @@ class FoiRequestDetailsScreen extends React.Component {
   _renderMessageHeader = msg =>
     <View style={styles.msgHeader}>
       <Text style={styles.msgHeaderText}>
-        {msg.timestamp}
+        {`${moment(msg.timestamp).format('DD.MM.YYYY')} ${msg.sender}`}
       </Text>
     </View>;
 
+  _renderAttachments = attachments => {
+    return attachments.map(att => {
+      const isPdf = att.filetype === 'application/pdf';
+      const viewPdfButton = isPdf
+        ? <Button
+            containerViewStyle={{ marginLeft: 0, marginRight: 0 }}
+            backgroundColor={primaryColor}
+            title="VIEW PDF"
+            onPress={() => this.props.navigateToPdfViewer({ uri: att.url })}
+            icon={{ name: 'remove-red-eye', color: 'white' }}
+          />
+        : null;
+
+      return (
+        <View>
+          <View style={styles.attachmentsRowLabel}>
+            <View>
+              <Icon
+                name="attach-file"
+                // color="white"
+                size={30}
+                // containerStyle={{
+                //   paddingVertical: 7,
+                //   paddingHorizontal: 20,
+                // }}
+              />
+            </View>
+            <View>
+              <Text>
+                {att.name}
+              </Text>
+            </View>
+          </View>
+          <View style={styles.attachmentsRowButton}>
+            {viewPdfButton}
+            <View>
+              <Button
+                containerViewStyle={{ margin: 0 }}
+                backgroundColor={primaryColor}
+                title="DOWNLOAD"
+                icon={{ name: 'file-download', color: 'white' }}
+                onPress={() =>
+                  Linking.openURL(att.url).catch(err =>
+                    console.error('An error occurred', err)
+                  )}
+              />
+            </View>
+          </View>
+          <Divider style={{ backgroundColor: greyLight, marginBottom: 10 }} />
+        </View>
+      );
+    });
+  };
+
   _renderMessageContent = msg => {
-    const pdfViews = msg.pdfs.map(uri =>
-      <View>
-        <TouchableHighlight
-          onPress={() => this.props.navigateToPdfViewer({ uri })}
-        >
-          <Text>VIEW PDF</Text>
-        </TouchableHighlight>
-        <TouchableHighlight
-          onPress={() =>
-            Linking.openURL(uri).catch(err =>
-              console.error('An error occurred', err)
-            )}
-        >
-          <Text>DOWNLOAD PDF</Text>
-        </TouchableHighlight>
-      </View>
-    );
     return (
       <View style={styles.msgContent}>
-        {pdfViews}
+        {this._renderAttachments(msg.attachments)}
         <Text>
-          {msg.sender}
+          FROM: {msg.sender}
         </Text>
         <Text>
-          {msg.subject}
+          ON: {moment(msg.timestamp).format('LLLL')}
         </Text>
         <Text>
-          {msg.timestamp}
+          SUBJECT: {msg.subject}
         </Text>
+        <Divider
+          style={{
+            backgroundColor: greyLight,
+            marginBottom: 10,
+            marginTop: 10,
+          }}
+        />
         <Text>
-          {msg.content}
-        </Text>
-        <Text>
-          {msg.pdfs.map(x =>
-            <Text>
-              {x}
-            </Text>
-          )}
+          {msg.content.trim()}
         </Text>
       </View>
     );
   };
 
-  _buildTable = () => {
+  _renderTable = () => {
     const r = this.request;
     const tableData = [
       // ['TO', r.public_body],
@@ -148,23 +188,24 @@ class FoiRequestDetailsScreen extends React.Component {
     );
   };
 
-  _buildMessages = () => {
-    const r = this.request;
-
-    const filtedMessages = r.messages.filter(x => !x.not_publishable);
+  _renderMessages = () => {
+    const filtedMessages = this.request.messages.filter(
+      x => !x.not_publishable
+    );
     const messages = filtedMessages.map(
       ({ sender, subject, content, timestamp, is_response, attachments }) => {
-        const filteredAttachments = attachments.filter(
-          x => x.approved && x.filetype === 'application/pdf'
-        );
-        const pdfs = filteredAttachments.map(x => x.site_url);
+        const filteredAttachments = attachments
+          .filter(x => x.approved)
+          .map(x => {
+            return { url: x.site_url, name: x.name, filetype: x.filetype };
+          });
         return {
           sender,
           subject,
           content,
           timestamp,
           isRespsone: is_response,
-          pdfs,
+          attachments: filteredAttachments,
         };
       }
     );
@@ -183,43 +224,23 @@ class FoiRequestDetailsScreen extends React.Component {
   };
 
   render() {
-    const r = this.request;
-
-    const filtedMessages = r.messages.filter(x => !x.not_publishable);
-    const messages = filtedMessages.map(
-      ({ sender, subject, content, timestamp, is_response, attachments }) => {
-        const filteredAttachments = attachments.filter(
-          x => x.approved && x.filetype === 'application/pdf'
-        );
-        const pdfs = filteredAttachments.map(x => x.site_url);
-        return {
-          sender,
-          subject,
-          content,
-          timestamp,
-          isRespsone: is_response,
-          pdfs,
-        };
-      }
-    );
-
     return (
       <ScrollView style={styles.scrollView}>
         <View>
           <Text style={styles.heading}>
-            {r.title}
+            {this.request.title}
           </Text>
           <View>
             <Text style={styles.subheadingTo}>to</Text>
             <Text style={styles.subheading}>
-              {r.public_body}
+              {this.request.public_body}
             </Text>
           </View>
-          {this._buildTable()}
+          {this._renderTable()}
           <Text>
-            {r.description}
+            {this.request.description}
           </Text>
-          {this._buildMessages()}
+          {this._renderMessages()}
         </View>
       </ScrollView>
     );
@@ -299,7 +320,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   msgHeaderText: {
-    textAlign: 'center',
+    // textAlign: 'center',
     color: primaryColor,
   },
   msgContent: {
@@ -307,5 +328,15 @@ const styles = StyleSheet.create({
     borderColor: secondaryColor,
     borderWidth: 1,
     marginTop: 20,
+  },
+  attachmentsRowLabel: {
+    flex: 1,
+    flexDirection: 'row',
+  },
+  attachmentsRowButton: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginVertical: 10,
   },
 });
