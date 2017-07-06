@@ -89,7 +89,7 @@ class FoiRequestDetailsScreen extends React.Component {
         : null;
 
       return (
-        <View>
+        <View key={att.id}>
           <View style={styles.attachmentsRowLabel}>
             <View>
               <Icon
@@ -159,28 +159,28 @@ class FoiRequestDetailsScreen extends React.Component {
   _renderTable = () => {
     const r = this.request;
     const tableData = [
-      ['STATUS', r.status],
-      ['RESOLUTION', r.resolution],
-      ['REFUSAL REASON', r.refusal_reason],
-      ['COSTS', r.costs],
-      ['LAW', r.law],
-      ['STARTED ON', moment(r.first_message).format('LLL')],
-      ['LAST MESSAGE', moment(r.last_message).format('LLL')],
-      ['DUE DATE', moment(r.due_date).format('LLL')],
+      { key: 'STATUS', value: r.status },
+      { key: 'RESOLUTION', value: r.resolution },
+      { key: 'REFUSAL REASON', value: r.refusal_reason },
+      { key: 'COSTS', value: r.costs },
+      { key: 'LAW', value: r.law },
+      { key: 'STARTED ON', value: moment(r.first_message).format('LLL') },
+      { key: 'LAST MESSAGE', value: moment(r.last_message).format('LLL') },
+      { key: 'DUE DATE', value: moment(r.due_date).format('LLL') },
     ];
 
     return (
       <View style={styles.table}>
-        {tableData.map(x =>
-          <View style={styles.row}>
+        {tableData.map(({ key, value }) =>
+          <View key={key} style={styles.row}>
             <View style={styles.item1}>
               <Text>
-                {x[0]}
+                {key}
               </Text>
             </View>
             <View style={styles.item2}>
               <Text>
-                {x[1]}
+                {value}
               </Text>
             </View>
           </View>
@@ -194,13 +194,27 @@ class FoiRequestDetailsScreen extends React.Component {
       x => !x.not_publishable
     );
     const messages = filtedMessages.map(
-      ({ sender, subject, content, timestamp, is_response, attachments }) => {
+      ({
+        id,
+        sender,
+        subject,
+        content,
+        timestamp,
+        is_response,
+        attachments,
+      }) => {
         const filteredAttachments = attachments
           .filter(x => x.approved)
           .map(x => {
-            return { url: x.site_url, name: x.name, filetype: x.filetype };
+            return {
+              key: x.id,
+              url: x.site_url,
+              name: x.name,
+              filetype: x.filetype,
+            };
           });
         return {
+          key: id,
           sender,
           subject,
           content,
