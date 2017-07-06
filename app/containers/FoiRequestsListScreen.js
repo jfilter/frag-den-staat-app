@@ -240,9 +240,7 @@ class FoiRequestsListScreen extends React.Component {
           ]}
         >
           <Animated.View style={[styles.title, { opacity: headerOpacity }]}>
-            <FoiRequestsListHeader
-              onLayout={event => console.log(event.nativeEvent.layout.height)}
-            />
+            <FoiRequestsListHeader />
           </Animated.View>
         </Animated.View>
       </View>
