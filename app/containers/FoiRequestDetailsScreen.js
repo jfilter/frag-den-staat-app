@@ -6,6 +6,7 @@ import {
   ScrollView,
   Linking,
   Share,
+  Platform,
 } from 'react-native';
 import moment from 'moment';
 import deLocal from 'moment/locale/de';
@@ -50,12 +51,19 @@ class FoiRequestDetailsScreen extends React.Component {
       );
     }
 
+    let iconName = 'ios-share-outline';
+    let iconType = 'ionicon';
+    if (Platform.OS === 'android') {
+      iconName = 'share';
+      iconType = 'material';
+    }
+
     return {
       title: `#${requestId}`,
       headerRight: (
         <Icon
-          name="ios-share-outline"
-          type="ionicon"
+          name={iconName}
+          type={iconType}
           color={primaryColor}
           size={30}
           onPress={share}
