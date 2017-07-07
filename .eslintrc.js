@@ -25,6 +25,6 @@ module.exports = {
   globals: {
     fetch: false,
     require: false,
-    navigator: false,
+    __DEV__: false,
   },
 };

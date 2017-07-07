@@ -10,13 +10,13 @@ import AppWithNavigationState from './navigators/AppNavigator';
 // TODO: retrieve state from persistent storage for e.g. auth
 const initialState = {};
 
+let middleware = [thunkMiddleware];
+if (__DEV__) {
+  middleware = [...middleware, createLogger()];
+}
+
 class App extends React.Component {
-  loggerMiddleware = createLogger();
-  store = createStore(
-    AppReducer,
-    initialState,
-    applyMiddleware(thunkMiddleware, this.loggerMiddleware)
-  );
+  store = createStore(AppReducer, initialState, applyMiddleware(...middleware));
 
   render() {
     return (
