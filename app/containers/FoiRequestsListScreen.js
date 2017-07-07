@@ -8,6 +8,7 @@ import {
   Animated,
   RefreshControl,
   Alert,
+  Platform,
 } from 'react-native';
 import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
@@ -69,6 +70,7 @@ class FoiRequestsListScreen extends React.Component {
   componentDidUpdate() {
     // https://github.com/facebook/react-native/issues/1878
     if (
+      Platform.OS === 'ios' &&
       this.props.requests.length <= 20 &&
       !this.props.isRefreshing &&
       !(this.props.isPending && this.props.requests.length !== 0)
@@ -203,6 +205,9 @@ class FoiRequestsListScreen extends React.Component {
       );
     }
 
+    const androidContainerStyle =
+      Platform.OS === 'android' ? { paddingTop: LIST_HEADER_HEIGHT } : null;
+
     return (
       <View style={{ backgroundColor: 'white', height: '100%' }}>
         <AnimatedFlatList
@@ -217,6 +222,8 @@ class FoiRequestsListScreen extends React.Component {
           } // progresViewOffset for anodroid
           contentInset={{ top: LIST_HEADER_HEIGHT }} // iOS
           data={this.props.requests}
+          extraData={this.props.isPending}
+          contentContainerStyle={androidContainerStyle}
           renderItem={this._renderItem}
           onEndReached={this._fetchData}
           onEndReachedThreshold={0.5}
@@ -224,8 +231,6 @@ class FoiRequestsListScreen extends React.Component {
           ListHeaderComponent={this._renderNumberOfResultHeader}
           ItemSeparatorComponent={this.renderSeparator}
           ref={ref => (this.listRef = ref)}
-          // onRefresh={this._refreshData}
-          // refreshing={this.props.isRefreshing}
           onScroll={Animated.event(
             [{ nativeEvent: { contentOffset: { y: this.state.scrollAnim } } }],
             { useNativeDriver: true }
