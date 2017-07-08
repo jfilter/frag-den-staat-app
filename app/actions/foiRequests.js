@@ -84,7 +84,6 @@ function fetchAndDispatch(beforeFetch, onSuccessFetch) {
       if (resolution) {
         params += `&resolution=${resolution}`;
       }
-      console.log('params', params);
     }
 
     // TODO: Not supported by the API?

@@ -18,21 +18,20 @@ import moment from 'moment';
 import {
   foiRequestsFetchData,
   foiRequestsRefreshData,
-  foiRequestsListHeaderToggle,
   foiRequestsErrorClearAction,
-} from '../actions/foiRequests';
-import publicBodyFile from '../../scraper/public_bodies/public_bodies_cleaned.json';
-import jurisdictionFile from '../data/jurisdiction.json';
-import statusFile from '../data/status.json';
+} from '../../actions/foiRequests';
+import publicBodyFile from '../../../scraper/public_bodies/public_bodies_cleaned.json';
+import jurisdictionFile from '../../data/jurisdiction.json';
+import statusFile from '../../data/status.json';
 import FoiRequestsListFilterButton from './FoiRequestsListFilterButton';
-import { getItemById, mapToRealStatus } from '../utils';
+import { getItemById, mapToRealStatus } from '../../utils';
 import FoiRequestsListHeader from './FoiRequestsListHeader';
 import {
   primaryColor,
   primaryColorLight,
   greyDark,
   greyLight,
-} from '../styles/colors';
+} from '../../styles/colors';
 
 const LIST_HEADER_HEIGHT = 64;
 
@@ -271,7 +270,6 @@ const mapDispatchToProps = dispatch => {
     refreshData: () => dispatch(foiRequestsRefreshData()),
     navigateToDetails: params =>
       dispatch(NavigationActions.navigate({ routeName: 'Details', params })),
-    toggleHeader: () => dispatch(foiRequestsListHeaderToggle()),
   };
 };
 

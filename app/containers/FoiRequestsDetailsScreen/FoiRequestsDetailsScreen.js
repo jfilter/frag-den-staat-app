@@ -1,13 +1,5 @@
 import React from 'react';
-import {
-  Text,
-  View,
-  StyleSheet,
-  ScrollView,
-  Linking,
-  Share,
-  Platform,
-} from 'react-native';
+import { Text, View, ScrollView, Linking, Share, Platform } from 'react-native';
 import moment from 'moment';
 import deLocal from 'moment/locale/de';
 import { connect } from 'react-redux';
@@ -15,26 +7,12 @@ import { NavigationActions } from 'react-navigation';
 import { Icon, Button, Divider } from 'react-native-elements';
 import Accordion from 'react-native-collapsible/Accordion';
 
-// import publicBodyFile from '../../scraper/public_bodies/public_bodies_cleaned.json';
-
-// import Icon from 'react-native-vector-icons/Ionicons';
-
-import {
-  primaryColor,
-  secondaryColor,
-  greyDark,
-  greyLight,
-} from '../styles/colors';
+import { primaryColor, greyLight } from '../../styles/colors';
+import styles from './styles';
 
 moment.locale('de', deLocal);
 
-class FoiRequestDetailsScreen extends React.Component {
-  constructor(props) {
-    super(props);
-    const index = props.navigation.state.params.indexInArray;
-    this.request = props.requests[index];
-  }
-
+class FoiRequestsDetailsScreen extends React.Component {
   static navigationOptions = ({ navigation, screenProps }) => {
     const requestId = navigation.state.params.id;
     function share() {
@@ -51,6 +29,7 @@ class FoiRequestDetailsScreen extends React.Component {
       );
     }
 
+    // platform specific share button
     let iconName = 'ios-share-outline';
     let iconType = 'ionicon';
     if (Platform.OS === 'android') {
@@ -76,6 +55,12 @@ class FoiRequestDetailsScreen extends React.Component {
     };
   };
 
+  constructor(props) {
+    super(props);
+    const index = props.navigation.state.params.indexInArray;
+    this.request = props.requests[index];
+  }
+
   _renderMessageHeader = msg =>
     <View style={styles.msgHeader}>
       <Text style={styles.msgHeaderText}>
@@ -100,15 +85,7 @@ class FoiRequestDetailsScreen extends React.Component {
         <View key={att.id}>
           <View style={styles.attachmentsRowLabel}>
             <View>
-              <Icon
-                name="attach-file"
-                // color="white"
-                size={30}
-                // containerStyle={{
-                //   paddingVertical: 7,
-                //   paddingHorizontal: 20,
-                // }}
-              />
+              <Icon name="attach-file" size={30} />
             </View>
             <View>
               <Text>
@@ -292,74 +269,5 @@ const mapDispatchToProps = dispatch => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(
-  FoiRequestDetailsScreen
+  FoiRequestsDetailsScreen
 );
-
-const styles = StyleSheet.create({
-  item1: { width: '33%' },
-  item2: { width: '67%' },
-  table: {
-    width: '100%',
-    marginBottom: 20,
-    borderTopWidth: 1,
-    borderBottomWidth: 1,
-    borderColor: secondaryColor,
-    paddingVertical: 5,
-    marginHorizontal: 0,
-  },
-  scrollView: {
-    backgroundColor: 'white',
-    padding: 10,
-  },
-  row: {
-    flex: 1,
-    flexDirection: 'row',
-    marginVertical: 1,
-  },
-  heading: {
-    fontSize: 20,
-    fontWeight: '600',
-    marginTop: 10,
-    marginBottom: 10,
-    textAlign: 'center',
-  },
-  subheading: {
-    fontSize: 18,
-    textAlign: 'center',
-    color: primaryColor,
-    marginBottom: 20,
-  },
-  subheadingTo: {
-    textAlign: 'center',
-    marginBottom: 10,
-  },
-  msgContainer: {
-    marginBottom: 100,
-  },
-  msgHeader: {
-    padding: 10,
-    borderColor: greyDark,
-    borderWidth: 1,
-    marginTop: 20,
-  },
-  msgHeaderText: {
-    // textAlign: 'center',
-    color: primaryColor,
-  },
-  msgContent: {
-    padding: 10,
-    borderColor: secondaryColor,
-    borderWidth: 1,
-    marginTop: 20,
-  },
-  attachmentsRowLabel: {
-    flex: 1,
-    flexDirection: 'row',
-  },
-  attachmentsRowButton: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginVertical: 10,
-  },
-});

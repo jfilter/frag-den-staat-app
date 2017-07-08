@@ -3,15 +3,15 @@ import { View, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 import { ListItem, Icon, Text } from 'react-native-elements';
 
-import statusList from '../data/status.json';
-import { foiRequestsFilterChange } from '../actions/foiRequests';
+import jurisdictionList from '../../data/jurisdiction';
+import { foiRequestsFilterChange } from '../../actions/foiRequests';
 
-class FoiRequestsFilterStatusScreen extends React.Component {
+class FoiRequestsFilterJurisdictionScreen extends React.Component {
   _onSwitch = (id, switched) => {
-    let newFilter = { status: null };
+    let newFilter = { jurisdiction: null };
 
     if (!switched) {
-      newFilter = { status: id };
+      newFilter = { jurisdiction: id };
     }
     this.props.changeFilter(newFilter);
   };
@@ -34,7 +34,7 @@ class FoiRequestsFilterStatusScreen extends React.Component {
     return (
       <View>
         <FlatList
-          data={statusList}
+          data={jurisdictionList}
           extraData={this.props.currentFilter}
           renderItem={this._renderItem}
         />
@@ -43,16 +43,16 @@ class FoiRequestsFilterStatusScreen extends React.Component {
   }
 }
 
-FoiRequestsFilterStatusScreen.navigationOptions = {
+FoiRequestsFilterJurisdictionScreen.navigationOptions = {
   title: 'Filter',
-  tabBarLabel: 'Status',
+  tabBarLabel: 'Jurisdiction',
   tabBarIcon: ({ tintColor }) =>
-    <Icon name="chart-gantt" type="material-community" color={tintColor} />,
+    <Icon name="scale-balance" type="material-community" color={tintColor} />,
 };
 
 const mapStateToProps = state => {
   return {
-    currentFilter: state.foiRequests.filter.status,
+    currentFilter: state.foiRequests.filter.jurisdiction,
   };
 };
 
@@ -63,5 +63,5 @@ const mapDispatchToProps = dispatch => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(
-  FoiRequestsFilterStatusScreen
+  FoiRequestsFilterJurisdictionScreen
 );

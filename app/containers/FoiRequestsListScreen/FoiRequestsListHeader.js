@@ -5,10 +5,10 @@ import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
 import { Icon } from 'react-native-elements';
 
-import jurisdictionFile from '../data/jurisdiction.json';
-import statusFile from '../data/status.json';
-import { getItemById, mapToRealStatus } from '../utils';
-import { primaryColor, greyDark, greyLight } from '../styles/colors';
+import jurisdictionFile from '../../data/jurisdiction.json';
+import statusFile from '../../data/status.json';
+import { getItemById, mapToRealStatus } from '../../utils';
+import { primaryColor, greyDark, greyLight } from '../../styles/colors';
 
 class FoiRequestsListHeader extends React.Component {
   render() {
