@@ -52,3 +52,4 @@ fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots
 public_bodies.json
+secrets.json

@@ -12,6 +12,9 @@ import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
 
+import com.slowpath.hockeyapp.RNHockeyAppModule;
+import com.slowpath.hockeyapp.RNHockeyAppPackage;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -26,6 +29,7 @@ public class MainApplication extends Application implements ReactApplication {
     @Override
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
+          new RNHockeyAppPackage(MainApplication.this),
           new MainReactPackage(),
             new RNFetchBlobPackage(),
             new RCTPdfView(),

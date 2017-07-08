@@ -14,6 +14,7 @@
 		"react-native-collapsible": "^0.8.0",
 		"react-native-elements": "^0.13.0",
 		"react-native-fetch-blob": "^0.10.6",
+		"react-native-hockeyapp": "^0.5.1",
 		"react-native-material-bottom-navigation": "^0.5.1",
 		"react-native-pdf": "^1.2.1",
 		"react-native-vector-icons": "^4.2.0",
