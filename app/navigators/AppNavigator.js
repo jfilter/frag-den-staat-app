@@ -1,8 +1,12 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, BackHandler } from 'react-native';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { addNavigationHelpers, TabNavigator } from 'react-navigation';
+import {
+  addNavigationHelpers,
+  TabNavigator,
+  NavigationActions,
+} from 'react-navigation';
 import { NavigationComponent } from 'react-native-material-bottom-navigation';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
@@ -80,10 +84,37 @@ export const AppNavigator = TabNavigator(
   }
 );
 
-const AppWithNavigationState = ({ dispatch, navigation }) =>
-  <AppNavigator
-    navigation={addNavigationHelpers({ dispatch, state: navigation })}
-  />;
+class AppWithNavigationState extends React.Component {
+  componentDidMount() {
+    BackHandler.addEventListener('hardwareBackPress', this.onBackPress);
+  }
+
+  componentWillUnmount() {
+    BackHandler.removeEventListener('hardwareBackPress', this.onBackPress);
+  }
+
+  onBackPress = () => {
+    const { dispatch, navigation } = this.props;
+
+    // close the app when pressing back button on initial screen
+    if (navigation.index === 0 && navigation.routes[0].index === 0) {
+      return false;
+    }
+
+    dispatch(NavigationActions.back());
+    return true;
+  };
+
+  render() {
+    const { dispatch, navigation } = this.props;
+
+    return (
+      <AppNavigator
+        navigation={addNavigationHelpers({ dispatch, state: navigation })}
+      />
+    );
+  }
+}
 
 AppWithNavigationState.propTypes = {
   dispatch: PropTypes.func.isRequired,
