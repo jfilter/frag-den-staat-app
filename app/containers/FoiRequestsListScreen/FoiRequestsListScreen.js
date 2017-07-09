@@ -3,7 +3,6 @@ import {
   FlatList,
   Text,
   View,
-  StyleSheet,
   ActivityIndicator,
   Animated,
   RefreshControl,
@@ -11,6 +10,7 @@ import {
   Platform,
 } from 'react-native';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { NavigationActions } from 'react-navigation';
 import { ListItem } from 'react-native-elements';
 import moment from 'moment';
@@ -21,19 +21,13 @@ import {
   foiRequestsErrorClearAction,
 } from '../../actions/foiRequests';
 import publicBodyFile from '../../../scraper/public_bodies/public_bodies_cleaned.json';
-import jurisdictionFile from '../../data/jurisdiction.json';
 import statusFile from '../../data/status.json';
 import FoiRequestsListFilterButton from './FoiRequestsListFilterButton';
 import { getItemById, mapToRealStatus } from '../../utils';
 import FoiRequestsListHeader from './FoiRequestsListHeader';
-import {
-  primaryColor,
-  primaryColorLight,
-  greyDark,
-  greyLight,
-} from '../../styles/colors';
+import { primaryColor, primaryColorLight } from '../../styles/colors';
 
-const LIST_HEADER_HEIGHT = 64;
+import { LIST_HEADER_HEIGHT, styles } from './styles';
 
 const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
 
@@ -106,7 +100,7 @@ class FoiRequestsListScreen extends React.Component {
     );
   };
 
-  _renderPendingActivity = () => {
+  _renderFooter = () => {
     if (!this.props.isPending) return null;
 
     return (
@@ -120,7 +114,7 @@ class FoiRequestsListScreen extends React.Component {
     );
   };
 
-  _renderItem = ({ item, index }) => {
+  _renderItem = ({ item }) => {
     // fix because that it's complicated with the status. see utils/index.js for more information.
     const realStatus = mapToRealStatus(item.status, item.resolution);
     const imagePath = realStatus;
@@ -138,7 +132,7 @@ class FoiRequestsListScreen extends React.Component {
       const publicBodyName = publicBodyObject.publicBodyName;
       const jurisdictionName = publicBodyObject.jurisdictionName;
 
-      subtitle += `\n${publicBodyName} (${jurisdictionName})`;
+      subtitle = `${subtitle}\n${publicBodyName} (${jurisdictionName})`;
     }
 
     return (
@@ -166,14 +160,7 @@ class FoiRequestsListScreen extends React.Component {
   };
 
   renderSeparator = () => {
-    return (
-      <View
-        style={{
-          height: 1,
-          backgroundColor: greyLight,
-        }}
-      />
-    );
+    return <View style={styles.seperator} />;
   };
 
   render() {
@@ -207,7 +194,7 @@ class FoiRequestsListScreen extends React.Component {
       Platform.OS === 'android' ? { paddingTop: LIST_HEADER_HEIGHT } : null;
 
     return (
-      <View style={{ backgroundColor: 'white', height: '100%' }}>
+      <View style={styles.background}>
         <AnimatedFlatList
           refreshControl={
             <RefreshControl
@@ -225,7 +212,7 @@ class FoiRequestsListScreen extends React.Component {
           renderItem={this._renderItem}
           onEndReached={this._fetchData}
           onEndReachedThreshold={0.5}
-          ListFooterComponent={this._renderPendingActivity}
+          ListFooterComponent={this._renderFooter}
           ListHeaderComponent={this._renderNumberOfResultHeader}
           ItemSeparatorComponent={this.renderSeparator}
           ref={ref => (this.listRef = ref)}
@@ -256,6 +243,21 @@ FoiRequestsListScreen.navigationOptions = {
   headerRight: <FoiRequestsListFilterButton />,
 };
 
+FoiRequestsListScreen.propTypes = {
+  // eslint-disable-next-line react/forbid-prop-types
+  requests: PropTypes.array.isRequired,
+  fetchData: PropTypes.func.isRequired,
+  isRefreshing: PropTypes.bool.isRequired,
+  isPending: PropTypes.bool.isRequired,
+  nResults: PropTypes.number.isRequired,
+  // eslint-disable-next-line react/require-default-props
+  firstPageFetchedAt: PropTypes.number,
+  error: PropTypes.string.isRequired,
+  clearError: PropTypes.func.isRequired,
+  refreshData: PropTypes.func.isRequired,
+  navigateToDetails: PropTypes.func.isRequired,
+};
+
 const mapStateToProps = state => {
   return {
     ...state.foiRequests,
@@ -275,21 +277,3 @@ const mapDispatchToProps = dispatch => {
 export default connect(mapStateToProps, mapDispatchToProps)(
   FoiRequestsListScreen
 );
-
-const styles = StyleSheet.create({
-  header: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    height: LIST_HEADER_HEIGHT,
-  },
-  nResults: {
-    textAlign: 'center',
-    color: greyDark,
-    fontWeight: '400',
-    fontSize: 12,
-    marginTop: 10,
-    marginBottom: 5,
-  },
-});
