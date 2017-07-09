@@ -15,52 +15,6 @@ import { headerStyles, iconSize } from '../../styles/header';
 moment.locale('de', deLocal);
 
 class FoiRequestsDetailsScreen extends React.Component {
-  static navigationOptions = ({ navigation }) => {
-    const requestId = navigation.state.params.id;
-    function share() {
-      Share.share(
-        {
-          message: 'LOL WAT? Check out this FOI request!',
-          url: `https://fragdenstaat.de/a/${requestId}`,
-          title: 'FragDenStaat.de', // What's the purpose?
-        },
-        {
-          // Android only:
-          dialogTitle: 'FragDenStaat.de',
-        }
-      );
-    }
-
-    let iconName = 'share';
-    let iconType = 'material';
-
-    // platform specific share button
-    if (Platform.OS === 'ios') {
-      iconName = 'ios-share-outline';
-      iconType = 'ionicon';
-    }
-
-    return {
-      title: `#${requestId}`,
-      headerRight: (
-        <Icon
-          name={iconName}
-          type={iconType}
-          color={primaryColor}
-          size={iconSize}
-          onPress={share}
-          containerStyle={headerStyles.headerRightIconContainer}
-        />
-      ),
-    };
-  };
-
-  constructor(props) {
-    super(props);
-    const index = props.navigation.state.params.indexInArray;
-    this.request = props.requests[index];
-  }
-
   _renderMessageHeader = msg =>
     <View style={styles.msgHeader}>
       <Text style={styles.msgHeaderText}>
@@ -137,7 +91,7 @@ class FoiRequestsDetailsScreen extends React.Component {
   };
 
   _renderTable = () => {
-    const r = this.request;
+    const r = this.props.request;
     const tableData = [
       { key: 'STATUS', value: r.status },
       { key: 'RESOLUTION', value: r.resolution },
@@ -170,7 +124,7 @@ class FoiRequestsDetailsScreen extends React.Component {
   };
 
   _renderMessages = () => {
-    const filtedMessages = this.request.messages.filter(
+    const filtedMessages = this.props.request.messages.filter(
       x => !x.not_publishable
     );
     const messages = filtedMessages.map(
@@ -224,18 +178,18 @@ class FoiRequestsDetailsScreen extends React.Component {
       <ScrollView style={styles.scrollView}>
         <View>
           <Text style={styles.heading}>
-            {this.request.title}
+            {this.props.request.title}
           </Text>
           <View>
             <Text style={styles.subheadingTo}>to</Text>
             <Text style={styles.subheading}>
-              {this.request.public_body}
+              {this.props.request.public_body}
             </Text>
           </View>
           {this._renderTable()}
           <View style={styles.summary}>
             <Text>
-              {this.request.description}
+              {this.props.request.description}
             </Text>
           </View>
           {this._renderMessages()}
@@ -245,12 +199,87 @@ class FoiRequestsDetailsScreen extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
+FoiRequestsDetailsScreen.navigationOptions = ({ navigation }) => {
+  const requestId = navigation.state.params.request.id;
+  function share() {
+    Share.share(
+      {
+        message: 'LOL WAT? Check out this FOI request!',
+        url: `https://fragdenstaat.de/a/${requestId}`,
+        title: 'FragDenStaat.de', // What's the purpose?
+      },
+      {
+        // Android only:
+        dialogTitle: 'FragDenStaat.de',
+      }
+    );
+  }
+
+  let iconName = 'share';
+  let iconType = 'material';
+
+  // platform specific share button
+  if (Platform.OS === 'ios') {
+    iconName = 'ios-share-outline';
+    iconType = 'ionicon';
+  }
+
   return {
-    requests: state.foiRequests.requests,
-    error: state.foiRequests.error,
-    isPending: state.foiRequests.isPending,
-    nextUrl: state.foiRequests.nextUrl,
+    title: `#${requestId}`,
+    headerRight: (
+      <Icon
+        name={iconName}
+        type={iconType}
+        color={primaryColor}
+        size={iconSize}
+        onPress={share}
+        containerStyle={headerStyles.headerRightIconContainer}
+      />
+    ),
+  };
+};
+
+FoiRequestsDetailsScreen.propTypes = {
+  navigateToPdfViewer: PropTypes.func.isRequired,
+  request: PropTypes.shape({
+    public_body: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    costs: PropTypes.number,
+    id: PropTypes.number.isRequired,
+    last_message: PropTypes.string,
+    first_message: PropTypes.string.isRequired,
+    due_date: PropTypes.string.isRequired,
+    jurisdiction: PropTypes.string.isRequired,
+    law: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    status: PropTypes.string.isRequired,
+    resolution: PropTypes.string,
+    refusal_reason: PropTypes.string,
+    messages: PropTypes.arrayOf(
+      PropTypes.shape({
+        content: PropTypes.string.isRequired,
+        subject: PropTypes.string.isRequired,
+        id: PropTypes.number.isRequired,
+        not_publishable: PropTypes.bool.isRequired,
+        sender: PropTypes.string.isRequired,
+        timestamp: PropTypes.string.isRequired,
+        attachments: PropTypes.arrayOf(
+          PropTypes.shape({
+            id: PropTypes.number.isRequired,
+            approved: PropTypes.bool.isRequired,
+            filetype: PropTypes.string.isRequired,
+            name: PropTypes.string.isRequired,
+            site_url: PropTypes.string.isRequired,
+          })
+        ),
+      })
+    ).isRequired,
+  }).isRequired,
+};
+
+const mapStateToProps = (state, props) => {
+  return {
+    request: props.navigation.state.params.request,
   };
 };
 

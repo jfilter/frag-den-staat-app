@@ -152,8 +152,7 @@ class FoiRequestsListScreen extends React.Component {
           uri: imagePath,
         }}
         chevronColor={primaryColor}
-        onPress={() =>
-          this.props.navigateToDetails({ indexInArray: index, id: item.id })}
+        onPress={() => this.props.navigateToDetails({ request: item })}
         // avatarStyle={{ marginTop: 20 }}
         // TODO: Not possible right now, come back later to check if they have fixed it.
         // avatarStyle={{ overlayContainerStyle: { backgroundColor: 'white' } }}
