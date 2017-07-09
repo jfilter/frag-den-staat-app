@@ -169,7 +169,7 @@ class FoiRequestsListScreen extends React.Component {
     return (
       <View
         style={{
-          height: 0.5,
+          height: 1,
           backgroundColor: greyLight,
         }}
       />
