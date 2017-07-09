@@ -1,5 +1,6 @@
 import React from 'react';
 import { Text, View, ScrollView, Linking, Share, Platform } from 'react-native';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
 import { Icon, Button, Divider } from 'react-native-elements';
@@ -8,7 +9,7 @@ import moment from 'moment';
 import deLocal from 'moment/locale/de';
 
 import styles from './styles';
-import { primaryColor } from '../../styles/colors';
+import { primaryColor, grey } from '../../styles/colors';
 import { headerStyles, iconSize } from '../../styles/header';
 
 moment.locale('de', deLocal);
@@ -63,7 +64,7 @@ class FoiRequestsDetailsScreen extends React.Component {
   _renderMessageHeader = msg =>
     <View style={styles.msgHeader}>
       <Text style={styles.msgHeaderText}>
-        {`${moment(msg.timestamp).format('DD.MM.YYYY')} ${msg.sender}`}
+        {`${moment(msg.timestamp).format('DD.MM.YYYY')}: ${msg.sender}`}
       </Text>
     </View>;
 
@@ -212,6 +213,7 @@ class FoiRequestsDetailsScreen extends React.Component {
           sections={messages}
           renderHeader={this._renderMessageHeader}
           renderContent={this._renderMessageContent}
+          underlayColor={grey}
         />
       </View>
     );
@@ -231,9 +233,11 @@ class FoiRequestsDetailsScreen extends React.Component {
             </Text>
           </View>
           {this._renderTable()}
-          <Text>
-            {this.request.description}
-          </Text>
+          <View style={styles.summary}>
+            <Text>
+              {this.request.description}
+            </Text>
+          </View>
           {this._renderMessages()}
         </View>
       </ScrollView>
