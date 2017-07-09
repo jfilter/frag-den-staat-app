@@ -1,47 +1,49 @@
 {
-	"name": "FragDenStaat",
-	"version": "0.0.1",
-	"private": true,
-	"scripts": {
-		"start": "node node_modules/react-native/local-cli/cli.js start",
-		"test": "jest"
-	},
-	"dependencies": {
-		"moment": "^2.18.1",
-		"prop-types": "^15.5.10",
-		"react": "16.0.0-alpha.12",
-		"react-native": "0.45.1",
-		"react-native-collapsible": "^0.8.0",
-		"react-native-elements": "^0.13.0",
-		"react-native-fetch-blob": "^0.10.6",
-		"react-native-hockeyapp": "^0.5.1",
-		"react-native-material-bottom-navigation": "^0.5.1",
-		"react-native-pdf": "^1.2.1",
-		"react-native-vector-icons": "^4.2.0",
-		"react-navigation": "^1.0.0-beta.11",
-		"react-redux": "^5.0.5",
-		"realm": "^1.8.3",
-		"redux": "^3.7.0",
-		"redux-logger": "^3.0.6",
-		"redux-thunk": "^2.2.0"
-	},
-	"devDependencies": {
-		"babel-eslint": "^7.2.3",
-		"babel-jest": "20.0.3",
-		"babel-preset-react-native": "2.0.0",
-		"eslint": "^3.19.0",
-		"eslint-config-airbnb": "^15.0.1",
-		"eslint-config-prettier": "^2.2.0",
-		"eslint-plugin-import": "^2.3.0",
-		"eslint-plugin-jsx-a11y": "^5.0.3",
-		"eslint-plugin-prettier": "^2.1.2",
-		"eslint-plugin-react": "^7.1.0",
-		"eslint-plugin-react-native": "^2.3.2",
-		"jest": "20.0.4",
-		"prettier": "^1.5.0",
-		"react-test-renderer": "16.0.0-alpha.12"
-	},
-	"jest": {
-		"preset": "react-native"
-	}
+  "name": "FragDenStaat",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest",
+    "postversion": "react-native-version"
+  },
+  "dependencies": {
+    "moment": "^2.18.1",
+    "prop-types": "^15.5.10",
+    "react": "16.0.0-alpha.12",
+    "react-native": "0.45.1",
+    "react-native-collapsible": "^0.8.0",
+    "react-native-elements": "^0.13.0",
+    "react-native-fetch-blob": "^0.10.6",
+    "react-native-hockeyapp": "^0.5.1",
+    "react-native-material-bottom-navigation": "^0.5.1",
+    "react-native-pdf": "^1.2.1",
+    "react-native-vector-icons": "^4.2.0",
+    "react-navigation": "^1.0.0-beta.11",
+    "react-redux": "^5.0.5",
+    "realm": "^1.8.3",
+    "redux": "^3.7.0",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.2.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^7.2.3",
+    "babel-jest": "20.0.3",
+    "babel-preset-react-native": "2.0.0",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^15.0.1",
+    "eslint-config-prettier": "^2.2.0",
+    "eslint-plugin-import": "^2.3.0",
+    "eslint-plugin-jsx-a11y": "^5.0.3",
+    "eslint-plugin-prettier": "^2.1.2",
+    "eslint-plugin-react": "^7.1.0",
+    "eslint-plugin-react-native": "^2.3.2",
+    "jest": "20.0.4",
+    "prettier": "^1.5.0",
+    "react-native-version": "^2.3.1",
+    "react-test-renderer": "16.0.0-alpha.12"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
 }
