@@ -1,19 +1,20 @@
 import React from 'react';
 import { Text, View, ScrollView, Linking, Share, Platform } from 'react-native';
-import moment from 'moment';
-import deLocal from 'moment/locale/de';
 import { connect } from 'react-redux';
 import { NavigationActions } from 'react-navigation';
 import { Icon, Button, Divider } from 'react-native-elements';
 import Accordion from 'react-native-collapsible/Accordion';
+import moment from 'moment';
+import deLocal from 'moment/locale/de';
 
-import { primaryColor, greyLight } from '../../styles/colors';
 import styles from './styles';
+import { primaryColor } from '../../styles/colors';
+import { headerStyles, iconSize } from '../../styles/header';
 
 moment.locale('de', deLocal);
 
 class FoiRequestsDetailsScreen extends React.Component {
-  static navigationOptions = ({ navigation, screenProps }) => {
+  static navigationOptions = ({ navigation }) => {
     const requestId = navigation.state.params.id;
     function share() {
       Share.share(
@@ -29,12 +30,13 @@ class FoiRequestsDetailsScreen extends React.Component {
       );
     }
 
+    let iconName = 'share';
+    let iconType = 'material';
+
     // platform specific share button
-    let iconName = 'ios-share-outline';
-    let iconType = 'ionicon';
-    if (Platform.OS === 'android') {
-      iconName = 'share';
-      iconType = 'material';
+    if (Platform.OS === 'ios') {
+      iconName = 'ios-share-outline';
+      iconType = 'ionicon';
     }
 
     return {
@@ -44,12 +46,9 @@ class FoiRequestsDetailsScreen extends React.Component {
           name={iconName}
           type={iconType}
           color={primaryColor}
-          size={30}
+          size={iconSize}
           onPress={share}
-          containerStyle={{
-            paddingVertical: 7,
-            paddingHorizontal: 20,
-          }}
+          containerStyle={headerStyles.headerRightIconContainer}
         />
       ),
     };
@@ -71,21 +70,25 @@ class FoiRequestsDetailsScreen extends React.Component {
   _renderAttachments = attachments => {
     return attachments.map(att => {
       const isPdf = att.filetype === 'application/pdf';
-      const viewPdfButton = isPdf
-        ? <Button
+      let viewPdfButton;
+
+      if (isPdf) {
+        viewPdfButton = (
+          <Button
             containerViewStyle={{ marginLeft: 0, marginRight: 0 }}
             backgroundColor={primaryColor}
             title="VIEW PDF"
             onPress={() => this.props.navigateToPdfViewer({ uri: att.url })}
             icon={{ name: 'remove-red-eye', color: 'white' }}
           />
-        : null;
+        );
+      }
 
       return (
         <View key={att.id}>
           <View style={styles.attachmentsRowLabel}>
             <View>
-              <Icon name="attach-file" size={30} />
+              <Icon name="attach-file" />
             </View>
             <View>
               <Text>
@@ -101,14 +104,11 @@ class FoiRequestsDetailsScreen extends React.Component {
                 backgroundColor={primaryColor}
                 title="DOWNLOAD"
                 icon={{ name: 'file-download', color: 'white' }}
-                onPress={() =>
-                  Linking.openURL(att.url).catch(err =>
-                    console.error('An error occurred', err)
-                  )}
+                onPress={() => Linking.openURL(att.url)}
               />
             </View>
           </View>
-          <Divider style={{ backgroundColor: greyLight, marginBottom: 10 }} />
+          <Divider style={styles.dividerAttachments} />
         </View>
       );
     });
@@ -127,13 +127,7 @@ class FoiRequestsDetailsScreen extends React.Component {
         <Text>
           SUBJECT: {msg.subject}
         </Text>
-        <Divider
-          style={{
-            backgroundColor: greyLight,
-            marginBottom: 10,
-            marginTop: 10,
-          }}
-        />
+        <Divider style={styles.dividerBeforeMessageContent} />
         <Text>
           {msg.content.trim()}
         </Text>

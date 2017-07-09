@@ -7,12 +7,15 @@ import {
   greyLight,
 } from '../../styles/colors';
 
+const spaceGeneral = 10;
+const spaceMore = 20;
+
 export default StyleSheet.create({
   item1: { width: '33%' },
   item2: { width: '67%' },
   table: {
     width: '100%',
-    marginBottom: 20,
+    marginBottom: spaceMore,
     borderTopWidth: 1,
     borderBottomWidth: 1,
     borderColor: secondaryColor,
@@ -21,7 +24,7 @@ export default StyleSheet.create({
   },
   scrollView: {
     backgroundColor: 'white',
-    padding: 10,
+    padding: spaceGeneral,
   },
   row: {
     flex: 1,
@@ -29,39 +32,39 @@ export default StyleSheet.create({
     marginVertical: 1,
   },
   heading: {
-    fontSize: 20,
+    fontSize: spaceMore,
     fontWeight: '600',
-    marginTop: 10,
-    marginBottom: 10,
+    marginTop: spaceGeneral,
+    marginBottom: spaceGeneral,
     textAlign: 'center',
   },
   subheading: {
     fontSize: 18,
     textAlign: 'center',
     color: primaryColor,
-    marginBottom: 20,
+    marginBottom: spaceMore,
   },
   subheadingTo: {
     textAlign: 'center',
-    marginBottom: 10,
+    marginBottom: spaceGeneral,
   },
   msgContainer: {
     marginBottom: 100,
   },
   msgHeader: {
-    padding: 10,
+    padding: spaceGeneral,
     borderColor: greyDark,
     borderWidth: 1,
-    marginTop: 20,
+    marginTop: spaceMore,
   },
   msgHeaderText: {
     color: primaryColor,
   },
   msgContent: {
-    padding: 10,
+    padding: spaceGeneral,
     borderColor: secondaryColor,
     borderWidth: 1,
-    marginTop: 20,
+    marginTop: spaceMore,
   },
   attachmentsRowLabel: {
     flex: 1,
@@ -71,6 +74,15 @@ export default StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginVertical: 10,
+    marginVertical: spaceGeneral,
+  },
+  dividerAttachments: {
+    backgroundColor: greyLight,
+    marginBottom: spaceGeneral,
+  },
+  dividerBeforeMessageContent: {
+    backgroundColor: greyLight,
+    marginBottom: spaceGeneral,
+    marginTop: spaceGeneral,
   },
 });
