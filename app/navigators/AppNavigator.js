@@ -12,6 +12,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import ProfileNavigator from './ProfileNavigator';
 import foiRequestsNavigator from './FoiRequestsNavigator';
+import SearchNavigator from './SearchNavigator';
 import { primaryColor, greyDark, greyLight } from '../styles/colors';
 
 // class Requests extends React.Component {
@@ -23,16 +24,16 @@ import { primaryColor, greyDark, greyLight } from '../styles/colors';
 //   render() { return <View></View> }
 // }
 
-class Search extends React.Component {
-  static navigationOptions = {
-    tabBarLabel: 'Search',
-    tabBarIcon: () => <Icon size={24} color={greyDark} name="search" />,
-  };
+// class Search extends React.Component {
+//   static navigationOptions = {
+//     tabBarLabel: 'Search',
+//     tabBarIcon: () => <Icon size={24} color={greyDark} name="search" />,
+//   };
 
-  render() {
-    return <View />;
-  }
-}
+//   render() {
+//     return <View />;
+//   }
+// }
 
 class NewRequest extends React.Component {
   static navigationOptions = {
@@ -48,7 +49,7 @@ class NewRequest extends React.Component {
 export const AppNavigator = TabNavigator(
   {
     Requests: { screen: foiRequestsNavigator },
-    Search: { screen: Search },
+    Search: { screen: SearchNavigator },
     NewRequest: { screen: NewRequest },
     Profile: { screen: ProfileNavigator },
   },
