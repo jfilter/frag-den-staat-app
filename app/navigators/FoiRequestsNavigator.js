@@ -7,12 +7,7 @@ import FoiRequestsDetailsScreen from '../containers/FoiRequestsDetailsScreen/Foi
 import FoiRequestsFilterNavigator from './FoiRequestsFilterNavigator';
 import PdfViewer from '../components/PdfViewer';
 
-import {
-  primaryColor,
-  secondaryColor,
-  greyDark,
-  greyLight,
-} from '../styles/colors';
+import { commonNavigationOptions, iconColor, iconSize } from './styles';
 
 const FoiRequestsNavigator = StackNavigator(
   {
@@ -23,18 +18,9 @@ const FoiRequestsNavigator = StackNavigator(
   },
   {
     navigationOptions: {
-      headerStyle: {
-        backgroundColor: 'white',
-        borderBottomWidth: 1,
-        borderBottomColor: greyLight,
-        elevation: 0, //remove shadow on Android
-        shadowOpacity: 0, //remove shadow on iOS
-      },
-      headerTintColor: primaryColor,
-      // headerTitleStyle: { color: primaryColorDark }, // change the color back to black from the overriden primary color
-      headerTitleStyle: { color: secondaryColor }, // change the color back to black from the overriden primary color
+      ...commonNavigationOptions,
       tabBarLabel: 'Requests',
-      tabBarIcon: () => <Icon size={24} color={greyDark} name="list" />,
+      tabBarIcon: () => <Icon size={iconSize} color={iconColor} name="list" />,
     },
   }
 );
