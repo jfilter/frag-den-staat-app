@@ -22,6 +22,7 @@ class SearchStartScreen extends React.Component {
         <SearchBar
           onChangeText={() => console.log('x')}
           placeholder="Type Here..."
+          onSubmitEditing={this.props.navigateToResults}
         />
       </View>
     );
@@ -39,7 +40,10 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => {
-  return {};
+  return {
+    navigateToResults: params =>
+      dispatch(NavigationActions.navigate({ routeName: 'SearchResults' })),
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchStartScreen);
