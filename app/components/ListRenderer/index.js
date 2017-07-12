@@ -1,15 +1,12 @@
 import React from 'react';
 import { View, Text, ActivityIndicator } from 'react-native';
 import { ListItem } from 'react-native-elements';
-
 import moment from 'moment';
 
 import styles from './styles';
 import publicBodyFile from '../../../scraper/public_bodies/public_bodies_cleaned.json';
 import statusFile from '../../data/status.json';
-
 import { getItemById, mapToRealStatus } from '../../utils';
-
 import { primaryColor, primaryColorLight } from '../../styles/colors';
 
 const renderNumberOfResultHeader = nResults => {

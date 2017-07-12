@@ -27,6 +27,7 @@ import {
   renderNumberOfResultHeader,
   renderItem,
   renderFooter,
+  renderSeparator,
 } from '../../components/ListRenderer';
 
 const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
@@ -100,9 +101,7 @@ class FoiRequestsListScreen extends React.Component {
     return renderItem(item, onPress);
   };
 
-  _renderSeparator = () => {
-    return <View style={styles.seperator} />;
-  };
+  _renderSeparator = () => renderSeparator();
 
   render() {
     const { clampedScroll } = this.state;
