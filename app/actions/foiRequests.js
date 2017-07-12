@@ -9,7 +9,7 @@ function foiRequestsErrorAction(error) {
 
 function foiRequestsErrorClearAction() {
   return {
-    type: 'FOI_REQUETS_ERROR_CLEAR',
+    type: 'FOI_REQUESTS_ERROR_CLEAR',
   };
 }
 
