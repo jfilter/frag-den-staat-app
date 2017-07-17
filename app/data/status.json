@@ -47,18 +47,3 @@
     "title_long": "The request has not been answered in time.",
   },
 ]
-
-// https://fragdenstaat.de/api/v1/request/?costs=0
-// cannot filter for costs
-// {
-//   "id": "has_fee",
-//   "name": "Fee charged",
-//   "title_long": "This request is connected with a fee.",
-// },
-
-// cannot simply get all overdue
-// {
-//   "id": "overdue",
-//   "name": "Response overdue",
-//   "title_long": "The request has not been answered in time.",
-// },

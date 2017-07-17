@@ -13,6 +13,7 @@ import {
   searchFoiRequests,
   searchFoiRequestsErrorClearAction,
 } from '../../actions/search';
+import { styles } from './styles';
 
 class SearchResultsFoiRequestsScreen extends React.Component {
   componentDidMount() {
@@ -29,17 +30,18 @@ class SearchResultsFoiRequestsScreen extends React.Component {
     return renderItem(item, onPress);
   };
 
-  _renderSeparator = renderSeparator;
+  _renderSeparator = () => renderSeparator();
 
   render() {
     return (
-      <View>
+      <View style={styles.background}>
         <FlatList
+          style={styles.listBackground}
           data={this.props.results}
           renderItem={this._renderItem}
-          renderFooter={this._renderFooter}
-          renderSeparator={this._renderSeparator}
-          renderHeader={this._renderNumberOfResultHeader}
+          ListFooterComponent={this._renderFooter}
+          // ListHeaderComponent={this._renderNumberOfResultHeader}
+          ItemSeparatorComponent={this._renderSeparator}
         />
       </View>
     );

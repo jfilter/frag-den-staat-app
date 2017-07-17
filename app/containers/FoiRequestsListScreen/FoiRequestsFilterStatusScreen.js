@@ -4,6 +4,11 @@ import { connect } from 'react-redux';
 import { ListItem, Icon, Text } from 'react-native-elements';
 
 import statusList from '../../data/status.json';
+
+// remove overdue and 'with costs' because it is not implemented yet.
+statusList.pop();
+statusList.pop();
+
 import { foiRequestsFilterChange } from '../../actions/foiRequests';
 
 class FoiRequestsFilterStatusScreen extends React.Component {

@@ -2,12 +2,12 @@ import React from 'react';
 import { StackNavigator, TabNavigator } from 'react-navigation';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-import SearchStartScreen from '../containers/SearchStartScreen/SearchStartScreen';
+import SearchStartScreen from '../containers/search/SearchStartScreen';
 import FoiRequestsDetailsScreen from '../containers/FoiRequestsDetailsScreen/FoiRequestsDetailsScreen';
 import PdfViewer from '../components/PdfViewer';
 
-import SearchResultsFoiRequestsScreen from '../containers/SearchResultsScreen/SearchResultsFoiRequestsScreen';
-import SearchResultsPublicBodiesScreen from '../containers/SearchResultsScreen/SearchResultsPublicBodiesScreen';
+import SearchResultsFoiRequestsScreen from '../containers/search/SearchResultsFoiRequestsScreen';
+import SearchResultsPublicBodiesScreen from '../containers/search/SearchResultsPublicBodiesScreen';
 
 import { commonNavigationOptions, iconColor, iconSize } from './styles';
 

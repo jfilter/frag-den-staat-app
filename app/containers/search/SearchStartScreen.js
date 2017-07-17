@@ -28,10 +28,13 @@ class SearchStartScreen extends React.Component {
     return (
       <View>
         <SearchBar
-          ref={x => (this.query = x)}
+          lightTheme
+          clearIcon={{ color: '#86939e', name: 'clear' }}
+          textInputRef="searchInput"
           onChangeText={() => console.log('x')}
-          placeholder="Type Here..."
+          placeholder="Search"
           onSubmitEditing={this._onSubmit}
+          autoFocus
         />
       </View>
     );
@@ -40,6 +43,7 @@ class SearchStartScreen extends React.Component {
 
 SearchStartScreen.navigationOptions = {
   title: 'Search',
+  header: null,
 };
 
 SearchStartScreen.propTypes = {};
