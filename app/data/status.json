@@ -36,6 +36,16 @@
     "name": "Information not held",
     "title_long": "The Public Body stated that it does not possess the information.",
   },
+  {
+    "id": "has_fee",
+    "name": "Fee charged",
+    "title_long": "This request is connected with a fee.",
+  },
+  {
+    "id": "overdue",
+    "name": "Response overdue",
+    "title_long": "The request has not been answered in time.",
+  },
 ]
 
 // https://fragdenstaat.de/api/v1/request/?costs=0

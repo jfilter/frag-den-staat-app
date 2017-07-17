@@ -10,7 +10,7 @@ import { getItemById, mapToRealStatus } from '../../utils';
 import { primaryColor, primaryColorLight } from '../../styles/colors';
 
 const renderNumberOfResultHeader = nResults => {
-  const nResultsText = nResults !== -1 ? `${nResults} REQUESTS` : null;
+  const nResultsText = nResults >= 0 ? `${nResults} REQUESTS` : null;
   return (
     <Text style={styles.nResults}>
       {nResultsText}
@@ -32,7 +32,8 @@ const renderItem = (item, onPress) => {
   // fix because that it's complicated with the status. see utils/index.js for more information.
   const realStatus = mapToRealStatus(item.status, item.resolution);
   const imagePath = realStatus;
-  const statusName = statusFile.find(getItemById(realStatus)).name;
+  const statusItem = statusFile.find(getItemById(realStatus));
+  const statusName = statusItem ? statusItem.name : 'undefined status';
 
   const lastContact = item.last_message || item.first_message;
   const timeAgo = moment(lastContact).fromNow();
@@ -43,10 +44,12 @@ const renderItem = (item, onPress) => {
     const endSlice = item.public_body.length - 1;
     const publicBodyId = item.public_body.slice(startToSlice, endSlice);
     const publicBodyObject = publicBodyFile[publicBodyId];
-    const publicBodyName = publicBodyObject.publicBodyName;
-    const jurisdictionName = publicBodyObject.jurisdictionName;
 
-    subtitle = `${subtitle}\n${publicBodyName} (${jurisdictionName})`;
+    if (publicBodyObject) {
+      const publicBodyName = publicBodyObject.publicBodyName;
+      const jurisdictionName = publicBodyObject.jurisdictionName;
+      subtitle = `${subtitle}\n${publicBodyName} (${jurisdictionName})`;
+    }
   }
 
   return (

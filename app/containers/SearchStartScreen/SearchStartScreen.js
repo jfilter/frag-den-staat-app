@@ -12,17 +12,26 @@ import {
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { NavigationActions } from 'react-navigation';
-import moment from 'moment';
 import { SearchBar } from 'react-native-elements';
+import moment from 'moment';
+
+import { searchUpdateQuery } from '../../actions/search';
 
 class SearchStartScreen extends React.Component {
+  _onSubmit = event => {
+    const queryText = event.nativeEvent.text;
+    this.props.updateQuery(queryText);
+    this.props.navigateToResults({ query: queryText });
+  };
+
   render() {
     return (
       <View>
         <SearchBar
+          ref={x => (this.query = x)}
           onChangeText={() => console.log('x')}
           placeholder="Type Here..."
-          onSubmitEditing={this.props.navigateToResults}
+          onSubmitEditing={this._onSubmit}
         />
       </View>
     );
@@ -41,8 +50,11 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    updateQuery: query => dispatch(searchUpdateQuery(query)),
     navigateToResults: params =>
-      dispatch(NavigationActions.navigate({ routeName: 'SearchResults' })),
+      dispatch(
+        NavigationActions.navigate({ routeName: 'SearchResults', params })
+      ),
   };
 };
 

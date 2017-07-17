@@ -3,18 +3,17 @@ import { StackNavigator, TabNavigator } from 'react-navigation';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import SearchStartScreen from '../containers/SearchStartScreen/SearchStartScreen';
-import SearchResultsScreen from '../containers/SearchResultsScreen/SearchResultsScreen';
 import FoiRequestsDetailsScreen from '../containers/FoiRequestsDetailsScreen/FoiRequestsDetailsScreen';
 import PdfViewer from '../components/PdfViewer';
 
-import SearchResultsRequestsScreen from '../containers/SearchResultsScreen/SearchResultsRequestsScreen';
+import SearchResultsFoiRequestsScreen from '../containers/SearchResultsScreen/SearchResultsFoiRequestsScreen';
 import SearchResultsPublicBodiesScreen from '../containers/SearchResultsScreen/SearchResultsPublicBodiesScreen';
 
 import { commonNavigationOptions, iconColor, iconSize } from './styles';
 
 const SearchResultsNavigator = TabNavigator(
   {
-    SearchResultsRequests: { screen: SearchResultsRequestsScreen },
+    SearchResultsFoiRequests: { screen: SearchResultsFoiRequestsScreen },
     SearchResultsPublicBodies: { screen: SearchResultsPublicBodiesScreen },
   },
   {
