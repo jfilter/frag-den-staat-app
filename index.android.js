@@ -19,4 +19,6 @@ class AndroidApp extends Component {
   }
 }
 
+console.disableYellowBox = true;
+
 AppRegistry.registerComponent('FragDenStaat', () => AndroidApp);

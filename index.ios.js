@@ -3,5 +3,4 @@ import App from './app/App';
 
 console.disableYellowBox = true;
 
-
 AppRegistry.registerComponent('FragDenStaat', () => App);

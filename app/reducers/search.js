@@ -3,6 +3,7 @@ const initialState = {
   foiRequestsResults: [],
   foiRequestsError: '',
   query: '',
+  pastQueries: [],
 };
 
 function search(state = initialState, action) {
@@ -29,6 +30,8 @@ function search(state = initialState, action) {
     }
     case 'SEARCH_UPDATE_QUERY':
       return { ...state, query: action.query };
+    case 'SEARCH_UPDATE_PAST_QUERIES':
+      return { ...state, pastQueries: action.pastQueries };
     default:
       return state;
   }

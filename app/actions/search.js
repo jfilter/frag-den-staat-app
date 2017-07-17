@@ -31,6 +31,13 @@ function searchUpdateQuery(query) {
   };
 }
 
+function searchUpdatePastQueries(pastQueries) {
+  return {
+    type: 'SEARCH_UPDATE_PAST_QUERIES',
+    pastQueries,
+  };
+}
+
 const ORIGIN = 'https://fragdenstaat.de';
 const DEFAULT_PATH = '/api/v1/request/search/';
 
@@ -66,4 +73,5 @@ export {
   searchFoiRequests,
   searchFoiRequestsErrorClearAction,
   searchUpdateQuery,
+  searchUpdatePastQueries,
 };
