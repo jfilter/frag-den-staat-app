@@ -1,4 +1,5 @@
 import { fetchAndDispatch } from '../utils/networking';
+import { ORIGIN } from '../utils/globals.js';
 
 function searchFoiRequestsErrorAction(error) {
   return {
@@ -66,7 +67,6 @@ function searchUpdatePastQueries(pastQueries) {
   };
 }
 
-const ORIGIN = 'https://fragdenstaat.de';
 const SEARCH_FOI_REQUESTS_PATH = '/api/v1/request/search/';
 const SEARCH_PUBLIC_BODIES_PATH = '/api/v1/publicbody/search/';
 

@@ -9,6 +9,7 @@ import deLocal from 'moment/locale/de';
 import styles from './styles';
 import { primaryColor, grey } from '../../styles/colors';
 import { headerStyles, iconSize } from '../../styles/header';
+import { ORIGIN } from '../../utils/globals.js';
 
 moment.locale('de', deLocal);
 
@@ -202,9 +203,9 @@ FoiRequestSingle.navigationOptions = ({ navigation }) => {
   function share() {
     Share.share(
       {
-        message: 'LOL WAT? Check out this FOI request!',
-        url: `https://fragdenstaat.de/a/${requestId}`,
-        title: 'FragDenStaat.de', // What's the purpose?
+        message: 'Check out this Freedom of Information request!',
+        url: `${ORIGIN}/a/${requestId}`,
+        title: 'FragDenStaat.de',
       },
       {
         // Android only:

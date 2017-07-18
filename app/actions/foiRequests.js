@@ -1,5 +1,6 @@
 import { mapToFakeStatus } from '../utils';
 import { fetchAndDispatch } from '../utils/networking';
+import { ORIGIN } from '../utils/globals.js';
 
 function foiRequestsErrorAction(error) {
   return {
@@ -54,7 +55,6 @@ function foiRequestsFilterChangeAction(filter) {
 }
 
 const PAGE_SIZE = 20;
-const ORIGIN = 'https://fragdenstaat.de';
 const DEFAULT_PATH = '/api/v1/request/';
 
 function fetchRequests(beforeFetch, onSuccessFetch) {
