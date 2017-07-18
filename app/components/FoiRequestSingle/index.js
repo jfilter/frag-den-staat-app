@@ -1,5 +1,13 @@
 import React from 'react';
-import { Text, View, ScrollView, Linking, Share, Platform } from 'react-native';
+import {
+  Text,
+  View,
+  ScrollView,
+  Linking,
+  Share,
+  Platform,
+  TouchableHighlight,
+} from 'react-native';
 import PropTypes from 'prop-types';
 import { Icon, Button, Divider } from 'react-native-elements';
 import Accordion from 'react-native-collapsible/Accordion';
@@ -9,7 +17,7 @@ import deLocal from 'moment/locale/de';
 import styles from './styles';
 import { primaryColor, grey } from '../../styles/colors';
 import { headerStyles, iconSize } from '../../styles/header';
-import { ORIGIN } from '../../utils/globals.js';
+import { ORIGIN } from '../../utils/globals';
 
 moment.locale('de', deLocal);
 
@@ -90,16 +98,19 @@ class FoiRequestSingle extends React.Component {
   };
 
   _renderTable = () => {
-    const r = this.props.request;
+    const { request } = this.props;
     const tableData = [
-      { key: 'STATUS', value: r.status },
-      { key: 'RESOLUTION', value: r.resolution },
-      { key: 'REFUSAL REASON', value: r.refusal_reason },
-      { key: 'COSTS', value: r.costs },
-      { key: 'LAW', value: r.law },
-      { key: 'STARTED ON', value: moment(r.first_message).format('LLL') },
-      { key: 'LAST MESSAGE', value: moment(r.last_message).format('LLL') },
-      { key: 'DUE DATE', value: moment(r.due_date).format('LLL') },
+      { key: 'STATUS', value: request.status },
+      { key: 'RESOLUTION', value: request.resolution },
+      { key: 'REFUSAL REASON', value: request.refusal_reason },
+      { key: 'COSTS', value: request.costs },
+      // { key: 'LAW', value: request.law },
+      { key: 'STARTED ON', value: moment(request.first_message).format('LLL') },
+      {
+        key: 'LAST MESSAGE',
+        value: moment(request.last_message).format('LLL'),
+      },
+      { key: 'DUE DATE', value: moment(request.due_date).format('LLL') },
     ];
 
     return (
@@ -118,6 +129,25 @@ class FoiRequestSingle extends React.Component {
             </View>
           </View>
         )}
+        <View style={styles.row}>
+          <View style={styles.item1}>
+            <Text style={styles.law}>LAW</Text>
+          </View>
+          <View style={styles.item2}>
+            <TouchableHighlight
+              style={styles.linkTouchable}
+              underlayColor={grey}
+              onPress={() => {
+                fetch(ORIGIN + request.law)
+                  .then(response => response.json())
+                  .then(data => Linking.openURL(data.site_url))
+                  .catch(error => console.error(error));
+              }}
+            >
+              <Text style={styles.link}>Check it out!</Text>
+            </TouchableHighlight>
+          </View>
+        </View>
       </View>
     );
   };

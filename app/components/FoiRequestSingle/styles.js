@@ -96,4 +96,14 @@ export default StyleSheet.create({
     paddingRight: spaceGeneral * 2 + 1, // the padding space and the border
   },
   downloadButton: { marginLeft: 0, marginRight: 0 },
+  linkTouchable: {
+    alignSelf: 'flex-start',
+    padding: 10,
+  },
+  link: {
+    color: primaryColor,
+  },
+  law: {
+    paddingVertical: 10,
+  },
 });
