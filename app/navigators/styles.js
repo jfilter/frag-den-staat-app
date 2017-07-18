@@ -24,8 +24,16 @@ const searchTabBarOptions = {
   activeTintColor: primaryColor,
   inactiveTintColor: greyDark,
   indicatorStyle: { backgroundColor: primaryColor },
+  tabStyle: {
+    borderLeftWidth: 0.5,
+    borderLeftColor: greyLight,
+    borderRightWidth: 0.5,
+    borderRightColor: greyLight,
+  },
   style: {
     backgroundColor: 'white',
+    borderBottomWidth: 1,
+    borderBottomColor: greyLight,
   },
 };
 
