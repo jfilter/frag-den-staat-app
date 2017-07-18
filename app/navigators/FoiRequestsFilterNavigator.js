@@ -1,10 +1,8 @@
-import React from 'react';
 import { TabNavigator } from 'react-navigation';
-import Icon from 'react-native-vector-icons/MaterialIcons';
 
-import FoiRequestsFilterJurisdictionScreen from '../containers/FoiRequestsListScreen/FoiRequestsFilterJurisdictionScreen';
-import FoiRequestsFilterStatusScreen from '../containers/FoiRequestsListScreen/FoiRequestsFilterStatusScreen';
-import FoiRequestsFilterCategoryScreen from '../containers/FoiRequestsListScreen/FoiRequestsFilterCategoryScreen';
+import FoiRequestsFilterJurisdictionScreen from '../containers/foiRequests/FoiRequestsFilterJurisdictionScreen';
+import FoiRequestsFilterStatusScreen from '../containers/foiRequests/FoiRequestsFilterStatusScreen';
+import FoiRequestsFilterCategoryScreen from '../containers/foiRequests/FoiRequestsFilterCategoryScreen';
 import { primaryColor } from '../styles/colors';
 
 const FoiRequestsFilterNavigator = TabNavigator(

@@ -19,13 +19,24 @@ class SearchResultsPublicBodiesScreen extends React.Component {
   }
 
   _renderItem = ({ item }) => {
-    const subtittle = `${item.jurisdiction.name}\n${item.number_of_requests}`;
+    let nRequestsAsText;
+    switch (item.number_of_requests) {
+      case 0:
+        nRequestsAsText = 'no requests';
+        break;
+      case 1:
+        nRequestsAsText = '1 request';
+        break;
+      default:
+        nRequestsAsText = `${item.number_of_requests} requests`;
+    }
+    const subtittle = `${item.jurisdiction.name}, ${nRequestsAsText}`;
+
     return (
       <ListItem
         title={item.name}
         subtitle={subtittle}
-        titleNumberOfLines={2}
-        subtitleNumberOfLines={2}
+        titleNumberOfLines={3}
         containerStyle={listItemStyles.listItemContainer}
       />
     );
@@ -52,7 +63,7 @@ class SearchResultsPublicBodiesScreen extends React.Component {
 SearchResultsPublicBodiesScreen.navigationOptions = ({ navigation }) => {
   const query = navigation.state.params.query;
   return {
-    title: query,
+    title: `"${query}"`,
     tabBarLabel: 'Public Bodies',
     tabBarIcon: ({ tintColor }) =>
       <Icon name="account-balance" color={tintColor} />,

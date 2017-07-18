@@ -25,7 +25,7 @@ FoiRequestsListFilterButton.propTypes = {
 const mapDispatchToProps = dispatch => {
   return {
     navigateToFilter: () =>
-      dispatch(NavigationActions.navigate({ routeName: 'Filter' })),
+      dispatch(NavigationActions.navigate({ routeName: 'FoiRequestsFilter' })),
   };
 };
 

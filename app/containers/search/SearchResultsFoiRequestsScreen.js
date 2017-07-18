@@ -52,7 +52,7 @@ class SearchResultsFoiRequestsScreen extends React.Component {
 SearchResultsFoiRequestsScreen.navigationOptions = ({ navigation }) => {
   const query = navigation.state.params.query;
   return {
-    title: query,
+    title: `"${query}"`,
     tabBarLabel: 'Requests',
     tabBarIcon: ({ tintColor }) => <Icon name="mail" color={tintColor} />,
   };

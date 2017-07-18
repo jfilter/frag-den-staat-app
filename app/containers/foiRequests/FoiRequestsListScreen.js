@@ -210,7 +210,9 @@ const mapDispatchToProps = dispatch => {
     fetchData: () => dispatch(foiRequestsFetchData()),
     refreshData: () => dispatch(foiRequestsRefreshData()),
     navigateToDetails: params =>
-      dispatch(NavigationActions.navigate({ routeName: 'Details', params })),
+      dispatch(
+        NavigationActions.navigate({ routeName: 'FoiRequestsDetails', params })
+      ),
   };
 };
 

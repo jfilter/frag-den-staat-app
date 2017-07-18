@@ -16,7 +16,7 @@ export default StyleSheet.create({
     padding: spaceGeneral,
   },
   heading: {
-    fontSize: spaceMore,
+    fontSize: 20,
     fontWeight: '600',
     marginTop: spaceGeneral,
     marginBottom: spaceGeneral,

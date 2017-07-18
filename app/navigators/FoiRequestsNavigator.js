@@ -2,8 +2,8 @@ import React from 'react';
 import { StackNavigator } from 'react-navigation';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-import FoiRequestsListScreen from '../containers/FoiRequestsListScreen/FoiRequestsListScreen';
-import FoiRequestsDetailsScreen from '../containers/FoiRequestsDetailsScreen/FoiRequestsDetailsScreen';
+import FoiRequestsListScreen from '../containers/foiRequests/FoiRequestsListScreen';
+import FoiRequestsDetailsScreen from '../containers/foiRequests/FoiRequestsDetailsScreen';
 import FoiRequestsFilterNavigator from './FoiRequestsFilterNavigator';
 import PdfViewer from '../components/PdfViewer';
 
@@ -11,9 +11,9 @@ import { commonNavigationOptions, iconColor, iconSize } from './styles';
 
 const FoiRequestsNavigator = StackNavigator(
   {
-    List: { screen: FoiRequestsListScreen },
-    Details: { screen: FoiRequestsDetailsScreen },
-    Filter: { screen: FoiRequestsFilterNavigator },
+    FoiRequestsList: { screen: FoiRequestsListScreen },
+    FoiRequestsDetails: { screen: FoiRequestsDetailsScreen },
+    FoiRequestsFilter: { screen: FoiRequestsFilterNavigator },
     FoiRequestsPdfViewer: { screen: PdfViewer },
   },
   {

@@ -1,8 +1,6 @@
 import React from 'react';
 import { Text, View, ScrollView, Linking, Share, Platform } from 'react-native';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { NavigationActions } from 'react-navigation';
 import { Icon, Button, Divider } from 'react-native-elements';
 import Accordion from 'react-native-collapsible/Accordion';
 import moment from 'moment';
@@ -14,7 +12,7 @@ import { headerStyles, iconSize } from '../../styles/header';
 
 moment.locale('de', deLocal);
 
-class FoiRequestsDetailsScreen extends React.Component {
+class FoiRequestSingle extends React.Component {
   _renderMessageHeader = msg =>
     <View style={styles.msgHeader}>
       <Text style={styles.msgHeaderText}>
@@ -199,7 +197,7 @@ class FoiRequestsDetailsScreen extends React.Component {
   }
 }
 
-FoiRequestsDetailsScreen.navigationOptions = ({ navigation }) => {
+FoiRequestSingle.navigationOptions = ({ navigation }) => {
   const requestId = navigation.state.params.request.id;
   function share() {
     Share.share(
@@ -239,7 +237,7 @@ FoiRequestsDetailsScreen.navigationOptions = ({ navigation }) => {
   };
 };
 
-FoiRequestsDetailsScreen.propTypes = {
+FoiRequestSingle.propTypes = {
   navigateToPdfViewer: PropTypes.func.isRequired,
   request: PropTypes.shape({
     public_body: PropTypes.string.isRequired,
@@ -277,24 +275,4 @@ FoiRequestsDetailsScreen.propTypes = {
   }).isRequired,
 };
 
-const mapStateToProps = (state, props) => {
-  return {
-    request: props.navigation.state.params.request,
-  };
-};
-
-const mapDispatchToProps = dispatch => {
-  return {
-    navigateToPdfViewer: params =>
-      dispatch(
-        NavigationActions.navigate({
-          routeName: 'FoiRequestsPdfViewer',
-          params,
-        })
-      ),
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(
-  FoiRequestsDetailsScreen
-);
+export default FoiRequestSingle;
