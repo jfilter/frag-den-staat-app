@@ -97,7 +97,7 @@ class FoiRequestsListScreen extends React.Component {
   _renderFooter = () => renderFooter(this.props.isPending);
 
   _renderItem = ({ item }) => {
-    const onPress = () => this.props.navigateToDetails({ request: item });
+    const onPress = () => this.props.navigateToSingle({ request: item });
     return renderItem(item, onPress);
   };
 
@@ -195,7 +195,7 @@ FoiRequestsListScreen.propTypes = {
   error: PropTypes.string.isRequired,
   clearError: PropTypes.func.isRequired,
   refreshData: PropTypes.func.isRequired,
-  navigateToDetails: PropTypes.func.isRequired,
+  navigateToSingle: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => {
@@ -209,9 +209,9 @@ const mapDispatchToProps = dispatch => {
     clearError: () => dispatch(foiRequestsErrorClearAction()),
     fetchData: () => dispatch(foiRequestsFetchData()),
     refreshData: () => dispatch(foiRequestsRefreshData()),
-    navigateToDetails: params =>
+    navigateToSingle: params =>
       dispatch(
-        NavigationActions.navigate({ routeName: 'FoiRequestsDetails', params })
+        NavigationActions.navigate({ routeName: 'FoiRequestsSingle', params })
       ),
   };
 };

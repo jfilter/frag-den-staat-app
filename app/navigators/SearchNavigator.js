@@ -3,7 +3,7 @@ import { StackNavigator, TabNavigator } from 'react-navigation';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import SearchStartScreen from '../containers/search/SearchStartScreen';
-import FoiRequestsDetailsScreen from '../containers/foiRequests/FoiRequestsDetailsScreen';
+import SearchFoiRequestSingleScreen from '../containers/search/SearchFoiRequestSingleScreen';
 import PdfViewer from '../components/PdfViewer';
 
 import SearchResultsFoiRequestsScreen from '../containers/search/SearchResultsFoiRequestsScreen';
@@ -33,8 +33,8 @@ const SearchNavigator = StackNavigator(
   {
     SearchStart: { screen: SearchStartScreen },
     SearchResults: { screen: SearchResultsNavigator },
-    SearchResultsSingle: { screen: FoiRequestsDetailsScreen },
-    SearchResultsPdf: { screen: PdfViewer },
+    SearchFoiRequestSingle: { screen: SearchFoiRequestSingleScreen },
+    SearchPdfViewer: { screen: PdfViewer },
   },
   {
     navigationOptions: {

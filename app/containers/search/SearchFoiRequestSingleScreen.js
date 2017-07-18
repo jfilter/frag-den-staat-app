@@ -4,18 +4,14 @@ import { NavigationActions } from 'react-navigation';
 
 import FoiRequestSingle from '../../components/FoiRequestSingle';
 
-class FoiRequestsDetailsScreen extends React.Component {
-  render() {
-    return (
-      <FoiRequestSingle
-        request={this.props.request}
-        navigateToPdfViewer={this.props.navigateToPdfViewer}
-      />
-    );
-  }
-}
+// eslint-disable-next-line react/prop-types
+const SearchFoiRequestSingle = ({ request, navigateToPdfViewer }) =>
+  <FoiRequestSingle
+    request={request}
+    navigateToPdfViewer={navigateToPdfViewer}
+  />;
 
-FoiRequestsDetailsScreen.navigationOptions = FoiRequestSingle.navigationOptions;
+SearchFoiRequestSingle.navigationOptions = FoiRequestSingle.navigationOptions;
 
 const mapStateToProps = (state, props) => {
   return {
@@ -28,7 +24,7 @@ const mapDispatchToProps = dispatch => {
     navigateToPdfViewer: params =>
       dispatch(
         NavigationActions.navigate({
-          routeName: 'FoiRequestsPdfViewer',
+          routeName: 'SearchPdfViewer',
           params,
         })
       ),
@@ -36,5 +32,5 @@ const mapDispatchToProps = dispatch => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(
-  FoiRequestsDetailsScreen
+  SearchFoiRequestSingle
 );

@@ -27,7 +27,7 @@ class SearchResultsFoiRequestsScreen extends React.Component {
   _renderFooter = () => renderFooter(this.props.isPending);
 
   _renderItem = ({ item }) => {
-    const onPress = () => this.props.navigateToDetails({ request: item });
+    const onPress = () => this.props.navigateToSingle({ request: item });
     return renderItem(item, onPress);
   };
 
@@ -70,9 +70,12 @@ const mapDispatchToProps = dispatch => {
   return {
     clearError: () => dispatch(searchFoiRequestsErrorClearAction()),
     doSearch: () => dispatch(searchFoiRequests()),
-    navigateToDetails: params =>
+    navigateToSingle: params =>
       dispatch(
-        NavigationActions.navigate({ routeName: 'SearchResultsSingle', params })
+        NavigationActions.navigate({
+          routeName: 'SearchFoiRequestSingle',
+          params,
+        })
       ),
   };
 };
