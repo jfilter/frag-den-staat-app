@@ -18,6 +18,7 @@ import styles from './styles';
 import { primaryColor, grey } from '../../styles/colors';
 import { headerStyles, iconSize } from '../../styles/header';
 import { ORIGIN } from '../../utils/globals';
+import { getPrintableStatus } from '../../utils';
 
 moment.locale('de', deLocal);
 
@@ -99,19 +100,27 @@ class FoiRequestSingle extends React.Component {
 
   _renderTable = () => {
     const { request } = this.props;
-    const tableData = [
-      { key: 'STATUS', value: request.status },
-      { key: 'RESOLUTION', value: request.resolution },
-      { key: 'REFUSAL REASON', value: request.refusal_reason },
-      { key: 'COSTS', value: request.costs },
-      // { key: 'LAW', value: request.law },
-      { key: 'STARTED ON', value: moment(request.first_message).format('LLL') },
+
+    const { statusName } = getPrintableStatus(
+      request.status,
+      request.resolution
+    );
+
+    let tableData = [
+      { key: 'Status', value: statusName },
+      { key: 'Refusal Reason', value: request.refusal_reason },
+      { key: 'Costs', value: request.costs },
+      { key: 'Started on', value: moment(request.first_message).format('LLL') },
       {
-        key: 'LAST MESSAGE',
+        key: 'Last Message',
         value: moment(request.last_message).format('LLL'),
       },
-      { key: 'DUE DATE', value: moment(request.due_date).format('LLL') },
+      { key: 'Due Date', value: moment(request.due_date).format('LL') },
     ];
+
+    tableData = tableData.filter(
+      x => (x.key !== 'Costs' || x.value !== '0') && x.value
+    );
 
     return (
       <View style={styles.table}>
@@ -119,7 +128,7 @@ class FoiRequestSingle extends React.Component {
           <View key={key} style={styles.row}>
             <View style={styles.item1}>
               <Text>
-                {key}
+                {`${key}:`}
               </Text>
             </View>
             <View style={styles.item2}>
@@ -131,7 +140,7 @@ class FoiRequestSingle extends React.Component {
         )}
         <View style={styles.row}>
           <View style={styles.item1}>
-            <Text style={styles.law}>LAW</Text>
+            <Text style={styles.law}>Used Law:</Text>
           </View>
           <View style={styles.item2}>
             <TouchableHighlight
