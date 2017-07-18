@@ -15,7 +15,7 @@ function fetchAndDispatch(
   onErrorFetch
 ) {
   dispatch(beforeFetch());
-  fetch(url)
+  fetch(encodeURI(url))
     .then(response => {
       if (!response.ok) {
         throw Error(response.status);

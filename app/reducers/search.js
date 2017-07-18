@@ -2,6 +2,9 @@ const initialState = {
   foiRequestsIsPending: false,
   foiRequestsResults: [],
   foiRequestsError: '',
+  publicBodiesIsPending: false,
+  publicBodiesResults: [],
+  publicBodiesError: '',
   query: '',
   pastQueries: [],
 };
@@ -14,7 +17,7 @@ function search(state = initialState, action) {
         foiRequestsIsPending: false,
         foiRequestsError: action.error,
       };
-    case 'SEARCH_FOI_ERROR_CLEAR':
+    case 'SEARCH_FOI_REQUESTS_ERROR_CLEAR':
       return {
         ...state,
         foiRequestsError: '',
@@ -26,6 +29,26 @@ function search(state = initialState, action) {
         ...state,
         foiRequestsIsPending: false,
         foiRequestsResults: action.results.objects,
+      };
+    }
+    case 'SEARCH_PUBLIC_BODIES_ERROR':
+      return {
+        ...state,
+        publicBodiesIsPending: false,
+        publicBodiesError: action.error,
+      };
+    case 'SEARCH_PUBLIC_BODIES_ERROR_CLEAR':
+      return {
+        ...state,
+        publicBodiesError: '',
+      };
+    case 'SEARCH_PUBLIC_BODIES_PENDING':
+      return { ...state, publicBodiesIsPending: true, publicBodiesResults: [] };
+    case 'SEARCH_PUBLIC_BODIES_SUCCESS': {
+      return {
+        ...state,
+        publicBodiesIsPending: false,
+        publicBodiesResults: action.results.objects,
       };
     }
     case 'SEARCH_UPDATE_QUERY':

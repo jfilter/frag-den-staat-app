@@ -9,7 +9,12 @@ import PdfViewer from '../components/PdfViewer';
 import SearchResultsFoiRequestsScreen from '../containers/search/SearchResultsFoiRequestsScreen';
 import SearchResultsPublicBodiesScreen from '../containers/search/SearchResultsPublicBodiesScreen';
 
-import { commonNavigationOptions, iconColor, iconSize } from './styles';
+import {
+  commonNavigationOptions,
+  searchTabBarOptions,
+  iconColor,
+  iconSize,
+} from './styles';
 
 const SearchResultsNavigator = TabNavigator(
   {
@@ -17,15 +22,10 @@ const SearchResultsNavigator = TabNavigator(
     SearchResultsPublicBodies: { screen: SearchResultsPublicBodiesScreen },
   },
   {
-    lazy: true,
+    // lazy: true,
     backBehavior: 'none',
     tabBarPosition: 'top',
-    tabBarOptions: {
-      activeTintColor: 'blue',
-      // headerTitleStyle: { color: 'black' }, // change the color back to black from the overriden primary color
-      // tabBarLabel: 'Requests',
-      // tabBarIcon: () => <Icon size={24} color="black" name="list" />,
-    },
+    tabBarOptions: { ...searchTabBarOptions, showIcon: true },
   }
 );
 

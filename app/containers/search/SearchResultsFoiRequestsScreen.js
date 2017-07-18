@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, FlatList } from 'react-native';
 import { NavigationActions } from 'react-navigation';
 import { connect } from 'react-redux';
+import { Icon } from 'react-native-elements';
 
 import {
   renderNumberOfResultHeader,
@@ -48,11 +49,13 @@ class SearchResultsFoiRequestsScreen extends React.Component {
   }
 }
 
-SearchResultsFoiRequestsScreen.navigationOptions = {
-  title: 'Requests',
-  tabBarLabel: 'Requests',
-  tabBarIcon: ({ tintColor }) =>
-    <Icon name="chart-gantt" type="material-community" color={tintColor} />,
+SearchResultsFoiRequestsScreen.navigationOptions = ({ navigation }) => {
+  const query = navigation.state.params.query;
+  return {
+    title: query,
+    tabBarLabel: 'Requests',
+    tabBarIcon: ({ tintColor }) => <Icon name="mail" color={tintColor} />,
+  };
 };
 
 const mapStateToProps = (state, props) => {

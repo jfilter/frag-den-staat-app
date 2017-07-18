@@ -20,4 +20,13 @@ const commonNavigationOptions = {
 const iconColor = greyDark;
 const iconSize = 24;
 
-export { commonNavigationOptions, iconColor, iconSize };
+const searchTabBarOptions = {
+  activeTintColor: primaryColor,
+  inactiveTintColor: greyDark,
+  indicatorStyle: { backgroundColor: primaryColor },
+  style: {
+    backgroundColor: 'white',
+  },
+};
+
+export { commonNavigationOptions, searchTabBarOptions, iconColor, iconSize };

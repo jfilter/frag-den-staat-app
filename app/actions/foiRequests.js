@@ -57,7 +57,7 @@ const PAGE_SIZE = 20;
 const ORIGIN = 'https://fragdenstaat.de';
 const DEFAULT_PATH = '/api/v1/request/';
 
-function fetchRequets(beforeFetch, onSuccessFetch) {
+function fetchRequests(beforeFetch, onSuccessFetch) {
   return (dispatch, getState) => {
     const { filter, nPage, isRefreshing } = getState().foiRequests;
     let offset = PAGE_SIZE * nPage;
@@ -102,11 +102,11 @@ function fetchRequets(beforeFetch, onSuccessFetch) {
 }
 
 function foiRequestsFetchData() {
-  return fetchRequets(foiRequestsPendingAction, foiRequestsSuccessAction);
+  return fetchRequests(foiRequestsPendingAction, foiRequestsSuccessAction);
 }
 
 function foiRequestsRefreshData() {
-  return fetchRequets(
+  return fetchRequests(
     foiRequestsRefreshingAction,
     foiRequestsRefreshingSuccessAction
   );
