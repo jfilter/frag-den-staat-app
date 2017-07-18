@@ -91,7 +91,7 @@ class FoiRequestSingle extends React.Component {
         </Text>
         <Divider style={styles.dividerBeforeMessageContent} />
         <Text>
-          {msg.content.trim()}
+          {msg.content_hidden ? 'Not yet visible.' : msg.content.trim()}
         </Text>
       </View>
     );
@@ -165,6 +165,7 @@ class FoiRequestSingle extends React.Component {
         timestamp,
         is_response,
         attachments,
+        content_hidden,
       }) => {
         const filteredAttachments = attachments
           .filter(x => x.approved)
@@ -182,6 +183,7 @@ class FoiRequestSingle extends React.Component {
           subject,
           content,
           timestamp,
+          content_hidden,
           isRespsone: is_response,
           attachments: filteredAttachments,
         };
