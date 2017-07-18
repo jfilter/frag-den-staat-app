@@ -76,8 +76,12 @@ export default StyleSheet.create({
   attachmentsRowButton: {
     flex: 1,
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-start',
     marginVertical: spaceGeneral,
+  },
+  viewPdfButton: {
+    marginLeft: spaceGeneral,
+    marginRight: 0,
   },
   dividerAttachments: {
     backgroundColor: greyLight,
@@ -88,4 +92,8 @@ export default StyleSheet.create({
     marginBottom: spaceGeneral,
     marginTop: spaceGeneral,
   },
+  hotfixTextPadding: {
+    paddingRight: spaceGeneral * 2 + 1, // the padding space and the border
+  },
+  downloadButton: { marginLeft: 0, marginRight: 0 },
 });

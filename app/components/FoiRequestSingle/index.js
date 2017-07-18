@@ -28,7 +28,7 @@ class FoiRequestSingle extends React.Component {
       if (isPdf) {
         viewPdfButton = (
           <Button
-            containerViewStyle={{ marginLeft: 0, marginRight: 0 }}
+            containerViewStyle={styles.viewPdfButton}
             backgroundColor={primaryColor}
             title="VIEW PDF"
             onPress={() => this.props.navigateToPdfViewer({ uri: att.url })}
@@ -44,22 +44,22 @@ class FoiRequestSingle extends React.Component {
               <Icon name="attach-file" />
             </View>
             <View>
-              <Text>
-                {att.name}
+              <Text style={styles.hotfixTextPadding}>
+                {att.name.replace(/_|-/g, ' ')}
               </Text>
             </View>
           </View>
           <View style={styles.attachmentsRowButton}>
-            {viewPdfButton}
             <View>
               <Button
-                containerViewStyle={{ margin: 0 }}
+                containerViewStyle={styles.downloadButton}
                 backgroundColor={primaryColor}
                 title="DOWNLOAD"
                 icon={{ name: 'file-download', color: 'white' }}
                 onPress={() => Linking.openURL(att.url)}
               />
             </View>
+            {viewPdfButton}
           </View>
           <Divider style={styles.dividerAttachments} />
         </View>
