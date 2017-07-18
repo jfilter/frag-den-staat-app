@@ -1,4 +1,5 @@
 import { mapToFakeStatus } from '../utils';
+import { fetchAndDispatch } from '../utils/networking';
 
 function foiRequestsErrorAction(error) {
   return {
@@ -56,12 +57,9 @@ const PAGE_SIZE = 20;
 const ORIGIN = 'https://fragdenstaat.de';
 const DEFAULT_PATH = '/api/v1/request/';
 
-function fetchAndDispatch(beforeFetch, onSuccessFetch) {
+function fetchRequets(beforeFetch, onSuccessFetch) {
   return (dispatch, getState) => {
-    dispatch(beforeFetch());
-
     const { filter, nPage, isRefreshing } = getState().foiRequests;
-
     let offset = PAGE_SIZE * nPage;
 
     // page is still the former value in case the refresh fails
@@ -93,26 +91,22 @@ function fetchAndDispatch(beforeFetch, onSuccessFetch) {
 
     const fullUrl = `${url}${params}`;
 
-    fetch(fullUrl)
-      .then(response => {
-        if (!response.ok) {
-          throw Error(response.status);
-        }
-        setTimeout(() => null, 0); // workaround for issue-6679
-        return response;
-      })
-      .then(response => response.json())
-      .then(requests => dispatch(onSuccessFetch(requests)))
-      .catch(error => dispatch(foiRequestsErrorAction(error.message)));
+    fetchAndDispatch(
+      fullUrl,
+      dispatch,
+      beforeFetch,
+      onSuccessFetch,
+      foiRequestsErrorAction
+    );
   };
 }
 
 function foiRequestsFetchData() {
-  return fetchAndDispatch(foiRequestsPendingAction, foiRequestsSuccessAction);
+  return fetchRequets(foiRequestsPendingAction, foiRequestsSuccessAction);
 }
 
 function foiRequestsRefreshData() {
-  return fetchAndDispatch(
+  return fetchRequets(
     foiRequestsRefreshingAction,
     foiRequestsRefreshingSuccessAction
   );
