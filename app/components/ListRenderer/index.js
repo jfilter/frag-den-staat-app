@@ -5,8 +5,7 @@ import moment from 'moment';
 
 import styles from './styles';
 import publicBodyFile from '../../../scraper/public_bodies/public_bodies_cleaned.json';
-import statusFile from '../../data/status.json';
-import { getItemById, mapToRealStatus } from '../../utils';
+import { getPrintableStatus } from '../../utils';
 import { primaryColor, primaryColorLight } from '../../styles/colors';
 
 const renderNumberOfResultHeader = nResults => {
@@ -29,11 +28,11 @@ const renderFooter = isPending => {
 };
 
 const renderItem = (item, onPress) => {
-  // fix because that it's complicated with the status. see utils/index.js for more information.
-  const realStatus = mapToRealStatus(item.status, item.resolution);
+  const { statusName, realStatus } = getPrintableStatus(
+    item.status,
+    item.resolution
+  );
   const imagePath = realStatus;
-  const statusItem = statusFile.find(getItemById(realStatus));
-  const statusName = statusItem ? statusItem.name : 'undefined status';
 
   const lastContact = item.last_message || item.first_message;
   const timeAgo = moment(lastContact).fromNow();
