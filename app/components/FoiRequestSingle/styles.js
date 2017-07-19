@@ -30,14 +30,20 @@ export default StyleSheet.create({
   subheading: {
     fontSize: 18,
     textAlign: 'center',
-    marginBottom: spaceMore,
     paddingHorizontal: spaceGeneral,
+  },
+  subheadingJurisdiction: {
+    textAlign: 'center',
+    marginHorizontal: spaceGeneral,
+    marginBottom: spaceMore,
+    color: greyDark,
   },
   subheadingTo: {
     textAlign: 'center',
     marginBottom: spaceGeneral,
-    fontStyle: 'italic',
-    color: secondaryColor,
+    // fontStyle: 'italic',
+    // color: secondaryColor,
+    color: greyDark,
   },
   table: {
     width: '100%',

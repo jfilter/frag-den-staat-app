@@ -4,10 +4,10 @@ import lawFile from '../data/laws.json';
 /**
  * Gets the public body string.
  *
- * @param      {<type>}  publicBody  The public body
- * @return     {string}  Printable string of the public body including the jurisdiction.
+ * @param      {string}  publicBody  The public body
+ * @return     {Object}  Object with printable strings of the public body and the jurisdiction.
  */
-function getPublicBodyString(publicBody) {
+function getPublicBodyNameAndJurisdiction(publicBody) {
   if (!publicBody) return '';
 
   const startToSlice = '/api/v1/publicbody/'.length;
@@ -19,9 +19,15 @@ function getPublicBodyString(publicBody) {
 
   const publicBodyName = publicBodyObject.publicBodyName;
   const jurisdictionName = publicBodyObject.jurisdictionName;
-  return `${publicBodyName} (${jurisdictionName})`;
+  return { publicBodyName, jurisdictionName };
 }
 
+/**
+ * Gets the law name and url.
+ *
+ * @param      {string}  law     The law
+ * @return     {Object}  The name and url of the law.
+ */
 function getLawNameAndUrl(law) {
   const lawObject = lawFile.find(x => x.resource_uri === law);
 
@@ -31,4 +37,4 @@ function getLawNameAndUrl(law) {
   return { name, site_url };
 }
 
-export { getPublicBodyString, getLawNameAndUrl };
+export { getPublicBodyNameAndJurisdiction, getLawNameAndUrl };

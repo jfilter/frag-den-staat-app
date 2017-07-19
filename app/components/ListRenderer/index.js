@@ -5,7 +5,7 @@ import moment from 'moment';
 
 import styles from './styles';
 import { getPrintableStatus } from '../../utils';
-import { getPublicBodyString } from '../../utils/fakeApi';
+import { getPublicBodyNameAndJurisdiction } from '../../utils/fakeApi';
 import { primaryColor, primaryColorLight } from '../../styles/colors';
 
 const renderNumberOfResultHeader = nResults => {
@@ -36,8 +36,11 @@ const renderItem = (item, onPress) => {
 
   const lastContact = item.last_message || item.first_message;
   const timeAgo = moment(lastContact).fromNow();
-  let subtitle = `${statusName}, ${timeAgo}\n`;
-  subtitle += getPublicBodyString(item.public_body);
+  let subtitle = `${statusName}, ${timeAgo}`;
+  const { publicBodyName, jurisdictionName } = getPublicBodyNameAndJurisdiction(
+    item.public_body
+  );
+  subtitle += `\n${publicBodyName} (${jurisdictionName})`;
 
   return (
     <ListItem

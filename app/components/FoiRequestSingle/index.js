@@ -19,7 +19,10 @@ import { primaryColor, grey } from '../../styles/colors';
 import { headerStyles, iconSize } from '../../styles/header';
 import { ORIGIN } from '../../utils/globals';
 import { getPrintableStatus } from '../../utils';
-import { getLawNameAndUrl } from '../../utils/fakeApi';
+import {
+  getLawNameAndUrl,
+  getPublicBodyNameAndJurisdiction,
+} from '../../utils/fakeApi';
 
 moment.locale('de', deLocal);
 
@@ -271,11 +274,31 @@ class FoiRequestSingle extends React.Component {
 
   render() {
     const { title, public_body, description } = this.props.request;
-    const subheading = public_body
-      ? <Text style={[styles.subheading, styles.link]}>
-          {public_body}
-        </Text>
-      : <Text style={styles.subheading}>Not Yet Specified</Text>;
+    let subheading = <Text style={styles.subheading}>Not Yet Specified</Text>;
+    if (public_body) {
+      const {
+        publicBodyName,
+        jurisdictionName,
+      } = getPublicBodyNameAndJurisdiction(public_body);
+      subheading = (
+        <View>
+          <TouchableHighlight
+            style={{
+              alignSelf: 'center',
+            }}
+            underlayColor={grey}
+            onPress={() => console.log('x')}
+          >
+            <Text style={[styles.subheading, styles.link]}>
+              {publicBodyName}
+            </Text>
+          </TouchableHighlight>
+          <Text style={[styles.subheadingJurisdiction]}>
+            ({jurisdictionName})
+          </Text>
+        </View>
+      );
+    }
 
     return (
       <ScrollView style={styles.scrollView}>
