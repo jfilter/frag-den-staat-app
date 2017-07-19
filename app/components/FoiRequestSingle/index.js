@@ -24,9 +24,12 @@ moment.locale('de', deLocal);
 
 class FoiRequestSingle extends React.Component {
   _renderMessageHeader = msg =>
-    <View style={styles.msgHeader}>
-      <Text style={styles.msgHeaderText}>
-        {`${moment(msg.timestamp).format('DD.MM.YYYY')}: ${msg.sender}`}
+    <View style={[styles.row, styles.msgHeader]}>
+      <Text style={[styles.item1, styles.link]}>
+        {`${moment(msg.timestamp).format('DD.MM.YYYY')}:`}
+      </Text>
+      <Text style={[styles.item2, styles.link]}>
+        {msg.sender}
       </Text>
     </View>;
 
@@ -78,18 +81,46 @@ class FoiRequestSingle extends React.Component {
   };
 
   _renderMessageContent = msg => {
+    let escalation = null;
+
+    if (msg.is_escalation) {
+      escalation = (
+        <View style={styles.row}>
+          <Text style={styles.item1}>Escalated to:</Text>
+          <TouchableHighlight
+            style={[styles.item2, styles.linkTouchable]}
+            underlayColor={grey}
+          >
+            <Text style={styles.link}>
+              {msg.recipient_public_body}
+            </Text>
+          </TouchableHighlight>
+        </View>
+      );
+    }
+
     return (
       <View style={styles.msgContent}>
         {this._renderAttachments(msg.attachments)}
-        <Text>
-          FROM: {msg.sender}
-        </Text>
-        <Text>
-          ON: {moment(msg.timestamp).format('LLLL')}
-        </Text>
-        <Text>
-          SUBJECT: {msg.subject}
-        </Text>
+        <View style={styles.row}>
+          <Text style={styles.item1}>From:</Text>
+          <Text style={styles.item2}>
+            {msg.sender}
+          </Text>
+        </View>
+        <View style={styles.row}>
+          <Text style={styles.item1}>On:</Text>
+          <Text style={styles.item2}>
+            {moment(msg.timestamp).format('LLLL')}
+          </Text>
+        </View>
+        {escalation}
+        <View style={styles.row}>
+          <Text style={styles.item1}>Subject:</Text>
+          <Text style={styles.item2}>
+            {msg.subject}
+          </Text>
+        </View>
         <Divider style={styles.dividerBeforeMessageContent} />
         <Text>
           {msg.content_hidden ? 'Not yet visible.' : msg.content.trim()}
@@ -115,7 +146,10 @@ class FoiRequestSingle extends React.Component {
         key: 'Last Message',
         value: moment(request.last_message).format('LLL'),
       },
-      { key: 'Due Date', value: moment(request.due_date).format('LL') },
+      {
+        key: 'Due Date',
+        value: request.due_date ? moment(request.due_date).format('LL') : null,
+      },
     ];
 
     tableData = tableData.filter(
@@ -175,6 +209,8 @@ class FoiRequestSingle extends React.Component {
         is_response,
         attachments,
         content_hidden,
+        is_escalation,
+        recipient_public_body,
       }) => {
         const filteredAttachments = attachments
           .filter(x => x.approved)
@@ -193,6 +229,8 @@ class FoiRequestSingle extends React.Component {
           content,
           timestamp,
           content_hidden,
+          is_escalation,
+          recipient_public_body,
           isRespsone: is_response,
           attachments: filteredAttachments,
         };
@@ -214,22 +252,27 @@ class FoiRequestSingle extends React.Component {
   };
 
   render() {
+    const { title, public_body, description } = this.props.request;
+    const subheading = public_body
+      ? <Text style={[styles.subheading, styles.link]}>
+          {public_body}
+        </Text>
+      : <Text style={styles.subheading}>Not Yet Specified</Text>;
+
     return (
       <ScrollView style={styles.scrollView}>
         <View>
           <Text style={styles.heading}>
-            {this.props.request.title}
+            {title}
           </Text>
           <View>
             <Text style={styles.subheadingTo}>to</Text>
-            <Text style={styles.subheading}>
-              {this.props.request.public_body}
-            </Text>
+            {subheading}
           </View>
           {this._renderTable()}
           <View style={styles.summary}>
             <Text>
-              {this.props.request.description}
+              {description}
             </Text>
           </View>
           {this._renderMessages()}
@@ -297,7 +340,7 @@ FoiRequestSingle.propTypes = {
     refusal_reason: PropTypes.string,
     messages: PropTypes.arrayOf(
       PropTypes.shape({
-        content: PropTypes.string.isRequired,
+        content: PropTypes.string,
         subject: PropTypes.string.isRequired,
         id: PropTypes.number.isRequired,
         not_publishable: PropTypes.bool.isRequired,
