@@ -1,4 +1,5 @@
 import publicBodyFile from '../data/public_bodies.json';
+import lawFile from '../data/laws.json';
 
 /**
  * Gets the public body string.
@@ -21,4 +22,13 @@ function getPublicBodyString(publicBody) {
   return `${publicBodyName} (${jurisdictionName})`;
 }
 
-export { getPublicBodyString };
+function getLawNameAndUrl(law) {
+  const lawObject = lawFile.find(x => x.resource_uri === law);
+
+  if (!lawObject) return null;
+
+  const { name, site_url } = lawObject;
+  return { name, site_url };
+}
+
+export { getPublicBodyString, getLawNameAndUrl };

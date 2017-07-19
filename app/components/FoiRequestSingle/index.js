@@ -19,6 +19,7 @@ import { primaryColor, grey } from '../../styles/colors';
 import { headerStyles, iconSize } from '../../styles/header';
 import { ORIGIN } from '../../utils/globals';
 import { getPrintableStatus } from '../../utils';
+import { getLawNameAndUrl } from '../../utils/fakeApi';
 
 moment.locale('de', deLocal);
 
@@ -156,6 +157,41 @@ class FoiRequestSingle extends React.Component {
       x => (x.key !== 'Costs' || x.value !== '0') && x.value
     );
 
+    const law = getLawNameAndUrl(request.law);
+    let lawView = null;
+
+    if (law) {
+      const breakWord = 'gesetz';
+      const words = law.name.split(' ');
+      const fixedLawName = words
+        .map(
+          x =>
+            x.length > 10 && x.includes(breakWord)
+              ? x.replace(breakWord, `- ${breakWord}`)
+              : x
+        )
+        .join(' ');
+
+      lawView = (
+        <View style={styles.row}>
+          <View style={styles.item1}>
+            <Text style={styles.law}>Used Law:</Text>
+          </View>
+          <View style={styles.item2}>
+            <TouchableHighlight
+              style={styles.linkTouchable}
+              underlayColor={grey}
+              onPress={() => Linking.openURL(law.site_url)}
+            >
+              <Text style={styles.link}>
+                {fixedLawName}
+              </Text>
+            </TouchableHighlight>
+          </View>
+        </View>
+      );
+    }
+
     return (
       <View style={styles.table}>
         {tableData.map(({ key, value }) =>
@@ -172,25 +208,7 @@ class FoiRequestSingle extends React.Component {
             </View>
           </View>
         )}
-        <View style={styles.row}>
-          <View style={styles.item1}>
-            <Text style={styles.law}>Used Law:</Text>
-          </View>
-          <View style={styles.item2}>
-            <TouchableHighlight
-              style={styles.linkTouchable}
-              underlayColor={grey}
-              onPress={() => {
-                fetch(ORIGIN + request.law)
-                  .then(response => response.json())
-                  .then(data => Linking.openURL(data.site_url))
-                  .catch(error => console.error(error));
-              }}
-            >
-              <Text style={styles.link}>Check it out!</Text>
-            </TouchableHighlight>
-          </View>
-        </View>
+        {lawView}
       </View>
     );
   };

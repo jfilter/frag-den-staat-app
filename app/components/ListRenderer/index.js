@@ -4,8 +4,8 @@ import { ListItem } from 'react-native-elements';
 import moment from 'moment';
 
 import styles from './styles';
-import publicBodyFile from '../../../scraper/public_bodies/public_bodies_cleaned.json';
 import { getPrintableStatus } from '../../utils';
+import { getPublicBodyString } from '../../utils/fakeApi';
 import { primaryColor, primaryColorLight } from '../../styles/colors';
 
 const renderNumberOfResultHeader = nResults => {
@@ -36,20 +36,8 @@ const renderItem = (item, onPress) => {
 
   const lastContact = item.last_message || item.first_message;
   const timeAgo = moment(lastContact).fromNow();
-  let subtitle = `${statusName}, ${timeAgo}`;
-
-  if (item.public_body) {
-    const startToSlice = '/api/v1/publicbody/'.length;
-    const endSlice = item.public_body.length - 1;
-    const publicBodyId = item.public_body.slice(startToSlice, endSlice);
-    const publicBodyObject = publicBodyFile[publicBodyId];
-
-    if (publicBodyObject) {
-      const publicBodyName = publicBodyObject.publicBodyName;
-      const jurisdictionName = publicBodyObject.jurisdictionName;
-      subtitle = `${subtitle}\n${publicBodyName} (${jurisdictionName})`;
-    }
-  }
+  let subtitle = `${statusName}, ${timeAgo}\n`;
+  subtitle += getPublicBodyString(item.public_body);
 
   return (
     <ListItem
