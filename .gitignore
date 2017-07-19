@@ -51,5 +51,6 @@ buck-out/
 fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots
-public_bodies.json
+
 secrets.json
+public_bodies_full.json

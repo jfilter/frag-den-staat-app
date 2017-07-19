@@ -13,5 +13,5 @@ while(next_url):
     next_url = j['meta']['next']
     print("next_url", next_url)
 
-with open('public_bodies.json', 'w') as outfile:
+with open('public_bodies_full.json', 'w') as outfile:
     json.dump(data, outfile)

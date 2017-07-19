@@ -35,11 +35,11 @@ const getItemById = id => x => x.id === id;
  * @param      {string}  resolution  The resolution
  * @return     {Object}  The printable status.
  */
-const getPrintableStatus = (status, resolution) => {
+function getPrintableStatus(status, resolution) {
   const realStatus = mapToRealStatus(status, resolution);
   const statusItem = statusFile.find(getItemById(realStatus));
   const statusName = statusItem ? statusItem.name : 'undefined status';
   return { statusName, realStatus };
-};
+}
 
 export { mapToRealStatus, mapToFakeStatus, getItemById, getPrintableStatus };
