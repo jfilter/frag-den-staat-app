@@ -35,7 +35,6 @@ export default StyleSheet.create({
   subheadingJurisdiction: {
     textAlign: 'center',
     marginHorizontal: spaceGeneral,
-    marginBottom: spaceMore,
     color: greyDark,
   },
   subheadingTo: {
@@ -46,6 +45,7 @@ export default StyleSheet.create({
     color: greyDark,
   },
   table: {
+    marginTop: spaceMore,
     width: '100%',
     borderTopWidth: 1,
     borderBottomWidth: 1,

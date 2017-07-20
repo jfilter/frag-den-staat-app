@@ -7,7 +7,7 @@ import { foiRequestsFilterChange } from '../../actions/foiRequests';
 import { primaryColor } from '../../styles/colors.js';
 import { styles } from './styles';
 
-class FoiRequestsFilterCategoryScreen extends React.Component {
+class FoiRequestsFilterPublicBodyScreen extends React.Component {
   render() {
     return (
       <View style={styles.background}>
@@ -17,15 +17,11 @@ class FoiRequestsFilterCategoryScreen extends React.Component {
   }
 }
 
-FoiRequestsFilterCategoryScreen.navigationOptions = {
+FoiRequestsFilterPublicBodyScreen.navigationOptions = {
   title: 'Filter',
-  tabBarLabel: 'Category',
+  tabBarLabel: 'Public Body',
   tabBarIcon: ({ tintColor }) =>
-    <Icon
-      name="format-list-bulleted-type"
-      type="material-community"
-      color={tintColor}
-    />,
+    <Icon name="account-balance" color={tintColor} />,
 };
 
 const mapStateToProps = state => {
@@ -39,5 +35,5 @@ const mapDispatchToProps = dispatch => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(
-  FoiRequestsFilterCategoryScreen
+  FoiRequestsFilterPublicBodyScreen
 );

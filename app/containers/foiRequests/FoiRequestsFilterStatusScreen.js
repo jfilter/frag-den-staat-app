@@ -5,11 +5,13 @@ import { ListItem, Icon, Text } from 'react-native-elements';
 
 import statusList from '../../data/status.json';
 
+import { foiRequestsFilterChange } from '../../actions/foiRequests';
+import { styles } from './styles';
+import { renderSeparator } from '../../components/ListRenderer';
+
 // remove overdue and 'with costs' because it is not implemented yet.
 statusList.pop();
 statusList.pop();
-
-import { foiRequestsFilterChange } from '../../actions/foiRequests';
 
 class FoiRequestsFilterStatusScreen extends React.Component {
   _onSwitch = (id, switched) => {
@@ -30,6 +32,7 @@ class FoiRequestsFilterStatusScreen extends React.Component {
         hideChevron
         switchButton
         switched={switched}
+        containerStyle={styles.filterItemContainer}
         onSwitch={() => this._onSwitch(item.id, switched)}
       />
     );
@@ -37,8 +40,9 @@ class FoiRequestsFilterStatusScreen extends React.Component {
 
   render() {
     return (
-      <View>
+      <View style={styles.background}>
         <FlatList
+          ItemSeparatorComponent={renderSeparator}
           data={statusList}
           extraData={this.props.currentFilter}
           renderItem={this._renderItem}

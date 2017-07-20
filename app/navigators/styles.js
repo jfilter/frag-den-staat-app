@@ -20,10 +20,16 @@ const commonNavigationOptions = {
 const iconColor = greyDark;
 const iconSize = 24;
 
-const searchTabBarOptions = {
+const commongTabBarOptions = {
+  showIcon: true,
   activeTintColor: primaryColor,
   inactiveTintColor: greyDark,
   indicatorStyle: { backgroundColor: primaryColor },
+  labelStyle: {
+    fontSize: 9,
+    margin: 0,
+    marginVertical: 5,
+  },
   tabStyle: {
     borderLeftWidth: 0.5,
     borderLeftColor: greyLight,
@@ -37,4 +43,10 @@ const searchTabBarOptions = {
   },
 };
 
-export { commonNavigationOptions, searchTabBarOptions, iconColor, iconSize };
+const tabBarConfig = {
+  backBehavior: 'none',
+  tabBarPosition: 'top',
+  tabBarOptions: { ...commongTabBarOptions },
+};
+
+export { commonNavigationOptions, tabBarConfig, iconColor, iconSize };

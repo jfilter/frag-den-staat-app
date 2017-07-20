@@ -11,4 +11,7 @@ export const styles = StyleSheet.create({
     right: 0,
     height: LIST_HEADER_HEIGHT,
   },
+  filterItemContainer: {
+    borderBottomWidth: 0,
+  },
 });

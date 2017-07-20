@@ -11,7 +11,7 @@ import SearchResultsPublicBodiesScreen from '../containers/search/SearchResultsP
 
 import {
   commonNavigationOptions,
-  searchTabBarOptions,
+  tabBarConfig,
   iconColor,
   iconSize,
 } from './styles';
@@ -21,12 +21,7 @@ const SearchResultsNavigator = TabNavigator(
     SearchResultsFoiRequests: { screen: SearchResultsFoiRequestsScreen },
     SearchResultsPublicBodies: { screen: SearchResultsPublicBodiesScreen },
   },
-  {
-    // lazy: true,
-    backBehavior: 'none',
-    tabBarPosition: 'top',
-    tabBarOptions: { ...searchTabBarOptions, showIcon: true },
-  }
+  { ...tabBarConfig }
 );
 
 const SearchNavigator = StackNavigator(

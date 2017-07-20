@@ -5,6 +5,8 @@ import { ListItem, Icon, Text } from 'react-native-elements';
 
 import jurisdictionList from '../../data/jurisdiction';
 import { foiRequestsFilterChange } from '../../actions/foiRequests';
+import { styles } from './styles';
+import { renderSeparator } from '../../components/ListRenderer';
 
 class FoiRequestsFilterJurisdictionScreen extends React.Component {
   _onSwitch = (id, switched) => {
@@ -26,17 +28,19 @@ class FoiRequestsFilterJurisdictionScreen extends React.Component {
         switchButton
         switched={switched}
         onSwitch={() => this._onSwitch(item.id, switched)}
+        containerStyle={styles.filterItemContainer}
       />
     );
   };
 
   render() {
     return (
-      <View>
+      <View style={styles.background}>
         <FlatList
           data={jurisdictionList}
           extraData={this.props.currentFilter}
           renderItem={this._renderItem}
+          ItemSeparatorComponent={renderSeparator}
         />
       </View>
     );
