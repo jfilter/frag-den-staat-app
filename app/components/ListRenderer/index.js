@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, ActivityIndicator } from 'react-native';
+import { View, Text, ActivityIndicator, Image } from 'react-native';
 import { ListItem } from 'react-native-elements';
 import moment from 'moment';
 
@@ -40,7 +40,12 @@ const renderItem = (item, onPress) => {
   const { publicBodyName, jurisdictionName } = getPublicBodyNameAndJurisdiction(
     item.public_body
   );
-  subtitle += `\n${publicBodyName} (${shortenJurisdiction(jurisdictionName)})`;
+
+  if (publicBodyName && jurisdictionName) {
+    subtitle += `\n${publicBodyName} (${shortenJurisdiction(
+      jurisdictionName
+    )})`;
+  }
 
   return (
     <ListItem
@@ -49,14 +54,27 @@ const renderItem = (item, onPress) => {
       titleNumberOfLines={3}
       subtitle={subtitle}
       subtitleNumberOfLines={3}
-      avatar={{
-        uri: imagePath,
-      }}
+      leftIcon={
+        <View
+          style={{
+            justifyContent: 'center',
+            alignItems: 'center',
+            marginRight: 10,
+          }}
+        >
+          <Image
+            source={{
+              uri: imagePath,
+            }}
+            style={{
+              height: 25,
+              width: 25,
+            }}
+          />
+        </View>
+      }
       chevronColor={primaryColor}
       onPress={onPress}
-      // avatarStyle={{ marginTop: 20 }}
-      // TODO: Not possible right now, come back later to check if they have fixed it.
-      // avatarStyle={{ overlayContainerStyle: { backgroundColor: 'white' } }}
       containerStyle={styles.listItemContainer}
     />
   );
