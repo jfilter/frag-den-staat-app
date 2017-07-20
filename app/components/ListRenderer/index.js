@@ -4,7 +4,7 @@ import { ListItem } from 'react-native-elements';
 import moment from 'moment';
 
 import styles from './styles';
-import { getPrintableStatus } from '../../utils';
+import { getPrintableStatus, shortenJurisdiction } from '../../utils';
 import { getPublicBodyNameAndJurisdiction } from '../../utils/fakeApi';
 import { primaryColor, primaryColorLight } from '../../styles/colors';
 
@@ -40,7 +40,7 @@ const renderItem = (item, onPress) => {
   const { publicBodyName, jurisdictionName } = getPublicBodyNameAndJurisdiction(
     item.public_body
   );
-  subtitle += `\n${publicBodyName} (${jurisdictionName})`;
+  subtitle += `\n${publicBodyName} (${shortenJurisdiction(jurisdictionName)})`;
 
   return (
     <ListItem

@@ -7,7 +7,7 @@ import { Icon } from 'react-native-elements';
 
 import jurisdictionFile from '../../data/jurisdiction.json';
 import statusFile from '../../data/status.json';
-import { getItemById, mapToRealStatus } from '../../utils';
+import { getItemById, mapToRealStatus, shortenJurisdiction } from '../../utils';
 import { primaryColor, greyDark, greyLight, grey } from '../../styles/colors';
 
 class FoiRequestsListHeader extends React.Component {
@@ -19,7 +19,10 @@ class FoiRequestsListHeader extends React.Component {
       const jurisdictionName = jurisdictionFile.find(
         getItemById(filterJurisdiction)
       ).name;
-      filterJurisdictionText = `${jurisdictionName}`.toUpperCase();
+
+      filterJurisdictionText = shortenJurisdiction(
+        jurisdictionName
+      ).toUpperCase();
     }
 
     const filterStatus = this.props.filter.status;

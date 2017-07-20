@@ -42,4 +42,23 @@ function getPrintableStatus(status, resolution) {
   return { statusName, realStatus };
 }
 
-export { mapToRealStatus, mapToFakeStatus, getItemById, getPrintableStatus };
+function shortenJurisdiction(jurisdiction) {
+  switch (jurisdiction) {
+    case 'Mecklenburg-Vorpommern':
+      return 'Meck-Pomm';
+    case 'Nordrhein-Westfalen':
+      return 'NRW';
+    case 'Baden-Württemberg':
+      return 'Ba-Wü';
+    default:
+      return jurisdiction;
+  }
+}
+
+export {
+  mapToRealStatus,
+  mapToFakeStatus,
+  getItemById,
+  getPrintableStatus,
+  shortenJurisdiction,
+};
