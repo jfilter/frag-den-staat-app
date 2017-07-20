@@ -7,7 +7,6 @@ import {
   Animated,
   RefreshControl,
   Alert,
-  Platform,
 } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -20,6 +19,7 @@ import {
   searchUpdatePastQueries,
 } from '../../actions/search';
 import { insertPastQuery, getPastQueries } from '../../data/db/dbHelper';
+import { styles } from './styles';
 
 class SearchStartScreen extends React.Component {
   componentDidMount() {
@@ -56,7 +56,7 @@ class SearchStartScreen extends React.Component {
 
   render() {
     return (
-      <View>
+      <View style={styles.background}>
         <SearchBar
           lightTheme
           clearIcon={{ color: '#86939e', name: 'clear' }}
@@ -65,6 +65,7 @@ class SearchStartScreen extends React.Component {
           placeholder="Search"
           onSubmitEditing={this._onSubmitSearchBar}
           autoFocus
+          containerStyle={styles.searchBarContainer}
         />
         <FlatList data={this.props.pastQueries} renderItem={this._renderItem} />
       </View>

@@ -1,3 +1,5 @@
+import { Platform } from 'react-native';
+
 import {
   primaryColor,
   secondaryColor,
@@ -25,11 +27,14 @@ const commongTabBarOptions = {
   activeTintColor: primaryColor,
   inactiveTintColor: greyDark,
   indicatorStyle: { backgroundColor: primaryColor },
-  labelStyle: {
-    fontSize: 9,
-    margin: 0,
-    marginVertical: 5,
-  },
+  labelStyle:
+    Platform.OS === 'android'
+      ? {
+          fontSize: 9,
+          margin: 0,
+          marginVertical: 5,
+        }
+      : { paddingBottom: 5 },
   tabStyle: {
     borderLeftWidth: 0.5,
     borderLeftColor: greyLight,
@@ -40,6 +45,7 @@ const commongTabBarOptions = {
     backgroundColor: 'white',
     borderBottomWidth: 1,
     borderBottomColor: greyLight,
+    height: Platform.OS === 'ios' ? 60 : 'auto',
   },
 };
 
