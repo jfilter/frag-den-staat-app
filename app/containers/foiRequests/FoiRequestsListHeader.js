@@ -8,7 +8,7 @@ import { Icon } from 'react-native-elements';
 import jurisdictionFile from '../../data/jurisdiction.json';
 import statusFile from '../../data/status.json';
 import { getItemById, mapToRealStatus } from '../../utils';
-import { primaryColor, greyDark, greyLight } from '../../styles/colors';
+import { primaryColor, greyDark, greyLight, grey } from '../../styles/colors';
 
 class FoiRequestsListHeader extends React.Component {
   render() {
@@ -50,6 +50,7 @@ class FoiRequestsListHeader extends React.Component {
           <View style={[styles.item, styles.firstItem]}>
             <TouchableHighlight
               onPress={this.props.navigateToFilterJurisdiction}
+              underlayColor={grey}
             >
               <View>
                 <View style={styles.align}>
@@ -119,11 +120,19 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     navigateToFilterJurisdiction: () =>
-      dispatch(NavigationActions.navigate({ routeName: 'Jurisdiction' })),
+      dispatch(
+        NavigationActions.navigate({
+          routeName: 'FoiRequestsFilterJurisdiction',
+        })
+      ),
     navigateToFilterStatus: () =>
-      dispatch(NavigationActions.navigate({ routeName: 'Status' })),
+      dispatch(
+        NavigationActions.navigate({ routeName: 'FoiRequestsFilterStatus' })
+      ),
     navigateToFilterCategory: () =>
-      dispatch(NavigationActions.navigate({ routeName: 'Category' })),
+      dispatch(
+        NavigationActions.navigate({ routeName: 'FoiRequestsFilterCategory' })
+      ),
   };
 };
 
