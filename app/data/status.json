@@ -1,36 +1,36 @@
 [
   {
     "id": "successful",
-    "name": "Request Successful",
+    "name": "Successful",
     "title_long": "The request has been successful.",
   },
   {
     "id": "partially_successful",
-    "name": "Request partially successful",
+    "name": "Partially successful",
     "title_long": "The request has been partially successful (some information was provided, but not all)",
   },
   {
     "id": "refused",
-    "name": "Request refused",
+    "name": "Refused",
     "title_long": "The Public Body refuses to provide the information.",
   },
   {
     "id": "user_withdrew",
-    "name": "Request was withdrawn",
+    "name": "Withdrawn",
     "title_long": "User withdrew the request for other reasons.",
   },
   {
     "id": "user_withdrew_costs",
-    "name": "Request was withdrawn due to costs",
+    "name": "Withdrawn due to costs",
     "title_long": "User withdrew the request due to the associated costs.",
   },
   { "id": "publicbody_needed", "name": "Public Body needed" },
   { "id": "awaiting_response", "name": "Awaiting response" },
   {
     "id": "awaiting_classification",
-    "name": "Request awaits classification",
+    "name": "Awaits classification",
   },
-  { "id": "asleep", "name": "Request asleep" },
+  { "id": "asleep", "name": "Asleep" },
   {
     "id": "not_held",
     "name": "Information not held",

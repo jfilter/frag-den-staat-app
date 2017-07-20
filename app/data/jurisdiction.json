@@ -11,7 +11,7 @@
   {
     description: '',
     id: 91,
-    name: 'Baden-WÃ¼rttemberg',
+    name: 'Baden-Württemberg',
     rank: 2,
     resource_uri: '/api/v1/jurisdiction/91/',
     site_url: 'https://fragdenstaat.de/baden-wurttemberg/',
@@ -146,7 +146,7 @@
   {
     description: '',
     id: 10,
-    name: 'ThÃ¼ringen',
+    name: 'Thüringen',
     rank: 2,
     resource_uri: '/api/v1/jurisdiction/10/',
     site_url: 'https://fragdenstaat.de/thueringen/',
