@@ -1,3 +1,10 @@
+const userAgent = __DEV__ ? 'FragDenStaat App Development' : 'FragDenStaat App';
+
+const headers = {
+  Accept: 'application/json',
+  'User-Agent': userAgent,
+};
+
 /**
  * Fetches data from the URL and dispatches action creators according to the state of the fetching process.
  *
@@ -15,7 +22,7 @@ function fetchAndDispatch(
   onErrorFetch
 ) {
   dispatch(beforeFetch());
-  fetch(encodeURI(url))
+  fetch(encodeURI(url), { headers })
     .then(response => {
       if (!response.ok) {
         throw Error(response.status);
