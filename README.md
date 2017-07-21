@@ -6,9 +6,9 @@ The app should include basic functionalities of the website such as browsing thr
 
 It is been developed with [React Native](https://facebook.github.io/react-native/) for Android and iOS.
 
-[![chat](https://img.shields.io/badge/chat-on%20Slack-ad1457.svg?style=flat-square)]()
+[![chat](https://img.shields.io/badge/chat-on%20Slack-ad1457.svg?style=flat-square)](https://openknowledgegermany.slack.com/messages/frag-den-staat-app)
 [![dependencies Status](https://david-dm.org/jfilter/frag-den-staat-app/status.svg?style=flat-square)](https://david-dm.org/jfilter/frag-den-staat-app)
-[![license](https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square)]()
+[![license](https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square)](https://github.com/jfilter/frag-den-staat-app/blob/master/LICENSE)
 
 ## Early Access
 
