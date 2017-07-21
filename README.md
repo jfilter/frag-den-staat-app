@@ -6,6 +6,10 @@ The app should include basic functionalities of the website such as browsing thr
 
 It is been developed with [React Native](https://facebook.github.io/react-native/) for Android and iOS.
 
+[![chat](https://img.shields.io/badge/chat-on%20Slack-ad1457.svg?style=flat-square)]()
+[![dependencies Status](https://david-dm.org/jfilter/frag-den-staat-app/status.svg?style=flat-square)](https://david-dm.org/jfilter/frag-den-staat-app)
+[![license](https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square)]()
+
 ## Early Access
 
 The app is currently in development. In order to get an Early Access, Android users can [register and apply on HockeyApp](https://rink.hockeyapp.net/recruit/dfeb3c49543b4bafa5e2b6ba37641e63
