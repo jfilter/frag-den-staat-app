@@ -45,8 +45,4 @@ SearchNavigator.router.getStateForAction = navigateOnce(
   SearchNavigator.router.getStateForAction
 );
 
-SearchResultsNavigator.router.getStateForAction = navigateOnce(
-  SearchResultsNavigator.router.getStateForAction
-);
-
 export default SearchNavigator;
