@@ -28,18 +28,19 @@ class SearchStartScreen extends React.Component {
   }
 
   _onSubmit = queryText => {
-    this.props.updateQuery(queryText);
     this.props.navigateToResults({ query: queryText });
+    this.props.updateQuery(queryText);
   };
 
   _onSubmitSearchBar = event => {
-    const queryText = event.nativeEvent.text;
+    const queryText = event.nativeEvent.text.trim();
+    this._onSubmit(queryText);
+
+    // first dispatch the navigation action, then add the query to the DB
 
     insertPastQuery(queryText);
     const pastQueries = getPastQueries();
     this.props.updatePastQueries(pastQueries);
-
-    this._onSubmit(queryText);
   };
 
   _renderItem = ({ item }) => {
@@ -56,7 +57,7 @@ class SearchStartScreen extends React.Component {
 
   render() {
     return (
-      <View style={styles.background}>
+      <View style={styles.background} keyboardShouldPersistTaps="handled">
         <SearchBar
           lightTheme
           clearIcon={{ color: '#86939e', name: 'clear' }}
@@ -65,9 +66,14 @@ class SearchStartScreen extends React.Component {
           placeholder="Search"
           onSubmitEditing={this._onSubmitSearchBar}
           autoFocus
+          autoCorrect={false}
           containerStyle={styles.searchBarContainer}
         />
-        <FlatList data={this.props.pastQueries} renderItem={this._renderItem} />
+        <FlatList
+          data={this.props.pastQueries}
+          renderItem={this._renderItem}
+          keyboardShouldPersistTaps="handled"
+        />
       </View>
     );
   }
