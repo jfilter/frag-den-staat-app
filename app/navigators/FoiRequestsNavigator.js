@@ -6,7 +6,7 @@ import FoiRequestsListScreen from '../containers/foiRequests/FoiRequestsListScre
 import FoiRequestsSingleScreen from '../containers/foiRequests/FoiRequestsSingleScreen';
 import FoiRequestsFilterNavigator from './FoiRequestsFilterNavigator';
 import PdfViewer from '../components/PdfViewer';
-
+import navigateOnce from './navigateOnce';
 import { commonNavigationOptions, iconColor, iconSize } from './styles';
 
 const FoiRequestsNavigator = StackNavigator(
@@ -23,6 +23,10 @@ const FoiRequestsNavigator = StackNavigator(
       tabBarIcon: () => <Icon size={iconSize} color={iconColor} name="list" />,
     },
   }
+);
+
+FoiRequestsNavigator.router.getStateForAction = navigateOnce(
+  FoiRequestsNavigator.router.getStateForAction
 );
 
 export default FoiRequestsNavigator;
