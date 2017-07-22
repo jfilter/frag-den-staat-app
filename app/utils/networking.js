@@ -31,7 +31,7 @@ function fetchAndDispatch(
       return response;
     })
     .then(response => response.json())
-    .then(data => dispatch(onSuccessFetch(data)))
+    .then(onSuccessFetch)
     .catch(error => dispatch(onErrorFetch(error.message)));
 }
 

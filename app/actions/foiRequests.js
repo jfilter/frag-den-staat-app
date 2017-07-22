@@ -1,3 +1,5 @@
+import R from 'ramda';
+
 import { mapToFakeStatus } from '../utils';
 import { fetchAndDispatch } from '../utils/networking';
 import { ORIGIN } from '../utils/globals.js';
@@ -57,7 +59,7 @@ function foiRequestsFilterChangeAction(filter) {
 const PAGE_SIZE = 20;
 const DEFAULT_PATH = '/api/v1/request/';
 
-function fetchRequests(beforeFetch, onSuccessFetch) {
+function fetchRequests(beforeFetchDispatchedAction, onSuccessFetch) {
   return (dispatch, getState) => {
     const { filter, nPage, isRefreshing } = getState().foiRequests;
     let offset = PAGE_SIZE * nPage;
@@ -88,15 +90,30 @@ function fetchRequests(beforeFetch, onSuccessFetch) {
     // if (filter.category) {
     //   params += `&category=${filter.category}`;
     // }
+    //
+
+    // only dispatch if the filter is still the same
+    const onSuccess = (function makeOnSuccessFunc(
+      innerDispatch,
+      innerGetState,
+      innerFilter
+    ) {
+      return data => {
+        if (R.equals(innerFilter, innerGetState().foiRequests.filter)) {
+          innerDispatch(onSuccessFetch(data));
+        }
+      };
+    })(dispatch, getState, filter);
 
     const fullUrl = `${url}${params}`;
 
     fetchAndDispatch(
       fullUrl,
       dispatch,
-      beforeFetch,
-      onSuccessFetch,
-      foiRequestsErrorAction
+      beforeFetchDispatchedAction,
+      onSuccess,
+      foiRequestsErrorAction,
+      filter
     );
   };
 }

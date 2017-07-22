@@ -74,12 +74,15 @@ function searchFoiRequests() {
   return (dispatch, getState) => {
     const url = `${ORIGIN}${SEARCH_FOI_REQUESTS_PATH}?q=${getState().search
       .query}`;
-    console.log('url', url);
+
+    const onSuccess = (innerDispatch => data =>
+      innerDispatch(searchFoiRequestsSuccessAction(data)))(dispatch);
+
     fetchAndDispatch(
       url,
       dispatch,
       searchFoiRequestsPendingAction,
-      searchFoiRequestsSuccessAction,
+      onSuccess,
       searchFoiRequestsErrorAction
     );
   };
@@ -89,12 +92,15 @@ function searchPublicBodies() {
   return (dispatch, getState) => {
     const url = `${ORIGIN}${SEARCH_PUBLIC_BODIES_PATH}?q=${getState().search
       .query}`;
-    console.log('url', url);
+
+    const onSuccess = (innerDispatch => data =>
+      innerDispatch(searchPublicBodiesSuccessAction(data)))(dispatch);
+
     fetchAndDispatch(
       url,
       dispatch,
       searchPublicBodiesPendingAction,
-      searchPublicBodiesSuccessAction,
+      onSuccess,
       searchPublicBodiesErrorAction
     );
   };
