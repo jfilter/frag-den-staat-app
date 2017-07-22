@@ -39,7 +39,9 @@ class FoiRequestSingle extends React.Component {
 
   _renderAttachments = attachments => {
     return attachments.map(att => {
-      const isPdf = att.filetype === 'application/pdf';
+      const isPdf =
+        att.filetype === 'application/pdf' ||
+        att.name.toLowerCase().endsWith('.pdf'); // hotfix for #38
       let viewPdfButton;
 
       if (isPdf) {
