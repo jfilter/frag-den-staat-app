@@ -14,6 +14,7 @@ import ProfileNavigator from './ProfileNavigator';
 import foiRequestsNavigator from './FoiRequestsNavigator';
 import SearchNavigator from './SearchNavigator';
 import { primaryColor, greyDark, greyLight } from '../styles/colors';
+import navigateOnce from './navigateOnce';
 
 // class Requests extends React.Component {
 //   static navigationOptions = {
@@ -83,6 +84,10 @@ export const AppNavigator = TabNavigator(
       },
     },
   }
+);
+
+AppNavigator.router.getStateForAction = navigateOnce(
+  AppNavigator.router.getStateForAction
 );
 
 class AppWithNavigationState extends React.Component {

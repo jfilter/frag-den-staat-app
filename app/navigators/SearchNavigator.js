@@ -5,9 +5,9 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import SearchStartScreen from '../containers/search/SearchStartScreen';
 import SearchFoiRequestSingleScreen from '../containers/search/SearchFoiRequestSingleScreen';
 import PdfViewer from '../components/PdfViewer';
-
 import SearchResultsFoiRequestsScreen from '../containers/search/SearchResultsFoiRequestsScreen';
 import SearchResultsPublicBodiesScreen from '../containers/search/SearchResultsPublicBodiesScreen';
+import navigateOnce from './navigateOnce';
 
 import {
   commonNavigationOptions,
@@ -39,6 +39,14 @@ const SearchNavigator = StackNavigator(
         <Icon size={iconSize} color={iconColor} name="search" />,
     },
   }
+);
+
+SearchNavigator.router.getStateForAction = navigateOnce(
+  SearchNavigator.router.getStateForAction
+);
+
+SearchResultsNavigator.router.getStateForAction = navigateOnce(
+  SearchResultsNavigator.router.getStateForAction
 );
 
 export default SearchNavigator;

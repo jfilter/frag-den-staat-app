@@ -6,6 +6,7 @@ import FoiRequestsFilterCategoryScreen from '../containers/foiRequests/FoiReques
 import FoiRequestsFilterPublicBodyScreen from '../containers/foiRequests/FoiRequestsFilterPublicBodyScreen';
 import { primaryColor } from '../styles/colors';
 import { tabBarConfig } from './styles';
+import navigateOnce from './navigateOnce';
 
 const FoiRequestsFilterNavigator = TabNavigator(
   {
@@ -20,6 +21,10 @@ const FoiRequestsFilterNavigator = TabNavigator(
     lazy: true,
     ...tabBarConfig,
   }
+);
+
+FoiRequestsFilterNavigator.router.getStateForAction = navigateOnce(
+  FoiRequestsFilterNavigator.router.getStateForAction
 );
 
 export default FoiRequestsFilterNavigator;

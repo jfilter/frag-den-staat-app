@@ -5,6 +5,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import ProfileLoginScreen from '../components/ProfileLoginScreen';
 import ProfileMainScreen from '../components/ProfileMainScreen';
 import { greyDark } from '../styles/colors';
+import navigateOnce from './navigateOnce';
 
 const ProfileNavigator = StackNavigator(
   {
@@ -17,6 +18,10 @@ const ProfileNavigator = StackNavigator(
       tabBarIcon: () => <Icon size={24} color={greyDark} name="person" />,
     },
   }
+);
+
+ProfileNavigator.router.getStateForAction = navigateOnce(
+  ProfileNavigator.router.getStateForAction
 );
 
 export default ProfileNavigator;
