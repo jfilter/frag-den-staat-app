@@ -1,14 +1,14 @@
-import React from 'react';
-import { Text, View, StyleSheet, TouchableHighlight } from 'react-native';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { NavigationActions } from 'react-navigation';
 import { Icon } from 'react-native-elements';
+import { NavigationActions } from 'react-navigation';
+import { Text, View, TouchableHighlight } from 'react-native';
+import { connect } from 'react-redux';
+import React from 'react';
 
+import { getItemById, shortenJurisdiction } from '../../utils';
+import { greyDark, grey } from '../../styles/colors';
+import { styles } from './styles';
 import jurisdictionFile from '../../data/jurisdiction.json';
 import statusFile from '../../data/status.json';
-import { getItemById, mapToRealStatus, shortenJurisdiction } from '../../utils';
-import { primaryColor, greyDark, greyLight, grey } from '../../styles/colors';
 
 class FoiRequestsListHeader extends React.Component {
   render() {
@@ -142,35 +142,3 @@ const mapDispatchToProps = dispatch => {
 export default connect(mapStateToProps, mapDispatchToProps)(
   FoiRequestsListHeader
 );
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: 'white',
-    borderBottomWidth: 1,
-    borderBottomColor: greyLight,
-  },
-  item: {
-    flexGrow: 1,
-    flexBasis: 0,
-    borderLeftWidth: 1,
-    borderColor: greyLight,
-    paddingHorizontal: 10,
-    paddingBottom: 5,
-  },
-  firstItem: {
-    borderLeftWidth: 0,
-  },
-  label: {
-    fontSize: 12,
-    color: greyDark,
-  },
-  selection: {
-    color: primaryColor,
-    fontSize: 12,
-  },
-  align: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'flex-end',
-  },
-});
