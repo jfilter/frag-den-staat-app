@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   FlatList,
   View,
@@ -6,26 +5,28 @@ import {
   RefreshControl,
   Alert,
   Platform,
+  Text,
 } from 'react-native';
+import { NavigationActions } from 'react-navigation';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { NavigationActions } from 'react-navigation';
+import React from 'react';
 
-import FoiRequestsListHeader from './FoiRequestsListHeader';
-import NavBarIcon from '../../components/NavBarIcon';
+import { LIST_HEADER_HEIGHT, styles } from './styles';
+import {
+  foiRequestsFetchData,
+  foiRequestsRefreshData,
+  foiRequestsErrorClearAction,
+} from '../../actions/foiRequests';
+import { primaryColor, primaryColorLight } from '../../styles/colors';
 import {
   renderNumberOfResultHeader,
   renderItem,
   renderFooter,
   renderSeparator,
 } from '../../components/ListRenderer';
-import {
-  foiRequestsFetchData,
-  foiRequestsRefreshData,
-  foiRequestsErrorClearAction,
-} from '../../actions/foiRequests';
-import { primaryColorLight } from '../../styles/colors';
-import { LIST_HEADER_HEIGHT, styles } from './styles';
+import FoiRequestsListHeader from './FoiRequestsListHeader';
+import NavBarIcon from '../../components/NavBarIcon';
 
 const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
 
@@ -182,7 +183,19 @@ FoiRequestsListScreen.navigationOptions = ({ navigation }) => {
     );
 
   return {
-    title: 'Requests',
+    headerTitle: (
+      <Text
+        style={{
+          fontFamily: 'Kreon-Bold',
+          alignSelf: 'center',
+          fontSize: Platform.OS === 'ios' ? 17 : 20,
+          color: primaryColor,
+          marginHorizontal: 16,
+        }}
+      >
+        Frag Den Staat
+      </Text>
+    ),
     headerBackTitle: null, // disables default
     headerLeft: (
       <NavBarIcon
