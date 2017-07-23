@@ -1,21 +1,33 @@
-import React from 'react';
 import { StackNavigator } from 'react-navigation';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import React from 'react';
 
-import ProfileLoginScreen from '../components/ProfileLoginScreen';
-import ProfileMainScreen from '../components/ProfileMainScreen';
-import { greyDark } from '../styles/colors';
+import { commonNavigationOptions, iconColor, iconSize } from './styles';
+import ProfileAboutApp from '../components/profile/ProfileAboutApp';
+import ProfileAboutFOI from '../components/profile/ProfileAboutFOI';
+import ProfileContact from '../components/profile/ProfileContact';
+import ProfileDataUsePolicy from '../components/profile/ProfileDataUsePolicy';
+import ProfileFAQ from '../components/profile/ProfileFAQ';
+import ProfileLogin from '../components/profile/ProfileLogin';
+import ProfileStartScreen from '../containers/profile/ProfileStartScreen';
 import navigateOnce from './navigateOnce';
 
 const ProfileNavigator = StackNavigator(
   {
-    Main: { screen: ProfileMainScreen },
-    Login: { screen: ProfileLoginScreen },
+    ProfileStart: { screen: ProfileStartScreen },
+    ProfileLogin: { screen: ProfileLogin },
+    ProfileAboutApp: { screen: ProfileAboutApp },
+    ProfileAboutFOI: { screen: ProfileAboutFOI },
+    ProfileFAQ: { screen: ProfileFAQ },
+    ProfileContact: { screen: ProfileContact },
+    ProfileDataUsePolicy: { screen: ProfileDataUsePolicy },
   },
   {
     navigationOptions: {
+      ...commonNavigationOptions,
       tabBarLabel: 'Profile',
-      tabBarIcon: () => <Icon size={24} color={greyDark} name="person" />,
+      tabBarIcon: () =>
+        <Icon size={iconSize} color={iconColor} name="person" />,
     },
   }
 );

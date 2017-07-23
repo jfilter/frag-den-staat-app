@@ -11,8 +11,10 @@ class AndroidApp extends Component {
   }
 
   componentDidMount() {
-    HockeyApp.start();
-    HockeyApp.checkForUpdate();
+    if (!__DEV__) {
+      HockeyApp.start();
+      HockeyApp.checkForUpdate();
+    }
   }
   render() {
     return <App />;

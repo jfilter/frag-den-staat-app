@@ -14,27 +14,6 @@ import ProfileNavigator from './ProfileNavigator';
 import foiRequestsNavigator from './FoiRequestsNavigator';
 import SearchNavigator from './SearchNavigator';
 import { primaryColor, greyDark, greyLight } from '../styles/colors';
-import navigateOnce from './navigateOnce';
-
-// class Requests extends React.Component {
-//   static navigationOptions = {
-//     tabBarLabel: 'Requests',
-//     tabBarIcon: () => (<Icon size={24} color="black" name="list" />)
-//   }
-
-//   render() { return <View></View> }
-// }
-
-// class Search extends React.Component {
-//   static navigationOptions = {
-//     tabBarLabel: 'Search',
-//     tabBarIcon: () => <Icon size={24} color={greyDark} name="search" />,
-//   };
-
-//   render() {
-//     return <View />;
-//   }
-// }
 
 class NewRequest extends React.Component {
   static navigationOptions = {
@@ -84,10 +63,6 @@ export const AppNavigator = TabNavigator(
       },
     },
   }
-);
-
-AppNavigator.router.getStateForAction = navigateOnce(
-  AppNavigator.router.getStateForAction
 );
 
 class AppWithNavigationState extends React.Component {
