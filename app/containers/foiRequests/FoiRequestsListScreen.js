@@ -11,24 +11,21 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { NavigationActions } from 'react-navigation';
 
-import {
-  foiRequestsFetchData,
-  foiRequestsRefreshData,
-  foiRequestsErrorClearAction,
-} from '../../actions/foiRequests';
-
-import FoiRequestsListFilterButton from './FoiRequestsListFilterButton';
 import FoiRequestsListHeader from './FoiRequestsListHeader';
-import { primaryColorLight } from '../../styles/colors';
-
-import { LIST_HEADER_HEIGHT, styles } from './styles';
-
+import NavBarIcon from '../../components/NavBarIcon';
 import {
   renderNumberOfResultHeader,
   renderItem,
   renderFooter,
   renderSeparator,
 } from '../../components/ListRenderer';
+import {
+  foiRequestsFetchData,
+  foiRequestsRefreshData,
+  foiRequestsErrorClearAction,
+} from '../../actions/foiRequests';
+import { primaryColorLight } from '../../styles/colors';
+import { LIST_HEADER_HEIGHT, styles } from './styles';
 
 const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
 
@@ -178,9 +175,25 @@ class FoiRequestsListScreen extends React.Component {
   }
 }
 
-FoiRequestsListScreen.navigationOptions = {
-  title: 'Requests',
-  headerRight: <FoiRequestsListFilterButton />,
+FoiRequestsListScreen.navigationOptions = ({ navigation }) => {
+  const navigateToFilter = () =>
+    navigation.dispatch(
+      NavigationActions.navigate({ routeName: 'FoiRequestsFilter' })
+    );
+
+  return {
+    title: 'Requests',
+    headerBackTitle: null, // disables default
+    headerLeft: (
+      <NavBarIcon
+        onPress={() => console.log('obj')}
+        iconName={'info-outline'}
+      />
+    ),
+    headerRight: (
+      <NavBarIcon onPress={navigateToFilter} iconName={'filter-list'} />
+    ),
+  };
 };
 
 FoiRequestsListScreen.propTypes = {

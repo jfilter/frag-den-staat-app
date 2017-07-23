@@ -1,4 +1,4 @@
-import React from 'react';
+import { Icon, Button, Divider } from 'react-native-elements';
 import {
   Text,
   View,
@@ -8,21 +8,21 @@ import {
   Platform,
   TouchableHighlight,
 } from 'react-native';
-import PropTypes from 'prop-types';
-import { Icon, Button, Divider } from 'react-native-elements';
 import Accordion from 'react-native-collapsible/Accordion';
-import moment from 'moment';
+import PropTypes from 'prop-types';
+import React from 'react';
 import deLocal from 'moment/locale/de';
+import moment from 'moment';
 
-import styles from './styles';
-import { primaryColor, grey } from '../../styles/colors';
-import { headerStyles, iconSize } from '../../styles/header';
 import { ORIGIN } from '../../utils/globals';
-import { getPrintableStatus } from '../../utils';
 import {
   getLawNameAndUrl,
   getPublicBodyNameAndJurisdiction,
 } from '../../utils/fakeApi';
+import { getPrintableStatus } from '../../utils';
+import { primaryColor, grey } from '../../styles/colors';
+import NavBarIcon from '../NavBarIcon';
+import styles from './styles';
 
 moment.locale('de', deLocal);
 
@@ -353,14 +353,7 @@ FoiRequestSingle.navigationOptions = ({ navigation }) => {
   return {
     title: `#${requestId}`,
     headerRight: (
-      <Icon
-        name={iconName}
-        type={iconType}
-        color={primaryColor}
-        size={iconSize}
-        onPress={share}
-        containerStyle={headerStyles.headerRightIconContainer}
-      />
+      <NavBarIcon iconName={iconName} iconType={iconType} onPress={share} />
     ),
   };
 };
