@@ -3,6 +3,7 @@ package de.fragdenstaat.app;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.slowpath.hockeyapp.RNHockeyAppPackage;
 import com.instabug.reactlibrary.RNInstabugReactnativePackage;
 import com.RNFetchBlob.RNFetchBlobPackage;
 import org.wonday.pdf.RCTPdfView;
@@ -32,6 +33,7 @@ public class MainApplication extends Application implements ReactApplication {
       return Arrays.<ReactPackage>asList(
           new RNHockeyAppPackage(MainApplication.this),
           new MainReactPackage(),
+            new RNHockeyAppPackage(),
             new RNInstabugReactnativePackage(Secrets.INSTABUG_ANDROID_ID,MainApplication.this,"shake","#1D82DC"),
             new RNFetchBlobPackage(),
             new RCTPdfView(),

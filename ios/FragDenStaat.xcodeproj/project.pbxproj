@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -56,6 +55,9 @@
 		E71B43FC9BC14FCBB2D6EB39 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 716A39E2FA19475298369383 /* Ionicons.ttf */; };
 		F3444AD05F6D43FA86FD223F /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C3F3AF107B4A4B698D221D8A /* EvilIcons.ttf */; };
 		F9D7128F1F3848289D775B7D /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 79C4AB15398F44BAA31559DF /* Octicons.ttf */; };
+		C84EDA68EEE14B3EA2674A66 /* Kreon-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE73BC6328624308B94CA560 /* Kreon-Bold.ttf */; };
+		BFE4BC86664C499C9E8614FF /* Kreon-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5A2420F055224BCCBB35ADEA /* Kreon-Light.ttf */; };
+		06B1B223F40C43AFAF843C3D /* Kreon-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 640C33BECC20477A95FEE189 /* Kreon-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -367,6 +369,9 @@
 		EA8FE85FE6E84E9FADE38B7F /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
 		F70CBAA572DF46C38DBFA494 /* libRealmReact.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRealmReact.a; sourceTree = "<group>"; };
 		FC0493C68CD74972B42B1568 /* libc++.tbd */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		CE73BC6328624308B94CA560 /* Kreon-Bold.ttf */ = {isa = PBXFileReference; name = "Kreon-Bold.ttf"; path = "../assets/fonts/Kreon/Kreon-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		5A2420F055224BCCBB35ADEA /* Kreon-Light.ttf */ = {isa = PBXFileReference; name = "Kreon-Light.ttf"; path = "../assets/fonts/Kreon/Kreon-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		640C33BECC20477A95FEE189 /* Kreon-Regular.ttf */ = {isa = PBXFileReference; name = "Kreon-Regular.ttf"; path = "../assets/fonts/Kreon/Kreon-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -553,6 +558,9 @@
 				BCCF5E984CEE4788956F3692 /* SimpleLineIcons.ttf */,
 				7A304214B22E4F64AEF43856 /* Zocial.ttf */,
 				716A39E2FA19475298369383 /* Ionicons.ttf */,
+				CE73BC6328624308B94CA560 /* Kreon-Bold.ttf */,
+				5A2420F055224BCCBB35ADEA /* Kreon-Light.ttf */,
+				640C33BECC20477A95FEE189 /* Kreon-Regular.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1159,6 +1167,9 @@
 				787B5B7302AC43EC90E124DE /* SimpleLineIcons.ttf in Resources */,
 				25BBCE1F440B4BFBA31793D6 /* Zocial.ttf in Resources */,
 				E71B43FC9BC14FCBB2D6EB39 /* Ionicons.ttf in Resources */,
+				C84EDA68EEE14B3EA2674A66 /* Kreon-Bold.ttf in Resources */,
+				BFE4BC86664C499C9E8614FF /* Kreon-Light.ttf in Resources */,
+				06B1B223F40C43AFAF843C3D /* Kreon-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

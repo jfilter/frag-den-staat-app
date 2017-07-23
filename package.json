@@ -2,6 +2,9 @@
   "name": "FragDenStaat",
   "version": "0.2.0",
   "private": true,
+  "rnpm": {
+     "assets": ["./assets/fonts"]
+  },
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",

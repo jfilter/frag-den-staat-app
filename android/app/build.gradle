@@ -144,6 +144,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-hockeyapp')
     compile project(':instabug-reactnative')
     compile project(':react-native-fetch-blob')
     compile project(':react-native-pdf')

@@ -1,4 +1,6 @@
 rootProject.name = 'FragDenStaat'
+include ':react-native-hockeyapp'
+project(':react-native-hockeyapp').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-hockeyapp/android')
 include ':instabug-reactnative'
 project(':instabug-reactnative').projectDir = new File(rootProject.projectDir, '../node_modules/instabug-reactnative/android')
 include ':react-native-fetch-blob'
