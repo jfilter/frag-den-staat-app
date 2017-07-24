@@ -223,7 +223,11 @@ class FoiRequestSingle extends React.Component {
       });
     }
 
-    return <Table data={tableData} />;
+    return (
+      <View style={styles.table}>
+        <Table data={tableData} />
+      </View>
+    );
   };
 
   _renderMessages = () => {

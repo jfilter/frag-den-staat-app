@@ -38,6 +38,7 @@ class SearchResultsPublicBodiesScreen extends React.Component {
         subtitle={subtittle}
         titleNumberOfLines={3}
         containerStyle={listItemStyles.listItemContainer}
+        onPress={() => this.props.navigateToDetails({ publicBody: item })}
       />
     );
   };
@@ -84,7 +85,10 @@ const mapDispatchToProps = dispatch => {
     doSearch: () => dispatch(searchPublicBodies()),
     navigateToDetails: params =>
       dispatch(
-        NavigationActions.navigate({ routeName: 'SearchResultsSingle', params })
+        NavigationActions.navigate({
+          routeName: 'SearchPublicBodySingle',
+          params,
+        })
       ),
   };
 };

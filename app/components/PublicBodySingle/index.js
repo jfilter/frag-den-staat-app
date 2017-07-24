@@ -1,23 +1,80 @@
-import React from 'react';
-import { Text, View, ScrollView, Linking, Share, Platform } from 'react-native';
+import { ScrollView, Text } from 'react-native';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { NavigationActions } from 'react-navigation';
-import { Icon, Button, Divider } from 'react-native-elements';
-import Accordion from 'react-native-collapsible/Accordion';
-import moment from 'moment';
-import deLocal from 'moment/locale/de';
+import React from 'react';
 
-import styles from './styles';
-import { primaryColor, grey } from '../../styles/colors';
-import { headerStyles, iconSize } from '../../styles/header';
+import Link from '../Link';
+import Table from '../Table';
+import { styles } from './styles';
 
-const PublicBodySingle = ({ item }) => {
+const PublicBodySingle = ({ publicBody }) => {
+  const jurisdiction = (
+    <Link
+      label={publicBody.jurisdiction.name}
+      url={publicBody.jurisdiction.site_url}
+    />
+  );
+  const website = <Link label={publicBody.url} url={publicBody.url} />;
+
+  const tableData = [
+    { label: 'Jurisdiction', value: jurisdiction },
+    {
+      label: 'Classification',
+      value: (
+        <Text>
+          {publicBody.classification}
+        </Text>
+      ),
+    },
+    { label: 'Website', value: website },
+    {
+      label: 'Email',
+      value: (
+        <Text>
+          {publicBody.email}
+        </Text>
+      ),
+    },
+    {
+      label: 'Address',
+      value: (
+        <Text>
+          {publicBody.address}
+        </Text>
+      ),
+    },
+    {
+      label: 'Contact',
+      value: (
+        <Text>
+          {publicBody.contact}
+        </Text>
+      ),
+    },
+  ];
+
   return (
     <ScrollView style={styles.scrollView}>
-      <Text styles={styles.heading}>item.name</Text>
+      <Text style={styles.heading}>
+        {publicBody.name}
+      </Text>
+      <Table data={tableData} />
     </ScrollView>
   );
+};
+
+PublicBodySingle.propTypes = {
+  publicBody: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
+    address: PropTypes.string.isRequired,
+    classification: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired,
+    contact: PropTypes.string.isRequired,
+  }).isRequired,
+};
+
+PublicBodySingle.navigationOptions = {
+  title: 'Public Body',
 };
 
 export default PublicBodySingle;

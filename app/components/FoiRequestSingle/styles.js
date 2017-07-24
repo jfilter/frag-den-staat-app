@@ -38,6 +38,9 @@ export default StyleSheet.create({
     // color: secondaryColor,
     color: greyDark,
   },
+  table: {
+    marginTop: spaceMore,
+  },
   summary: {
     marginTop: spaceGeneral,
     marginBottom: spaceGeneral / 2,

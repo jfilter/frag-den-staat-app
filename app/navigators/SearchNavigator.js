@@ -1,13 +1,6 @@
-import React from 'react';
 import { StackNavigator, TabNavigator } from 'react-navigation';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-
-import SearchStartScreen from '../containers/search/SearchStartScreen';
-import SearchFoiRequestSingleScreen from '../containers/search/SearchFoiRequestSingleScreen';
-import PdfViewer from '../components/PdfViewer';
-import SearchResultsFoiRequestsScreen from '../containers/search/SearchResultsFoiRequestsScreen';
-import SearchResultsPublicBodiesScreen from '../containers/search/SearchResultsPublicBodiesScreen';
-import navigateOnce from './navigateOnce';
+import React from 'react';
 
 import {
   commonNavigationOptions,
@@ -15,6 +8,13 @@ import {
   iconColor,
   iconSize,
 } from './styles';
+import PdfViewer from '../components/PdfViewer';
+import SearchFoiRequestSingleScreen from '../containers/search/SearchFoiRequestSingleScreen';
+import SearchPublicBodySingleScreen from '../containers/search/SearchPublicBodySingleScreen';
+import SearchResultsFoiRequestsScreen from '../containers/search/SearchResultsFoiRequestsScreen';
+import SearchResultsPublicBodiesScreen from '../containers/search/SearchResultsPublicBodiesScreen';
+import SearchStartScreen from '../containers/search/SearchStartScreen';
+import navigateOnce from './navigateOnce';
 
 const SearchResultsNavigator = TabNavigator(
   {
@@ -29,6 +29,7 @@ const SearchNavigator = StackNavigator(
     SearchStart: { screen: SearchStartScreen },
     SearchResults: { screen: SearchResultsNavigator },
     SearchFoiRequestSingle: { screen: SearchFoiRequestSingleScreen },
+    SearchPublicBodySingle: { screen: SearchPublicBodySingleScreen },
     SearchPdfViewer: { screen: PdfViewer },
   },
   {

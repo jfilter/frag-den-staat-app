@@ -1,13 +1,12 @@
 import { StyleSheet } from 'react-native';
 
-import { primaryColor, greyLight } from '../../styles/colors';
-import { spaceNormal, spaceMore } from '../../styles/content';
+import { greyLight } from '../../styles/colors';
+import { spaceNormal } from '../../styles/content';
 
 const textPaddingTable = 3;
 
 const styles = StyleSheet.create({
   table: {
-    marginTop: spaceMore,
     width: '100%',
     borderTopWidth: 1,
     borderBottomWidth: 1,
@@ -26,19 +25,9 @@ const styles = StyleSheet.create({
     paddingRight: textPaddingTable,
   },
   item2: { width: '67%', paddingVertical: textPaddingTable },
+  // hot fix because the text wasn't wrapping
   hotfixTextPaddingTable: {
     paddingRight: spaceNormal * 2 + 1, // the padding space and the border
-  },
-  linkTouchable: {
-    alignSelf: 'flex-start',
-    paddingVertical: textPaddingTable,
-    paddingRight: textPaddingTable * 3,
-  },
-  link: {
-    color: primaryColor,
-  },
-  law: {
-    paddingVertical: textPaddingTable,
   },
 });
 
