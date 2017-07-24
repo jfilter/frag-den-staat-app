@@ -15,13 +15,16 @@ import deLocal from 'moment/locale/de';
 import moment from 'moment';
 
 import { ORIGIN } from '../../utils/globals';
+import { breakLongWords } from '../../utils/strings';
 import {
   getLawNameAndUrl,
   getPublicBodyNameAndJurisdiction,
 } from '../../utils/fakeApi';
 import { getPrintableStatus } from '../../utils';
 import { primaryColor, grey } from '../../styles/colors';
+import Link from '../Link';
 import NavBarIcon from '../NavBarIcon';
+import Table from '../Table';
 import styles from './styles';
 
 moment.locale('de', deLocal);
@@ -136,86 +139,91 @@ class FoiRequestSingle extends React.Component {
   };
 
   _renderTable = () => {
-    const { request } = this.props;
+    const {
+      status,
+      resolution,
+      refusal_reason: refusalReason,
+      costs,
+      last_message: lastMessage,
+      first_message: firstMessage,
+      due_date: dueDate,
+      law,
+    } = this.props.request;
 
-    const { statusName } = getPrintableStatus(
-      request.status,
-      request.resolution
-    );
+    const { statusName } = getPrintableStatus(status, resolution);
 
-    let tableData = [
-      { key: 'Status', value: statusName },
-      { key: 'Refusal Reason', value: request.refusal_reason },
-      { key: 'Costs', value: request.costs },
-      { key: 'Started on', value: moment(request.first_message).format('LLL') },
+    const tableData = [
       {
-        key: 'Last Message',
-        value: moment(request.last_message).format('LLL'),
-      },
-      {
-        key: 'Due Date',
-        value: request.due_date ? moment(request.due_date).format('LL') : null,
+        label: 'Status',
+        value: (
+          <Text>
+            {statusName}
+          </Text>
+        ),
       },
     ];
 
-    tableData = tableData.filter(
-      x => (x.key !== 'Costs' || x.value !== '0') && x.value
-    );
-
-    const law = getLawNameAndUrl(request.law);
-    let lawView = null;
-
-    if (law) {
-      const breakWord = 'gesetz';
-      const words = law.name.split(' ');
-      const fixedLawName = words
-        .map(
-          x =>
-            x.length > 10 && x.includes(breakWord)
-              ? x.replace(breakWord, `- ${breakWord}`)
-              : x
-        )
-        .join(' ');
-
-      lawView = (
-        <View style={styles.row}>
-          <View style={styles.item1}>
-            <Text style={styles.law}>Used Law:</Text>
-          </View>
-          <View style={styles.item2}>
-            <TouchableHighlight
-              style={styles.linkTouchable}
-              underlayColor={grey}
-              onPress={() => Linking.openURL(law.site_url)}
-            >
-              <Text style={styles.link}>
-                {fixedLawName}
-              </Text>
-            </TouchableHighlight>
-          </View>
-        </View>
-      );
+    if (refusalReason) {
+      tableData.push({
+        label: 'Refusal Reason',
+        value: (
+          <Text>
+            {refusalReason}
+          </Text>
+        ),
+      });
     }
 
-    return (
-      <View style={styles.table}>
-        {tableData.map(({ key, value }) =>
-          <View key={key} style={styles.row}>
-            <View style={styles.item1}>
-              <Text>
-                {`${key}:`}
-              </Text>
-            </View>
-            <View style={styles.item2}>
-              <Text>
-                {value}
-              </Text>
-            </View>
-          </View>
-        )}
-        {lawView}
-      </View>
-    );
+    if (costs && costs !== 0) {
+      tableData.push({
+        label: 'Costs',
+        value: (
+          <Text>
+            {costs}
+          </Text>
+        ),
+      });
+    }
+
+    tableData.push({
+      label: 'Started on',
+      value: (
+        <Text>
+          {moment(firstMessage).format('LLL')}
+        </Text>
+      ),
+    });
+
+    tableData.push({
+      label: 'Last Message',
+      value: (
+        <Text>
+          {moment(lastMessage).format('LLL')}
+        </Text>
+      ),
+    });
+
+    if (dueDate) {
+      tableData.push({
+        label: 'Due Date',
+        value: (
+          <Text>
+            {moment(dueDate).format('LL')}
+          </Text>
+        ),
+      });
+    }
+
+    const { name: lawName, site_url: lawUrl } = getLawNameAndUrl(law);
+
+    if (lawName && lawUrl) {
+      tableData.push({
+        label: 'Law',
+        value: <Link label={breakLongWords(lawName)} url={lawUrl} />,
+      });
+    }
+
+    return <Table data={tableData} />;
   };
 
   _renderMessages = () => {
