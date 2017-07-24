@@ -6,12 +6,22 @@ import {
   Text,
   TouchableHighlight,
 } from 'react-native';
+import { NavigationActions } from 'react-navigation';
+import { connect } from 'react-redux';
 import React from 'react';
 
 import { styles } from './styles';
 import AuthButton from './AuthButton';
 
-const ProfileStartScreen = () => {
+const ProfileStartScreen = ({
+  navigateToAboutApp,
+  navigateToAboutFOI,
+  navigateToFAQ,
+  navigateToContact,
+  navigateToDataUsePolicy,
+  navigateToFeedback,
+  navigateToAcknowledgements,
+}) => {
   return (
     <ScrollView style={styles.container}>
       <Text>Account</Text>
@@ -21,38 +31,50 @@ const ProfileStartScreen = () => {
         containerStyle={[styles.listItemContainer, styles.firstItemContainer]}
         title="Über Frag Den Staat"
         leftIcon={{ name: 'info' }}
+        onPress={navigateToAboutApp}
       />
       <ListItem
         containerStyle={styles.listItemContainer}
         title="Über Informationsfreiheit"
         leftIcon={{ name: 'info' }}
+        onPress={navigateToAboutFOI}
       />
       <ListItem
         containerStyle={styles.listItemContainer}
         title="Fragen und Antworten"
         leftIcon={{ name: 'question-answer' }}
+        onPress={navigateToFAQ}
       />
       <Text>Bla</Text>
       <ListItem
         containerStyle={[styles.listItemContainer, styles.firstItemContainer]}
         title="Kontakt und Impressum"
         leftIcon={{ name: 'mail' }}
+        onPress={navigateToContact}
       />
       <ListItem
         containerStyle={styles.listItemContainer}
         title="Datenschutzerklärung"
         leftIcon={{ name: 'scale-balance', type: 'material-community' }}
+        onPress={navigateToDataUsePolicy}
       />
       <ListItem
         containerStyle={styles.listItemContainer}
         title="Feedback"
         leftIcon={{ name: 'feedback' }}
+        onPress={navigateToFeedback}
       />
       <ListItem
         containerStyle={styles.listItemContainer}
         title="Rate this App"
         leftIcon={{ name: 'star' }}
         hideChevron
+      />
+      <ListItem
+        containerStyle={styles.listItemContainer}
+        title="Acknowledgements"
+        leftIcon={{ name: 'copyright' }}
+        onPress={navigateToFeedback}
       />
       <Text>Links</Text>
       <ListItem
@@ -107,7 +129,33 @@ const ProfileStartScreen = () => {
 };
 
 ProfileStartScreen.navigationOptions = {
-  title: 'Profile & More',
+  title: 'Profile, Information & More',
 };
 
-export default ProfileStartScreen;
+const mapStateToProps = state => {
+  return {};
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    navigateToAboutApp: () =>
+      dispatch(NavigationActions.navigate({ routeName: 'ProfileAboutApp' })),
+    navigateToAboutFOI: () =>
+      dispatch(NavigationActions.navigate({ routeName: 'ProfileAboutFOI' })),
+    navigateToContact: () =>
+      dispatch(NavigationActions.navigate({ routeName: 'ProfileContact' })),
+    navigateToDataUsePolicy: () =>
+      dispatch(
+        NavigationActions.navigate({ routeName: 'ProfileDataUsePolicy' })
+      ),
+    navigateToFAQ: () =>
+      dispatch(NavigationActions.navigate({ routeName: 'ProfileFAQ' })),
+    navigateToFeedback: () =>
+      dispatch(NavigationActions.navigate({ routeName: 'ProfileFeedback' })),
+    navigateToAcknowledgements: () =>
+      dispatch(
+        NavigationActions.navigate({ routeName: 'ProfileAcknowledgements' })
+      ),
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(ProfileStartScreen);
