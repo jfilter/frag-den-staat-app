@@ -8,14 +8,14 @@ import ProfileAboutFOI from '../components/profile/ProfileAboutFOI';
 import ProfileContact from '../components/profile/ProfileContact';
 import ProfileDataUsePolicy from '../components/profile/ProfileDataUsePolicy';
 import ProfileFAQ from '../components/profile/ProfileFAQ';
-import ProfileLogin from '../components/profile/ProfileLogin';
+import ProfileLoginScreen from '../components/profile/ProfileLoginScreen';
 import ProfileStartScreen from '../containers/profile/ProfileStartScreen';
 import navigateOnce from './navigateOnce';
 
 const ProfileNavigator = StackNavigator(
   {
     ProfileStart: { screen: ProfileStartScreen },
-    ProfileLogin: { screen: ProfileLogin },
+    ProfileLogin: { screen: ProfileLoginScreen },
     ProfileAboutApp: { screen: ProfileAboutApp },
     ProfileAboutFOI: { screen: ProfileAboutFOI },
     ProfileFAQ: { screen: ProfileFAQ },

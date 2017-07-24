@@ -1,7 +1,7 @@
 import { ScrollView, Text } from 'react-native';
 import React from 'react';
 
-import { styles } from '../styles';
+import { styles } from './styles';
 
 const ProfileContact = () =>
   <ScrollView style={styles.container}>
