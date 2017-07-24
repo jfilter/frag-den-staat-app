@@ -1,15 +1,9 @@
 import { StyleSheet } from 'react-native';
 
-import {
-  primaryColor,
-  secondaryColor,
-  greyDark,
-  greyLight,
-} from '../../styles/colors';
+import { secondaryColor, greyDark, greyLight } from '../../styles/colors';
 
 const spaceGeneral = 10;
 const spaceMore = 20;
-const textPaddingTable = 3;
 
 export default StyleSheet.create({
   scrollView: {
@@ -44,26 +38,6 @@ export default StyleSheet.create({
     // color: secondaryColor,
     color: greyDark,
   },
-  table: {
-    marginTop: spaceMore,
-    width: '100%',
-    borderTopWidth: 1,
-    borderBottomWidth: 1,
-    borderColor: greyLight,
-    paddingHorizontal: spaceGeneral,
-    paddingVertical: spaceGeneral - textPaddingTable,
-  },
-  row: {
-    flex: 1,
-    flexDirection: 'row',
-    marginVertical: 1,
-  },
-  item1: {
-    width: '33%',
-    paddingVertical: textPaddingTable,
-    paddingRight: textPaddingTable,
-  },
-  item2: { width: '67%', paddingVertical: textPaddingTable },
   summary: {
     marginTop: spaceGeneral,
     marginBottom: spaceGeneral / 2,
@@ -117,15 +91,4 @@ export default StyleSheet.create({
     paddingRight: spaceGeneral * 2 + 1, // the padding space and the border
   },
   downloadButton: { marginLeft: 0, marginRight: 0 },
-  linkTouchable: {
-    alignSelf: 'flex-start',
-    paddingVertical: textPaddingTable,
-    paddingRight: textPaddingTable * 3,
-  },
-  link: {
-    color: primaryColor,
-  },
-  law: {
-    paddingVertical: textPaddingTable,
-  },
 });
