@@ -1456,7 +1456,7 @@
 			baseConfigurationReference = 06015157F2FD32A6A58C8B72 /* Pods-FragDenStaat.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = XPNHR27RXJ;
 				HEADER_SEARCH_PATHS = (
@@ -1486,7 +1486,7 @@
 			baseConfigurationReference = B1276FABBC6E84F06F9E64B8 /* Pods-FragDenStaat.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = XPNHR27RXJ;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
