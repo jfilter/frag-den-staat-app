@@ -6,7 +6,13 @@ import { grey } from '../../styles/colors';
 import { styles } from './styles';
 
 const Link = ({ label, url }) =>
-  <TouchableHighlight underlayColor={grey} onPress={() => Linking.openURL(url)}>
+  <TouchableHighlight
+    style={{
+      alignSelf: 'center',
+    }}
+    underlayColor={grey}
+    onPress={() => Linking.openURL(url)}
+  >
     <View>
       <Text style={styles.label}>
         {label}

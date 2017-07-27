@@ -1,11 +1,16 @@
 import { StyleSheet } from 'react-native';
 
-import { secondaryColor, greyDark, greyLight } from '../../styles/colors';
+import {
+  greyDark,
+  greyLight,
+  primaryColor,
+  secondaryColor,
+} from '../../styles/colors';
 
 const spaceGeneral = 10;
 const spaceMore = 20;
 
-export default StyleSheet.create({
+const styles = StyleSheet.create({
   scrollView: {
     backgroundColor: 'white',
     padding: spaceGeneral,
@@ -61,6 +66,9 @@ export default StyleSheet.create({
     borderWidth: 1,
     marginVertical: spaceMore / 2,
   },
+  link: {
+    color: primaryColor,
+  },
   msgContent: {
     padding: spaceGeneral,
     borderColor: secondaryColor,
@@ -95,3 +103,5 @@ export default StyleSheet.create({
   },
   downloadButton: { marginLeft: 0, marginRight: 0 },
 });
+
+export { styles };

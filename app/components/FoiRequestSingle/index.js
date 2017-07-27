@@ -22,20 +22,21 @@ import {
 } from '../../utils/fakeApi';
 import { getPrintableStatus } from '../../utils';
 import { primaryColor, grey } from '../../styles/colors';
+import { styles as tableStyles } from '../Table/styles';
 import Link from '../Link';
 import NavBarIcon from '../NavBarIcon';
 import Table from '../Table';
-import styles from './styles';
+import { styles } from './styles';
 
 moment.locale('de', deLocal);
 
 class FoiRequestSingle extends React.Component {
   _renderMessageHeader = msg =>
-    <View style={[styles.row, styles.msgHeader]}>
-      <Text style={[styles.item1, styles.link]}>
+    <View style={[tableStyles.row, styles.msgHeader]}>
+      <Text style={[tableStyles.item1, styles.link]}>
         {`${moment(msg.timestamp).format('DD.MM.YYYY')}:`}
       </Text>
-      <Text style={[styles.item2, styles.link]}>
+      <Text style={[tableStyles.item2, styles.link]}>
         {msg.sender}
       </Text>
     </View>;
@@ -94,10 +95,10 @@ class FoiRequestSingle extends React.Component {
 
     if (msg.is_escalation) {
       escalation = (
-        <View style={styles.row}>
-          <Text style={styles.item1}>Escalated to:</Text>
+        <View style={tableStyles.row}>
+          <Text style={tableStyles.item1}>Escalated to:</Text>
           <TouchableHighlight
-            style={[styles.item2, styles.linkTouchable]}
+            style={[tableStyles.item2, styles.linkTouchable]}
             underlayColor={grey}
           >
             <Text style={styles.link}>
@@ -111,22 +112,22 @@ class FoiRequestSingle extends React.Component {
     return (
       <View style={styles.msgContent}>
         {this._renderAttachments(msg.attachments)}
-        <View style={styles.row}>
-          <Text style={styles.item1}>From:</Text>
-          <Text style={styles.item2}>
+        <View style={tableStyles.row}>
+          <Text style={tableStyles.item1}>From:</Text>
+          <Text style={tableStyles.item2}>
             {msg.sender}
           </Text>
         </View>
-        <View style={styles.row}>
-          <Text style={styles.item1}>On:</Text>
-          <Text style={styles.item2}>
+        <View style={tableStyles.row}>
+          <Text style={tableStyles.item1}>On:</Text>
+          <Text style={tableStyles.item2}>
             {moment(msg.timestamp).format('LLLL')}
           </Text>
         </View>
         {escalation}
-        <View style={styles.row}>
-          <Text style={styles.item1}>Subject:</Text>
-          <Text style={styles.item2}>
+        <View style={tableStyles.row}>
+          <Text style={tableStyles.item1}>Subject:</Text>
+          <Text style={tableStyles.item2}>
             {msg.subject}
           </Text>
         </View>
