@@ -18,6 +18,9 @@ const styles = StyleSheet.create({
     marginBottom: spaceMore,
     textAlign: 'center',
   },
+  button: {
+    marginBottom: spaceMore,
+  },
 });
 
 export { styles };
