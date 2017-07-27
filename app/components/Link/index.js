@@ -8,7 +8,7 @@ import { styles } from './styles';
 const Link = ({ label, url }) =>
   <TouchableHighlight
     style={{
-      alignSelf: 'center',
+      alignSelf: 'flex-start',
     }}
     underlayColor={grey}
     onPress={() => Linking.openURL(url)}
