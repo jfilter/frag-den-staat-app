@@ -56,7 +56,9 @@ class FoiRequestsListScreen extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchData();
+    if (!this.props.isPending) {
+      this.props.fetchData();
+    }
   }
 
   componentDidUpdate() {

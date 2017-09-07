@@ -8,9 +8,17 @@ import { styles } from './styles';
 import Link from '../Link';
 import Table from '../Table';
 
-const PublicBodySingle = ({ publicBody, changeFilter }) => {
+const PublicBodySingle = ({
+  publicBody,
+  changeFilter,
+  navigateToFoiRequests1,
+  navigateToFoiRequests2,
+}) => {
   const _filterByPublicBody = () => {
+    // FIXME: It'a hack because there was another problem with react-navigation. It wasn't able to navigate to the Request stack when the stack was empty. This fixes it.
     changeFilter({ publicBody: publicBody.id });
+    navigateToFoiRequests1();
+    navigateToFoiRequests2();
   };
 
   const {

@@ -9,11 +9,15 @@ import PublicBodySingle from '../../components/PublicBodySingle';
 const SearchPublicBodySingle = ({
   publicBody,
   navigateToFilterByPublicBody,
+  navigateToFoiRequests1,
+  navigateToFoiRequests2,
   changeFilter,
 }) =>
   <PublicBodySingle
     publicBody={publicBody}
     navigateToFilterByPublicBody={navigateToFilterByPublicBody}
+    navigateToFoiRequests1={navigateToFoiRequests1}
+    navigateToFoiRequests2={navigateToFoiRequests2}
     changeFilter={changeFilter}
   />;
 
@@ -28,11 +32,12 @@ const mapStateToProps = (state, props) => {
 const mapDispatchToProps = dispatch => {
   return {
     changeFilter: newFilter => dispatch(foiRequestsFilterChange(newFilter)),
-    navigateToFilterByPublicBody: params =>
+    navigateToFoiRequests2: () =>
+      dispatch(NavigationActions.navigate({ routeName: 'FoiRequestsList' })),
+    navigateToFoiRequests1: () =>
       dispatch(
         NavigationActions.navigate({
-          routeName: 'FoiRequestsFilterPublicBody',
-          params,
+          routeName: 'Requests',
         })
       ),
   };
