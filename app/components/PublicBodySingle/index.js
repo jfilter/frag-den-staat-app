@@ -8,7 +8,11 @@ import { styles } from './styles';
 import Link from '../Link';
 import Table from '../Table';
 
-const PublicBodySingle = ({ publicBody }) => {
+const PublicBodySingle = ({ publicBody, changeFilter }) => {
+  const _filterByPublicBody = () => {
+    changeFilter({ publicBody: publicBody.id });
+  };
+
   const {
     name,
     url,
@@ -94,6 +98,7 @@ const PublicBodySingle = ({ publicBody }) => {
       icon={{ name: 'mail' }}
       title={title}
       backgroundColor={primaryColor}
+      onPress={_filterByPublicBody}
     />
   );
 
@@ -124,6 +129,7 @@ PublicBodySingle.propTypes = {
     contact: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
   }).isRequired,
+  changeFilter: PropTypes.func.isRequired,
 };
 
 PublicBodySingle.navigationOptions = {

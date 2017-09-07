@@ -86,6 +86,7 @@ function buildUrl(filter, nPage, isRefreshing) {
 
   if (filter.publicBody) {
     params.set('public_body', filter.publicBody);
+    params.delete('is_foi'); // show all requests here. it's irritating when the numbers show on the button don't match with the one in the table.
   } else {
     // when the requests are filtered by public body, ignore jurisdiction and category
     if (filter.jurisdiction) {

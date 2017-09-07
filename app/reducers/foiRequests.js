@@ -6,7 +6,12 @@ const initialState = {
   nResults: -1,
   isRefreshing: false,
   firstPageFetchedAt: null,
-  filter: { status: null, jurisdiction: null, category: null },
+  filter: {
+    status: null,
+    jurisdiction: null,
+    category: null,
+    publicBody: null,
+  },
 };
 
 function foiRequests(state = initialState, action) {
