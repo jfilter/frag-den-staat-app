@@ -59,38 +59,43 @@ function foiRequestsFilterChangeAction(filter) {
 const PAGE_SIZE = 20;
 const DEFAULT_PATH = '/api/v1/request/';
 
+function buildUrl(filter, nPage, isRefreshing) {
+  let offset = PAGE_SIZE * nPage;
+
+  // page is still the former value in case the refresh fails
+  if (isRefreshing) {
+    offset = 0;
+  }
+  const url = `${ORIGIN}${DEFAULT_PATH}`;
+  const baseParam = `?limit=${PAGE_SIZE}&offset=${offset}&is_foi=true`; // filter out crap
+  let params = baseParam;
+
+  if (filter.jurisdiction) {
+    params += `&jurisdiction=${filter.jurisdiction}`;
+  }
+
+  if (filter.status) {
+    // fake status and resolition
+    const { status, resolution } = mapToFakeStatus(filter.status);
+
+    params += `&status=${status}`;
+    if (resolution) {
+      params += `&resolution=${resolution}`;
+    }
+  }
+
+  // TODO: Not supported by the API?
+  // if (filter.category) {
+  //   params += `&category=${filter.category}`;
+  // }
+  return `${url}${params}`;
+}
+
 function fetchRequests(beforeFetchDispatchedAction, onSuccessFetch) {
   return (dispatch, getState) => {
     const { filter, nPage, isRefreshing } = getState().foiRequests;
-    let offset = PAGE_SIZE * nPage;
 
-    // page is still the former value in case the refresh fails
-    if (isRefreshing) {
-      offset = 0;
-    }
-    const url = `${ORIGIN}${DEFAULT_PATH}`;
-    const baseParam = `?limit=${PAGE_SIZE}&offset=${offset}&is_foi=true`; // filter out crap
-    let params = baseParam;
-
-    if (filter.jurisdiction) {
-      params += `&jurisdiction=${filter.jurisdiction}`;
-    }
-
-    if (filter.status) {
-      // fake status and resolition
-      const { status, resolution } = mapToFakeStatus(filter.status);
-
-      params += `&status=${status}`;
-      if (resolution) {
-        params += `&resolution=${resolution}`;
-      }
-    }
-
-    // TODO: Not supported by the API?
-    // if (filter.category) {
-    //   params += `&category=${filter.category}`;
-    // }
-    //
+    const url = buildUrl(filter, nPage, isRefreshing);
 
     // only dispatch if the filter is still the same
     const onSuccess = (function makeOnSuccessFunc(
@@ -105,10 +110,8 @@ function fetchRequests(beforeFetchDispatchedAction, onSuccessFetch) {
       };
     })(dispatch, getState, filter);
 
-    const fullUrl = `${url}${params}`;
-
     fetchAndDispatch(
-      fullUrl,
+      url,
       dispatch,
       beforeFetchDispatchedAction,
       onSuccess,
