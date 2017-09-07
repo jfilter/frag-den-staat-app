@@ -22,11 +22,11 @@ import {
 } from '../../utils/fakeApi';
 import { getPrintableStatus } from '../../utils';
 import { primaryColor, grey } from '../../styles/colors';
+import { styles } from './styles';
 import { styles as tableStyles } from '../Table/styles';
 import Link from '../Link';
 import NavBarIcon from '../NavBarIcon';
 import Table from '../Table';
-import { styles } from './styles';
 
 moment.locale('de', deLocal);
 

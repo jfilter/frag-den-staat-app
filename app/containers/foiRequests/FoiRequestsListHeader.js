@@ -72,7 +72,10 @@ class FoiRequestsListHeader extends React.Component {
             </TouchableHighlight>
           </View>
           <View style={styles.item}>
-            <TouchableHighlight onPress={this.props.navigateToFilterStatus}>
+            <TouchableHighlight
+              onPress={this.props.navigateToFilterStatus}
+              underlayColor={grey}
+            >
               <View>
                 <View style={styles.align}>
                   <Text style={styles.label}>STATUS</Text>
@@ -90,7 +93,10 @@ class FoiRequestsListHeader extends React.Component {
             </TouchableHighlight>
           </View>
           <View style={styles.item}>
-            <TouchableHighlight onPress={this.props.navigateToFilterCategory}>
+            <TouchableHighlight
+              onPress={this.props.navigateToFilterCategory}
+              underlayColor={grey}
+            >
               <View>
                 <View style={styles.align}>
                   <Text style={styles.label}>CATEGORY</Text>
