@@ -2,7 +2,7 @@ import R from 'ramda';
 
 import { mapToFakeStatus } from '../utils';
 import { fetchAndDispatch } from '../utils/networking';
-import { ORIGIN } from '../utils/globals.js';
+import { ORIGIN } from '../utils/globals';
 
 function foiRequestsErrorAction(error) {
   return {
@@ -67,28 +67,41 @@ function buildUrl(filter, nPage, isRefreshing) {
     offset = 0;
   }
   const url = `${ORIGIN}${DEFAULT_PATH}`;
-  const baseParam = `?limit=${PAGE_SIZE}&offset=${offset}&is_foi=true`; // filter out crap
-  let params = baseParam;
 
-  if (filter.jurisdiction) {
-    params += `&jurisdiction=${filter.jurisdiction}`;
-  }
+  const params = new Map([
+    ['limit', `${PAGE_SIZE}`],
+    ['offset', `${offset}`],
+    ['is_foi', 'true'], // filter out crappy requests
+  ]);
 
   if (filter.status) {
     // fake status and resolition
     const { status, resolution } = mapToFakeStatus(filter.status);
 
-    params += `&status=${status}`;
+    params.set('status', status);
     if (resolution) {
-      params += `&resolution=${resolution}`;
+      params.set('resolution', resolution);
     }
   }
 
-  // TODO: Not supported by the API?
-  // if (filter.category) {
-  //   params += `&category=${filter.category}`;
-  // }
-  return `${url}${params}`;
+  if (filter.publicBody) {
+    params.set('public_body', filter.publicBody);
+  } else {
+    // when the requests are filtered by public body, ignore jurisdiction and category
+    if (filter.jurisdiction) {
+      params.set('jurisdiction', filter.jurisdiction);
+    }
+
+    // TODO: Not supported by the API?
+    // if (filter.category) {
+    //   params += `&category=${filter.category}`;
+    // }
+  }
+
+  const paramsAsString =
+    '?' + [...params].map(x => `${x[0]}=${x[1]}`).join('&');
+
+  return `${url}${paramsAsString}`;
 }
 
 function fetchRequests(beforeFetchDispatchedAction, onSuccessFetch) {
