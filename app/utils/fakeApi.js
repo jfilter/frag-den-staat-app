@@ -4,7 +4,7 @@ import lawFile from '../data/laws.json';
 /**
  * Gets the public body string.
  *
- * @param      {string}  publicBody  The public body
+ * @param      {string}  publicBody  The public body path
  * @return     {Object}  Object with printable strings of the public body and the jurisdiction.
  */
 function getPublicBodyNameAndJurisdiction(publicBody) {
@@ -19,7 +19,7 @@ function getPublicBodyNameAndJurisdiction(publicBody) {
 
   const publicBodyName = publicBodyObject.publicBodyName;
   const jurisdictionName = publicBodyObject.jurisdictionName;
-  return { publicBodyName, jurisdictionName };
+  return { publicBodyName, jurisdictionName, publicBodyId };
 }
 
 /**

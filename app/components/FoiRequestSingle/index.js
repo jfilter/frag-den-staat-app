@@ -288,13 +288,14 @@ class FoiRequestSingle extends React.Component {
   };
 
   render() {
-    const { title, public_body, description } = this.props.request;
+    const { title, public_body: publicBody, description } = this.props.request;
     let subheading = <Text style={styles.subheading}>Not Yet Specified</Text>;
-    if (public_body) {
+    if (publicBody) {
       const {
         publicBodyName,
         jurisdictionName,
-      } = getPublicBodyNameAndJurisdiction(public_body);
+        publicBodyId,
+      } = getPublicBodyNameAndJurisdiction(publicBody);
       subheading = (
         <View>
           <TouchableHighlight
@@ -302,7 +303,7 @@ class FoiRequestSingle extends React.Component {
               alignSelf: 'center',
             }}
             underlayColor={grey}
-            onPress={() => console.log('x')}
+            onPress={() => this.props.navigateToPublicBody({ publicBodyId })}
           >
             <Text style={[styles.subheading, styles.link]}>
               {publicBodyName}
@@ -373,6 +374,7 @@ FoiRequestSingle.navigationOptions = ({ navigation }) => {
 
 FoiRequestSingle.propTypes = {
   navigateToPdfViewer: PropTypes.func.isRequired,
+  navigateToPublicBody: PropTypes.func.isRequired,
   request: PropTypes.shape({
     public_body: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
