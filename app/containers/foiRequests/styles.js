@@ -34,6 +34,18 @@ export const styles = StyleSheet.create({
   firstItem: {
     borderLeftWidth: 0,
   },
+  publicBody: {
+    flexGrow: 2,
+  },
+  pbLabel: {
+    paddingTop: 5,
+  },
+  pbCross: {
+    alignSelf: 'flex-start',
+    paddingTop: 5,
+    height: '100%',
+    paddingLeft: 10,
+  },
   label: {
     fontSize: 12,
     color: greyDark,

@@ -1,25 +1,31 @@
-import React from 'react';
+import { ListItem, Icon } from 'react-native-elements';
 import { View, FlatList } from 'react-native';
 import { connect } from 'react-redux';
-import { ListItem, Icon, Text } from 'react-native-elements';
+import React from 'react';
 
-import jurisdictionList from '../../data/jurisdiction';
 import { foiRequestsFilterChange } from '../../actions/foiRequests';
-import { styles } from './styles';
+import { getItemById, shortenJurisdiction } from '../../utils';
 import { renderSeparator } from '../../components/ListRenderer';
+import { styles } from './styles';
+import jurisdictionList from '../../data/jurisdiction';
 
 class FoiRequestsFilterJurisdictionScreen extends React.Component {
   _onSwitch = (id, switched) => {
     let newFilter = { jurisdiction: null };
 
     if (!switched) {
-      newFilter = { jurisdiction: id };
+      const label = shortenJurisdiction(
+        jurisdictionList.find(getItemById(id)).name
+      );
+
+      newFilter = { jurisdiction: { param: id, label } };
     }
     this.props.changeFilter(newFilter);
   };
 
   _renderItem = ({ item }) => {
-    const switched = this.props.currentFilter === item.id;
+    const { currentFilter } = this.props;
+    const switched = currentFilter !== null && currentFilter.param === item.id;
     return (
       <ListItem
         title={item.name}

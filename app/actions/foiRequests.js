@@ -76,7 +76,7 @@ function buildUrl(filter, nPage, isRefreshing) {
 
   if (filter.status) {
     // fake status and resolition
-    const { status, resolution } = mapToFakeStatus(filter.status);
+    const { status, resolution } = mapToFakeStatus(filter.status.param);
 
     params.set('status', status);
     if (resolution) {
@@ -85,12 +85,12 @@ function buildUrl(filter, nPage, isRefreshing) {
   }
 
   if (filter.publicBody) {
-    params.set('public_body', filter.publicBody);
+    params.set('public_body', filter.publicBody.param);
     params.delete('is_foi'); // show all requests here. it's irritating when the numbers show on the button don't match with the one in the table.
   } else {
     // when the requests are filtered by public body, ignore jurisdiction and category
     if (filter.jurisdiction) {
-      params.set('jurisdiction', filter.jurisdiction);
+      params.set('jurisdiction', filter.jurisdiction.param);
     }
 
     // TODO: Not supported by the API?

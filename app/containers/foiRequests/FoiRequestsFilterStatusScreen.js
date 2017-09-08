@@ -1,13 +1,13 @@
-import React from 'react';
+import { ListItem, Icon } from 'react-native-elements';
 import { View, FlatList } from 'react-native';
 import { connect } from 'react-redux';
-import { ListItem, Icon, Text } from 'react-native-elements';
-
-import statusList from '../../data/status.json';
+import React from 'react';
 
 import { foiRequestsFilterChange } from '../../actions/foiRequests';
-import { styles } from './styles';
+import { getItemById } from '../../utils';
 import { renderSeparator } from '../../components/ListRenderer';
+import { styles } from './styles';
+import statusList from '../../data/status.json';
 
 // remove overdue and 'with costs' because it is not implemented yet.
 statusList.pop();
@@ -18,13 +18,15 @@ class FoiRequestsFilterStatusScreen extends React.Component {
     let newFilter = { status: null };
 
     if (!switched) {
-      newFilter = { status: id };
+      const label = statusList.find(getItemById(id)).name;
+      newFilter = { status: { param: id, label } };
     }
     this.props.changeFilter(newFilter);
   };
 
   _renderItem = ({ item }) => {
-    const switched = this.props.currentFilter === item.id;
+    const { currentFilter } = this.props;
+    const switched = currentFilter !== null && currentFilter.param === item.id;
     return (
       <ListItem
         title={item.name}

@@ -16,7 +16,9 @@ const PublicBodySingle = ({
 }) => {
   const _filterByPublicBody = () => {
     // FIXME: It'a hack because there was another problem with react-navigation. It wasn't able to navigate to the Request stack when the stack was empty. This fixes it.
-    changeFilter({ publicBody: publicBody.id });
+    changeFilter({
+      publicBody: { param: publicBody.id, label: publicBody.name },
+    });
     navigateToFoiRequests1();
     navigateToFoiRequests2();
   };
@@ -97,7 +99,7 @@ const PublicBodySingle = ({
     },
   ];
 
-  const title = `TODO: Show ${number_of_requests} Requests`;
+  const title = `Show ${number_of_requests} Requests`;
   const buttondisabled = number_of_requests === 0 ? true : false;
   const showRequestsButton = (
     <Button

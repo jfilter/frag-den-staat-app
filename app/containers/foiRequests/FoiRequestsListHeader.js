@@ -4,42 +4,104 @@ import { Text, View, TouchableHighlight } from 'react-native';
 import { connect } from 'react-redux';
 import React from 'react';
 
-import { getItemById, shortenJurisdiction } from '../../utils';
+import { foiRequestsFilterChange } from '../../actions/foiRequests';
 import { greyDark, grey } from '../../styles/colors';
 import { styles } from './styles';
-import jurisdictionFile from '../../data/jurisdiction.json';
-import statusFile from '../../data/status.json';
 
 class FoiRequestsListHeader extends React.Component {
   render() {
-    const filterJurisdiction = this.props.filter.jurisdiction;
-    let filterJurisdictionText = 'ALL';
+    const { jurisdiction, status, category, publicBody } = this.props.filter;
 
-    if (filterJurisdiction) {
-      const jurisdictionName = jurisdictionFile.find(
-        getItemById(filterJurisdiction)
-      ).name;
+    const jurisdictionLabel = jurisdiction
+      ? `${jurisdiction.label}`.toUpperCase()
+      : 'ALL';
 
-      filterJurisdictionText = shortenJurisdiction(
-        jurisdictionName
-      ).toUpperCase();
-    }
+    const statusLabel = status ? `${status.label}`.toUpperCase() : 'ALL';
 
-    const filterStatus = this.props.filter.status;
-    let filterStatusText = 'ALL';
-
-    if (filterStatus) {
-      const statusName = statusFile.find(getItemById(filterStatus)).name;
-      filterStatusText = `${statusName}`.toUpperCase();
-    }
-
-    const filterCategory = this.props.filter.Category;
+    // TODO
+    const filterCategory = this.props.filter.category;
     let filterCategoryText = 'ALL';
 
     if (filterCategory) {
       // const categoryName = CategoryFile.find(getItemById(filterCategory)).name;
       const categoryName = 'Category'; // TODO
       filterCategoryText = `${categoryName}`.toUpperCase();
+    }
+
+    let jurisdictionTab = (
+      <View style={styles.item}>
+        <TouchableHighlight
+          onPress={this.props.navigateToFilterJurisdiction}
+          underlayColor={grey}
+        >
+          <View>
+            <View style={styles.align}>
+              <Text style={styles.label}>JURISDICTION</Text>
+              <Icon
+                name="arrow-drop-down"
+                color={greyDark}
+                height={20}
+                width={20}
+              />
+            </View>
+            <Text style={styles.selection}>
+              {jurisdictionLabel}
+            </Text>
+          </View>
+        </TouchableHighlight>
+      </View>
+    );
+
+    let categoryTab = (
+      <View style={styles.item}>
+        <TouchableHighlight
+          onPress={this.props.navigateToFilterCategory}
+          underlayColor={grey}
+        >
+          <View>
+            <View style={styles.align}>
+              <Text style={styles.label}>CATEGORY</Text>
+              <Icon
+                name="arrow-drop-down"
+                color={greyDark}
+                height={20}
+                width={20}
+              />
+            </View>
+            <Text style={styles.selection}>
+              {filterCategoryText}
+            </Text>
+          </View>
+        </TouchableHighlight>
+      </View>
+    );
+
+    let publicBodyTab;
+    if (publicBody) {
+      jurisdictionTab = null;
+      categoryTab = null;
+
+      publicBodyTab = (
+        <View style={[styles.item, styles.publicBody]}>
+          <View style={styles.align}>
+            <View style={styles.pbLabel}>
+              <Text style={styles.label}>PUBLIC BODY</Text>
+              <Text style={styles.selection}>
+                {publicBody.label.toUpperCase()}
+              </Text>
+            </View>
+            <TouchableHighlight
+              onPress={() => this.props.changeFilter({ publicBody: null })}
+              underlayColor={grey}
+              style={styles.pbCross}
+            >
+              <View>
+                <Icon name="clear" color={greyDark} height={20} width={20} />
+              </View>
+            </TouchableHighlight>
+          </View>
+        </View>
+      );
     }
 
     return (
@@ -51,27 +113,6 @@ class FoiRequestsListHeader extends React.Component {
           }}
         >
           <View style={[styles.item, styles.firstItem]}>
-            <TouchableHighlight
-              onPress={this.props.navigateToFilterJurisdiction}
-              underlayColor={grey}
-            >
-              <View>
-                <View style={styles.align}>
-                  <Text style={styles.label}>JURISDICTION</Text>
-                  <Icon
-                    name="arrow-drop-down"
-                    color={greyDark}
-                    height={20}
-                    width={20}
-                  />
-                </View>
-                <Text style={styles.selection}>
-                  {filterJurisdictionText}
-                </Text>
-              </View>
-            </TouchableHighlight>
-          </View>
-          <View style={styles.item}>
             <TouchableHighlight
               onPress={this.props.navigateToFilterStatus}
               underlayColor={grey}
@@ -87,32 +128,14 @@ class FoiRequestsListHeader extends React.Component {
                   />
                 </View>
                 <Text style={styles.selection}>
-                  {filterStatusText}
+                  {statusLabel}
                 </Text>
               </View>
             </TouchableHighlight>
           </View>
-          <View style={styles.item}>
-            <TouchableHighlight
-              onPress={this.props.navigateToFilterCategory}
-              underlayColor={grey}
-            >
-              <View>
-                <View style={styles.align}>
-                  <Text style={styles.label}>CATEGORY</Text>
-                  <Icon
-                    name="arrow-drop-down"
-                    color={greyDark}
-                    height={20}
-                    width={20}
-                  />
-                </View>
-                <Text style={styles.selection}>
-                  {filterCategoryText}
-                </Text>
-              </View>
-            </TouchableHighlight>
-          </View>
+          {jurisdictionTab}
+          {categoryTab}
+          {publicBodyTab}
         </View>
       </View>
     );
@@ -128,6 +151,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    changeFilter: newFilter => dispatch(foiRequestsFilterChange(newFilter)),
     navigateToFilterJurisdiction: () =>
       dispatch(
         NavigationActions.navigate({
