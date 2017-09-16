@@ -121,7 +121,7 @@ const ProfileStartScreen = ({
       >
         <Image
           style={{ width: 50, height: 50 }}
-          source={require('../../../assets/original_fds_logo_small.jpg')} // TODO: replace with new one?
+          source={require('../../../assets/logo/original_fds_logo_small.jpg')} // TODO: replace with new one?
         />
       </TouchableHighlight>
     </ScrollView>

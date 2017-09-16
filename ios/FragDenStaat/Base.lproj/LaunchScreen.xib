@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -15,24 +15,24 @@
             <rect key="frame" x="0.0" y="0.0" width="480" height="488"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Frag Den Staat" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qMW-3L-Zhx">
-                    <rect key="frame" x="183" y="235" width="114" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="NcM-82-Xc8">
+                    <rect key="frame" x="132" y="253" width="100" height="100"/>
+                </imageView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <accessibility key="accessibilityConfiguration">
                 <accessibilityTraits key="traits" image="YES"/>
             </accessibility>
             <constraints>
-                <constraint firstItem="qMW-3L-Zhx" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="bKB-6g-CLy"/>
-                <constraint firstItem="qMW-3L-Zhx" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="poa-JZ-Uif"/>
+                <constraint firstItem="NcM-82-Xc8" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="gNi-XX-gZS"/>
+                <constraint firstItem="NcM-82-Xc8" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="p1R-mF-xqb"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="548" y="451"/>
         </view>
     </objects>
+    <resources>
+        <image name="logo" width="400" height="400"/>
+    </resources>
 </document>
