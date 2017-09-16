@@ -57,8 +57,9 @@ class FoiRequestsFilterStatusScreen extends React.Component {
 FoiRequestsFilterStatusScreen.navigationOptions = {
   title: 'Filter',
   tabBarLabel: 'Status',
-  tabBarIcon: ({ tintColor }) =>
-    <Icon name="chart-gantt" type="material-community" color={tintColor} />,
+  tabBarIcon: ({ tintColor }) => (
+    <Icon name="chart-gantt" type="material-community" color={tintColor} />
+  ),
 };
 
 const mapStateToProps = state => {

@@ -20,12 +20,13 @@ class FoiRequestsFilterCategoryScreen extends React.Component {
 FoiRequestsFilterCategoryScreen.navigationOptions = {
   title: 'Filter',
   tabBarLabel: 'Category',
-  tabBarIcon: ({ tintColor }) =>
+  tabBarIcon: ({ tintColor }) => (
     <Icon
       name="format-list-bulleted-type"
       type="material-community"
       color={tintColor}
-    />,
+    />
+  ),
 };
 
 const mapStateToProps = state => {

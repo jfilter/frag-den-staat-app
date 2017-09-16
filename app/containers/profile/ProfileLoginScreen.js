@@ -36,11 +36,7 @@ const ProfileLoginScreen = ({ navigation, isLoggedIn, login, goBack }) => {
     );
   }
 
-  return (
-    <View style={styles.container}>
-      {content}
-    </View>
-  );
+  return <View style={styles.container}>{content}</View>;
 };
 
 ProfileLoginScreen.propTypes = {

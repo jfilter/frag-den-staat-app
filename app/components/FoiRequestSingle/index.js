@@ -31,15 +31,14 @@ import Table from '../Table';
 moment.locale('de', deLocal);
 
 class FoiRequestSingle extends React.Component {
-  _renderMessageHeader = msg =>
+  _renderMessageHeader = msg => (
     <View style={[tableStyles.row, styles.msgHeader]}>
       <Text style={[tableStyles.item1, styles.link]}>
         {`${moment(msg.timestamp).format('DD.MM.YYYY')}:`}
       </Text>
-      <Text style={[tableStyles.item2, styles.link]}>
-        {msg.sender}
-      </Text>
-    </View>;
+      <Text style={[tableStyles.item2, styles.link]}>{msg.sender}</Text>
+    </View>
+  );
 
   _renderAttachments = attachments => {
     return attachments.map(att => {
@@ -101,9 +100,7 @@ class FoiRequestSingle extends React.Component {
             style={[tableStyles.item2, styles.linkTouchable]}
             underlayColor={grey}
           >
-            <Text style={styles.link}>
-              {msg.recipient_public_body}
-            </Text>
+            <Text style={styles.link}>{msg.recipient_public_body}</Text>
           </TouchableHighlight>
         </View>
       );
@@ -114,9 +111,7 @@ class FoiRequestSingle extends React.Component {
         {this._renderAttachments(msg.attachments)}
         <View style={tableStyles.row}>
           <Text style={tableStyles.item1}>From:</Text>
-          <Text style={tableStyles.item2}>
-            {msg.sender}
-          </Text>
+          <Text style={tableStyles.item2}>{msg.sender}</Text>
         </View>
         <View style={tableStyles.row}>
           <Text style={tableStyles.item1}>On:</Text>
@@ -127,9 +122,7 @@ class FoiRequestSingle extends React.Component {
         {escalation}
         <View style={tableStyles.row}>
           <Text style={tableStyles.item1}>Subject:</Text>
-          <Text style={tableStyles.item2}>
-            {msg.subject}
-          </Text>
+          <Text style={tableStyles.item2}>{msg.subject}</Text>
         </View>
         <Divider style={styles.dividerBeforeMessageContent} />
         <Text>
@@ -156,62 +149,38 @@ class FoiRequestSingle extends React.Component {
     const tableData = [
       {
         label: 'Status',
-        value: (
-          <Text>
-            {statusName}
-          </Text>
-        ),
+        value: <Text>{statusName}</Text>,
       },
     ];
 
     if (refusalReason) {
       tableData.push({
         label: 'Refusal Reason',
-        value: (
-          <Text>
-            {refusalReason}
-          </Text>
-        ),
+        value: <Text>{refusalReason}</Text>,
       });
     }
 
     if (costs && costs !== 0) {
       tableData.push({
         label: 'Costs',
-        value: (
-          <Text>
-            {costs}
-          </Text>
-        ),
+        value: <Text>{costs}</Text>,
       });
     }
 
     tableData.push({
       label: 'Started on',
-      value: (
-        <Text>
-          {moment(firstMessage).format('LLL')}
-        </Text>
-      ),
+      value: <Text>{moment(firstMessage).format('LLL')}</Text>,
     });
 
     tableData.push({
       label: 'Last Message',
-      value: (
-        <Text>
-          {moment(lastMessage).format('LLL')}
-        </Text>
-      ),
+      value: <Text>{moment(lastMessage).format('LLL')}</Text>,
     });
 
     if (dueDate) {
       tableData.push({
         label: 'Due Date',
-        value: (
-          <Text>
-            {moment(dueDate).format('LL')}
-          </Text>
-        ),
+        value: <Text>{moment(dueDate).format('LL')}</Text>,
       });
     }
 
@@ -319,18 +288,14 @@ class FoiRequestSingle extends React.Component {
     return (
       <ScrollView style={styles.scrollView}>
         <View>
-          <Text style={styles.heading}>
-            {title}
-          </Text>
+          <Text style={styles.heading}>{title}</Text>
           <View>
             <Text style={styles.subheadingTo}>to</Text>
             {subheading}
           </View>
           {this._renderTable()}
           <View style={styles.summary}>
-            <Text>
-              {description}
-            </Text>
+            <Text>{description}</Text>
           </View>
           {this._renderMessages()}
         </View>

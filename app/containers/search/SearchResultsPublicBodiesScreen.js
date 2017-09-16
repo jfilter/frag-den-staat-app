@@ -66,8 +66,9 @@ SearchResultsPublicBodiesScreen.navigationOptions = ({ navigation }) => {
   return {
     title: `"${query}"`,
     tabBarLabel: 'Public Bodies',
-    tabBarIcon: ({ tintColor }) =>
-      <Icon name="account-balance" color={tintColor} />,
+    tabBarIcon: ({ tintColor }) => (
+      <Icon name="account-balance" color={tintColor} />
+    ),
   };
 };
 

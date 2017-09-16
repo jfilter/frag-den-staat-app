@@ -56,8 +56,9 @@ class FoiRequestsFilterJurisdictionScreen extends React.Component {
 FoiRequestsFilterJurisdictionScreen.navigationOptions = {
   title: 'Filter',
   tabBarLabel: 'Jurisdiction',
-  tabBarIcon: ({ tintColor }) =>
-    <Icon name="scale-balance" type="material-community" color={tintColor} />,
+  tabBarIcon: ({ tintColor }) => (
+    <Icon name="scale-balance" type="material-community" color={tintColor} />
+  ),
 };
 
 const mapStateToProps = state => {

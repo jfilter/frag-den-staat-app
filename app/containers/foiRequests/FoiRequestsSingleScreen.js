@@ -9,12 +9,13 @@ const FoiRequestsSingleScreen = ({
   request,
   navigateToPdfViewer,
   navigateToPublicBody,
-}) =>
+}) => (
   <FoiRequestSingle
     request={request}
     navigateToPdfViewer={navigateToPdfViewer}
     navigateToPublicBody={navigateToPublicBody}
-  />;
+  />
+);
 
 FoiRequestsSingleScreen.navigationOptions = FoiRequestSingle.navigationOptions;
 

@@ -36,8 +36,9 @@ const SearchNavigator = StackNavigator(
     navigationOptions: {
       ...commonNavigationOptions,
       tabBarLabel: 'Search',
-      tabBarIcon: () =>
-        <Icon size={iconSize} color={iconColor} name="search" />,
+      tabBarIcon: () => (
+        <Icon size={iconSize} color={iconColor} name="search" />
+      ),
     },
   }
 );

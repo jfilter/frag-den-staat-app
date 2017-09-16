@@ -10,11 +10,7 @@ import { primaryColor, primaryColorLight } from '../../styles/colors';
 
 const renderNumberOfResultHeader = nResults => {
   const nResultsText = nResults >= 0 ? `${nResults} REQUESTS` : null;
-  return (
-    <Text style={styles.nResults}>
-      {nResultsText}
-    </Text>
-  );
+  return <Text style={styles.nResults}>{nResultsText}</Text>;
 };
 
 const renderFooter = isPending => {

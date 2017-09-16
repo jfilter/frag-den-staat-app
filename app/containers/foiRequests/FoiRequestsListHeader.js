@@ -44,9 +44,7 @@ class FoiRequestsListHeader extends React.Component {
                 width={20}
               />
             </View>
-            <Text style={styles.selection}>
-              {jurisdictionLabel}
-            </Text>
+            <Text style={styles.selection}>{jurisdictionLabel}</Text>
           </View>
         </TouchableHighlight>
       </View>
@@ -68,9 +66,7 @@ class FoiRequestsListHeader extends React.Component {
                 width={20}
               />
             </View>
-            <Text style={styles.selection}>
-              {filterCategoryText}
-            </Text>
+            <Text style={styles.selection}>{filterCategoryText}</Text>
           </View>
         </TouchableHighlight>
       </View>
@@ -127,9 +123,7 @@ class FoiRequestsListHeader extends React.Component {
                     width={20}
                   />
                 </View>
-                <Text style={styles.selection}>
-                  {statusLabel}
-                </Text>
+                <Text style={styles.selection}>{statusLabel}</Text>
               </View>
             </TouchableHighlight>
           </View>

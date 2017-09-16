@@ -7,18 +7,14 @@ import { styles } from './styles';
 const Table = ({ data }) => {
   return (
     <View style={styles.table}>
-      {data.map(({ label, value }) =>
+      {data.map(({ label, value }) => (
         <View key={label} style={styles.row}>
           <View style={styles.item1}>
-            <Text>
-              {`${label}:`}
-            </Text>
+            <Text>{`${label}:`}</Text>
           </View>
-          <View style={styles.item2}>
-            {value}
-          </View>
+          <View style={styles.item2}>{value}</View>
         </View>
-      )}
+      ))}
     </View>
   );
 };

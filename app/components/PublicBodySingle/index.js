@@ -44,58 +44,32 @@ const PublicBodySingle = ({
 
   const printableTags =
     tags.length > 0 ? tags.map(x => x.name).join(', ') : null;
-
-  console.log('printableTags', printableTags);
   const tableData = [
     { label: 'Jurisdiction', value: jurisdiction },
     {
       label: 'Classification',
-      value: (
-        <Text>
-          {classification}
-        </Text>
-      ),
+      value: <Text>{classification}</Text>,
     },
     { label: 'Website', value: website },
     {
       label: 'Email',
-      value: (
-        <Text>
-          {email}
-        </Text>
-      ),
+      value: <Text>{email}</Text>,
     },
     {
       label: 'Address',
-      value: (
-        <Text>
-          {address}
-        </Text>
-      ),
+      value: <Text>{address}</Text>,
     },
     {
       label: 'Contact',
-      value: (
-        <Text>
-          {contact}
-        </Text>
-      ),
+      value: <Text>{contact}</Text>,
     },
     {
       label: 'Description',
-      value: (
-        <Text>
-          {description}
-        </Text>
-      ),
+      value: <Text>{description}</Text>,
     },
     {
       label: 'Tags',
-      value: (
-        <Text>
-          {printableTags}
-        </Text>
-      ),
+      value: <Text>{printableTags}</Text>,
     },
   ];
 
@@ -114,9 +88,7 @@ const PublicBodySingle = ({
 
   return (
     <ScrollView style={styles.scrollView}>
-      <Text style={styles.heading}>
-        {name}
-      </Text>
+      <Text style={styles.heading}>{name}</Text>
       <Button
         containerViewStyle={styles.button}
         icon={{ name: 'add-circle-outline' }}

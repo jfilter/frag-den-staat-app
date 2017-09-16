@@ -4,7 +4,7 @@ import { Icon } from 'react-native-elements';
 
 import { primaryColor } from '../../styles/colors';
 
-const NavBarIcon = ({ onPress, iconName, iconType }) =>
+const NavBarIcon = ({ onPress, iconName, iconType }) => (
   <Icon
     name={iconName}
     type={iconType}
@@ -15,7 +15,8 @@ const NavBarIcon = ({ onPress, iconName, iconType }) =>
       paddingVertical: 7,
       paddingHorizontal: 10,
     }}
-  />;
+  />
+);
 
 NavBarIcon.propTypes = {
   onPress: PropTypes.func.isRequired,

@@ -20,8 +20,9 @@ class FoiRequestsFilterPublicBodyScreen extends React.Component {
 FoiRequestsFilterPublicBodyScreen.navigationOptions = {
   title: 'Filter',
   tabBarLabel: 'Public Body',
-  tabBarIcon: ({ tintColor }) =>
-    <Icon name="account-balance" color={tintColor} />,
+  tabBarIcon: ({ tintColor }) => (
+    <Icon name="account-balance" color={tintColor} />
+  ),
 };
 
 const mapStateToProps = state => {

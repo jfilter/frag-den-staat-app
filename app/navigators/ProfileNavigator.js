@@ -28,8 +28,9 @@ const ProfileNavigator = StackNavigator(
     navigationOptions: {
       ...commonNavigationOptions,
       tabBarLabel: 'Profile',
-      tabBarIcon: () =>
-        <Icon size={iconSize} color={iconColor} name="person" />,
+      tabBarIcon: () => (
+        <Icon size={iconSize} color={iconColor} name="person" />
+      ),
     },
   }
 );
