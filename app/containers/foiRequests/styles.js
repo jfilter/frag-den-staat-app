@@ -39,6 +39,7 @@ export const styles = StyleSheet.create({
   },
   pbLabel: {
     paddingTop: 5,
+    flexShrink: 0.9, // some value below 1 so it's below the flexShrink value of the cross
   },
   pbCross: {
     alignSelf: 'flex-start',

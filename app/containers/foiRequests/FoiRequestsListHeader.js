@@ -82,7 +82,7 @@ class FoiRequestsListHeader extends React.Component {
           <View style={styles.align}>
             <View style={styles.pbLabel}>
               <Text style={styles.label}>PUBLIC BODY</Text>
-              <Text style={styles.selection}>
+              <Text style={styles.selection} numberOfLines={2}>
                 {publicBody.label.toUpperCase()}
               </Text>
             </View>
