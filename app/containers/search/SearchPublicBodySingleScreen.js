@@ -8,18 +8,17 @@ import PublicBodySingle from '../../components/PublicBodySingle';
 // eslint-disable-next-line react/prop-types
 const SearchPublicBodySingle = ({
   publicBody,
-  navigateToFilterByPublicBody,
+  changeFilter,
   navigateToFoiRequests1,
   navigateToFoiRequests2,
-  changeFilter,
-}) =>
+}) => (
   <PublicBodySingle
     publicBody={publicBody}
-    navigateToFilterByPublicBody={navigateToFilterByPublicBody}
+    changeFilter={changeFilter}
     navigateToFoiRequests1={navigateToFoiRequests1}
     navigateToFoiRequests2={navigateToFoiRequests2}
-    changeFilter={changeFilter}
-  />;
+  />
+);
 
 SearchPublicBodySingle.navigationOptions = PublicBodySingle.navigationOptions;
 
@@ -31,7 +30,7 @@ const mapStateToProps = (state, props) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    changeFilter: newFilter => dispatch(foiRequestsFilterChange(newFilter)),
+    changeFilter: publicBody => dispatch(foiRequestsFilterChange(publicBody)),
     navigateToFoiRequests2: () =>
       dispatch(NavigationActions.navigate({ routeName: 'FoiRequestsList' })),
     navigateToFoiRequests1: () =>

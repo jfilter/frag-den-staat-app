@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import React from 'react';
 
 import { fetchPublicBody } from '../../actions/publicBodies';
+import { foiRequestsFilterChange } from '../../actions/foiRequests';
 import { primaryColorLight } from '../../styles/colors';
 import PublicBodySingle from '../../components/PublicBodySingle';
 
@@ -27,14 +28,16 @@ class FoiRequestPublicBodyScreen extends React.Component {
     } = this.props;
     if (!publicBody || isPending) {
       return (
-        <ActivityIndicator animating size="large" color={primaryColorLight} />
+        <View
+          style={{ backgroundColor: 'white', paddingTop: 10, height: '100%' }}
+        >
+          <ActivityIndicator animating size="large" color={primaryColorLight} />
+        </View>
       );
     } else if (error) {
       return (
         <View>
-          <Text>
-            Error: {error}
-          </Text>
+          <Text>Error: {error}</Text>
         </View>
       );
     } else {
@@ -64,6 +67,7 @@ const mapStateToProps = (state, props) => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    changeFilter: publicBody => dispatch(foiRequestsFilterChange(publicBody)),
     fetchPB: publicBodyId => dispatch(fetchPublicBody(publicBodyId)),
     navigateToFoiRequests1: () =>
       dispatch(
