@@ -5,11 +5,17 @@ import { NavigationActions } from 'react-navigation';
 import FoiRequestSingle from '../../components/FoiRequestSingle';
 
 // eslint-disable-next-line react/prop-types
-const SearchFoiRequestSingle = ({ request, navigateToPdfViewer }) =>
+const SearchFoiRequestSingle = ({
+  request,
+  navigateToPdfViewer,
+  navigateToPublicBody,
+}) => (
   <FoiRequestSingle
     request={request}
     navigateToPdfViewer={navigateToPdfViewer}
-  />;
+    navigateToPublicBody={navigateToPublicBody}
+  />
+);
 
 SearchFoiRequestSingle.navigationOptions = FoiRequestSingle.navigationOptions;
 
@@ -21,6 +27,13 @@ const mapStateToProps = (state, props) => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    navigateToPublicBody: params =>
+      dispatch(
+        NavigationActions.navigate({
+          routeName: 'FoiRequestsPublicBody',
+          params,
+        })
+      ),
     navigateToPdfViewer: params =>
       dispatch(
         NavigationActions.navigate({
