@@ -18,16 +18,19 @@
       android:icon="@mipmap/ic_launcher"
       android:theme="@style/AppTheme">
       <activity
-        android:name=".MainActivity"
+        android:name=".SplashActivity"
         android:label="@string/app_name"
-        android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
-        android:windowSoftInputMode="adjustResize">
+        android:theme="@style/SplashTheme">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
             <category android:name="android.intent.category.LAUNCHER" />
      <action android:name="android.intent.action.DOWNLOAD_COMPLETE"/>
         </intent-filter>
       </activity>
+        <activity android:name=".MainActivity" android:exported="true"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+            android:windowSoftInputMode="adjustResize"
+            />
       <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
       <activity android:name="net.hockeyapp.android.UpdateActivity" />
       <activity android:name="net.hockeyapp.android.FeedbackActivity" />
