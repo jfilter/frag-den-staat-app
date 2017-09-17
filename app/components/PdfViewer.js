@@ -1,6 +1,5 @@
 // TODO: Everything, espcially styling and a share/export button.
 
-import React from 'react';
 import {
   StyleSheet,
   TouchableHighlight,
@@ -8,8 +7,10 @@ import {
   View,
   Text,
 } from 'react-native';
-
 import Pdf from 'react-native-pdf';
+import React from 'react';
+
+import { greyDark, primaryColor } from '../styles/colors';
 
 export default class PDFExample extends React.Component {
   constructor(props) {
@@ -45,7 +46,6 @@ export default class PDFExample extends React.Component {
   };
 
   render() {
-    console.log(this.props);
     const uri = this.props.navigation.state.params.uri;
     let source = {
       uri,
@@ -56,26 +56,22 @@ export default class PDFExample extends React.Component {
       <View style={styles.container}>
         <View style={{ flexDirection: 'row' }}>
           <TouchableHighlight
-            disabled={this.state.page == 1}
-            style={this.state.page == 1 ? styles.btnDisable : styles.btn}
+            disabled={this.state.page === 1}
+            style={this.state.page === 1 ? styles.btnDisable : styles.btn}
             onPress={() => this.prePage()}
           >
-            <Text style={styles.btnText}>
-              {'Previous'}
-            </Text>
+            <Text style={styles.btnText}>{'Previous'}</Text>
           </TouchableHighlight>
           <TouchableHighlight
-            disabled={this.state.page == this.state.pageCount}
+            disabled={this.state.page === this.state.pageCount}
             style={
-              this.state.page == this.state.pageCount
+              this.state.page === this.state.pageCount
                 ? styles.btnDisable
                 : styles.btn
             }
             onPress={() => this.nextPage()}
           >
-            <Text style={styles.btnText}>
-              {'Next'}
-            </Text>
+            <Text style={styles.btnText}>{'Next'}</Text>
           </TouchableHighlight>
         </View>
         <Pdf
@@ -85,13 +81,13 @@ export default class PDFExample extends React.Component {
           source={source}
           page={1}
           horizontal={false}
+          enableAntialiasing={false}
+          fitWidth={true}
           onLoadComplete={pageCount => {
             this.setState({ pageCount: pageCount });
-            console.log(`total page count: ${pageCount}`);
           }}
           onPageChanged={(page, pageCount) => {
             this.setState({ page: page });
-            console.log(`current page: ${page}`);
           }}
           onError={error => {
             console.log(error);
@@ -108,17 +104,18 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'flex-start',
     alignItems: 'center',
-    marginTop: 25,
+    backgroundColor: 'white',
+    height: '100%',
   },
   btn: {
     margin: 5,
     padding: 5,
-    backgroundColor: 'blue',
+    backgroundColor: primaryColor,
   },
   btnDisable: {
     margin: 5,
     padding: 5,
-    backgroundColor: 'gray',
+    backgroundColor: greyDark,
   },
   btnText: {
     color: '#FFF',
