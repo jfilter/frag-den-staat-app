@@ -7,7 +7,6 @@ target 'FragDenStaat' do
 
   inherit! :search_paths
   # Pods for FragDenStaat
-  pod 'Instabug', '~> 7.0'
 
   target 'FragDenStaatTests' do
     inherit! :search_paths

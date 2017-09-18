@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -42,9 +41,11 @@
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		787B5B7302AC43EC90E124DE /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BCCF5E984CEE4788956F3692 /* SimpleLineIcons.ttf */; };
 		7A2BB801FD2249E8807BD180 /* libRCTPdf.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A2721A688BD4FC0849BBDA5 /* libRCTPdf.a */; };
+		7B163E3350509999D376B090 /* Instabug.framework in Embed Instabug Framework */ = {isa = PBXBuildFile; fileRef = 3B8D9636E65A37AF9B98BE3F /* Instabug.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8281274D2E024DCE8847B24C /* libRealmReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F70CBAA572DF46C38DBFA494 /* libRealmReact.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		8B54369A51764CB48167EF4C /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = FC0493C68CD74972B42B1568 /* libc++.tbd */; };
+		9F2A91A5CC171A7C80A3F59F /* Instabug.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B8D9636E65A37AF9B98BE3F /* Instabug.framework */; };
 		B2444A4123344D8BAB879915 /* libRNInstabug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A5EFD60F6E741AA984B7A3F /* libRNInstabug.a */; };
 		BFE4BC86664C499C9E8614FF /* Kreon-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5A2420F055224BCCBB35ADEA /* Kreon-Light.ttf */; };
 		C26A44C952C94EC1ACFA14BA /* libRNFetchBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19887C2CDC3B4CEFAD650126 /* libRNFetchBlob.a */; };
@@ -316,6 +317,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		C6E41EE87D5A5F2C6D5CCDCE /* Embed Instabug Framework */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				7B163E3350509999D376B090 /* Instabug.framework in Embed Instabug Framework */,
+			);
+			name = "Embed Instabug Framework";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
 		00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTActionSheet.xcodeproj; path = "../node_modules/react-native/Libraries/ActionSheetIOS/RCTActionSheet.xcodeproj"; sourceTree = "<group>"; };
@@ -344,6 +359,7 @@
 		3A2721A688BD4FC0849BBDA5 /* libRCTPdf.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTPdf.a; sourceTree = "<group>"; };
 		3A5EFD60F6E741AA984B7A3F /* libRNInstabug.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNInstabug.a; sourceTree = "<group>"; };
 		3B420B82DFB2D49255766A57 /* Pods-FragDenStaatTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FragDenStaatTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FragDenStaatTests/Pods-FragDenStaatTests.debug.xcconfig"; sourceTree = "<group>"; };
+		3B8D9636E65A37AF9B98BE3F /* Instabug.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Instabug.framework; path = "../node_modules/instabug-reactnative/ios/Instabug.framework"; sourceTree = "<group>"; };
 		58D39682EF5445739BAB04F0 /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
 		5A2420F055224BCCBB35ADEA /* Kreon-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Kreon-Light.ttf"; path = "../assets/fonts/Kreon/Kreon-Light.ttf"; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
@@ -408,6 +424,7 @@
 				C26A44C952C94EC1ACFA14BA /* libRNFetchBlob.a in Frameworks */,
 				C2EEC45EB92C9C3E3B4E219F /* libPods-FragDenStaat.a in Frameworks */,
 				B2444A4123344D8BAB879915 /* libRNInstabug.a in Frameworks */,
+				9F2A91A5CC171A7C80A3F59F /* Instabug.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -690,6 +707,7 @@
 				30D931D1D80048F4E773194B /* libPods-FragDenStaat.a */,
 				81E6B79CC9E12DAEAB8B20A2 /* libPods-FragDenStaat-tvOS.a */,
 				89D272903CE0EC2BE4DBF0FA /* libPods-FragDenStaatTests.a */,
+				3B8D9636E65A37AF9B98BE3F /* Instabug.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -740,6 +758,8 @@
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				98ADD192C73D63BDDB5D6BBC /* [CP] Embed Pods Frameworks */,
 				0E4085EC57E98A8E64A3D837 /* [CP] Copy Pods Resources */,
+				C6E41EE87D5A5F2C6D5CCDCE /* Embed Instabug Framework */,
+				DC01174DDA1987CC890F5AB0 /* Strip Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1280,6 +1300,21 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FragDenStaat/Pods-FragDenStaat-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		DC01174DDA1987CC890F5AB0 /* Strip Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Strip Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "bash \"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/Instabug.framework/Instabug.bundle/strip-frameworks.sh\"\n";
+			showEnvVarsInLog = 1;
+		};
 		E3836C7BD7E1350476406736 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1460,6 +1495,10 @@
 				CURRENT_PROJECT_VERSION = 5;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = XPNHR27RXJ;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"../node_modules/instabug-reactnative/ios",
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/realm/src/**",
@@ -1489,6 +1528,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = XPNHR27RXJ;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"../node_modules/instabug-reactnative/ios",
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/realm/src/**",

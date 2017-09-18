@@ -13,7 +13,7 @@
     "postversion": "react-native-version"
   },
   "dependencies": {
-    "instabug-reactnative": "^1.1.8",
+    "instabug-reactnative": "^2.0.3",
     "moment": "^2.18.1",
     "prop-types": "^15.5.10",
     "ramda": "^0.24.1",

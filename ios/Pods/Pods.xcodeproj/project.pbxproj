@@ -15,10 +15,8 @@
 
 /* Begin PBXFileReference section */
 		02079203C063EBE24F2F8A4B2FB137E6 /* Pods-FragDenStaat-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-FragDenStaat-dummy.m"; sourceTree = "<group>"; };
-		12AEE57E08A97B7DAB392163159FFE0A /* IBGTypes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = IBGTypes.h; path = Instabug.framework/Headers/IBGTypes.h; sourceTree = "<group>"; };
 		219CF63E211902670BF494E6D15F4919 /* libPods-FragDenStaat.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-FragDenStaat.a"; path = "libPods-FragDenStaat.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3877A5766CF7995745E3673D285E9122 /* Pods-FragDenStaatTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-FragDenStaatTests-dummy.m"; sourceTree = "<group>"; };
-		4B424774D668AEEC84F82429C38F5539 /* Instabug.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Instabug.h; path = Instabug.framework/Headers/Instabug.h; sourceTree = "<group>"; };
 		5A2E478B2A6B38A68FB20774DC574AF4 /* libPods-FragDenStaatTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-FragDenStaatTests.a"; path = "libPods-FragDenStaatTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6415C081226639DC4FBFA11BF066C180 /* Pods-FragDenStaatTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-FragDenStaatTests.debug.xcconfig"; sourceTree = "<group>"; };
 		6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
@@ -30,12 +28,10 @@
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		96F0E7880B6236638BB643E2DD5C0F64 /* Pods-FragDenStaat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-FragDenStaat.release.xcconfig"; sourceTree = "<group>"; };
 		9F81A8AC09875B00C254966FC7607247 /* Pods-FragDenStaatTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-FragDenStaatTests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		A0CD51B594A7254A9698F21F7CEFE776 /* Instabug.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = Instabug.bundle; path = Instabug.framework/Instabug.bundle; sourceTree = "<group>"; };
 		A665D1916194E4C9B9AAB6E1BC58B7A2 /* Pods-FragDenStaat-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-FragDenStaat-acknowledgements.plist"; sourceTree = "<group>"; };
 		BA2C2A4DF60587D8EC5FF627C1EC6EE7 /* Pods-FragDenStaat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-FragDenStaat.debug.xcconfig"; sourceTree = "<group>"; };
 		D4E3C680085B35923F5ACC69FB8B6ACA /* Pods-FragDenStaatTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-FragDenStaatTests.release.xcconfig"; sourceTree = "<group>"; };
 		DAAC85A06763C856600C0514AECB1829 /* Pods-FragDenStaatTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-FragDenStaatTests-frameworks.sh"; sourceTree = "<group>"; };
-		F64BE410DCF531472A341D7D1FF0C10B /* Instabug.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Instabug.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,14 +54,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0D890C4BA780BD2EB1B2935B14585934 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				A0CD51B594A7254A9698F21F7CEFE776 /* Instabug.bundle */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-		};
 		142B125F49C2C5C237A97CAABE8BE04F /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -73,14 +61,6 @@
 				5A2E478B2A6B38A68FB20774DC574AF4 /* libPods-FragDenStaatTests.a */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		253D62A257E811ABA981BAE9462F5A62 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				BEFB031A29E22287FDED6123AAE1985E /* Instabug */,
-			);
-			name = Pods;
 			sourceTree = "<group>";
 		};
 		67637DBF1BD06320AD672125448902A5 /* Pods-FragDenStaat */ = {
@@ -103,18 +83,9 @@
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
 				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
-				253D62A257E811ABA981BAE9462F5A62 /* Pods */,
 				142B125F49C2C5C237A97CAABE8BE04F /* Products */,
 				F6EB552ED0BACB6E651EB22A3595789A /* Targets Support Files */,
 			);
-			sourceTree = "<group>";
-		};
-		AF60BDD60EC7B237517748F4F7AC7A1B /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				F64BE410DCF531472A341D7D1FF0C10B /* Instabug.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */ = {
@@ -123,18 +94,6 @@
 				D35AF013A5F0BAD4F32504907A52519E /* iOS */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		BEFB031A29E22287FDED6123AAE1985E /* Instabug */ = {
-			isa = PBXGroup;
-			children = (
-				12AEE57E08A97B7DAB392163159FFE0A /* IBGTypes.h */,
-				4B424774D668AEEC84F82429C38F5539 /* Instabug.h */,
-				AF60BDD60EC7B237517748F4F7AC7A1B /* Frameworks */,
-				0D890C4BA780BD2EB1B2935B14585934 /* Resources */,
-			);
-			name = Instabug;
-			path = Instabug;
 			sourceTree = "<group>";
 		};
 		D35AF013A5F0BAD4F32504907A52519E /* iOS */ = {
