@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -49,12 +50,10 @@
 		B2444A4123344D8BAB879915 /* libRNInstabug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A5EFD60F6E741AA984B7A3F /* libRNInstabug.a */; };
 		BFE4BC86664C499C9E8614FF /* Kreon-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5A2420F055224BCCBB35ADEA /* Kreon-Light.ttf */; };
 		C26A44C952C94EC1ACFA14BA /* libRNFetchBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19887C2CDC3B4CEFAD650126 /* libRNFetchBlob.a */; };
-		C2EEC45EB92C9C3E3B4E219F /* libPods-FragDenStaat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 30D931D1D80048F4E773194B /* libPods-FragDenStaat.a */; };
 		C38FF8521F00164C000266C2 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C38FF8511F00164C000266C2 /* MaterialIcons.ttf */; };
 		C38FF8531F00164C000266C2 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C38FF8511F00164C000266C2 /* MaterialIcons.ttf */; };
 		C39F988944AD4CFD86EC22FC /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 63127497B05C4ED48DD3E042 /* libz.tbd */; };
 		C84EDA68EEE14B3EA2674A66 /* Kreon-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE73BC6328624308B94CA560 /* Kreon-Bold.ttf */; };
-		D2AC06B05BAC0C51B0232998 /* libPods-FragDenStaatTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 89D272903CE0EC2BE4DBF0FA /* libPods-FragDenStaatTests.a */; };
 		D629624C5CB344E2A4C27C8D /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6E7EA73C0251461B874736BD /* MaterialCommunityIcons.ttf */; };
 		DD12A9909F664B23A8F403D5 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 58D39682EF5445739BAB04F0 /* Entypo.ttf */; };
 		E71B43FC9BC14FCBB2D6EB39 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 716A39E2FA19475298369383 /* Ionicons.ttf */; };
@@ -341,7 +340,6 @@
 		00E356EE1AD99517003FC87E /* FragDenStaatTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FragDenStaatTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* FragDenStaatTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FragDenStaatTests.m; sourceTree = "<group>"; };
-		06015157F2FD32A6A58C8B72 /* Pods-FragDenStaat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FragDenStaat.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FragDenStaat/Pods-FragDenStaat.debug.xcconfig"; sourceTree = "<group>"; };
 		139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSettings.xcodeproj; path = "../node_modules/react-native/Libraries/Settings/RCTSettings.xcodeproj"; sourceTree = "<group>"; };
 		139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTWebSocket.xcodeproj; path = "../node_modules/react-native/Libraries/WebSocket/RCTWebSocket.xcodeproj"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* FragDenStaat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FragDenStaat.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -355,10 +353,8 @@
 		19887C2CDC3B4CEFAD650126 /* libRNFetchBlob.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNFetchBlob.a; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* FragDenStaat-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FragDenStaat-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* FragDenStaat-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "FragDenStaat-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		30D931D1D80048F4E773194B /* libPods-FragDenStaat.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FragDenStaat.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A2721A688BD4FC0849BBDA5 /* libRCTPdf.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRCTPdf.a; sourceTree = "<group>"; };
 		3A5EFD60F6E741AA984B7A3F /* libRNInstabug.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNInstabug.a; sourceTree = "<group>"; };
-		3B420B82DFB2D49255766A57 /* Pods-FragDenStaatTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FragDenStaatTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FragDenStaatTests/Pods-FragDenStaatTests.debug.xcconfig"; sourceTree = "<group>"; };
 		3B8D9636E65A37AF9B98BE3F /* Instabug.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Instabug.framework; path = "../node_modules/instabug-reactnative/ios/Instabug.framework"; sourceTree = "<group>"; };
 		58D39682EF5445739BAB04F0 /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
 		5A2420F055224BCCBB35ADEA /* Kreon-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Kreon-Light.ttf"; path = "../assets/fonts/Kreon/Kreon-Light.ttf"; sourceTree = "<group>"; };
@@ -370,16 +366,12 @@
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		79C4AB15398F44BAA31559DF /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
 		7A304214B22E4F64AEF43856 /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
-		81E6B79CC9E12DAEAB8B20A2 /* libPods-FragDenStaat-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FragDenStaat-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		835E6766A7134D6898F6ABAF /* RNInstabug.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNInstabug.xcodeproj; path = "../node_modules/instabug-reactnative/ios/RNInstabug.xcodeproj"; sourceTree = "<group>"; };
 		83BFC651B00141B9BDE74DA3 /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
-		89D272903CE0EC2BE4DBF0FA /* libPods-FragDenStaatTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FragDenStaatTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CD133B95C32429E816D2378 /* RealmReact.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RealmReact.xcodeproj; path = "../node_modules/realm/react-native/ios/RealmReact.xcodeproj"; sourceTree = "<group>"; };
-		A0865277808D7D7B5AEEACD4 /* Pods-FragDenStaatTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FragDenStaatTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FragDenStaatTests/Pods-FragDenStaatTests.release.xcconfig"; sourceTree = "<group>"; };
 		A3902D8970F041AC9993AF14 /* RNFetchBlob.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNFetchBlob.xcodeproj; path = "../node_modules/react-native-fetch-blob/ios/RNFetchBlob.xcodeproj"; sourceTree = "<group>"; };
 		B09C7FDF06484EF3AFF0DFA9 /* RCTPdf.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTPdf.xcodeproj; path = "../node_modules/react-native-pdf/ios/RCTPdf.xcodeproj"; sourceTree = "<group>"; };
-		B1276FABBC6E84F06F9E64B8 /* Pods-FragDenStaat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FragDenStaat.release.xcconfig"; path = "Pods/Target Support Files/Pods-FragDenStaat/Pods-FragDenStaat.release.xcconfig"; sourceTree = "<group>"; };
 		B5DEAA68AAD14E3C811B2C47 /* libRNVectorIcons.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNVectorIcons.a; sourceTree = "<group>"; };
 		BCCF5E984CEE4788956F3692 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
 		C38FF8511F00164C000266C2 /* MaterialIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
@@ -397,7 +389,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */,
-				D2AC06B05BAC0C51B0232998 /* libPods-FragDenStaatTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -422,7 +413,6 @@
 				14B41E5A3AB848F2B810B61C /* libRNVectorIcons.a in Frameworks */,
 				7A2BB801FD2249E8807BD180 /* libRCTPdf.a in Frameworks */,
 				C26A44C952C94EC1ACFA14BA /* libRNFetchBlob.a in Frameworks */,
-				C2EEC45EB92C9C3E3B4E219F /* libPods-FragDenStaat.a in Frameworks */,
 				B2444A4123344D8BAB879915 /* libRNInstabug.a in Frameworks */,
 				9F2A91A5CC171A7C80A3F59F /* Instabug.framework in Frameworks */,
 			);
@@ -642,7 +632,6 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				DA4857F2BC2A4B3E9357468B /* Frameworks */,
 				2E08576C43EF4534AB8BA937 /* Resources */,
-				E540E35B4F4565EF1EF58DDB /* Pods */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -704,23 +693,9 @@
 			children = (
 				FC0493C68CD74972B42B1568 /* libc++.tbd */,
 				63127497B05C4ED48DD3E042 /* libz.tbd */,
-				30D931D1D80048F4E773194B /* libPods-FragDenStaat.a */,
-				81E6B79CC9E12DAEAB8B20A2 /* libPods-FragDenStaat-tvOS.a */,
-				89D272903CE0EC2BE4DBF0FA /* libPods-FragDenStaatTests.a */,
 				3B8D9636E65A37AF9B98BE3F /* Instabug.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		E540E35B4F4565EF1EF58DDB /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				06015157F2FD32A6A58C8B72 /* Pods-FragDenStaat.debug.xcconfig */,
-				B1276FABBC6E84F06F9E64B8 /* Pods-FragDenStaat.release.xcconfig */,
-				3B420B82DFB2D49255766A57 /* Pods-FragDenStaatTests.debug.xcconfig */,
-				A0865277808D7D7B5AEEACD4 /* Pods-FragDenStaatTests.release.xcconfig */,
-			);
-			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -730,12 +705,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "FragDenStaatTests" */;
 			buildPhases = (
-				E3836C7BD7E1350476406736 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				77A82C1748E9E39084738DAD /* [CP] Embed Pods Frameworks */,
-				FAC3DC59C315B5F65793A3CE /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -751,13 +723,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "FragDenStaat" */;
 			buildPhases = (
-				8EC6B1681C4BC2664E54E781 /* [CP] Check Pods Manifest.lock */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				98ADD192C73D63BDDB5D6BBC /* [CP] Embed Pods Frameworks */,
-				0E4085EC57E98A8E64A3D837 /* [CP] Copy Pods Resources */,
 				C6E41EE87D5A5F2C6D5CCDCE /* Embed Instabug Framework */,
 				DC01174DDA1987CC890F5AB0 /* Strip Frameworks */,
 			);
@@ -1226,21 +1195,6 @@
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
 		};
-		0E4085EC57E98A8E64A3D837 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FragDenStaat/Pods-FragDenStaat-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		2D02E4CB1E0B4B27006451C7 /* Bundle React Native Code And Images */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1254,51 +1208,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
-		};
-		77A82C1748E9E39084738DAD /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FragDenStaatTests/Pods-FragDenStaatTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		8EC6B1681C4BC2664E54E781 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		98ADD192C73D63BDDB5D6BBC /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FragDenStaat/Pods-FragDenStaat-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
 		};
 		DC01174DDA1987CC890F5AB0 /* Strip Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1314,36 +1223,6 @@
 			shellPath = /bin/sh;
 			shellScript = "bash \"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/Instabug.framework/Instabug.bundle/strip-frameworks.sh\"\n";
 			showEnvVarsInLog = 1;
-		};
-		E3836C7BD7E1350476406736 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		FAC3DC59C315B5F65793A3CE /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-FragDenStaatTests/Pods-FragDenStaatTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1412,7 +1291,6 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B420B82DFB2D49255766A57 /* Pods-FragDenStaatTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1452,7 +1330,6 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A0865277808D7D7B5AEEACD4 /* Pods-FragDenStaatTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1489,7 +1366,6 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 06015157F2FD32A6A58C8B72 /* Pods-FragDenStaat.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 5;
@@ -1523,7 +1399,6 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B1276FABBC6E84F06F9E64B8 /* Pods-FragDenStaat.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 5;
