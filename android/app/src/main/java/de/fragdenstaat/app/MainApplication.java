@@ -3,11 +3,11 @@ package de.fragdenstaat.app;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
-import com.instabug.reactlibrary.RNInstabugReactnativePackage;
-import com.RNFetchBlob.RNFetchBlobPackage;
-import org.wonday.pdf.RCTPdfView;
-import com.oblador.vectoricons.VectorIconsPackage;
 import io.realm.react.RealmReactPackage;
+import com.oblador.vectoricons.VectorIconsPackage;
+import org.wonday.pdf.RCTPdfView;
+import com.RNFetchBlob.RNFetchBlobPackage;
+import com.instabug.reactlibrary.RNInstabugReactnativePackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
@@ -32,11 +32,17 @@ public class MainApplication extends Application implements ReactApplication {
       return Arrays.<ReactPackage>asList(
           new RNHockeyAppPackage(MainApplication.this),
           new MainReactPackage(),
-            new RNInstabugReactnativePackage(Secrets.INSTABUG_ANDROID_ID,MainApplication.this,"shake","#1D82DC"),
-            new RNFetchBlobPackage(),
-            new RCTPdfView(),
+            new RealmReactPackage(),
             new VectorIconsPackage(),
-            new RealmReactPackage()
+            new RCTPdfView(),
+            new RNFetchBlobPackage(),
+            		new RNInstabugReactnativePackage.Builder("YOUR_ANDROID_APPLICATION_TOKEN",MainApplication.this)
+							.setInvocationEvent("shake")
+							.setPrimaryColor("#1D82DC")
+							.setFloatingEdge("left")
+							.setFloatingButtonOffsetFromTop(250)
+							.build(),
+            new RNInstabugReactnativePackage(Secrets.INSTABUG_ANDROID_ID,MainApplication.this,"shake","#1D82DC")
       );
     }
   };
