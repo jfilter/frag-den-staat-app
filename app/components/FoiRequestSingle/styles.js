@@ -6,57 +6,47 @@ import {
   primaryColor,
   secondaryColor,
 } from '../../styles/colors';
-
-const spaceGeneral = 10;
-const spaceMore = 20;
+import { spaceMore, spaceNormal } from '../../styles/content';
 
 const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: 'white',
-    padding: spaceGeneral,
-  },
   heading: {
-    marginTop: spaceGeneral,
-    marginBottom: spaceGeneral,
-    paddingHorizontal: spaceGeneral,
+    marginTop: spaceMore,
+    marginBottom: spaceNormal,
+    paddingHorizontal: spaceNormal,
     borderTopWidth: 1,
     borderColor: greyLight,
-    paddingTop: spaceMore,
   },
   subheading: {
-    paddingHorizontal: spaceGeneral,
+    paddingHorizontal: spaceNormal,
   },
   subheadingJurisdiction: {
     textAlign: 'center',
-    marginHorizontal: spaceGeneral,
+    marginHorizontal: spaceNormal,
     color: greyDark,
   },
   subheadingTo: {
     textAlign: 'center',
-    marginBottom: spaceGeneral,
-    // fontStyle: 'italic',
-    // color: secondaryColor,
+    marginBottom: spaceNormal,
     color: greyDark,
   },
   table: {
     marginTop: spaceMore,
   },
   summary: {
-    marginTop: spaceGeneral,
-    marginBottom: spaceGeneral / 2,
-    paddingHorizontal: spaceGeneral,
+    marginTop: spaceNormal,
+    marginBottom: spaceNormal / 2,
+    paddingHorizontal: spaceNormal,
     borderBottomWidth: 1,
     borderColor: greyLight,
-    paddingBottom: spaceGeneral,
+    paddingBottom: spaceNormal,
   },
   msgContainer: {
-    marginBottom: 100,
     borderBottomWidth: 1,
     borderColor: greyLight,
-    paddingBottom: spaceGeneral,
+    paddingBottom: spaceNormal,
   },
   msgHeader: {
-    padding: spaceGeneral,
+    padding: spaceNormal,
     borderColor: greyDark,
     borderWidth: 1,
     marginVertical: spaceMore / 2,
@@ -65,7 +55,7 @@ const styles = StyleSheet.create({
     color: primaryColor,
   },
   msgContent: {
-    padding: spaceGeneral,
+    padding: spaceNormal,
     borderColor: secondaryColor,
     borderWidth: 1,
     marginVertical: spaceMore / 2,
@@ -78,23 +68,23 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'flex-start',
-    marginVertical: spaceGeneral,
+    marginVertical: spaceNormal,
   },
   viewPdfButton: {
-    marginLeft: spaceGeneral,
+    marginLeft: spaceNormal,
     marginRight: 0,
   },
   dividerAttachments: {
     backgroundColor: greyLight,
-    marginBottom: spaceGeneral,
+    marginBottom: spaceNormal,
   },
   dividerBeforeMessageContent: {
     backgroundColor: greyLight,
-    marginBottom: spaceGeneral,
-    marginTop: spaceGeneral,
+    marginBottom: spaceNormal,
+    marginTop: spaceNormal,
   },
   hotfixTextPaddingTable: {
-    paddingRight: spaceGeneral * 2 + 1, // the padding space and the border
+    paddingRight: spaceNormal * 2 + 1, // the padding space and the border
   },
   downloadButton: { marginLeft: 0, marginRight: 0 },
 });

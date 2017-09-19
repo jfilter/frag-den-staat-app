@@ -2,7 +2,6 @@ import { Icon, Button, Divider } from 'react-native-elements';
 import {
   Text,
   View,
-  ScrollView,
   Linking,
   Share,
   Platform,
@@ -24,6 +23,7 @@ import { getPrintableStatus } from '../../utils';
 import { primaryColor, grey } from '../../styles/colors';
 import { styles } from './styles';
 import { styles as tableStyles } from '../Table/styles';
+import BlankContainer from '../BlankContainer';
 import Heading from '../Heading';
 import Link from '../Link';
 import NavBarIcon from '../NavBarIcon';
@@ -290,20 +290,18 @@ class FoiRequestSingle extends React.Component {
     }
 
     return (
-      <ScrollView style={styles.scrollView}>
+      <BlankContainer>
+        <Heading style={styles.heading}>{title}</Heading>
         <View>
-          <Heading style={styles.heading}>{title}</Heading>
-          <View>
-            <Text style={styles.subheadingTo}>to</Text>
-            {subheading}
-          </View>
-          {this._renderTable()}
-          <View style={styles.summary}>
-            <Text>{description}</Text>
-          </View>
-          {this._renderMessages()}
+          <Text style={styles.subheadingTo}>to</Text>
+          {subheading}
         </View>
-      </ScrollView>
+        {this._renderTable()}
+        <View style={styles.summary}>
+          <Text>{description}</Text>
+        </View>
+        {this._renderMessages()}
+      </BlankContainer>
     );
   }
 }

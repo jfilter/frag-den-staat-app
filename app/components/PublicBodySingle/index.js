@@ -1,10 +1,11 @@
 import { Button } from 'react-native-elements';
-import { ScrollView, Text } from 'react-native';
+import { Text } from 'react-native';
 import PropTypes from 'prop-types';
 import React from 'react';
 
 import { primaryColor } from '../../styles/colors';
 import { styles } from './styles';
+import BlankContainer from '../BlankContainer';
 import Heading from '../Heading';
 import Link from '../Link';
 import Table from '../Table';
@@ -88,7 +89,7 @@ const PublicBodySingle = ({
   );
 
   return (
-    <ScrollView style={styles.scrollView}>
+    <BlankContainer>
       <Heading style={styles.heading}>{name}</Heading>
       <Button
         containerViewStyle={styles.button}
@@ -98,7 +99,7 @@ const PublicBodySingle = ({
       />
       {showRequestsButton}
       <Table data={tableData} />
-    </ScrollView>
+    </BlankContainer>
   );
 };
 

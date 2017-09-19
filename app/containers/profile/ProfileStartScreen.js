@@ -1,17 +1,12 @@
 import { Icon, ListItem } from 'react-native-elements';
-import {
-  Image,
-  Linking,
-  ScrollView,
-  Text,
-  TouchableHighlight,
-} from 'react-native';
+import { Image, Linking, Text, TouchableHighlight } from 'react-native';
 import { NavigationActions } from 'react-navigation';
 import { connect } from 'react-redux';
 import React from 'react';
 
 import { styles } from './styles';
 import AuthButton from './AuthButton';
+import BlankContainer from '../../components/BlankContainer';
 
 const ProfileStartScreen = ({
   navigateToAboutApp,
@@ -24,7 +19,7 @@ const ProfileStartScreen = ({
   navigateToIntroVideo,
 }) => {
   return (
-    <ScrollView style={styles.container}>
+    <BlankContainer innerStyle={{ paddingHorizontal: 0 }}>
       <Text>Account</Text>
       <AuthButton />
       <Text>Information</Text>
@@ -131,7 +126,7 @@ const ProfileStartScreen = ({
           source={require('../../../assets/logo/original_fds_logo_small.jpg')} // TODO: replace with new one?
         />
       </TouchableHighlight>
-    </ScrollView>
+    </BlankContainer>
   );
 };
 

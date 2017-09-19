@@ -1,19 +1,11 @@
 import { StyleSheet } from 'react-native';
 
-import {
-  spaceMore,
-  spaceNormal,
-  contentContainerPadding,
-} from '../../styles/content';
+import { contentContainerPadding, spaceMore } from '../../styles/content';
 
 const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: 'white',
-    padding: spaceNormal,
-  },
   heading: {
-    marginTop: spaceMore - contentContainerPadding,
-    marginBottom: spaceMore,
+    marginTop: spaceMore,
+    marginBottom: spaceMore + contentContainerPadding,
   },
   button: {
     marginBottom: spaceMore,
