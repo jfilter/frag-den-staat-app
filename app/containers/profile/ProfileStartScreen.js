@@ -21,6 +21,7 @@ const ProfileStartScreen = ({
   navigateToDataUsePolicy,
   navigateToFeedback,
   navigateToAcknowledgements,
+  navigateToIntroVideo,
 }) => {
   return (
     <ScrollView style={styles.container}>
@@ -29,6 +30,12 @@ const ProfileStartScreen = ({
       <Text>Information</Text>
       <ListItem
         containerStyle={[styles.listItemContainer, styles.firstItemContainer]}
+        title="Einführungs-Video"
+        leftIcon={{ name: 'ondemand-video' }}
+        onPress={navigateToIntroVideo}
+      />
+      <ListItem
+        containerStyle={[styles.listItemContainer]}
         title="Über Frag Den Staat"
         leftIcon={{ name: 'info' }}
         onPress={navigateToAboutApp}
@@ -129,7 +136,7 @@ const ProfileStartScreen = ({
 };
 
 ProfileStartScreen.navigationOptions = {
-  title: 'Profile, Information & More',
+  title: 'Profile & More',
 };
 
 const mapStateToProps = state => {
@@ -140,6 +147,8 @@ const mapDispatchToProps = dispatch => {
   return {
     navigateToAboutApp: () =>
       dispatch(NavigationActions.navigate({ routeName: 'ProfileAboutApp' })),
+    navigateToIntroVideo: () =>
+      dispatch(NavigationActions.navigate({ routeName: 'ProfileIntroVideo' })),
     navigateToAboutFOI: () =>
       dispatch(NavigationActions.navigate({ routeName: 'ProfileAboutFOI' })),
     navigateToContact: () =>

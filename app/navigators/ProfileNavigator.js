@@ -9,6 +9,7 @@ import ProfileContact from '../components/profile/ProfileContact';
 import ProfileDataUsePolicy from '../components/profile/ProfileDataUsePolicy';
 import ProfileFAQ from '../components/profile/ProfileFAQ';
 import ProfileFeedback from '../components/profile/ProfileFeedback';
+import ProfileIntroVideo from '../components/profile/ProfileIntroVideo';
 import ProfileLoginScreen from '../containers/profile/ProfileLoginScreen';
 import ProfileStartScreen from '../containers/profile/ProfileStartScreen';
 import navigateOnce from './navigateOnce';
@@ -17,6 +18,7 @@ const ProfileNavigator = StackNavigator(
   {
     ProfileStart: { screen: ProfileStartScreen },
     ProfileLogin: { screen: ProfileLoginScreen },
+    ProfileIntroVideo: { screen: ProfileIntroVideo },
     ProfileAboutApp: { screen: ProfileAboutApp },
     ProfileAboutFOI: { screen: ProfileAboutFOI },
     ProfileFAQ: { screen: ProfileFAQ },
