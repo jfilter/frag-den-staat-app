@@ -14,6 +14,7 @@ module.exports = {
     'no-underscore-dangle': 'off',
     'arrow-body-style': 'off',
     'react/jsx-wrap-multilines': 'off',
+    'jsx-a11y/href-no-hash': 'off',
     'prettier/prettier': [
       'error',
       {
