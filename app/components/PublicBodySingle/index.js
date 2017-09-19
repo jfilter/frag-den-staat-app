@@ -6,7 +6,7 @@ import React from 'react';
 import { primaryColor } from '../../styles/colors';
 import { styles } from './styles';
 import BlankContainer from '../BlankContainer';
-import Heading from '../Heading';
+import Heading from '../text/Heading';
 import Link from '../Link';
 import Table from '../Table';
 

@@ -1,5 +1,5 @@
 import { Icon, ListItem } from 'react-native-elements';
-import { Image, Linking, Text, TouchableHighlight } from 'react-native';
+import { Image, Linking, TouchableHighlight } from 'react-native';
 import { NavigationActions } from 'react-navigation';
 import { connect } from 'react-redux';
 import React from 'react';
@@ -7,6 +7,7 @@ import React from 'react';
 import { styles } from './styles';
 import AuthButton from './AuthButton';
 import BlankContainer from '../../components/BlankContainer';
+import SectionHeading from '../../components/text/SectionHeading';
 
 const ProfileStartScreen = ({
   navigateToAboutApp,
@@ -20,9 +21,20 @@ const ProfileStartScreen = ({
 }) => {
   return (
     <BlankContainer innerStyle={{ paddingHorizontal: 0 }}>
-      <Text>Account</Text>
-      <AuthButton />
-      <Text>Information</Text>
+      <SectionHeading style={{ paddingTop: 0 }}>Account</SectionHeading>
+      <ListItem
+        containerStyle={[styles.listItemContainer, styles.firstItemContainer]}
+        title="Login"
+        leftIcon={{ name: 'login-variant', type: 'material-community' }}
+        onPress={() => console.log('login')}
+      />
+      <ListItem
+        containerStyle={[styles.listItemContainer]}
+        title="Register"
+        leftIcon={{ name: 'account-plus', type: 'material-community' }}
+        onPress={() => console.log('register')}
+      />
+      <SectionHeading>Information</SectionHeading>
       <ListItem
         containerStyle={[styles.listItemContainer, styles.firstItemContainer]}
         title="Einführungs-Video"
@@ -47,7 +59,7 @@ const ProfileStartScreen = ({
         leftIcon={{ name: 'question-answer' }}
         onPress={navigateToFAQ}
       />
-      <Text>Bla</Text>
+      <SectionHeading>Miscellaneous</SectionHeading>
       <ListItem
         containerStyle={[styles.listItemContainer, styles.firstItemContainer]}
         title="Kontakt und Impressum"
@@ -78,7 +90,7 @@ const ProfileStartScreen = ({
         leftIcon={{ name: 'copyright' }}
         onPress={navigateToFeedback}
       />
-      <Text>Links</Text>
+      <SectionHeading>Links</SectionHeading>
       <ListItem
         containerStyle={[styles.listItemContainer, styles.firstItemContainer]}
         title="Spenden"
@@ -123,7 +135,7 @@ const ProfileStartScreen = ({
       >
         <Image
           style={{ width: 50, height: 50 }}
-          source={require('../../../assets/logo/original_fds_logo_small.jpg')} // TODO: replace with new one?
+          source={require('../../../assets/logo/original_fds_logo_small.jpg')}
         />
       </TouchableHighlight>
     </BlankContainer>

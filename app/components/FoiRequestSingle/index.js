@@ -24,10 +24,10 @@ import { primaryColor, grey } from '../../styles/colors';
 import { styles } from './styles';
 import { styles as tableStyles } from '../Table/styles';
 import BlankContainer from '../BlankContainer';
-import Heading from '../Heading';
+import Heading from '../text/Heading';
 import Link from '../Link';
 import NavBarIcon from '../NavBarIcon';
-import SubHeading from '../SubHeading';
+import SubHeading from '../text/SubHeading';
 import Table from '../Table';
 
 moment.locale('de', deLocal);

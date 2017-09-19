@@ -15,6 +15,7 @@ module.exports = {
     'arrow-body-style': 'off',
     'react/jsx-wrap-multilines': 'off',
     'jsx-a11y/href-no-hash': 'off',
+    'global-require': 'off',
     'prettier/prettier': [
       'error',
       {
