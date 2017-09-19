@@ -16,19 +16,14 @@ const styles = StyleSheet.create({
     padding: spaceGeneral,
   },
   heading: {
-    fontSize: 20,
-    fontWeight: '600',
     marginTop: spaceGeneral,
     marginBottom: spaceGeneral,
-    textAlign: 'center',
     paddingHorizontal: spaceGeneral,
     borderTopWidth: 1,
     borderColor: greyLight,
     paddingTop: spaceMore,
   },
   subheading: {
-    fontSize: 18,
-    textAlign: 'center',
     paddingHorizontal: spaceGeneral,
   },
   subheadingJurisdiction: {

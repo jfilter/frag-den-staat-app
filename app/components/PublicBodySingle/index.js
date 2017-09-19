@@ -5,6 +5,7 @@ import React from 'react';
 
 import { primaryColor } from '../../styles/colors';
 import { styles } from './styles';
+import Heading from '../Heading';
 import Link from '../Link';
 import Table from '../Table';
 
@@ -88,7 +89,7 @@ const PublicBodySingle = ({
 
   return (
     <ScrollView style={styles.scrollView}>
-      <Text style={styles.heading}>{name}</Text>
+      <Heading style={styles.heading}>{name}</Heading>
       <Button
         containerViewStyle={styles.button}
         icon={{ name: 'add-circle-outline' }}

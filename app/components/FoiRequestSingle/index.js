@@ -24,8 +24,10 @@ import { getPrintableStatus } from '../../utils';
 import { primaryColor, grey } from '../../styles/colors';
 import { styles } from './styles';
 import { styles as tableStyles } from '../Table/styles';
+import Heading from '../Heading';
 import Link from '../Link';
 import NavBarIcon from '../NavBarIcon';
+import SubHeading from '../SubHeading';
 import Table from '../Table';
 
 moment.locale('de', deLocal);
@@ -274,9 +276,11 @@ class FoiRequestSingle extends React.Component {
             underlayColor={grey}
             onPress={() => this.props.navigateToPublicBody({ publicBodyId })}
           >
-            <Text style={[styles.subheading, styles.link]}>
-              {publicBodyName}
-            </Text>
+            <View>
+              <SubHeading style={[styles.subheading, styles.link]}>
+                {publicBodyName}
+              </SubHeading>
+            </View>
           </TouchableHighlight>
           <Text style={[styles.subheadingJurisdiction]}>
             ({jurisdictionName})
@@ -288,7 +292,7 @@ class FoiRequestSingle extends React.Component {
     return (
       <ScrollView style={styles.scrollView}>
         <View>
-          <Text style={styles.heading}>{title}</Text>
+          <Heading style={styles.heading}>{title}</Heading>
           <View>
             <Text style={styles.subheadingTo}>to</Text>
             {subheading}

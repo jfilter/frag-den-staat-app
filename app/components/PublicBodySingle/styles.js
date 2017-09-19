@@ -12,11 +12,8 @@ const styles = StyleSheet.create({
     padding: spaceNormal,
   },
   heading: {
-    fontSize: 20,
-    fontWeight: '600',
     marginTop: spaceMore - contentContainerPadding,
     marginBottom: spaceMore,
-    textAlign: 'center',
   },
   button: {
     marginBottom: spaceMore,
