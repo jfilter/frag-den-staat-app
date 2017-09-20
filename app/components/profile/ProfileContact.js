@@ -1,26 +1,86 @@
-import { Text } from 'react-native';
+import { Button } from 'react-native-elements';
+import { Linking, Text } from 'react-native';
 import React from 'react';
 
+import { primaryColor } from '../../styles/colors';
 import BlankContainer from '../BlankContainer';
+import FloatingHeading from '../text/FloatingHeading';
+import Heading from '../text/Heading';
+
+const links = [
+  {
+    key: 'Twitter',
+    url: 'https://twitter.com/fragdenstaat',
+    icon: { name: 'twitter-box', type: 'material-community' },
+  },
+  {
+    key: 'Facebook',
+    url: 'https://www.facebook.com/fragdenstaat.de/',
+    icon: { name: 'facebook-box', type: 'material-community' },
+  },
+  {
+    key: 'info@fragdenstaat.de',
+    url: 'mailto:info@fragdenstaat.de?subject=App-Anfrage',
+  },
+  {
+    key: 'Öffentlichen Email-Verteiler',
+    url: 'https://lists.okfn.org/mailman/listinfo/fragdenstaat',
+  },
+];
 
 const ProfileContact = () => (
   <BlankContainer>
-    <Text>{`Impressum
+    <Heading>Kontakt</Heading>
+    <Text>{`
+        Du erreichst uns über verschiedene Kanäle.
+        `}</Text>
+    {links.map(({ key, url, icon }) => (
+      <Button
+        key={key}
+        icon={icon}
+        title={key}
+        style={{ margin: 5 }}
+        backgroundColor={primaryColor}
+        onPress={() => {
+          Linking.canOpenURL(url)
+            .then(supported => {
+              if (!supported) {
+                console.log("Can't handle url: " + url);
+              } else {
+                return Linking.openURL(url);
+              }
+            })
+            .catch(err => console.error('An error occurred', err));
+        }}
+      />
+    ))}
+    <Text>{`
+      `}</Text>
+    <Heading>Impressum</Heading>
+    <Text>
+      {`
 
 Open Knowledge Foundation Deutschland e.V.
 Singerstr. 109, 10179 Berlin
 www.okfn.de
 info@fragdenstaat.de
 
+`}
+      <Heading>Haftungausschluss</Heading>
+      {`
 
-Haftungausschluss
-Haftung für Inhalte
+`}
+      <FloatingHeading>Haftung für Inhalte</FloatingHeading>
+      {`
 
 Die Inhalte unserer Seiten wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte können wir jedoch keine Gewähr übernehmen. Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Als Diensteanbieter sind wir jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen. Zu diesen übermittelten fremden Informationen zählen insbesondere die durch unsere Nutzer gestellten Anfragen nach dem Informationsfreiheitsgesetz sowie die Antworten der jeweiligen Behörden. Die Verpflichtung zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unberührt. Eine diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung möglich. Bei Bekanntwerden von entsprechenden Rechtsverletzungen werden wir diese Inhalte umgehend entfernen.
 
-Haftung für Links
+`}
+      <FloatingHeading>Haftung für Links</FloatingHeading>
+      {`
 
-Unser Angebot enthält Links zu externen Webseiten Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich. Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstöße überprüft. Rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar. Eine permanente inhaltliche Kontrolle der verlinkten Seiten ist jedoch ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Links umgehend entfernen.`}</Text>
+Unser Angebot enthält Links zu externen Webseiten Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich. Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstöße überprüft. Rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar. Eine permanente inhaltliche Kontrolle der verlinkten Seiten ist jedoch ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Links umgehend entfernen.`}
+    </Text>
   </BlankContainer>
 );
 

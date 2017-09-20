@@ -1,11 +1,11 @@
 import { Icon, ListItem } from 'react-native-elements';
-import { Image, Linking, TouchableHighlight } from 'react-native';
+import { Image, Linking, Platform, TouchableHighlight } from 'react-native';
 import { NavigationActions } from 'react-navigation';
 import { connect } from 'react-redux';
 import React from 'react';
+import * as StoreReview from 'react-native-store-review';
 
 import { styles } from './styles';
-import AuthButton from './AuthButton';
 import BlankContainer from '../../components/BlankContainer';
 import SectionHeading from '../../components/text/SectionHeading';
 
@@ -74,15 +74,9 @@ const ProfileStartScreen = ({
       />
       <ListItem
         containerStyle={styles.listItemContainer}
-        title="Feedback"
-        leftIcon={{ name: 'feedback' }}
-        onPress={navigateToFeedback}
-      />
-      <ListItem
-        containerStyle={styles.listItemContainer}
-        title="Rate this App"
-        leftIcon={{ name: 'star' }}
-        hideChevron
+        title="Nutzungsbedingungen"
+        leftIcon={{ name: 'scale-balance', type: 'material-community' }}
+        onPress={navigateToDataUsePolicy}
       />
       <ListItem
         containerStyle={styles.listItemContainer}
@@ -90,10 +84,30 @@ const ProfileStartScreen = ({
         leftIcon={{ name: 'copyright' }}
         onPress={navigateToFeedback}
       />
+      <ListItem
+        containerStyle={styles.listItemContainer}
+        title="Fehlermeldungen und Feedback"
+        leftIcon={{ name: 'feedback' }}
+        onPress={navigateToFeedback}
+      />
+      <ListItem
+        containerStyle={styles.listItemContainer}
+        title="Rate this App"
+        leftIcon={{ name: 'star' }}
+        onPress={() => {
+          if (Platform.OS === 'ios' && StoreReview.isAvailable) {
+            StoreReview.requestReview();
+          }
+          if (Platform.OS === 'android') {
+            // TODO: Link to app in playstore
+          }
+        }}
+        hideChevron
+      />
       <SectionHeading>Links</SectionHeading>
       <ListItem
         containerStyle={[styles.listItemContainer, styles.firstItemContainer]}
-        title="Für uns Spenden"
+        title="Tue etwas Gutes. Spende an uns!"
         leftIcon={{ name: 'euro-symbol' }}
         rightIcon={{ name: 'link' }}
         onPress={() =>
