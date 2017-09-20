@@ -11,7 +11,7 @@ import SectionHeading from '../../components/text/SectionHeading';
 
 const ProfileStartScreen = ({
   navigateToAboutApp,
-  navigateToAboutFOI,
+  navigateToAboutFOIMaster,
   navigateToFAQ,
   navigateToContact,
   navigateToDataUsePolicy,
@@ -51,7 +51,7 @@ const ProfileStartScreen = ({
         containerStyle={styles.listItemContainer}
         title="Über Informationsfreiheit"
         leftIcon={{ name: 'info' }}
-        onPress={navigateToAboutFOI}
+        onPress={navigateToAboutFOIMaster}
       />
       <ListItem
         containerStyle={styles.listItemContainer}
@@ -93,7 +93,7 @@ const ProfileStartScreen = ({
       <SectionHeading>Links</SectionHeading>
       <ListItem
         containerStyle={[styles.listItemContainer, styles.firstItemContainer]}
-        title="Spenden"
+        title="Für uns Spenden"
         leftIcon={{ name: 'euro-symbol' }}
         rightIcon={{ name: 'link' }}
         onPress={() =>
@@ -101,7 +101,7 @@ const ProfileStartScreen = ({
       />
       <ListItem
         containerStyle={styles.listItemContainer}
-        title="Blog"
+        title="Aktuelles im Blog"
         leftIcon={{ name: 'library-books', type: 'material-community' }}
         rightIcon={{ name: 'link' }}
         onPress={() => Linking.openURL('http://blog.fragdenstaat.de')}
@@ -156,7 +156,7 @@ const mapDispatchToProps = dispatch => {
       dispatch(NavigationActions.navigate({ routeName: 'ProfileAboutApp' })),
     navigateToIntroVideo: () =>
       dispatch(NavigationActions.navigate({ routeName: 'ProfileIntroVideo' })),
-    navigateToAboutFOI: () =>
+    navigateToAboutFOIMaster: () =>
       dispatch(NavigationActions.navigate({ routeName: 'ProfileAboutFOI' })),
     navigateToContact: () =>
       dispatch(NavigationActions.navigate({ routeName: 'ProfileContact' })),
@@ -165,7 +165,7 @@ const mapDispatchToProps = dispatch => {
         NavigationActions.navigate({ routeName: 'ProfileDataUsePolicy' })
       ),
     navigateToFAQ: () =>
-      dispatch(NavigationActions.navigate({ routeName: 'ProfileFAQ' })),
+      dispatch(NavigationActions.navigate({ routeName: 'ProfileFAQMaster' })),
     navigateToFeedback: () =>
       dispatch(NavigationActions.navigate({ routeName: 'ProfileFeedback' })),
     navigateToAcknowledgements: () =>

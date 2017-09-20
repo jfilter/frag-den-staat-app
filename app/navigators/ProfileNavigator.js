@@ -7,7 +7,8 @@ import ProfileAboutApp from '../components/profile/ProfileAboutApp';
 import ProfileAboutFOI from '../components/profile/ProfileAboutFOI';
 import ProfileContact from '../components/profile/ProfileContact';
 import ProfileDataUsePolicy from '../components/profile/ProfileDataUsePolicy';
-import ProfileFAQ from '../components/profile/ProfileFAQ';
+import ProfileFAQDetails from '../containers/profile/ProfileFAQDetails';
+import ProfileFAQMaster from '../containers/profile/ProfileFAQMaster';
 import ProfileFeedback from '../components/profile/ProfileFeedback';
 import ProfileIntroVideo from '../components/profile/ProfileIntroVideo';
 import ProfileLoginScreen from '../containers/profile/ProfileLoginScreen';
@@ -21,7 +22,8 @@ const ProfileNavigator = StackNavigator(
     ProfileIntroVideo: { screen: ProfileIntroVideo },
     ProfileAboutApp: { screen: ProfileAboutApp },
     ProfileAboutFOI: { screen: ProfileAboutFOI },
-    ProfileFAQ: { screen: ProfileFAQ },
+    ProfileFAQMaster: { screen: ProfileFAQMaster },
+    ProfileFAQDetails: { screen: ProfileFAQDetails },
     ProfileContact: { screen: ProfileContact },
     ProfileFeedback: { screen: ProfileFeedback },
     ProfileDataUsePolicy: { screen: ProfileDataUsePolicy },
