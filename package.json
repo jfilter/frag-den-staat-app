@@ -2,6 +2,12 @@
   "name": "FragDenStaat",
   "version": "0.3.1",
   "private": true,
+  "license" : "MIT",
+  "author": "Johannes Filter <hi@jfilter.de> (https://johannesfilter.com)",
+  "repository" :
+  { "type" : "git"
+  , "url" : "https://github.com/jfilter/frag-den-staat-app"
+  },
   "rnpm": {
     "assets": [
       "./assets/fonts"
