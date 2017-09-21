@@ -9,21 +9,21 @@ import Heading from '../text/Heading';
 
 const links = [
   {
-    key: 'Twitter',
+    title: 'Twitter',
     url: 'https://twitter.com/fragdenstaat',
     icon: { name: 'twitter-box', type: 'material-community' },
   },
   {
-    key: 'Facebook',
+    title: 'Facebook',
     url: 'https://www.facebook.com/fragdenstaat.de/',
     icon: { name: 'facebook-box', type: 'material-community' },
   },
   {
-    key: 'info@fragdenstaat.de',
+    title: 'info@fragdenstaat.de',
     url: 'mailto:info@fragdenstaat.de?subject=App-Anfrage',
   },
   {
-    key: 'Öffentlichen Email-Verteiler',
+    title: 'Öffentlichen Email-Verteiler',
     url: 'https://lists.okfn.org/mailman/listinfo/fragdenstaat',
   },
 ];
@@ -34,11 +34,11 @@ const ProfileContact = () => (
     <Text>{`
         Du erreichst uns über verschiedene Kanäle.
         `}</Text>
-    {links.map(({ key, url, icon }) => (
+    {links.map(({ title, url, icon }) => (
       <Button
-        key={key}
+        key={title}
         icon={icon}
-        title={key}
+        title={title}
         style={{ margin: 5 }}
         backgroundColor={primaryColor}
         onPress={() => {

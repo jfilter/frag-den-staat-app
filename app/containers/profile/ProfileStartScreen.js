@@ -18,6 +18,7 @@ const ProfileStartScreen = ({
   navigateToFeedback,
   navigateToAcknowledgements,
   navigateToIntroVideo,
+  navigateToTermsOfUse,
 }) => {
   return (
     <BlankContainer innerStyle={{ paddingHorizontal: 0 }}>
@@ -76,7 +77,7 @@ const ProfileStartScreen = ({
         containerStyle={styles.listItemContainer}
         title="Nutzungsbedingungen"
         leftIcon={{ name: 'scale-balance', type: 'material-community' }}
-        onPress={navigateToDataUsePolicy}
+        onPress={navigateToTermsOfUse}
       />
       <ListItem
         containerStyle={styles.listItemContainer}
@@ -86,7 +87,7 @@ const ProfileStartScreen = ({
       />
       <ListItem
         containerStyle={styles.listItemContainer}
-        title="Fehlermeldungen und Feedback"
+        title="Feedback und Fehlermeldungen"
         leftIcon={{ name: 'feedback' }}
         onPress={navigateToFeedback}
       />
@@ -178,6 +179,8 @@ const mapDispatchToProps = dispatch => {
       dispatch(
         NavigationActions.navigate({ routeName: 'ProfileDataUsePolicy' })
       ),
+    navigateToTermsOfUse: () =>
+      dispatch(NavigationActions.navigate({ routeName: 'ProfileTermsOfUse' })),
     navigateToFAQ: () =>
       dispatch(NavigationActions.navigate({ routeName: 'ProfileFAQMaster' })),
     navigateToFeedback: () =>

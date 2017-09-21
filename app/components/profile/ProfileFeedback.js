@@ -1,24 +1,57 @@
-import { ScrollView, Text } from 'react-native';
+import { Button } from 'react-native-elements';
+import { Linking, Text } from 'react-native';
 import React from 'react';
 
-import { styles } from './styles';
+import { primaryColor } from '../../styles/colors';
+import BlankContainer from '../BlankContainer';
 
-const ProfileFeedback = () =>
-  <ScrollView style={styles.container}>
+const links = [
+  {
+    title: 'Github',
+    url: 'https://github.com/jfilter/frag-den-staat-app',
+  },
+  {
+    title: 'hi@jfilter.de',
+    url: 'mailto:hi@jfilter.de?subject=Frag-Den-Staat-App-Anfrage',
+  },
+];
+
+const ProfileFeedback = () => (
+  <BlankContainer>
     <Text>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
-      commodo nibh non rutrum sollicitudin. Etiam arcu odio, volutpat id congue
-      lacinia, posuere a magna. Suspendisse vitae eleifend libero. Mauris
-      volutpat ligula facilisis erat accumsan, ac bibendum ante vehicula.
-      Quisque vel laoreet metus, in cursus erat. Sed faucibus congue odio eu
-      laoreet. Aenean vulputate vel tortor non interdum. Proin vitae laoreet
-      nibh. Curabitur fringilla blandit posuere. Phasellus eu mattis diam,
-      pulvinar congue justo. Curabitur a purus dolor. Fusce risus elit, aliquet
-      lacinia lacinia eu, vestibulum eu metus. Maecenas vitae augue lectus.
-      Nulla gravida arcu maximus metus maximus laoreet. Maecenas augue lorem,
-      viverra vel ipsum ut, iaculis lobortis elit. Aliquam rhoncus eget lorem
-      non elementum.
+      {`Wir arbeiten stets daran die App zu verbessern, um gemeinsam für Informationsfreiheit zu kämpfen. Aber dafür brauchen wir dich. Du hast ein Fehler gefunden oder weißt, was wir noch besser machen können? Kontaktiere uns!
+
+Damit es für dich noch einfacher ist, kannst du ohne Probleme Fehler gleich in der App melden. Einfach das Gerät schütteln und du kannst gleich ein Screenshot von dem Problem an uns senden.
+
+Für allgemeine Anregunen kannst entweder im Github eine Issue eröffnen oder den (ehrenamtlichen) App-Entwickler Johannes Filter direkt unter hi@jfilter.de erreichen.
+`}
     </Text>
-  </ScrollView>;
+
+    {links.map(({ title, url, icon }) => (
+      <Button
+        key={title}
+        icon={icon}
+        title={title}
+        style={{ margin: 5 }}
+        backgroundColor={primaryColor}
+        onPress={() => {
+          Linking.canOpenURL(url)
+            .then(supported => {
+              if (!supported) {
+                console.log("Can't handle url: " + url);
+              } else {
+                return Linking.openURL(url);
+              }
+            })
+            .catch(err => console.error('An error occurred', err));
+        }}
+      />
+    ))}
+  </BlankContainer>
+);
+
+ProfileFeedback.navigationOptions = {
+  title: 'Feedback',
+};
 
 export default ProfileFeedback;
