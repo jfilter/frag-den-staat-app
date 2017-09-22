@@ -4,9 +4,8 @@ import os
 with open('credits.json') as data_file:
     data = json.load(data_file)
 
-    txt = ''
+    results = []
     for key, value in data.items():
-
         if key.startswith('FragDenStaat'):
             continue
 
@@ -26,7 +25,7 @@ with open('credits.json') as data_file:
         if 'url' in value:
             url_txt = f'URL: {value["url"]} '
 
-        txt += f"{key}{publisher_txt}{email_txt} licensed under {value['licenses']}. {repo_txt}{url_txt}\n\n"
+        txt = f"{key}{publisher_txt}{email_txt} licensed under {value['licenses']}. {repo_txt}{url_txt}\n\n"
 
         if 'licenseFile' in value:
             lincenseFile = value['licenseFile']
@@ -47,6 +46,10 @@ with open('credits.json') as data_file:
                     file.close()
                     break
 
+            results.append(txt)
+
+    # txt = txt.replace("`", "\'")
     # print(txt)
-    with open("app/components/profile/credits.txt", "w") as text_file:
-        print(f"{txt}", file=text_file)
+    import json
+    with open('app/components/profile/credits.json', 'w') as outfile:
+        json.dump(results, outfile)

@@ -83,7 +83,7 @@ const ProfileStartScreen = ({
         containerStyle={styles.listItemContainer}
         title="Acknowledgements"
         leftIcon={{ name: 'copyright' }}
-        onPress={navigateToFeedback}
+        onPress={navigateToAcknowledgements}
       />
       <ListItem
         containerStyle={styles.listItemContainer}

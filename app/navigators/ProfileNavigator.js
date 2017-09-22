@@ -5,6 +5,7 @@ import React from 'react';
 import { commonNavigationOptions, iconColor, iconSize } from './styles';
 import ProfileAboutApp from '../components/profile/ProfileAboutApp';
 import ProfileAboutFOI from '../components/profile/ProfileAboutFOI';
+import ProfileAcknowledgements from '../components/profile/ProfileAcknowledgements';
 import ProfileContact from '../components/profile/ProfileContact';
 import ProfileDataUsePolicy from '../components/profile/ProfileDataUsePolicy';
 import ProfileFAQDetails from '../containers/profile/ProfileFAQDetails';
@@ -29,6 +30,7 @@ const ProfileNavigator = StackNavigator(
     ProfileFeedback: { screen: ProfileFeedback },
     ProfileDataUsePolicy: { screen: ProfileDataUsePolicy },
     ProfileTermsOfUse: { screen: ProfileTermsOfUse },
+    ProfileAcknowledgements: { screen: ProfileAcknowledgements },
   },
   {
     navigationOptions: {
