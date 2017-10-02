@@ -8,18 +8,22 @@ import {
   iconColor,
   iconSize,
 } from './styles';
-import PdfViewer from '../components/PdfViewer';
-import SearchFoiRequestSingleScreen from '../containers/search/SearchFoiRequestSingleScreen';
-import SearchPublicBodySingleScreen from '../containers/search/SearchPublicBodySingleScreen';
-import SearchResultsFoiRequestsScreen from '../containers/search/SearchResultsFoiRequestsScreen';
-import SearchResultsPublicBodiesScreen from '../containers/search/SearchResultsPublicBodiesScreen';
+import PdfViewer from '../components/library/PdfViewer';
+import SearchFoiRequestDetailsScreen from '../containers/search/SearchFoiRequestDetailsScreen';
+import SearchPublicBodyDetailsScreen from '../containers/search/SearchPublicBodyDetailsScreen';
+import SearchResultsFoiRequestsMasterScreen from '../containers/search/SearchResultsFoiRequestsMasterScreen';
+import SearchResultsPublicBodiesMasterScreen from '../containers/search/SearchResultsPublicBodiesMasterScreen';
 import SearchStartScreen from '../containers/search/SearchStartScreen';
-import navigateOnce from './navigateOnce';
+import navigateOnce from '../utils/navigateOnce';
 
 const SearchResultsNavigator = TabNavigator(
   {
-    SearchResultsFoiRequests: { screen: SearchResultsFoiRequestsScreen },
-    SearchResultsPublicBodies: { screen: SearchResultsPublicBodiesScreen },
+    SearchResultsFoiRequestsMaster: {
+      screen: SearchResultsFoiRequestsMasterScreen,
+    },
+    SearchResultsPublicBodiesMaster: {
+      screen: SearchResultsPublicBodiesMasterScreen,
+    },
   },
   { ...tabBarConfig }
 );
@@ -28,8 +32,8 @@ const SearchNavigator = StackNavigator(
   {
     SearchStart: { screen: SearchStartScreen },
     SearchResults: { screen: SearchResultsNavigator },
-    SearchFoiRequestSingle: { screen: SearchFoiRequestSingleScreen },
-    SearchPublicBodySingle: { screen: SearchPublicBodySingleScreen },
+    SearchFoiRequestDetails: { screen: SearchFoiRequestDetailsScreen },
+    SearchPublicBodyDetails: { screen: SearchPublicBodyDetailsScreen },
     SearchPdfViewer: { screen: PdfViewer },
   },
   {

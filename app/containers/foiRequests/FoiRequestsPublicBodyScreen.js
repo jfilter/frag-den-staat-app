@@ -5,8 +5,8 @@ import React from 'react';
 
 import { fetchPublicBody } from '../../actions/publicBodies';
 import { foiRequestsFilterChange } from '../../actions/foiRequests';
-import { primaryColorLight } from '../../styles/colors';
-import PublicBodySingle from '../../components/PublicBodySingle';
+import { primaryColorLight } from '../../globals/colors';
+import PublicBodyDetails from '../../components/library/PublicBodyDetails';
 
 // eslint-disable-next-line react/prop-types
 class FoiRequestPublicBodyScreen extends React.Component {
@@ -42,7 +42,7 @@ class FoiRequestPublicBodyScreen extends React.Component {
       );
     } else {
       return (
-        <PublicBodySingle
+        <PublicBodyDetails
           publicBody={publicBody}
           navigateToFoiRequests1={navigateToFoiRequests1}
           navigateToFoiRequests2={navigateToFoiRequests2}
@@ -54,7 +54,7 @@ class FoiRequestPublicBodyScreen extends React.Component {
 }
 
 FoiRequestPublicBodyScreen.navigationOptions =
-  PublicBodySingle.navigationOptions;
+  PublicBodyDetails.navigationOptions;
 
 const mapStateToProps = (state, props) => {
   return {
@@ -76,7 +76,7 @@ const mapDispatchToProps = dispatch => {
         })
       ),
     navigateToFoiRequests2: () =>
-      dispatch(NavigationActions.navigate({ routeName: 'FoiRequestsList' })),
+      dispatch(NavigationActions.navigate({ routeName: 'FoiRequestsMaster' })),
   };
 };
 

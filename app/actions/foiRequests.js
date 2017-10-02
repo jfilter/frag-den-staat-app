@@ -1,8 +1,8 @@
 import R from 'ramda';
 
-import { mapToFakeStatus } from '../utils';
+import { ORIGIN } from '../globals';
 import { fetchAndDispatch } from '../utils/networking';
-import { ORIGIN } from '../utils/globals';
+import { mapToFakeStatus } from '../utils';
 
 function foiRequestsErrorAction(error) {
   return {

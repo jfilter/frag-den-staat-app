@@ -6,8 +6,8 @@ import React from 'react';
 import * as StoreReview from 'react-native-store-review';
 
 import { styles } from './styles';
-import BlankContainer from '../../components/BlankContainer';
-import SectionHeading from '../../components/text/SectionHeading';
+import BlankContainer from '../../components/library/BlankContainer';
+import SectionHeading from '../../components/library/SectionHeading';
 
 const ProfileStartScreen = ({
   navigateToAboutApp,
@@ -158,7 +158,7 @@ const ProfileStartScreen = ({
 };
 
 ProfileStartScreen.navigationOptions = {
-  title: 'Profile & More',
+  title: 'More',
 };
 
 const mapStateToProps = state => {

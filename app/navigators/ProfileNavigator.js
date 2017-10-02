@@ -15,7 +15,7 @@ import ProfileIntroVideo from '../components/profile/ProfileIntroVideo';
 import ProfileLoginScreen from '../containers/profile/ProfileLoginScreen';
 import ProfileStartScreen from '../containers/profile/ProfileStartScreen';
 import ProfileTermsOfUse from '../components/profile/ProfileTermsOfUse';
-import navigateOnce from './navigateOnce';
+import navigateOnce from '../utils/navigateOnce';
 
 const ProfileNavigator = StackNavigator(
   {
@@ -35,9 +35,9 @@ const ProfileNavigator = StackNavigator(
   {
     navigationOptions: {
       ...commonNavigationOptions,
-      tabBarLabel: 'Profile',
+      tabBarLabel: 'More',
       tabBarIcon: () => (
-        <Icon size={iconSize} color={iconColor} name="person" />
+        <Icon size={iconSize} color={iconColor} name="more-horiz" />
       ),
     },
   }

@@ -1,7 +1,7 @@
 import { FlatList, Text } from 'react-native';
 import React from 'react';
 
-import BlankContainer from '../BlankContainer';
+import BlankContainer from '../library/BlankContainer';
 import text from './credits.json';
 
 const ProfileAcknowledgements = () => (

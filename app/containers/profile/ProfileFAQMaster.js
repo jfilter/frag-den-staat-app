@@ -4,7 +4,7 @@ import { NavigationActions } from 'react-navigation';
 import { connect } from 'react-redux';
 import React from 'react';
 
-import { primaryColor } from '../../styles/colors';
+import { primaryColor } from '../../globals/colors';
 import { renderSeparator } from '../../components/ListRenderer';
 import data from './FAQ';
 

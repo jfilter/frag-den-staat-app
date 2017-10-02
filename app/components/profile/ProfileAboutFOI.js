@@ -1,12 +1,10 @@
 import { Button } from 'react-native-elements';
 import { Linking, Text, View } from 'react-native';
-import Accordion from 'react-native-collapsible/Accordion';
 import React from 'react';
 
-import { primaryColor } from '../../styles/colors';
-import { styles } from './styles';
-import BlankContainer from '../BlankContainer';
-import FloatingHeading from '../text/FloatingHeading';
+import { primaryColor } from '../../globals/colors';
+import BlankContainer from '../library/BlankContainer';
+import FloatingHeading from '../library/FloatingHeading';
 
 const links = [
   {

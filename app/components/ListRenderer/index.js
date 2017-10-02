@@ -1,12 +1,12 @@
-import React from 'react';
-import { View, Text, ActivityIndicator, Image } from 'react-native';
 import { ListItem } from 'react-native-elements';
+import { View, Text, ActivityIndicator, Image } from 'react-native';
+import React from 'react';
 import moment from 'moment';
 
-import styles from './styles';
 import { getPrintableStatus, shortenJurisdiction } from '../../utils';
 import { getPublicBodyNameAndJurisdiction } from '../../utils/fakeApi';
-import { primaryColor, primaryColorLight } from '../../styles/colors';
+import { primaryColor, primaryColorLight } from '../../globals/colors';
+import styles from './styles';
 
 const renderNumberOfResultHeader = nResults => {
   const nResultsText = nResults >= 0 ? `${nResults} REQUESTS` : null;

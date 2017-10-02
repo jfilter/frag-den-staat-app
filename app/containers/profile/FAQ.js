@@ -2,7 +2,7 @@ import { Button } from 'react-native-elements';
 import { Linking, View, Text } from 'react-native';
 import React from 'react';
 
-import { primaryColor } from '../../styles/colors';
+import { primaryColor } from '../../globals/colors';
 
 export default [
   {

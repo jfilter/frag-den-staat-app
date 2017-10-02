@@ -1,8 +1,8 @@
 import { Text } from 'react-native';
 import React from 'react';
 
-import BlankContainer from '../BlankContainer';
-import FloatingHeading from '../text/FloatingHeading';
+import BlankContainer from '../library/BlankContainer';
+import FloatingHeading from '../library/FloatingHeading';
 
 const ProfileAboutApp = () => (
   <BlankContainer>

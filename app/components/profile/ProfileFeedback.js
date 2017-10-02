@@ -2,8 +2,8 @@ import { Button } from 'react-native-elements';
 import { Linking, Text } from 'react-native';
 import React from 'react';
 
-import { primaryColor } from '../../styles/colors';
-import BlankContainer from '../BlankContainer';
+import { primaryColor } from '../../globals/colors';
+import BlankContainer from '../library/BlankContainer';
 
 const links = [
   {

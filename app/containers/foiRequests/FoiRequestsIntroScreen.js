@@ -2,7 +2,7 @@ import { NavigationActions } from 'react-navigation';
 import { connect } from 'react-redux';
 import React from 'react';
 
-import Intro from '../../components/Intro';
+import Intro from '../../components/foiRequests/Intro';
 
 const FoiRequestsIntroScreen = ({ navigateToMain }) => (
   <Intro navigateToMain={navigateToMain} />
@@ -18,7 +18,7 @@ const mapDispatchToProps = dispatch => {
     navigateToMain: () =>
       dispatch(
         NavigationActions.navigate({
-          routeName: 'FoiRequestsList',
+          routeName: 'FoiRequestsMaster',
         })
       ),
   };

@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import React from 'react';
 
 import { foiRequestsFilterChange } from '../../actions/foiRequests';
-import { greyDark, grey } from '../../styles/colors';
+import { grey, greyDark } from '../../globals/colors';
 import { styles } from './styles';
 
 class FoiRequestsListHeader extends React.Component {

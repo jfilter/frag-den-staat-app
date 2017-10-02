@@ -1,5 +1,5 @@
+import { ORIGIN } from '../globals';
 import { fetchAndDispatch } from '../utils/networking';
-import { ORIGIN } from '../utils/globals.js';
 
 function searchFoiRequestsErrorAction(error) {
   return {

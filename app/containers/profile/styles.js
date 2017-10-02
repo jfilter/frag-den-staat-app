@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { greyLight } from '../../styles/colors';
+import { greyLight } from '../../globals/colors';
 
 const styles = StyleSheet.create({
   listItemContainer: {

@@ -1,7 +1,7 @@
 import { Text } from 'react-native';
 import React from 'react';
 
-import BlankContainer from '../BlankContainer';
+import BlankContainer from '../library/BlankContainer';
 
 const ProfileDataUsePolicy = () => (
   <BlankContainer>

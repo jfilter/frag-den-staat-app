@@ -1,18 +1,18 @@
-import React from 'react';
-import { View, StyleSheet, FlatList } from 'react-native';
+import { Icon, Text } from 'react-native-elements';
 import { connect } from 'react-redux';
-import { ListItem, Icon, Text } from 'react-native-elements';
+import React from 'react';
 
 import { foiRequestsFilterChange } from '../../actions/foiRequests';
-import { primaryColor } from '../../styles/colors.js';
-import { styles } from './styles';
+import BlankContainer from '../../components/library/BlankContainer';
 
 class FoiRequestsFilterCategoryScreen extends React.Component {
   render() {
     return (
-      <View style={styles.background}>
-        <Text>Not yet implemented. Come back later. ;)</Text>
-      </View>
+      <BlankContainer>
+        <Text>
+          Not yet implemented. This featuer will be included in future versions.
+        </Text>
+      </BlankContainer>
     );
   }
 }
@@ -29,16 +29,12 @@ FoiRequestsFilterCategoryScreen.navigationOptions = {
   ),
 };
 
-const mapStateToProps = state => {
-  return {};
-};
-
 const mapDispatchToProps = dispatch => {
   return {
     changeFilter: filter => dispatch(foiRequestsFilterChange(filter)),
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(
+export default connect(null, mapDispatchToProps)(
   FoiRequestsFilterCategoryScreen
 );

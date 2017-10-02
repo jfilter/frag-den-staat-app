@@ -1,4 +1,4 @@
-import { ORIGIN } from '../utils/globals';
+import { ORIGIN } from '../globals';
 import { fetchAndDispatch } from '../utils/networking';
 
 function publicBodiesPendingAction() {

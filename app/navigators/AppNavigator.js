@@ -1,36 +1,26 @@
-import React from 'react';
-import { View, BackHandler } from 'react-native';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { BackHandler } from 'react-native';
 import {
-  addNavigationHelpers,
-  TabNavigator,
   NavigationActions,
+  TabNavigator,
+  addNavigationHelpers,
 } from 'react-navigation';
 import { NavigationComponent } from 'react-native-material-bottom-navigation';
+import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import PropTypes from 'prop-types';
+import React from 'react';
 
+import { greyLight, primaryColor } from '../globals/colors';
+import NewRequestNavigator from './NewRequestNavigator';
 import ProfileNavigator from './ProfileNavigator';
-import foiRequestsNavigator from './FoiRequestsNavigator';
 import SearchNavigator from './SearchNavigator';
-import { primaryColor, greyDark, greyLight } from '../styles/colors';
-
-class NewRequest extends React.Component {
-  static navigationOptions = {
-    tabBarLabel: 'New',
-    tabBarIcon: () => <Icon size={24} color={greyDark} name="add" />,
-  };
-
-  render() {
-    return <View />;
-  }
-}
+import foiRequestsNavigator from './FoiRequestsNavigator';
 
 export const AppNavigator = TabNavigator(
   {
     Requests: { screen: foiRequestsNavigator },
     Search: { screen: SearchNavigator },
-    NewRequest: { screen: NewRequest },
+    NewRequest: { screen: NewRequestNavigator },
     Profile: { screen: ProfileNavigator },
   },
   {
@@ -57,7 +47,9 @@ export const AppNavigator = TabNavigator(
             activeIcon: <Icon size={24} color={primaryColor} name="add" />,
           },
           Profile: {
-            activeIcon: <Icon size={24} color={primaryColor} name="person" />,
+            activeIcon: (
+              <Icon size={24} color={primaryColor} name="more-horiz" />
+            ),
           },
         },
       },

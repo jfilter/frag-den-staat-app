@@ -2,10 +2,10 @@ import { Button } from 'react-native-elements';
 import { Linking, Text } from 'react-native';
 import React from 'react';
 
-import { primaryColor } from '../../styles/colors';
-import BlankContainer from '../BlankContainer';
-import FloatingHeading from '../text/FloatingHeading';
-import Heading from '../text/Heading';
+import { primaryColor } from '../../globals/colors';
+import BlankContainer from '../library/BlankContainer';
+import FloatingHeading from '../library/FloatingHeading';
+import Heading from '../library/Heading';
 
 const links = [
   {

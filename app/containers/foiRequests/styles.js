@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { greyDark, greyLight, primaryColor } from '../../styles/colors';
+import { greyDark, greyLight, primaryColor } from '../../globals/colors';
 
 export const LIST_HEADER_HEIGHT = 56;
 

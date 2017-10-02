@@ -1,11 +1,11 @@
 import { Platform } from 'react-native';
 
 import {
-  primaryColor,
-  secondaryColor,
   greyDark,
   greyLight,
-} from '../styles/colors';
+  primaryColor,
+  secondaryColor,
+} from '../globals/colors';
 
 const commonNavigationOptions = {
   headerTintColor: primaryColor,

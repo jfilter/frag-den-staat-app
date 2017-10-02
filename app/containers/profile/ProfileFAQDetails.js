@@ -2,8 +2,8 @@ import { Text } from 'react-native';
 import { connect } from 'react-redux';
 import React from 'react';
 
-import BlankContainer from '../../components/BlankContainer';
-import Heading from '../../components/text/Heading';
+import BlankContainer from '../../components/library/BlankContainer';
+import Heading from '../../components/library/Heading';
 import data from './FAQ';
 
 const ProfileFAQDetails = ({ id }) => (

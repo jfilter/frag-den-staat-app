@@ -1,20 +1,42 @@
-import { StackNavigator } from 'react-navigation';
+import { StackNavigator, TabNavigator } from 'react-navigation';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import React from 'react';
 
-import { commonNavigationOptions, iconColor, iconSize } from './styles';
-import FoiRequestsFilterNavigator from './FoiRequestsFilterNavigator';
-import FoiRequestsListScreen from '../containers/foiRequests/FoiRequestsListScreen';
-import FoiRequestsPublicBodyScreen from '../containers/foiRequests/FoiRequestsPublicBodyScreen';
-import FoiRequestsSingleScreen from '../containers/foiRequests/FoiRequestsSingleScreen';
+import {
+  commonNavigationOptions,
+  iconColor,
+  iconSize,
+  tabBarConfig,
+} from './styles';
+import FoiRequestsDetailsScreen from '../containers/foiRequests/FoiRequestsDetailsScreen';
+import FoiRequestsFilterCategoryScreen from '../containers/foiRequests/FoiRequestsFilterCategoryScreen';
+import FoiRequestsFilterJurisdictionScreen from '../containers/foiRequests/FoiRequestsFilterJurisdictionScreen';
+import FoiRequestsFilterStatusScreen from '../containers/foiRequests/FoiRequestsFilterStatusScreen';
 import FoiRequestsIntroScreen from '../containers/foiRequests/FoiRequestsIntroScreen';
-import PdfViewer from '../components/PdfViewer';
-import navigateOnce from './navigateOnce';
+import FoiRequestsMasterScreen from '../containers/foiRequests/FoiRequestsMasterScreen';
+import FoiRequestsPublicBodyScreen from '../containers/foiRequests/FoiRequestsPublicBodyScreen';
+import PdfViewer from '../components/library/PdfViewer';
+import navigateOnce from '../utils/navigateOnce';
+
+const FoiRequestsFilterNavigator = TabNavigator(
+  {
+    FoiRequestsFilterStatus: { screen: FoiRequestsFilterStatusScreen },
+    FoiRequestsFilterJurisdiction: {
+      screen: FoiRequestsFilterJurisdictionScreen,
+    },
+    FoiRequestsFilterCategory: { screen: FoiRequestsFilterCategoryScreen },
+    // FoiRequestsFilterPublicBody: { screen: FoiRequestsFilterPublicBodyScreen }, TODO: I am note quite sure if the app needs this additional filter. Maybe it's already enough. If it's the case, delete the failes
+  },
+  {
+    lazy: true,
+    ...tabBarConfig,
+  }
+);
 
 const FoiRequestsNavigator = StackNavigator(
   {
-    FoiRequestsList: { screen: FoiRequestsListScreen },
-    FoiRequestsSingle: { screen: FoiRequestsSingleScreen },
+    FoiRequestsMaster: { screen: FoiRequestsMasterScreen },
+    FoiRequestsDetails: { screen: FoiRequestsDetailsScreen },
     FoiRequestsFilter: { screen: FoiRequestsFilterNavigator },
     FoiRequestsPdfViewer: { screen: PdfViewer },
     FoiRequestsPublicBody: { screen: FoiRequestsPublicBodyScreen },
