@@ -184,6 +184,11 @@ FoiRequestsListScreen.navigationOptions = ({ navigation }) => {
       NavigationActions.navigate({ routeName: 'FoiRequestsFilter' })
     );
 
+  const navigateToIntro = () =>
+    navigation.dispatch(
+      NavigationActions.navigate({ routeName: 'FoiRequestsIntro' })
+    );
+
   return {
     headerTitle: (
       <Text
@@ -200,10 +205,7 @@ FoiRequestsListScreen.navigationOptions = ({ navigation }) => {
     ),
     headerBackTitle: null, // disables default
     headerLeft: (
-      <NavBarIcon
-        onPress={() => console.log('obj')}
-        iconName={'info-outline'}
-      />
+      <NavBarIcon onPress={navigateToIntro} iconName={'info-outline'} />
     ),
     headerRight: (
       <NavBarIcon onPress={navigateToFilter} iconName={'filter-list'} />

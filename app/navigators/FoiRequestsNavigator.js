@@ -7,6 +7,7 @@ import FoiRequestsFilterNavigator from './FoiRequestsFilterNavigator';
 import FoiRequestsListScreen from '../containers/foiRequests/FoiRequestsListScreen';
 import FoiRequestsPublicBodyScreen from '../containers/foiRequests/FoiRequestsPublicBodyScreen';
 import FoiRequestsSingleScreen from '../containers/foiRequests/FoiRequestsSingleScreen';
+import FoiRequestsIntroScreen from '../containers/foiRequests/FoiRequestsIntroScreen';
 import PdfViewer from '../components/PdfViewer';
 import navigateOnce from './navigateOnce';
 
@@ -17,6 +18,7 @@ const FoiRequestsNavigator = StackNavigator(
     FoiRequestsFilter: { screen: FoiRequestsFilterNavigator },
     FoiRequestsPdfViewer: { screen: PdfViewer },
     FoiRequestsPublicBody: { screen: FoiRequestsPublicBodyScreen },
+    FoiRequestsIntro: { screen: FoiRequestsIntroScreen },
   },
   {
     navigationOptions: {

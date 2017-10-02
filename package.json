@@ -2,11 +2,11 @@
   "name": "FragDenStaat",
   "version": "0.3.1",
   "private": true,
-  "license" : "MIT",
+  "license": "MIT",
   "author": "Johannes Filter <hi@jfilter.de> (https://johannesfilter.com)",
-  "repository" :
-  { "type" : "git"
-  , "url" : "https://github.com/jfilter/frag-den-staat-app"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jfilter/frag-den-staat-app"
   },
   "rnpm": {
     "assets": [
@@ -25,6 +25,7 @@
     "ramda": "^0.24.1",
     "react": "16.0.0-alpha.12",
     "react-native": "^0.48.3",
+    "react-native-app-intro": "^1.1.5",
     "react-native-collapsible": "^0.9.0",
     "react-native-elements": "^0.17.0",
     "react-native-fetch-blob": "^0.10.8",
