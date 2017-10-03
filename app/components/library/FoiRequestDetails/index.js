@@ -29,6 +29,7 @@ import Link from '../Link';
 import NavBarIcon from '../../foiRequests/NavBarIcon';
 import SubHeading from '../SubHeading';
 import Table from '../Table';
+import I18n from '../../../i18n';
 
 moment.locale('de', deLocal);
 
@@ -54,7 +55,7 @@ class FoiRequestDetails extends React.Component {
           <Button
             containerViewStyle={styles.viewPdfButton}
             backgroundColor={primaryColor}
-            title="VIEW PDF"
+            title={I18n.t('foiRequestDetails.viewPdf')}
             onPress={() => this.props.navigateToPdfViewer({ uri: att.url })}
             icon={{ name: 'remove-red-eye', color: 'white' }}
           />
@@ -78,7 +79,7 @@ class FoiRequestDetails extends React.Component {
               <Button
                 containerViewStyle={styles.downloadButton}
                 backgroundColor={primaryColor}
-                title="DOWNLOAD"
+                title={I18n.t('foiRequestDetails.download')}
                 icon={{ name: 'file-download', color: 'white' }}
                 onPress={() => Linking.openURL(att.url)}
               />
@@ -97,7 +98,9 @@ class FoiRequestDetails extends React.Component {
     if (msg.is_escalation) {
       escalation = (
         <View style={tableStyles.row}>
-          <Text style={tableStyles.item1}>Escalated to:</Text>
+          <Text style={tableStyles.item1}>
+            {I18n.t('foiRequestDetails.esclatedTo')}
+          </Text>
           <TouchableHighlight
             style={[tableStyles.item2, styles.linkTouchable]}
             underlayColor={grey}
@@ -112,23 +115,31 @@ class FoiRequestDetails extends React.Component {
       <View style={styles.msgContent}>
         {this._renderAttachments(msg.attachments)}
         <View style={tableStyles.row}>
-          <Text style={tableStyles.item1}>From:</Text>
+          <Text style={tableStyles.item1}>
+            {I18n.t('foiRequestDetails.from')}
+          </Text>
           <Text style={tableStyles.item2}>{msg.sender}</Text>
         </View>
         <View style={tableStyles.row}>
-          <Text style={tableStyles.item1}>On:</Text>
+          <Text style={tableStyles.item1}>
+            {I18n.t('foiRequestDetails.on')}
+          </Text>
           <Text style={tableStyles.item2}>
             {moment(msg.timestamp).format('LLLL')}
           </Text>
         </View>
         {escalation}
         <View style={tableStyles.row}>
-          <Text style={tableStyles.item1}>Subject:</Text>
+          <Text style={tableStyles.item1}>
+            {I18n.t('foiRequestDetails.subject')}
+          </Text>
           <Text style={tableStyles.item2}>{msg.subject}</Text>
         </View>
         <Divider style={styles.dividerBeforeMessageContent} />
         <Text>
-          {msg.content_hidden ? 'Not yet visible.' : msg.content.trim()}
+          {msg.content_hidden
+            ? I18n.t('foiRequestDetails.notYetVisible')
+            : msg.content.trim()}
         </Text>
       </View>
     );
@@ -146,42 +157,42 @@ class FoiRequestDetails extends React.Component {
       law,
     } = this.props.request;
 
-    const { statusName } = getPrintableStatus(status, resolution);
+    const { realStatus } = getPrintableStatus(status, resolution);
 
     const tableData = [
       {
-        label: 'Status',
-        value: <Text>{statusName}</Text>,
+        label: I18n.t('status'),
+        value: <Text>{I18n.t(realStatus)}</Text>,
       },
     ];
 
     if (refusalReason) {
       tableData.push({
-        label: 'Refusal Reason',
+        label: I18n.t('foiRequestDetails.refusalReason'),
         value: <Text>{refusalReason}</Text>,
       });
     }
 
     if (costs && costs !== 0) {
       tableData.push({
-        label: 'Costs',
+        label: I18n.t('foiRequestDetails.costs'),
         value: <Text>{costs}</Text>,
       });
     }
 
     tableData.push({
-      label: 'Started on',
+      label: I18n.t('foiRequestDetails.startedOn'),
       value: <Text>{moment(firstMessage).format('LLL')}</Text>,
     });
 
     tableData.push({
-      label: 'Last Message',
+      label: I18n.t('foiRequestDetails.lastMessage'),
       value: <Text>{moment(lastMessage).format('LLL')}</Text>,
     });
 
     if (dueDate) {
       tableData.push({
-        label: 'Due Date',
+        label: I18n.t('foiRequestDetails.dueDate'),
         value: <Text>{moment(dueDate).format('LL')}</Text>,
       });
     }
@@ -190,7 +201,7 @@ class FoiRequestDetails extends React.Component {
 
     if (lawName && lawUrl) {
       tableData.push({
-        label: 'Law',
+        label: I18n.t('foiRequestDetails.law'),
         value: <Link label={breakLongWords(lawName)} url={lawUrl} />,
       });
     }
@@ -293,7 +304,9 @@ class FoiRequestDetails extends React.Component {
       <BlankContainer>
         <Heading style={styles.heading}>{title}</Heading>
         <View>
-          <Text style={styles.subheadingTo}>to</Text>
+          <Text style={styles.subheadingTo}>
+            {I18n.t('foiRequestDetails.to')}
+          </Text>
           {subheading}
         </View>
         {this._renderTable()}

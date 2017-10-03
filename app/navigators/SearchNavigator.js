@@ -15,6 +15,7 @@ import SearchResultsFoiRequestsMasterScreen from '../containers/search/SearchRes
 import SearchResultsPublicBodiesMasterScreen from '../containers/search/SearchResultsPublicBodiesMasterScreen';
 import SearchStartScreen from '../containers/search/SearchStartScreen';
 import navigateOnce from '../utils/navigateOnce';
+import I18n from '../i18n';
 
 const SearchResultsNavigator = TabNavigator(
   {
@@ -39,7 +40,7 @@ const SearchNavigator = StackNavigator(
   {
     navigationOptions: {
       ...commonNavigationOptions,
-      tabBarLabel: 'Search',
+      tabBarLabel: I18n.t('search'),
       tabBarIcon: () => (
         <Icon size={iconSize} color={iconColor} name="search" />
       ),

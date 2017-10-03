@@ -1,25 +1,16 @@
-import React from 'react';
-import {
-  FlatList,
-  Text,
-  View,
-  ActivityIndicator,
-  Animated,
-  RefreshControl,
-  Alert,
-} from 'react-native';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import { FlatList, View } from 'react-native';
 import { NavigationActions } from 'react-navigation';
 import { SearchBar, ListItem } from 'react-native-elements';
-import moment from 'moment';
+import { connect } from 'react-redux';
+import React from 'react';
 
+import { insertPastQuery, getPastQueries } from '../../data/db/dbHelper';
 import {
   searchUpdateQuery,
   searchUpdatePastQueries,
 } from '../../actions/search';
-import { insertPastQuery, getPastQueries } from '../../data/db/dbHelper';
 import { styles } from './styles';
+import I18n from '../../i18n';
 
 class SearchStartScreen extends React.Component {
   componentDidMount() {
@@ -62,8 +53,8 @@ class SearchStartScreen extends React.Component {
           lightTheme
           clearIcon={{ color: '#86939e', name: 'clear' }}
           textInputRef="searchInput"
-          onChangeText={() => console.log('x')}
-          placeholder="Search"
+          // onChangeText={() => console.log('x')}
+          placeholder={I18n.t('search')}
           onSubmitEditing={this._onSubmitSearchBar}
           autoFocus
           autoCorrect={false}
@@ -80,7 +71,7 @@ class SearchStartScreen extends React.Component {
 }
 
 SearchStartScreen.navigationOptions = {
-  title: 'Search',
+  title: I18n.t('search'),
   header: null,
 };
 

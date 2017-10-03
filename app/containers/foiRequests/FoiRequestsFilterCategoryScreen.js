@@ -4,22 +4,21 @@ import React from 'react';
 
 import { foiRequestsFilterChange } from '../../actions/foiRequests';
 import BlankContainer from '../../components/library/BlankContainer';
+import I18n from '../../i18n';
 
 class FoiRequestsFilterCategoryScreen extends React.Component {
   render() {
     return (
       <BlankContainer>
-        <Text>
-          Not yet implemented. This featuer will be included in future versions.
-        </Text>
+        <Text>{I18n.t('notYetImplemented')}</Text>
       </BlankContainer>
     );
   }
 }
 
 FoiRequestsFilterCategoryScreen.navigationOptions = {
-  title: 'Filter',
-  tabBarLabel: 'Category',
+  title: I18n.t('filter'),
+  tabBarLabel: I18n.t('category'),
   tabBarIcon: ({ tintColor }) => (
     <Icon
       name="format-list-bulleted-type"

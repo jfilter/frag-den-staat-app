@@ -99,10 +99,9 @@ function buildUrl(filter, nPage, isRefreshing) {
     // }
   }
 
-  const paramsAsString =
-    '?' + [...params].map(x => `${x[0]}=${x[1]}`).join('&');
+  const paramsAsString = [...params].map(x => `${x[0]}=${x[1]}`).join('&');
 
-  return `${url}${paramsAsString}`;
+  return `${url}?${paramsAsString}`;
 }
 
 function fetchRequests(beforeFetchDispatchedAction, onSuccessFetch) {

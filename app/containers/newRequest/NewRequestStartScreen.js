@@ -2,14 +2,13 @@ import { Text } from 'react-native';
 import React from 'react';
 
 import BlankContainer from '../../components/library/BlankContainer';
+import I18n from '../../i18n';
 
 export class NewRequestStartScreen extends React.Component {
   render() {
     return (
       <BlankContainer>
-        <Text>
-          Not yet implemented. This featuer will be included in future versions.
-        </Text>
+        <Text>{I18n.t('notYetImplemented')}</Text>
       </BlankContainer>
     );
   }

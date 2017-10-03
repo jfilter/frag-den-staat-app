@@ -8,6 +8,7 @@ import { getItemById, shortenJurisdiction } from '../../utils';
 import { renderSeparator } from '../../components/ListRenderer';
 import { styles } from './styles';
 import jurisdictionList from '../../data/jurisdiction';
+import I18n from '../../i18n';
 
 class FoiRequestsFilterJurisdictionScreen extends React.Component {
   _onSwitch = (id, switched) => {
@@ -54,8 +55,8 @@ class FoiRequestsFilterJurisdictionScreen extends React.Component {
 }
 
 FoiRequestsFilterJurisdictionScreen.navigationOptions = {
-  title: 'Filter',
-  tabBarLabel: 'Jurisdiction',
+  title: I18n.t('filter'),
+  tabBarLabel: I18n.t('jurisdiction'),
   tabBarIcon: ({ tintColor }) => (
     <Icon name="scale-balance" type="material-community" color={tintColor} />
   ),

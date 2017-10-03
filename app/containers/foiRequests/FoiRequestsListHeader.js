@@ -7,6 +7,7 @@ import React from 'react';
 import { foiRequestsFilterChange } from '../../actions/foiRequests';
 import { grey, greyDark } from '../../globals/colors';
 import { styles } from './styles';
+import I18n from '../../i18n';
 
 class FoiRequestsListHeader extends React.Component {
   render() {
@@ -14,13 +15,15 @@ class FoiRequestsListHeader extends React.Component {
 
     const jurisdictionLabel = jurisdiction
       ? `${jurisdiction.label}`.toUpperCase()
-      : 'ALL';
+      : I18n.t('all').toUpperCase();
 
-    const statusLabel = status ? `${status.label}`.toUpperCase() : 'ALL';
+    const statusLabel = status
+      ? `${status.label}`.toUpperCase()
+      : I18n.t('all').toUpperCase();
 
     // TODO
     const filterCategory = this.props.filter.category;
-    let filterCategoryText = 'ALL';
+    let filterCategoryText = I18n.t('all').toUpperCase();
 
     if (filterCategory) {
       // const categoryName = CategoryFile.find(getItemById(filterCategory)).name;
@@ -36,7 +39,9 @@ class FoiRequestsListHeader extends React.Component {
         >
           <View>
             <View style={styles.align}>
-              <Text style={styles.label}>JURISDICTION</Text>
+              <Text style={styles.label}>
+                {I18n.t('jurisdiction').toUpperCase()}
+              </Text>
               <Icon
                 name="arrow-drop-down"
                 color={greyDark}
@@ -58,7 +63,9 @@ class FoiRequestsListHeader extends React.Component {
         >
           <View>
             <View style={styles.align}>
-              <Text style={styles.label}>CATEGORY</Text>
+              <Text style={styles.label}>
+                {I18n.t('category').toUpperCase()}
+              </Text>
               <Icon
                 name="arrow-drop-down"
                 color={greyDark}
@@ -81,7 +88,9 @@ class FoiRequestsListHeader extends React.Component {
         <View style={[styles.item, styles.publicBody]}>
           <View style={styles.align}>
             <View style={styles.pbLabel}>
-              <Text style={styles.label}>PUBLIC BODY</Text>
+              <Text style={styles.label}>
+                {I18n.t('publicBody').toUpperCase()}
+              </Text>
               <Text style={styles.selection} numberOfLines={2}>
                 {publicBody.label.toUpperCase()}
               </Text>
@@ -115,7 +124,9 @@ class FoiRequestsListHeader extends React.Component {
             >
               <View>
                 <View style={styles.align}>
-                  <Text style={styles.label}>STATUS</Text>
+                  <Text style={styles.label}>
+                    {I18n.t('status').toUpperCase()}
+                  </Text>
                   <Icon
                     name="arrow-drop-down"
                     color={greyDark}

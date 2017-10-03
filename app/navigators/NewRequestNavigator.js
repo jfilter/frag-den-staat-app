@@ -6,6 +6,7 @@ import { NewRequestStartScreen } from '../containers/newRequest/NewRequestStartS
 import { commonNavigationOptions } from './styles';
 import { greyDark } from '../globals/colors';
 import navigateOnce from '../utils/navigateOnce';
+import I18n from '../i18n';
 
 const NewRequestNavigator = StackNavigator(
   {
@@ -14,7 +15,7 @@ const NewRequestNavigator = StackNavigator(
   {
     navigationOptions: {
       ...commonNavigationOptions,
-      tabBarLabel: 'New',
+      tabBarLabel: I18n.t('new'),
       tabBarIcon: () => <Icon size={24} color={greyDark} name="add" />,
     },
   }

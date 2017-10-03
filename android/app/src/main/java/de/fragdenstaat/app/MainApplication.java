@@ -3,6 +3,7 @@ package de.fragdenstaat.app;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.AlexanderZaytsev.RNI18n.RNI18nPackage;
 import io.realm.react.RealmReactPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import org.wonday.pdf.RCTPdfView;
@@ -32,6 +33,7 @@ public class MainApplication extends Application implements ReactApplication {
       return Arrays.<ReactPackage>asList(
           new RNHockeyAppPackage(MainApplication.this),
           new MainReactPackage(),
+            new RNI18nPackage(),
             new RealmReactPackage(),
             new VectorIconsPackage(),
             new RCTPdfView(),

@@ -9,6 +9,7 @@ import BlankContainer from '../BlankContainer';
 import Heading from '../Heading';
 import Link from '../Link';
 import Table from '../Table';
+import I18n from '../../../i18n';
 
 const PublicBodyDetails = ({
   publicBody,
@@ -34,7 +35,7 @@ const PublicBodyDetails = ({
     contact,
     description,
     tags,
-    number_of_requests,
+    number_of_requests: nRequests,
   } = publicBody;
   const jurisdiction = (
     <Link
@@ -47,39 +48,42 @@ const PublicBodyDetails = ({
   const printableTags =
     tags.length > 0 ? tags.map(x => x.name).join(', ') : null;
   const tableData = [
-    { label: 'Jurisdiction', value: jurisdiction },
+    { label: I18n.t('jurisdiction'), value: jurisdiction },
     {
-      label: 'Classification',
+      label: I18n.t('classification'),
       value: <Text>{classification}</Text>,
     },
-    { label: 'Website', value: website },
+    { label: I18n.t('website'), value: website },
     {
-      label: 'Email',
+      label: I18n.t('email'),
       value: <Text>{email}</Text>,
     },
     {
-      label: 'Address',
+      label: I18n.t('address'),
       value: <Text>{address}</Text>,
     },
     {
-      label: 'Contact',
+      label: I18n.t('contact'),
       value: <Text>{contact}</Text>,
     },
     {
-      label: 'Description',
+      label: I18n.t('description'),
       value: <Text>{description}</Text>,
     },
     {
-      label: 'Tags',
+      label: I18n.t('tags'),
       value: <Text>{printableTags}</Text>,
     },
   ];
 
-  const title = `Show ${number_of_requests} Requests`;
-  const buttondisabled = number_of_requests === 0 ? true : false;
+  const title =
+    (nRequests > 0 ? 'Show ' : '') +
+    I18n.t('countingRequests', {
+      count: nRequests,
+    });
   const showRequestsButton = (
     <Button
-      disabled={buttondisabled}
+      disabled={nRequests === 0}
       containerViewStyle={styles.button}
       icon={{ name: 'mail' }}
       title={title}
@@ -117,7 +121,7 @@ PublicBodyDetails.propTypes = {
 };
 
 PublicBodyDetails.navigationOptions = {
-  title: 'Public Body',
+  title: I18n.t('publicBody'),
 };
 
 export default PublicBodyDetails;

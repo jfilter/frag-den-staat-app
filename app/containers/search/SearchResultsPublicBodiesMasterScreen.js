@@ -1,8 +1,8 @@
-import React from 'react';
-import { View, Text, FlatList } from 'react-native';
-import { NavigationActions } from 'react-navigation';
-import { connect } from 'react-redux';
 import { ListItem, Icon } from 'react-native-elements';
+import { NavigationActions } from 'react-navigation';
+import { View, FlatList } from 'react-native';
+import { connect } from 'react-redux';
+import React from 'react';
 
 import { renderFooter, renderSeparator } from '../../components/ListRenderer';
 import {
@@ -10,8 +10,8 @@ import {
   searchPublicBodiesErrorClearAction,
 } from '../../actions/search';
 import { styles } from './styles';
-
 import listItemStyles from '../../components/ListRenderer/styles';
+import I18n from '../../i18n';
 
 class SearchResultsPublicBodiesMasterScreen extends React.Component {
   componentDidMount() {
@@ -19,18 +19,9 @@ class SearchResultsPublicBodiesMasterScreen extends React.Component {
   }
 
   _renderItem = ({ item }) => {
-    let nRequestsAsText;
-    switch (item.number_of_requests) {
-      case 0:
-        nRequestsAsText = 'no requests';
-        break;
-      case 1:
-        nRequestsAsText = '1 request';
-        break;
-      default:
-        nRequestsAsText = `${item.number_of_requests} requests`;
-    }
-    const subtittle = `${item.jurisdiction.name}, ${nRequestsAsText}`;
+    const subtittle = `${item.jurisdiction.name}, ${I18n.t('countingRequests', {
+      count: item.number_of_requests,
+    })}`;
 
     return (
       <ListItem

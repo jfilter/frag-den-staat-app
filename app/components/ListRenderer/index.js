@@ -7,11 +7,13 @@ import { getPrintableStatus, shortenJurisdiction } from '../../utils';
 import { getPublicBodyNameAndJurisdiction } from '../../utils/fakeApi';
 import { primaryColor, primaryColorLight } from '../../globals/colors';
 import styles from './styles';
+import I18n from '../../i18n';
 
-const renderNumberOfResultHeader = nResults => {
-  const nResultsText = nResults >= 0 ? `${nResults} REQUESTS` : null;
-  return <Text style={styles.nResults}>{nResultsText}</Text>;
-};
+const renderNumberOfResultHeader = nResults => (
+  <Text style={styles.nResults}>
+    {nResults >= 0 && I18n.t('countingRequests', { count: nResults })}
+  </Text>
+);
 
 const renderFooter = isPending => {
   if (!isPending) return null;
@@ -32,7 +34,7 @@ const renderItem = (item, onPress) => {
 
   const lastContact = item.last_message || item.first_message;
   const timeAgo = moment(lastContact).fromNow();
-  let subtitle = `${statusName}, ${timeAgo}`;
+  let subtitle = `${I18n.t(realStatus)}, ${timeAgo}`;
   const { publicBodyName, jurisdictionName } = getPublicBodyNameAndJurisdiction(
     item.public_body
   );

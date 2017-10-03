@@ -17,6 +17,7 @@ import FoiRequestsMasterScreen from '../containers/foiRequests/FoiRequestsMaster
 import FoiRequestsPublicBodyScreen from '../containers/foiRequests/FoiRequestsPublicBodyScreen';
 import PdfViewer from '../components/library/PdfViewer';
 import navigateOnce from '../utils/navigateOnce';
+import I18n from '../i18n';
 
 const FoiRequestsFilterNavigator = TabNavigator(
   {
@@ -45,7 +46,7 @@ const FoiRequestsNavigator = StackNavigator(
   {
     navigationOptions: {
       ...commonNavigationOptions,
-      tabBarLabel: 'Requests',
+      tabBarLabel: I18n.t('requests'),
       tabBarIcon: () => <Icon size={iconSize} color={iconColor} name="list" />,
     },
   }
