@@ -1,9 +1,35 @@
+import cache from 'react-native-modest-cache';
+
 const userAgent = __DEV__ ? 'FragDenStaat App Development' : 'FragDenStaat App';
 
 const headers = {
   Accept: 'application/json',
   'User-Agent': userAgent,
 };
+
+function getFromCacheOrFetch(url) {
+  return new Promise((resolve, reject) => {
+    cache.get(url).then(value => {
+      if (value) {
+        resolve(value);
+      } else {
+        fetch(encodeURI(url), { headers })
+          .then(response => {
+            if (!response.ok) {
+              reject(response.status);
+            }
+            setTimeout(() => null, 0); // workaround for issue-6679
+            return response;
+          })
+          .then(response => response.json())
+          .then(response => {
+            cache.set(url, response);
+            resolve(response);
+          });
+      }
+    });
+  });
+}
 
 /**
  * Fetches data from the URL and dispatches action creators according to the state of the fetching process.
@@ -22,15 +48,7 @@ function fetchAndDispatch(
   onErrorFetch
 ) {
   dispatch(beforeFetch());
-  fetch(encodeURI(url), { headers })
-    .then(response => {
-      if (!response.ok) {
-        throw Error(response.status);
-      }
-      setTimeout(() => null, 0); // workaround for issue-6679
-      return response;
-    })
-    .then(response => response.json())
+  getFromCacheOrFetch(url)
     .then(onSuccessFetch)
     .catch(error => dispatch(onErrorFetch(error.message)));
 }

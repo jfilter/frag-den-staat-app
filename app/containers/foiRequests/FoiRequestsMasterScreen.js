@@ -12,6 +12,7 @@ import { NavigationActions } from 'react-navigation';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
+import cache from 'react-native-modest-cache';
 
 import { LIST_HEADER_HEIGHT, styles } from './styles';
 import {
@@ -96,6 +97,7 @@ class FoiRequestsMasterScreen extends React.Component {
   };
 
   _refreshData = () => {
+    cache.flush(); // NB: This deletes the *whole* cache and not only for the current filter
     this.props.refreshData();
   };
 
