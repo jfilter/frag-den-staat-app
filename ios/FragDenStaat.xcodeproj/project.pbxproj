@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -53,6 +54,7 @@
 		AC443B227317426896571D1C /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 584D024D8F8445CC91E4F218 /* MaterialIcons.ttf */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
 		B2444A4123344D8BAB879915 /* libRNInstabug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3A5EFD60F6E741AA984B7A3F /* libRNInstabug.a */; };
+		BB5BB6EF759A4C8AB3EAEAC2 /* libRNI18n.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 525065397FD24E12B3AB7158 /* libRNI18n.a */; };
 		BFE4BC86664C499C9E8614FF /* Kreon-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5A2420F055224BCCBB35ADEA /* Kreon-Light.ttf */; };
 		C84EDA68EEE14B3EA2674A66 /* Kreon-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE73BC6328624308B94CA560 /* Kreon-Bold.ttf */; };
 		D85E97F242FB4569A0D2399F /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C1FE8012372493D8F4948AB /* libc++.tbd */; };
@@ -60,7 +62,6 @@
 		F1D23DABED0A433FBDE96253 /* libRealmReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E319937E727444E091938228 /* libRealmReact.a */; };
 		F865504B67A34C8AAC162150 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 75A75DE930A742D8ADE05080 /* Zocial.ttf */; };
 		F9F7DBB7A2F1456A9EBFF572 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 79029C9026DA4086B515812D /* EvilIcons.ttf */; };
-		BB5BB6EF759A4C8AB3EAEAC2 /* libRNI18n.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 525065397FD24E12B3AB7158 /* libRNI18n.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -337,6 +338,20 @@
 			remoteGlobalIDString = 134814201AA4EA6300B7C361;
 			remoteInfo = RNStoreReview;
 		};
+		C3B53BDD1F840B8900CC0625 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4EE2183CB2CD44F08E311A43 /* RNI18n.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RNI18n;
+		};
+		C3B53BDF1F840B8900CC0625 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4EE2183CB2CD44F08E311A43 /* RNI18n.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6476C4051EEAA69700B10F51;
+			remoteInfo = "RNI18n-tvOS";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -385,6 +400,8 @@
 		3A5EFD60F6E741AA984B7A3F /* libRNInstabug.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNInstabug.a; sourceTree = "<group>"; };
 		407162A085604286AF2CC81D /* RCTPdf.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RCTPdf.xcodeproj; path = "../node_modules/react-native-pdf/ios/RCTPdf.xcodeproj"; sourceTree = "<group>"; };
 		42A31E40CDA54BD0A582CCCD /* libRNFetchBlob.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNFetchBlob.a; sourceTree = "<group>"; };
+		4EE2183CB2CD44F08E311A43 /* RNI18n.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNI18n.xcodeproj; path = "../node_modules/react-native-i18n/ios/RNI18n.xcodeproj"; sourceTree = "<group>"; };
+		525065397FD24E12B3AB7158 /* libRNI18n.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNI18n.a; sourceTree = "<group>"; };
 		584D024D8F8445CC91E4F218 /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
 		5A2420F055224BCCBB35ADEA /* Kreon-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Kreon-Light.ttf"; path = "../assets/fonts/Kreon/Kreon-Light.ttf"; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
@@ -408,8 +425,6 @@
 		E319937E727444E091938228 /* libRealmReact.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRealmReact.a; sourceTree = "<group>"; };
 		EDED181E10B14350B38DF66B /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
 		F8A64E639A30412EA64E489A /* libRNStoreReview.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNStoreReview.a; sourceTree = "<group>"; };
-		4EE2183CB2CD44F08E311A43 /* RNI18n.xcodeproj */ = {isa = PBXFileReference; name = "RNI18n.xcodeproj"; path = "../node_modules/react-native-i18n/ios/RNI18n.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		525065397FD24E12B3AB7158 /* libRNI18n.a */ = {isa = PBXFileReference; name = "libRNI18n.a"; path = "libRNI18n.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -715,6 +730,7 @@
 				098A4B871CFE4A7E97F7C182 /* libRNVectorIcons.a */,
 				E319937E727444E091938228 /* libRealmReact.a */,
 				F8A64E639A30412EA64E489A /* libRNStoreReview.a */,
+				525065397FD24E12B3AB7158 /* libRNI18n.a */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -763,6 +779,15 @@
 			isa = PBXGroup;
 			children = (
 				C3A4DB3C1F72EDF200C41E9A /* libRNStoreReview.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C3B53BD91F840B8900CC0625 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C3B53BDE1F840B8900CC0625 /* libRNI18n.a */,
+				C3B53BE01F840B8900CC0625 /* libRNI18n-tvOS.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -944,6 +969,10 @@
 				{
 					ProductGroup = C37DB7B51F7196E500BEE852 /* Products */;
 					ProjectRef = 18FFD6D945224751B00A8A4B /* RNFetchBlob.xcodeproj */;
+				},
+				{
+					ProductGroup = C3B53BD91F840B8900CC0625 /* Products */;
+					ProjectRef = 4EE2183CB2CD44F08E311A43 /* RNI18n.xcodeproj */;
 				},
 				{
 					ProductGroup = C37DB7A61F7196E400BEE852 /* Products */;
@@ -1226,6 +1255,20 @@
 			fileType = archive.ar;
 			path = libRNStoreReview.a;
 			remoteRef = C3A4DB3B1F72EDF200C41E9A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C3B53BDE1F840B8900CC0625 /* libRNI18n.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNI18n.a;
+			remoteRef = C3B53BDD1F840B8900CC0625 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C3B53BE01F840B8900CC0625 /* libRNI18n-tvOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libRNI18n-tvOS.a";
+			remoteRef = C3B53BDF1F840B8900CC0625 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
