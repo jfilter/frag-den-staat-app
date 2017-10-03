@@ -2,12 +2,13 @@ import { ListItem } from 'react-native-elements';
 import { View, Text, ActivityIndicator, Image } from 'react-native';
 import React from 'react';
 import moment from 'moment';
+import 'moment/locale/de';
 
 import { getPrintableStatus, shortenJurisdiction } from '../../utils';
 import { getPublicBodyNameAndJurisdiction } from '../../utils/fakeApi';
 import { primaryColor, primaryColorLight } from '../../globals/colors';
-import styles from './styles';
 import I18n from '../../i18n';
+import styles from './styles';
 
 const renderNumberOfResultHeader = nResults => (
   <Text style={styles.nResults}>
@@ -24,6 +25,9 @@ const renderFooter = isPending => {
     </View>
   );
 };
+
+const locale = I18n.currentLocale().substring(0, 2);
+moment.locale(locale);
 
 const renderItem = (item, onPress) => {
   const { statusName, realStatus } = getPrintableStatus(

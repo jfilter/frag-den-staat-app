@@ -7,11 +7,11 @@ import {
   TouchableHighlight,
   View,
 } from 'react-native';
+import Accordion from 'react-native-collapsible/Accordion';
 import PropTypes from 'prop-types';
 import React from 'react';
 import moment from 'moment';
-import deLocal from 'moment/locale/de';
-import Accordion from 'react-native-collapsible/Accordion';
+import 'moment/locale/de';
 
 import { ORIGIN } from '../../../globals';
 import { breakLongWords } from '../../../utils/strings';
@@ -25,15 +25,18 @@ import { styles } from './styles';
 import { styles as tableStyles } from '../Table/styles';
 import BlankContainer from '../BlankContainer';
 import Heading from '../Heading';
+import I18n from '../../../i18n';
 import Link from '../Link';
 import NavBarIcon from '../../foiRequests/NavBarIcon';
 import SubHeading from '../SubHeading';
 import Table from '../Table';
-import I18n from '../../../i18n';
-
-moment.locale('de', deLocal);
 
 class FoiRequestDetails extends React.Component {
+  componentDidMount() {
+    const locale = I18n.currentLocale().substring(0, 2);
+    moment.locale(locale);
+  }
+
   _renderMessageHeader = msg => (
     <View style={[tableStyles.row, styles.msgHeader]}>
       <Text style={[tableStyles.item1, styles.link]}>
