@@ -8,6 +8,25 @@ import * as StoreReview from 'react-native-store-review';
 import { styles } from './styles';
 import BlankContainer from '../../components/library/BlankContainer';
 import SectionHeading from '../../components/library/SectionHeading';
+import I18n from '../../i18n';
+
+/*
+      <SectionHeading style={{ paddingTop: 0 }}>
+        {I18n.t('account')}
+      </SectionHeading>
+      <ListItem
+        containerStyle={[styles.listItemContainer, styles.firstItemContainer]}
+        title="Login"
+        leftIcon={{ name: 'login-variant', type: 'material-community' }}
+        onPress={() => console.log('login')}
+      />
+      <ListItem
+        containerStyle={[styles.listItemContainer]}
+        title="Register"
+        leftIcon={{ name: 'account-plus', type: 'material-community' }}
+        onPress={() => console.log('register')}
+      />
+*/
 
 const ProfileStartScreen = ({
   navigateToAboutApp,
@@ -22,78 +41,65 @@ const ProfileStartScreen = ({
 }) => {
   return (
     <BlankContainer innerStyle={{ paddingHorizontal: 0 }}>
-      <SectionHeading style={{ paddingTop: 0 }}>Account</SectionHeading>
+      <SectionHeading>{I18n.t('information')}</SectionHeading>
       <ListItem
         containerStyle={[styles.listItemContainer, styles.firstItemContainer]}
-        title="Login"
-        leftIcon={{ name: 'login-variant', type: 'material-community' }}
-        onPress={() => console.log('login')}
-      />
-      <ListItem
-        containerStyle={[styles.listItemContainer]}
-        title="Register"
-        leftIcon={{ name: 'account-plus', type: 'material-community' }}
-        onPress={() => console.log('register')}
-      />
-      <SectionHeading>Information</SectionHeading>
-      <ListItem
-        containerStyle={[styles.listItemContainer, styles.firstItemContainer]}
-        title="Einführungs-Video"
+        title={I18n.t('moreScreen.video')}
         leftIcon={{ name: 'ondemand-video' }}
         onPress={navigateToIntroVideo}
       />
       <ListItem
         containerStyle={[styles.listItemContainer]}
-        title="Über Frag Den Staat"
+        title={I18n.t('moreScreen.aboutFDS')}
         leftIcon={{ name: 'info' }}
         onPress={navigateToAboutApp}
       />
       <ListItem
         containerStyle={styles.listItemContainer}
-        title="Über Informationsfreiheit"
+        title={I18n.t('moreScreen.aboutFOI')}
         leftIcon={{ name: 'info' }}
         onPress={navigateToAboutFOIMaster}
       />
       <ListItem
         containerStyle={styles.listItemContainer}
-        title="Fragen und Antworten"
+        title={I18n.t('moreScreen.faq')}
         leftIcon={{ name: 'question-answer' }}
         onPress={navigateToFAQ}
       />
-      <SectionHeading>Miscellaneous</SectionHeading>
+      <SectionHeading>{I18n.t('miscellaneous')}</SectionHeading>
       <ListItem
         containerStyle={[styles.listItemContainer, styles.firstItemContainer]}
-        title="Kontakt und Impressum"
+        title={I18n.t('moreScreen.contact')}
         leftIcon={{ name: 'mail' }}
         onPress={navigateToContact}
       />
       <ListItem
         containerStyle={styles.listItemContainer}
-        title="Datenschutzerklärung"
+        title={I18n.t('moreScreen.dataUse')}
         leftIcon={{ name: 'scale-balance', type: 'material-community' }}
         onPress={navigateToDataUsePolicy}
       />
       <ListItem
         containerStyle={styles.listItemContainer}
-        title="Nutzungsbedingungen"
+        title={I18n.t('moreScreen.tos')}
         leftIcon={{ name: 'scale-balance', type: 'material-community' }}
         onPress={navigateToTermsOfUse}
       />
       <ListItem
         containerStyle={styles.listItemContainer}
-        title="Acknowledgements"
+        title={I18n.t('moreScreen.acknowledgements')}
         leftIcon={{ name: 'copyright' }}
         onPress={navigateToAcknowledgements}
       />
       <ListItem
         containerStyle={styles.listItemContainer}
-        title="Feedback und Fehlermeldungen"
+        title={I18n.t('moreScreen.feedback')}
         leftIcon={{ name: 'feedback' }}
         onPress={navigateToFeedback}
       />
       <ListItem
         containerStyle={styles.listItemContainer}
-        title="Rate this App"
+        title={I18n.t('moreScreen.rate')}
         leftIcon={{ name: 'star' }}
         onPress={() => {
           if (Platform.OS === 'ios' && StoreReview.isAvailable) {
@@ -108,7 +114,7 @@ const ProfileStartScreen = ({
       <SectionHeading>Links</SectionHeading>
       <ListItem
         containerStyle={[styles.listItemContainer, styles.firstItemContainer]}
-        title="Tue etwas Gutes. Spende an uns!"
+        title={I18n.t('moreScreen.donate')}
         leftIcon={{ name: 'euro-symbol' }}
         rightIcon={{ name: 'link' }}
         onPress={() =>
@@ -116,7 +122,7 @@ const ProfileStartScreen = ({
       />
       <ListItem
         containerStyle={styles.listItemContainer}
-        title="Aktuelles im Blog"
+        title={I18n.t('moreScreen.blog')}
         leftIcon={{ name: 'library-books', type: 'material-community' }}
         rightIcon={{ name: 'link' }}
         onPress={() => Linking.openURL('http://blog.fragdenstaat.de')}
@@ -124,7 +130,7 @@ const ProfileStartScreen = ({
       <ListItem
         containerStyle={styles.listItemContainer}
         leftIcon={{ name: 'mic' }}
-        title="Presse"
+        title={I18n.t('moreScreen.press')}
         rightIcon={{ name: 'link' }}
         onPress={() =>
           Linking.openURL('https://fragdenstaat.de/hilfe/ueber/presse/')}

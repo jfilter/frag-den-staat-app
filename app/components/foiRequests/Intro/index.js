@@ -8,6 +8,7 @@ import {
   primaryColorLight,
   secondaryColor,
 } from '../../../globals/colors';
+import I18n from '../../../i18n';
 
 class Intro extends React.Component {
   continue = async () => {
@@ -75,6 +76,8 @@ class Intro extends React.Component {
     ];
     return (
       <AppIntro
+        skipBtnLabel={I18n.t('skip')}
+        doneBtnLabel={I18n.t('done')}
         customStyles={{ btnContainer: { flex: 1 } }}
         onDoneBtnClick={this.continue}
         onSkipBtnClick={this.continue}
