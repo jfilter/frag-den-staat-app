@@ -1,11 +1,12 @@
 import {
-  FlatList,
-  View,
-  Animated,
-  RefreshControl,
   Alert,
+  Animated,
+  AsyncStorage,
+  FlatList,
   Platform,
+  RefreshControl,
   Text,
+  View,
 } from 'react-native';
 import { NavigationActions } from 'react-navigation';
 import { connect } from 'react-redux';
@@ -53,6 +54,13 @@ class FoiRequestsMasterScreen extends React.Component {
         LIST_HEADER_HEIGHT
       ),
     };
+  }
+
+  async componentWillMount() {
+    const value = await AsyncStorage.getItem('@SKIP_INTRO');
+    if (value === null || value !== 'true') {
+      this.props.navigateToIntro();
+    }
   }
 
   componentDidMount() {
@@ -239,6 +247,8 @@ const mapDispatchToProps = dispatch => {
     clearError: () => dispatch(foiRequestsErrorClearAction()),
     fetchData: () => dispatch(foiRequestsFetchData()),
     refreshData: () => dispatch(foiRequestsRefreshData()),
+    navigateToIntro: () =>
+      dispatch(NavigationActions.navigate({ routeName: 'FoiRequestsIntro' })),
     navigateToSingle: params =>
       dispatch(
         NavigationActions.navigate({ routeName: 'FoiRequestsDetails', params })

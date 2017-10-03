@@ -1,3 +1,4 @@
+import { AsyncStorage } from 'react-native';
 import AppIntro from 'react-native-app-intro';
 import React from 'react';
 
@@ -9,11 +10,8 @@ import {
 } from '../../../globals/colors';
 
 class Intro extends React.Component {
-  onSkipBtnHandle = () => {
-    this.props.navigateToMain();
-  };
-
-  doneBtnHandle = () => {
+  continue = async () => {
+    await AsyncStorage.setItem('@SKIP_INTRO', 'true');
     this.props.navigateToMain();
   };
 
@@ -78,8 +76,8 @@ class Intro extends React.Component {
     return (
       <AppIntro
         customStyles={{ btnContainer: { flex: 1 } }}
-        onDoneBtnClick={this.doneBtnHandle}
-        onSkipBtnClick={this.onSkipBtnHandle}
+        onDoneBtnClick={this.continue}
+        onSkipBtnClick={this.continue}
         pageArray={pageArray}
       />
     );
