@@ -1,5 +1,6 @@
-import { AsyncStorage } from 'react-native';
-import AppIntro from 'react-native-app-intro';
+import { AsyncStorage, Image } from 'react-native';
+import { Icon } from 'react-native-elements';
+import Onboarding from 'react-native-simple-onboarding';
 import React from 'react';
 
 import {
@@ -8,7 +9,6 @@ import {
   primaryColorLight,
   secondaryColor,
 } from '../../../globals/colors';
-import I18n from '../../../i18n';
 
 class Intro extends React.Component {
   continue = async () => {
@@ -20,70 +20,81 @@ class Intro extends React.Component {
     const pageArray = [
       {
         title: 'Hey!',
-        description: 'Willkommen zu FragDenStaat.',
-        backgroundColor: primaryColor,
-        fontColor: '#fff',
-        level: 10,
+        subtitle: 'Willkommen zu FragDenStaat.',
+        backgroundColor: primaryColorDark,
+        image: (
+          <Icon
+            name="hand-peace-o"
+            type="font-awesome"
+            size={50}
+            color="white"
+          />
+        ),
       },
       {
         title: 'FragDenStaat?',
-        description:
+        subtitle:
           'Jede Person hat das Recht auf Informationen. FragDenStaat hilft dir dein Recht wahrzunehmen.',
         backgroundColor: primaryColor,
-        fontColor: '#fff',
-        level: 10,
+        image: <Icon name="info" type="font-awesome" size={50} color="white" />,
       },
       {
         title: 'Wie funktionert das?',
-        description:
+        subtitle:
           "Frag' über diese Plattform Behörden in Deutschland nach Informationen und Dokumenten.",
         backgroundColor: secondaryColor,
-        fontColor: '#fff',
-        level: 10,
+        image: (
+          <Icon
+            name="file-text-o"
+            type="font-awesome"
+            size={50}
+            color="white"
+          />
+        ),
       },
       {
         title: '1. Schritt',
-        description:
+        subtitle:
           "Stell' eine Anfrage. Wir leiten diese an die zuständige Behörde weiter.",
         backgroundColor: primaryColorLight,
-        fontColor: '#fff',
-        level: 10,
+        image: (
+          <Icon
+            name="paper-plane-o"
+            type="font-awesome"
+            size={50}
+            color="white"
+          />
+        ),
       },
       {
         title: '2. Schritt',
-        description:
+        subtitle:
           'Du erhälst eine Benachrichtigung, sobald die Behörde auf deine Anfrage reagiert.',
         backgroundColor: primaryColor,
-        fontColor: '#fff',
-        level: 10,
+        image: (
+          <Icon name="bell-o" type="font-awesome" size={50} color="white" />
+        ),
       },
       {
         title: '3. Schritt',
-        description:
+        subtitle:
           'Die Antwort wird für dich und auch für andere öffentlich einsehbar.',
         backgroundColor: primaryColorDark,
-        fontColor: '#fff',
-        level: 10,
+        image: (
+          <Icon name="globe" type="font-awesome" size={50} color="white" />
+        ),
       },
       {
         title: "Los Geht's!",
-        description:
+        subtitle:
           "Sieh' dir die Anfragen von anderen Personen an, erstell' eine eigene oder erfahr' erst mehr über Informationsfreiheit!",
         backgroundColor: secondaryColor,
-        fontColor: '#fff',
-        level: 10,
+        image: (
+          <Icon name="user-o" type="font-awesome" size={50} color="white" />
+        ),
       },
     ];
-    return (
-      <AppIntro
-        skipBtnLabel={I18n.t('skip')}
-        doneBtnLabel={I18n.t('done')}
-        customStyles={{ btnContainer: { flex: 1 } }}
-        onDoneBtnClick={this.continue}
-        onSkipBtnClick={this.continue}
-        pageArray={pageArray}
-      />
-    );
+    return <Onboarding onEnd={this.continue} pages={pageArray} />;
   }
 }
 
