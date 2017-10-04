@@ -1,6 +1,7 @@
 export default {
   notYetImplemented:
-    'Not yet implemented. This featuer will be included in future versions.',
+    'This feature is not yet implemented. We are working hard to bring it to you as soon as possible.',
+  request: 'Request',
   requests: 'Requests',
   search: 'Search',
   new: 'New',

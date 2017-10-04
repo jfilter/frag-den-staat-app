@@ -164,7 +164,7 @@ const ProfileStartScreen = ({
 };
 
 ProfileStartScreen.navigationOptions = {
-  title: 'More',
+  title: I18n.t('more'),
 };
 
 const mapStateToProps = state => {
