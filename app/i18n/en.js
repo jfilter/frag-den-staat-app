@@ -34,6 +34,7 @@ export default {
     lastMessage: 'Last lastMessage',
     dueDate: 'Due Date',
     law: 'Law',
+    notYetSpecified: 'Not Yet Specified',
   },
   moreScreen: {
     donate: 'Donate to us!',

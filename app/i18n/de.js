@@ -34,6 +34,7 @@ export default {
     lastMessage: 'Letzte Nachricht',
     dueDate: 'Frist',
     law: 'Gesetz',
+    notYetSpecified: 'Noch nicht festgelegt',
   },
   moreScreen: {
     donate: 'Tue etwas Gutes. Spende an uns!',

@@ -274,7 +274,11 @@ class FoiRequestDetails extends React.Component {
 
   render() {
     const { title, public_body: publicBody, description } = this.props.request;
-    let subheading = <Text style={styles.subheading}>Not Yet Specified</Text>;
+    let subheading = (
+      <SubHeading style={styles.subheading}>
+        {I18n.t('foiRequestDetails.notYetSpecified')}
+      </SubHeading>
+    );
     if (publicBody) {
       const {
         publicBodyName,
