@@ -21,6 +21,7 @@ const PublicBodyDetails = ({
     // FIXME: It'a hack because there was another problem with react-navigation. It wasn't able to navigate to the Request stack when the stack was empty. This fixes it.
     changeFilter({
       publicBody: { param: publicBody.id, label: publicBody.name },
+      status: null, // reset status
     });
     navigateToFoiRequests1();
     navigateToFoiRequests2();
