@@ -1,10 +1,9 @@
-import { Button } from 'react-native-elements';
-import { Linking, Text, View } from 'react-native';
+import { Text } from 'react-native';
 import React from 'react';
 
-import { primaryColor } from '../../globals/colors';
 import BlankContainer from '../library/BlankContainer';
 import FloatingHeading from '../library/FloatingHeading';
+import LinkGroup from '../library/LinkGroup';
 
 const links = [
   {
@@ -50,22 +49,12 @@ Jährlich werden etwa 10.000 Anfragen an Bundesbehörden gesendet. Mehr als die 
 
 `}
       <FloatingHeading>
-        Mehr Informationen gibt's auf unserer Webseite
+        {`Mehr Informationen gibt's auf unserer Webseite`}
       </FloatingHeading>
       {`
         `}
     </Text>
-
-    <View>
-      {links.map(({ title, url }) => (
-        <Button
-          backgroundColor={primaryColor}
-          buttonStyle={{ marginBottom: 10 }}
-          title={title}
-          onPress={() => Linking.openURL(url)}
-        />
-      ))}
-    </View>
+    <LinkGroup links={links} />
   </BlankContainer>
 );
 

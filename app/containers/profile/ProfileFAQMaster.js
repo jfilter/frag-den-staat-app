@@ -18,7 +18,7 @@ const ProfileFAQMaster = ({ navigateToAboutFOIDetails, navigateToContact }) => (
         <Text>Wir haben die Antworten für deine Fragen. Wenn nicht:</Text>
         <Button
           title="Kontaktiere uns!"
-          style={{ margin: 10 }}
+          containerViewStyle={{ margin: 10 }}
           backgroundColor={primaryColor}
           onPress={() => navigateToContact()}
         />

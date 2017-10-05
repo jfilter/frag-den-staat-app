@@ -1,9 +1,8 @@
-import { Button } from 'react-native-elements';
-import { Linking, Text } from 'react-native';
+import { Text } from 'react-native';
 import React from 'react';
 
-import { primaryColor } from '../../globals/colors';
 import BlankContainer from '../library/BlankContainer';
+import LinkGroup from '../library/LinkGroup';
 
 const links = [
   {
@@ -26,27 +25,7 @@ Damit es für dich noch einfacher ist, kannst du ohne Probleme Fehler gleich in 
 Für allgemeine Anregunen kannst entweder im Github eine Issue eröffnen oder den (ehrenamtlichen) App-Entwickler Johannes Filter direkt unter hi@jfilter.de erreichen.
 `}
     </Text>
-
-    {links.map(({ title, url, icon }) => (
-      <Button
-        key={title}
-        icon={icon}
-        title={title}
-        style={{ margin: 5 }}
-        backgroundColor={primaryColor}
-        onPress={() => {
-          Linking.canOpenURL(url)
-            .then(supported => {
-              if (!supported) {
-                console.log("Can't handle url: " + url);
-              } else {
-                return Linking.openURL(url);
-              }
-            })
-            .catch(err => console.error('An error occurred', err));
-        }}
-      />
-    ))}
+    <LinkGroup links={links} />
   </BlankContainer>
 );
 

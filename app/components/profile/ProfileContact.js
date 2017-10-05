@@ -1,11 +1,10 @@
-import { Button } from 'react-native-elements';
-import { Linking, Text } from 'react-native';
+import { Text } from 'react-native';
 import React from 'react';
 
-import { primaryColor } from '../../globals/colors';
 import BlankContainer from '../library/BlankContainer';
 import FloatingHeading from '../library/FloatingHeading';
 import Heading from '../library/Heading';
+import LinkGroup from '../library/LinkGroup';
 
 const links = [
   {
@@ -34,26 +33,7 @@ const ProfileContact = () => (
     <Text>{`
         Du erreichst uns über verschiedene Kanäle.
         `}</Text>
-    {links.map(({ title, url, icon }) => (
-      <Button
-        key={title}
-        icon={icon}
-        title={title}
-        style={{ margin: 5 }}
-        backgroundColor={primaryColor}
-        onPress={() => {
-          Linking.canOpenURL(url)
-            .then(supported => {
-              if (!supported) {
-                console.log("Can't handle url: " + url);
-              } else {
-                return Linking.openURL(url);
-              }
-            })
-            .catch(err => console.error('An error occurred', err));
-        }}
-      />
-    ))}
+    <LinkGroup links={links} />
     <Text>{`
       `}</Text>
     <Heading>Impressum</Heading>
