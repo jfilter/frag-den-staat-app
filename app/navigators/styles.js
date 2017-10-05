@@ -42,6 +42,9 @@ const commongTabBarOptions = {
     borderRightColor: greyLight,
   },
   style: {
+    elevation: 0,
+    shadowOpacity: 0,
+    borderTopWidth: 0,
     backgroundColor: 'white',
     borderBottomWidth: 1,
     borderBottomColor: greyLight,
