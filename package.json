@@ -16,7 +16,8 @@
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
-    "postversion": "react-native-version"
+    "postversion": "react-native-version",
+    "ackn": "license-checker --json > credits.json && python3 wrangle_credits.py && rm credits.json"
   },
   "dependencies": {
     "instabug-reactnative": "^2.0.4",
