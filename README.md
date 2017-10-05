@@ -6,20 +6,18 @@ The app should include basic functionalities of the website such as browsing thr
 
 It is been developed with [React Native](https://facebook.github.io/react-native/) for Android and iOS.
 
-[![chat](https://img.shields.io/badge/chat-on%20Slack-ad1457.svg?style=flat-square)](https://openknowledgegermany.slack.com/messages/frag-den-staat-app)
-[![dependencies Status](https://david-dm.org/jfilter/frag-den-staat-app/status.svg?style=flat-square)](https://david-dm.org/jfilter/frag-den-staat-app)
-[![license](https://img.shields.io/github/license/mashape/apistatus.svg?style=flat-square)](https://github.com/jfilter/frag-den-staat-app/blob/master/LICENSE)
+[![dependencies Status](https://david-dm.org/jfilter/frag-den-staat-app/status.svg)](https://david-dm.org/jfilter/frag-den-staat-app)
+[![devDependency Status](https://david-dm.org/jfilter/frag-den-staat-app/dev-status.svg)](https://david-dm.org/jfilter/frag-den-staat-app#info=devDependencies)
+[![Code Climate](https://codeclimate.com/github/codeclimate/codeclimate/badges/gpa.svg)](https://codeclimate.com/github/codeclimate/codeclimate)
+[![codebeat badge](https://codebeat.co/badges/1d7258e5-49a4-4450-97d4-1e044cbf1ce6)](https://codebeat.co/projects/github-com-jfilter-frag-den-staat-app-master)
 
-## Early Access
+[![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/jfilter/frag-den-staat-app/blob/master/LICENSE)
+[![chat](https://img.shields.io/badge/chat-on%20Slack-ad1457.svg)](https://openknowledgegermany.slack.com/messages/frag-den-staat-app)
 
-The app is currently in development. In order to get an Early Access, Android users can [register and apply on HockeyApp](https://rink.hockeyapp.net/recruit/dfeb3c49543b4bafa5e2b6ba37641e63
-) and iOS users should send me their Apple ID to hi@jfilter.de.
+## Beta
 
-## Bug Reports, Feedback, Feature Requests
+If you want to join the beta, have a look at the [Wiki](https://github.com/jfilter/frag-den-staat-app/wiki/Beta).
 
-Please open an [issue](https://github.com/jfilter/frag-den-staat-app/issues).
+## Contributing
 
-## Best Regards
-
-Johannes ✌️
-
+If you have a **question**, found a **bug** or want to propose a new **feature**, have a look at the [issues page](https://github.com/jfilter/frag-den-staat-app/issues).
