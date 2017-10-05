@@ -38,13 +38,12 @@ public class MainApplication extends Application implements ReactApplication {
             new VectorIconsPackage(),
             new RCTPdfView(),
             new RNFetchBlobPackage(),
-            		new RNInstabugReactnativePackage.Builder("YOUR_ANDROID_APPLICATION_TOKEN",MainApplication.this)
+            		new RNInstabugReactnativePackage.Builder(Secrets.INSTABUG_ANDROID_ID,MainApplication.this)
 							.setInvocationEvent("shake")
 							.setPrimaryColor("#1D82DC")
 							.setFloatingEdge("left")
 							.setFloatingButtonOffsetFromTop(250)
-							.build(),
-            new RNInstabugReactnativePackage(Secrets.INSTABUG_ANDROID_ID,MainApplication.this,"shake","#1D82DC")
+							.build()
       );
     }
   };
