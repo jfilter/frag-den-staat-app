@@ -1,5 +1,10 @@
 # FragDenStaat App
 
+<div align="center" >
+  <img style="width:200px" src="assets/FragDenStaatAppDemo.gif" alt="Previews Sublime in use with some of the used plugins.">
+</div>
+
+
 This app is a frontend for [FragDenStaat.de](https://fragdenstaat.de/), a website to simplify the process of sending and managing FOI requests to German public bodies.
 
 The app should include basic functionalities of the website such as browsing through requests, searching, and creating new requests.
