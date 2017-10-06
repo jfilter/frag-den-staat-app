@@ -72,14 +72,16 @@ const SEARCH_PUBLIC_BODIES_PATH = '/api/v1/publicbody/search/';
 
 function searchFoiRequests() {
   return (dispatch, getState) => {
-    const url = `${ORIGIN}${SEARCH_FOI_REQUESTS_PATH}?q=${getState().search
-      .query}`;
+    const buildUrl = (function makeBuildUrl() {
+      return () =>
+        `${ORIGIN}${SEARCH_FOI_REQUESTS_PATH}?q=${getState().search.query}`;
+    })();
 
     const onSuccess = (innerDispatch => data =>
       innerDispatch(searchFoiRequestsSuccessAction(data)))(dispatch);
 
     fetchAndDispatch(
-      url,
+      buildUrl,
       dispatch,
       searchFoiRequestsPendingAction,
       onSuccess,
@@ -90,14 +92,16 @@ function searchFoiRequests() {
 
 function searchPublicBodies() {
   return (dispatch, getState) => {
-    const url = `${ORIGIN}${SEARCH_PUBLIC_BODIES_PATH}?q=${getState().search
-      .query}`;
+    const buildUrl = (function makeBuildUrl() {
+      return () =>
+        `${ORIGIN}${SEARCH_PUBLIC_BODIES_PATH}?q=${getState().search.query}`;
+    })();
 
     const onSuccess = (innerDispatch => data =>
       innerDispatch(searchPublicBodiesSuccessAction(data)))(dispatch);
 
     fetchAndDispatch(
-      url,
+      buildUrl,
       dispatch,
       searchPublicBodiesPendingAction,
       onSuccess,
