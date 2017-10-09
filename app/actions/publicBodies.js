@@ -25,13 +25,13 @@ const PATH = '/api/v1/publicbody/';
 
 function fetchPublicBody(publicBodyId) {
   return dispatch => {
-    const url = `${ORIGIN}${PATH}${publicBodyId}`;
+    const buildUrl = () => `${ORIGIN}${PATH}${publicBodyId}`;
 
     const onSuccess = (innerDispatch => data =>
       innerDispatch(publicBodiesSuccessAction(data)))(dispatch);
 
     fetchAndDispatch(
-      url,
+      buildUrl,
       dispatch,
       publicBodiesPendingAction,
       onSuccess,
