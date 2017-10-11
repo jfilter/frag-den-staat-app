@@ -10,6 +10,8 @@ console.disableYellowBox = true;
 class iOSApp extends React.Component {
   componentWillMount() {
     Instabug.startWithToken(InstabugIosId, Instabug.invocationEvent.shake);
+    Instabug.setPromptOptionsEnabled(false, true, false);
+    Instabug.setIntroMessageEnabled(false);
   }
 
   render() {
