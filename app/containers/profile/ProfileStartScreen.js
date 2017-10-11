@@ -109,7 +109,7 @@ const ProfileStartScreen = ({
             // TODO: Link to app in playstore
           }
         }}
-        hideChevron
+        rightIcon={{ name: 'chevron-right', color: 'white' }} // chevronHide shitfs the label to the left
       />
       <SectionHeading>Links</SectionHeading>
       <ListItem
