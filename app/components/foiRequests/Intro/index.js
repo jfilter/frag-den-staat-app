@@ -1,7 +1,9 @@
-import { AsyncStorage, Image } from 'react-native';
-import { Icon } from 'react-native-elements';
-import Onboarding from 'react-native-simple-onboarding';
+import { AsyncStorage, StatusBar, Text, View } from 'react-native';
+import { Icon, Button } from 'react-native-elements';
 import React from 'react';
+import I18n from '../../../i18n';
+
+import Onboarding from 'react-native-onboarding-swiper';
 
 import {
   primaryColor,
@@ -17,6 +19,27 @@ class Intro extends React.Component {
   };
 
   render() {
+    const cta = (
+      <View>
+        <Text style={styles.text}>
+          {`Sieh' dir die Anfragen von anderen Personen an, erstell' eine eigene oder erfahr' erst mehr über Informationsfreiheit in unserem kurzen Video.
+
+          `}
+        </Text>
+        <Button
+          icon={{ name: 'play-circle-outline', color: secondaryColor }}
+          title={'Video ansehen'}
+          backgroundColor={'white'}
+          borderRadius={5}
+          textStyle={{ color: secondaryColor }}
+          onPress={() => {
+            this.props.navigateToIntroVideo();
+            StatusBar.setBarStyle('default');
+          }}
+        />
+      </View>
+    );
+
     const pageArray = [
       {
         title: 'Hey!',
@@ -86,16 +109,30 @@ class Intro extends React.Component {
       },
       {
         title: "Los Geht's!",
-        subtitle:
-          "Sieh' dir die Anfragen von anderen Personen an, erstell' eine eigene oder erfahr' erst mehr über Informationsfreiheit!",
+        subtitle: cta,
         backgroundColor: secondaryColor,
         image: (
           <Icon name="user-o" type="font-awesome" size={50} color="white" />
         ),
       },
     ];
-    return <Onboarding onEnd={this.continue} pages={pageArray} />;
+    return (
+      <Onboarding
+        onSkip={this.continue}
+        onDone={this.continue}
+        pages={pageArray}
+        skipLabel={I18n.t('skipShort')}
+      />
+    );
   }
 }
+
+const styles = {
+  text: {
+    textAlign: 'center',
+    fontSize: 16,
+    color: 'rgba(255, 255, 255, 0.7)',
+  },
+};
 
 export default Intro;

@@ -4,9 +4,7 @@ import React from 'react';
 
 import Intro from '../../components/foiRequests/Intro';
 
-const FoiRequestsIntroScreen = ({ navigateToMain }) => (
-  <Intro navigateToMain={navigateToMain} />
-);
+const FoiRequestsIntroScreen = props => <Intro {...props} />;
 
 FoiRequestsIntroScreen.navigationOptions = {
   header: null,
@@ -15,6 +13,8 @@ FoiRequestsIntroScreen.navigationOptions = {
 
 const mapDispatchToProps = dispatch => {
   return {
+    navigateToIntroVideo: () =>
+      dispatch(NavigationActions.navigate({ routeName: 'ProfileIntroVideo' })),
     navigateToMain: () =>
       dispatch(
         NavigationActions.navigate({

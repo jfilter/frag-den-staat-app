@@ -75,4 +75,5 @@ export default {
   not_held: 'Information nicht vorhanden',
   has_fee: 'Gebühr erhoben',
   overdue: 'Verspätet',
+  skipShort: 'Überspr.',
 };
