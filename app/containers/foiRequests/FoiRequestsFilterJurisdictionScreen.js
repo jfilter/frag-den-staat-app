@@ -1,4 +1,4 @@
-import { ListItem, Icon } from 'react-native-elements';
+import { Icon } from 'react-native-elements';
 import { View, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 import React from 'react';
@@ -7,8 +7,9 @@ import { foiRequestsFilterChange } from '../../actions/foiRequests';
 import { getItemById, shortenJurisdiction } from '../../utils';
 import { renderSeparator } from '../../components/ListRenderer';
 import { styles } from './styles';
-import jurisdictionList from '../../data/jurisdiction';
 import I18n from '../../i18n';
+import ListItemRadioButton from '../../components/library/ListItemRadioButton';
+import jurisdictionList from '../../data/jurisdiction';
 
 class FoiRequestsFilterJurisdictionScreen extends React.Component {
   _onSwitch = (id, switched) => {
@@ -27,15 +28,13 @@ class FoiRequestsFilterJurisdictionScreen extends React.Component {
   _renderItem = ({ item }) => {
     const { currentFilter } = this.props;
     const switched = currentFilter !== null && currentFilter.param === item.id;
+
     return (
-      <ListItem
-        title={item.name}
+      <ListItemRadioButton
         key={item.id}
-        hideChevron
-        switchButton
-        switched={switched}
+        title={item.name}
         onSwitch={() => this._onSwitch(item.id, switched)}
-        containerStyle={styles.filterItemContainer}
+        switched={switched}
       />
     );
   };

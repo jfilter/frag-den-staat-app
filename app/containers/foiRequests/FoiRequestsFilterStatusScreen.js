@@ -1,4 +1,4 @@
-import { ListItem, Icon } from 'react-native-elements';
+import { Icon } from 'react-native-elements';
 import { View, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 import React from 'react';
@@ -6,8 +6,9 @@ import React from 'react';
 import { foiRequestsFilterChange } from '../../actions/foiRequests';
 import { renderSeparator } from '../../components/ListRenderer';
 import { styles } from './styles';
-import statusList from '../../data/status.json';
 import I18n from '../../i18n/';
+import ListItemRadioButton from '../../components/library/ListItemRadioButton';
+import statusList from '../../data/status.json';
 
 // remove 'overdue' and 'with costs' because it is not implemented yet.
 statusList.pop();
@@ -26,15 +27,13 @@ class FoiRequestsFilterStatusScreen extends React.Component {
   _renderItem = ({ item }) => {
     const { currentFilter } = this.props;
     const switched = currentFilter !== null && currentFilter.param === item.id;
+
     return (
-      <ListItem
+      <ListItemRadioButton
         key={item.id}
         title={I18n.t(item.id)}
-        hideChevron
-        switchButton
-        switched={switched}
-        containerStyle={styles.filterItemContainer}
         onSwitch={() => this._onSwitch(item.id, switched)}
+        switched={switched}
       />
     );
   };
