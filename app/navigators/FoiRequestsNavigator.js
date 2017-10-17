@@ -26,7 +26,6 @@ const FoiRequestsFilterNavigator = TabNavigator(
       screen: FoiRequestsFilterJurisdictionScreen,
     },
     FoiRequestsFilterCategory: { screen: FoiRequestsFilterCategoryScreen },
-    // FoiRequestsFilterPublicBody: { screen: FoiRequestsFilterPublicBodyScreen }, TODO: I am note quite sure if the app needs this additional filter. Maybe it's already enough. If it's the case, delete the failes
   },
   {
     lazy: true,
