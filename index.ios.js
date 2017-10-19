@@ -1,17 +1,23 @@
-import React from 'react';
-import { AppRegistry } from 'react-native';
+import { AppRegistry, AsyncStorage } from 'react-native';
 import Instabug from 'instabug-reactnative';
+import React from 'react';
 
-import App from './app/App';
 import { InstabugIosId } from './secrets.json';
+import App from './app/App';
 
 console.disableYellowBox = true;
 
 class iOSApp extends React.Component {
-  componentWillMount() {
-    Instabug.startWithToken(InstabugIosId, Instabug.invocationEvent.shake);
-    Instabug.setPromptOptionsEnabled(false, true, false);
-    Instabug.setIntroMessageEnabled(false);
+  async componentWillMount() {
+    const inAppReporting = await AsyncStorage.getItem(
+      '@inAppBugReportingEnabled'
+    );
+
+    if (inAppReporting === null || inAppReporting === 'true') {
+      Instabug.startWithToken(InstabugIosId, Instabug.invocationEvent.shake);
+      Instabug.setPromptOptionsEnabled(false, true, false);
+      Instabug.setIntroMessageEnabled(false);
+    }
   }
 
   render() {

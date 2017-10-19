@@ -54,6 +54,7 @@ export default {
     press: 'Presse',
     followTwitter: 'Folge uns auf Twitter',
     likeFacebook: 'Like uns auf Facebook',
+    inAppReporting: 'In-App Bug Reporting',
   },
   account: 'Account',
   information: 'Information',
