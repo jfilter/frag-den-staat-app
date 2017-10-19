@@ -52,6 +52,8 @@ export default {
     video: 'Einführungs-Video',
     contact: 'Kontakt und Impressum',
     press: 'Presse',
+    followTwitter: 'Folge uns auf Twitter',
+    likeFacebook: 'Like uns auf Facebook',
   },
   account: 'Account',
   information: 'Information',

@@ -135,30 +135,29 @@ const ProfileStartScreen = ({
         onPress={() =>
           Linking.openURL('https://fragdenstaat.de/hilfe/ueber/presse/')}
       />
-      <Icon
-        name="twitter-box"
-        type="material-community"
-        color="#1DA1F2"
+      <ListItem
+        containerStyle={styles.listItemContainer}
+        leftIcon={{
+          name: 'twitter-box',
+          type: 'material-community',
+          color: '#1DA1F2',
+        }}
+        title={I18n.t('moreScreen.followTwitter')}
+        rightIcon={{ name: 'link' }}
         onPress={() => Linking.openURL('https://twitter.com/fragdenstaat')}
-        size={50}
       />
-      <Icon
-        name="facebook-box"
-        type="material-community"
-        color="#3B5998"
+      <ListItem
+        containerStyle={styles.listItemContainer}
+        leftIcon={{
+          name: 'facebook-box',
+          type: 'material-community',
+          color: '#3B5998',
+        }}
+        title={I18n.t('moreScreen.likeFacebook')}
+        rightIcon={{ name: 'link' }}
         onPress={() =>
           Linking.openURL('https://www.facebook.com/fragdenstaat.de/')}
-        size={50}
       />
-      <TouchableHighlight
-        style={{ alignSelf: 'center' }}
-        onPress={() => Linking.openURL('https://fragdenstaat.de')}
-      >
-        <Image
-          style={{ width: 50, height: 50 }}
-          source={require('../../../assets/logo/original_fds_logo_small.jpg')}
-        />
-      </TouchableHighlight>
     </BlankContainer>
   );
 };

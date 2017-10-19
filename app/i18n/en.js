@@ -52,6 +52,8 @@ export default {
     video: 'Introduction Video',
     contact: 'Contact and Imprint',
     press: 'Press',
+    followTwitter: 'Follow us on Twitter',
+    likeFacebook: 'Like us on Facebook',
   },
   account: 'Account',
   information: 'Information',
