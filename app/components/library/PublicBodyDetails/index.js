@@ -1,15 +1,15 @@
-import { Button } from 'react-native-elements';
 import { Text } from 'react-native';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { primaryColor } from '../../../globals/colors';
+import { spaceMore } from '../../../globals/content';
 import { styles } from './styles';
 import BlankContainer from '../BlankContainer';
 import Heading from '../Heading';
-import Link from '../Link';
-import Table from '../Table';
 import I18n from '../../../i18n';
+import Link from '../Link';
+import StandardButton from '../StandardButton';
+import Table from '../Table';
 
 const PublicBodyDetails = ({
   publicBody,
@@ -83,24 +83,21 @@ const PublicBodyDetails = ({
       count: nRequests,
     });
   const showRequestsButton = (
-    <Button
+    <StandardButton
       disabled={nRequests === 0}
-      containerViewStyle={styles.button}
       icon={{ name: 'mail' }}
       title={title}
-      backgroundColor={primaryColor}
       onPress={_filterByPublicBody}
+      containerViewStyle={{ marginBottom: 20 }}
     />
   );
 
   return (
     <BlankContainer>
       <Heading style={styles.heading}>{name}</Heading>
-      <Button
-        containerViewStyle={styles.button}
+      <StandardButton
         icon={{ name: 'add-circle-outline' }}
         title="TODO: Create a Request"
-        backgroundColor={primaryColor}
       />
       {showRequestsButton}
       <Table data={tableData} />

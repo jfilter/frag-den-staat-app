@@ -1,11 +1,11 @@
-import { Button, ListItem } from 'react-native-elements';
 import { FlatList, Text, View } from 'react-native';
+import { ListItem } from 'react-native-elements';
 import { NavigationActions } from 'react-navigation';
 import { connect } from 'react-redux';
 import React from 'react';
 
-import { primaryColor } from '../../globals/colors';
 import { renderSeparator } from '../../components/ListRenderer';
+import StandardButton from '../../components/library/StandardButton';
 import data from './FAQ';
 
 const ProfileFAQMaster = ({ navigateToAboutFOIDetails, navigateToContact }) => (
@@ -16,10 +16,9 @@ const ProfileFAQMaster = ({ navigateToAboutFOIDetails, navigateToContact }) => (
     ListHeaderComponent={
       <View style={{ padding: 10 }}>
         <Text>Wir haben die Antworten für deine Fragen. Wenn nicht:</Text>
-        <Button
+        <StandardButton
+          containerViewStyle={{ marginTop: 20 }}
           title="Kontaktiere uns!"
-          containerViewStyle={{ margin: 10 }}
-          backgroundColor={primaryColor}
           onPress={() => navigateToContact()}
         />
       </View>

@@ -1,19 +1,16 @@
-import { Button } from 'react-native-elements';
 import { Linking, View } from 'react-native';
 import React from 'react';
 
-import { primaryColor } from '../../../globals/colors';
+import StandardButton from '../StandardButton';
 
 const LinkGroup = ({ links }) => {
   return (
     <View>
       {links.map(({ title, url, icon }) => (
-        <Button
+        <StandardButton
           key={title}
           icon={icon}
           title={title}
-          containerViewStyle={{ margin: 5 }}
-          backgroundColor={primaryColor}
           onPress={() => {
             Linking.canOpenURL(url)
               .then(supported => {
