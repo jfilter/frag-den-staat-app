@@ -14,7 +14,9 @@ const Link = ({ label, url }) => (
     onPress={() => Linking.openURL(url)}
   >
     <View>
-      <Text style={styles.label}>{label}</Text>
+      <Text selectable style={styles.label}>
+        {label}
+      </Text>
     </View>
   </TouchableHighlight>
 );

@@ -4,6 +4,7 @@ import React from 'react';
 
 const SubHeading = ({ style, children, ...rest }) => (
   <Text
+    selectable
     style={[
       {
         fontSize: 18,

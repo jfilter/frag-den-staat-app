@@ -52,28 +52,28 @@ const PublicBodyDetails = ({
     { label: I18n.t('jurisdiction'), value: jurisdiction },
     {
       label: I18n.t('classification'),
-      value: <Text>{classification}</Text>,
+      value: <Text selectable>{classification}</Text>,
     },
     { label: I18n.t('website'), value: website },
     {
       label: I18n.t('email'),
-      value: <Text>{email}</Text>,
+      value: <Text selectable>{email}</Text>,
     },
     {
       label: I18n.t('address'),
-      value: <Text>{address}</Text>,
+      value: <Text selectable>{address}</Text>,
     },
     {
       label: I18n.t('contact'),
-      value: <Text>{contact}</Text>,
+      value: <Text selectable>{contact}</Text>,
     },
     {
       label: I18n.t('description'),
-      value: <Text>{description}</Text>,
+      value: <Text selectable>{description}</Text>,
     },
     {
       label: I18n.t('tags'),
-      value: <Text>{printableTags}</Text>,
+      value: <Text selectable>{printableTags}</Text>,
     },
   ];
 

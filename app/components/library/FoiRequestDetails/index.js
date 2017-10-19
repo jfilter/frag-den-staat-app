@@ -39,10 +39,12 @@ class FoiRequestDetails extends React.Component {
 
   _renderMessageHeader = msg => (
     <View style={[tableStyles.row, styles.msgHeader]}>
-      <Text style={[tableStyles.item1, styles.link]}>
+      <Text selectable style={[tableStyles.item1, styles.link]}>
         {`${moment(msg.timestamp).format('DD.MM.YYYY')}:`}
       </Text>
-      <Text style={[tableStyles.item2, styles.link]}>{msg.sender}</Text>
+      <Text selectable style={[tableStyles.item2, styles.link]}>
+        {msg.sender}
+      </Text>
     </View>
   );
 
@@ -108,7 +110,9 @@ class FoiRequestDetails extends React.Component {
             style={[tableStyles.item2, styles.linkTouchable]}
             underlayColor={grey}
           >
-            <Text style={styles.link}>{msg.recipient_public_body}</Text>
+            <Text selectable style={styles.link}>
+              {msg.recipient_public_body}
+            </Text>
           </TouchableHighlight>
         </View>
       );
@@ -121,13 +125,15 @@ class FoiRequestDetails extends React.Component {
           <Text style={tableStyles.item1}>
             {I18n.t('foiRequestDetails.from')}
           </Text>
-          <Text style={tableStyles.item2}>{msg.sender}</Text>
+          <Text selectable style={tableStyles.item2}>
+            {msg.sender}
+          </Text>
         </View>
         <View style={tableStyles.row}>
           <Text style={tableStyles.item1}>
             {I18n.t('foiRequestDetails.on')}
           </Text>
-          <Text style={tableStyles.item2}>
+          <Text selectable style={tableStyles.item2}>
             {moment(msg.timestamp).format('LLLL')}
           </Text>
         </View>
@@ -136,10 +142,12 @@ class FoiRequestDetails extends React.Component {
           <Text style={tableStyles.item1}>
             {I18n.t('foiRequestDetails.subject')}
           </Text>
-          <Text style={tableStyles.item2}>{msg.subject}</Text>
+          <Text selectable style={tableStyles.item2}>
+            {msg.subject}
+          </Text>
         </View>
         <Divider style={styles.dividerBeforeMessageContent} />
-        <Text>
+        <Text selectable>
           {msg.content_hidden
             ? I18n.t('foiRequestDetails.notYetVisible')
             : msg.content.trim()}
@@ -165,38 +173,38 @@ class FoiRequestDetails extends React.Component {
     const tableData = [
       {
         label: I18n.t('status'),
-        value: <Text>{I18n.t(realStatus)}</Text>,
+        value: <Text selectable>{I18n.t(realStatus)}</Text>,
       },
     ];
 
     if (refusalReason) {
       tableData.push({
         label: I18n.t('foiRequestDetails.refusalReason'),
-        value: <Text>{refusalReason}</Text>,
+        value: <Text selectable>{refusalReason}</Text>,
       });
     }
 
     if (costs && costs !== 0) {
       tableData.push({
         label: I18n.t('foiRequestDetails.costs'),
-        value: <Text>{costs}</Text>,
+        value: <Text selectable>{costs}</Text>,
       });
     }
 
     tableData.push({
       label: I18n.t('foiRequestDetails.startedOn'),
-      value: <Text>{moment(firstMessage).format('LLL')}</Text>,
+      value: <Text selectable>{moment(firstMessage).format('LLL')}</Text>,
     });
 
     tableData.push({
       label: I18n.t('foiRequestDetails.lastMessage'),
-      value: <Text>{moment(lastMessage).format('LLL')}</Text>,
+      value: <Text selectable>{moment(lastMessage).format('LLL')}</Text>,
     });
 
     if (dueDate) {
       tableData.push({
         label: I18n.t('foiRequestDetails.dueDate'),
-        value: <Text>{moment(dueDate).format('LL')}</Text>,
+        value: <Text selectable>{moment(dueDate).format('LL')}</Text>,
       });
     }
 
@@ -300,7 +308,7 @@ class FoiRequestDetails extends React.Component {
               </SubHeading>
             </View>
           </TouchableHighlight>
-          <Text style={[styles.subheadingJurisdiction]}>
+          <Text selectable style={[styles.subheadingJurisdiction]}>
             ({jurisdictionName})
           </Text>
         </View>
@@ -318,7 +326,7 @@ class FoiRequestDetails extends React.Component {
         </View>
         {this._renderTable()}
         <View style={styles.summary}>
-          <Text>{description}</Text>
+          <Text selectable>{description}</Text>
         </View>
         {this._renderMessages()}
       </BlankContainer>

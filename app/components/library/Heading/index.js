@@ -6,6 +6,7 @@ import { secondaryColor } from '../../../globals/colors';
 
 const Heading = ({ style, children, ...rest }) => (
   <Text
+    selectable
     style={[
       {
         fontSize: 20,
