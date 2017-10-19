@@ -15,5 +15,5 @@ export class NewRequestStartScreen extends React.Component {
 }
 
 NewRequestStartScreen.navigationOptions = {
-  title: I18n.t('new') + ' ' + I18n.t('request'),
+  title: I18n.t('newRequest'),
 };

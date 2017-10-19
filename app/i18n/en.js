@@ -5,6 +5,7 @@ export default {
   requests: 'Requests',
   search: 'Search',
   new: 'New',
+  newRequest: 'New Request',
   more: 'More',
   publicBody: 'Public Body',
   publicBodies: 'Public Bodies',
