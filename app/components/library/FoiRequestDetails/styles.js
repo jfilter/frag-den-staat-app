@@ -13,8 +13,6 @@ const styles = StyleSheet.create({
     marginTop: spaceMore,
     marginBottom: spaceNormal,
     paddingHorizontal: spaceNormal,
-    borderTopWidth: 1,
-    borderColor: greyLight,
   },
   subheading: {
     paddingHorizontal: spaceNormal,
