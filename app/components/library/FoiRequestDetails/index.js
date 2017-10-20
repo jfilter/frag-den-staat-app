@@ -106,14 +106,12 @@ class FoiRequestDetails extends React.Component {
           <Text style={tableStyles.item1}>
             {I18n.t('foiRequestDetails.esclatedTo')}
           </Text>
-          <TouchableHighlight
-            style={[tableStyles.item2, styles.linkTouchable]}
-            underlayColor={grey}
-          >
-            <Text selectable style={styles.link}>
-              {msg.recipient_public_body}
-            </Text>
-          </TouchableHighlight>
+          <Text style={tableStyles.item2}>
+            {
+              getPublicBodyNameAndJurisdiction(msg.recipient_public_body)
+                .publicBodyName
+            }
+          </Text>
         </View>
       );
     }
