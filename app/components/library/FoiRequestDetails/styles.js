@@ -87,7 +87,11 @@ const styles = StyleSheet.create({
     paddingRight: spaceNormal * 2 + 1, // the padding space and the border
   },
   downloadButton: { marginLeft: 0, marginRight: 0 },
-  item2: { flexDirection: 'row', alignItems: 'flex-start' },
+  item2: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    justifyContent: 'flex-start',
+  },
 });
 
 export { styles };

@@ -46,7 +46,14 @@ class FoiRequestDetails extends React.Component {
         {`${moment(msg.timestamp).format('DD.MM.YYYY')}`}
       </Text>
       <View style={[tableStyles.item2, styles.item2]}>
-        <Text style={styles.link}>{msg.sender}</Text>
+        <Text
+          style={{
+            color: primaryColor,
+            flexShrink: Platform.OS === 'ios' ? 1 : 1.1, // for some strange reason, this fixes a bug of the attach icon overlapping on Android
+          }}
+        >
+          {msg.sender}
+        </Text>
         {msg.attachments.length > 0 && (
           <Icon name="attach-file" size={20} color={primaryColor} />
         )}
