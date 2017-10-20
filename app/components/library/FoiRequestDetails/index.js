@@ -349,16 +349,28 @@ class FoiRequestDetails extends React.Component {
 
 FoiRequestDetails.navigationOptions = ({ navigation }) => {
   const requestId = navigation.state.params.request.id;
+  const url = `${ORIGIN}/a/${requestId}`;
+
   function share() {
     Share.share(
       {
-        message: 'Check out this Freedom of Information request!',
-        url: `${ORIGIN}/a/${requestId}`,
-        title: 'FragDenStaat.de',
+        ...Platform.select({
+          ios: {
+            url,
+          },
+          android: {
+            message: url,
+          },
+        }),
+        title: 'FragDenStaat',
       },
       {
-        // Android only:
-        dialogTitle: 'FragDenStaat.de',
+        ...Platform.select({
+          android: {
+            // Android only:
+            dialogTitle: `Share: ${url}`,
+          },
+        }),
       }
     );
   }
