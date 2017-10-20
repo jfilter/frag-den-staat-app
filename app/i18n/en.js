@@ -55,6 +55,7 @@ export default {
     followTwitter: 'Follow us on Twitter',
     likeFacebook: 'Like us on Facebook',
     inAppReporting: 'In-App Bug Reporting',
+    restartApp: 'Changes only take affect after restarting the app.',
   },
   account: 'Account',
   information: 'Information',

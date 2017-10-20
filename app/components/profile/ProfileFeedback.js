@@ -1,5 +1,6 @@
-import { AsyncStorage, Text } from 'react-native';
+import { AsyncStorage, Platform, Text } from 'react-native';
 import { ListItem } from 'react-native-elements';
+import Instabug from 'instabug-reactnative';
 import React from 'react';
 
 import BlankContainer from '../library/BlankContainer';
@@ -25,15 +26,24 @@ class ProfileFeedback extends React.Component {
 
   async componentWillMount() {
     const value = await AsyncStorage.getItem('@inAppBugReportingEnabled');
-    const inApp = value && value === 'true';
+    const inApp = value === null || value === 'true';
     this.setState({ inApp });
   }
 
   toggleSwitch = () => {
-    AsyncStorage.setItem(
-      '@inAppBugReportingEnabled',
-      (!this.state.inApp).toString()
-    ).then(() => this.setState({ inApp: !this.state.inApp }));
+    const newSetting = !this.state.inApp;
+
+    if (Platform.OS === 'android') {
+      if (newSetting) {
+        Instabug.setShakingThresholdForAndroid(250);
+      } else {
+        Instabug.setShakingThresholdForAndroid(10000);
+      }
+    }
+
+    this.setState({ inApp: newSetting });
+    // even though we cannot be sure that the writing to AsyncStorage will be successful, we assume so.
+    AsyncStorage.setItem('@inAppBugReportingEnabled', newSetting.toString());
   };
 
   render() {
@@ -56,6 +66,7 @@ Für allgemeine Anregunen kannst entweder im Github eine Issue eröffnen oder de
           onSwitch={this.toggleSwitch}
           containerStyle={{ borderBottomWidth: 0, marginTop: 10 }}
         />
+        <Text>{Platform.OS === 'ios' && I18n.t('moreScreen.restartApp')}</Text>
       </BlankContainer>
     );
   }
