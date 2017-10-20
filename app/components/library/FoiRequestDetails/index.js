@@ -1,4 +1,6 @@
-import { Button, Divider, Icon } from 'react-native-elements';
+import 'moment/locale/de';
+
+import { Divider, Icon } from 'react-native-elements';
 import {
   Linking,
   Platform,
@@ -11,7 +13,6 @@ import Accordion from 'react-native-collapsible/Accordion';
 import PropTypes from 'prop-types';
 import React from 'react';
 import moment from 'moment';
-import 'moment/locale/de';
 
 import { ORIGIN } from '../../../globals';
 import { breakLongWords } from '../../../utils/strings';
@@ -20,7 +21,8 @@ import {
   getPublicBodyNameAndJurisdiction,
 } from '../../../utils/fakeApi';
 import { getPrintableStatus } from '../../../utils';
-import { grey, primaryColor } from '../../../globals/colors';
+import { greyLight, primaryColor } from '../../../globals/colors';
+import { spaceMore } from '../../../globals/content';
 import { styles } from './styles';
 import { styles as tableStyles } from '../Table/styles';
 import BlankContainer from '../BlankContainer';
@@ -28,6 +30,7 @@ import Heading from '../Heading';
 import I18n from '../../../i18n';
 import Link from '../Link';
 import NavBarIcon from '../../foiRequests/NavBarIcon';
+import StandardButton from '../StandardButton';
 import SubHeading from '../SubHeading';
 import Table from '../Table';
 
@@ -39,12 +42,15 @@ class FoiRequestDetails extends React.Component {
 
   _renderMessageHeader = msg => (
     <View style={[tableStyles.row, styles.msgHeader]}>
-      <Text selectable style={[tableStyles.item1, styles.link]}>
-        {`${moment(msg.timestamp).format('DD.MM.YYYY')}:`}
+      <Text style={[tableStyles.item1, styles.link]}>
+        {`${moment(msg.timestamp).format('DD.MM.YYYY')}`}
       </Text>
-      <Text selectable style={[tableStyles.item2, styles.link]}>
-        {msg.sender}
-      </Text>
+      <View style={[tableStyles.item2, styles.item2]}>
+        <Text style={styles.link}>{msg.sender}</Text>
+        {msg.attachments.length > 0 && (
+          <Icon name="attach-file" size={20} color={primaryColor} />
+        )}
+      </View>
     </View>
   );
 
@@ -57,12 +63,10 @@ class FoiRequestDetails extends React.Component {
 
       if (isPdf) {
         viewPdfButton = (
-          <Button
-            containerViewStyle={styles.viewPdfButton}
-            backgroundColor={primaryColor}
+          <StandardButton
             title={I18n.t('foiRequestDetails.viewPdf')}
             onPress={() => this.props.navigateToPdfViewer({ uri: att.url })}
-            icon={{ name: 'remove-red-eye', color: 'white' }}
+            icon={{ name: 'remove-red-eye', color: primaryColor }}
           />
         );
       }
@@ -81,11 +85,9 @@ class FoiRequestDetails extends React.Component {
           </View>
           <View style={styles.attachmentsRowButton}>
             <View>
-              <Button
-                containerViewStyle={styles.downloadButton}
-                backgroundColor={primaryColor}
+              <StandardButton
                 title={I18n.t('foiRequestDetails.download')}
-                icon={{ name: 'file-download', color: 'white' }}
+                icon={{ name: 'file-download', color: primaryColor }}
                 onPress={() => Linking.openURL(att.url)}
               />
             </View>
@@ -226,6 +228,7 @@ class FoiRequestDetails extends React.Component {
     const filtedMessages = this.props.request.messages.filter(
       x => !x.not_publishable
     );
+
     const messages = filtedMessages.map(
       ({
         id,
@@ -269,10 +272,22 @@ class FoiRequestDetails extends React.Component {
         <Accordion
           align={'center'}
           duration={1000}
-          sections={messages}
+          sections={messages.reverse()} // show latest messages first
           renderHeader={this._renderMessageHeader}
           renderContent={this._renderMessageContent}
-          underlayColor={grey}
+          underlayColor={greyLight}
+          initiallyActiveSection={0}
+          touchableProps={{
+            style: {
+              marginVertical: spaceMore / 2,
+            },
+            hitSlop: {
+              top: spaceMore / 2,
+              bottom: spaceMore / 2,
+              left: spaceMore / 2,
+              right: spaceMore / 2,
+            },
+          }}
         />
       </View>
     );
@@ -297,7 +312,7 @@ class FoiRequestDetails extends React.Component {
             style={{
               alignSelf: 'center',
             }}
-            underlayColor={grey}
+            underlayColor={greyLight}
             onPress={() => this.props.navigateToPublicBody({ publicBodyId })}
           >
             <View>

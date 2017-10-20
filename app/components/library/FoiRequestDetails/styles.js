@@ -47,9 +47,9 @@ const styles = StyleSheet.create({
   },
   msgHeader: {
     padding: spaceNormal,
-    borderColor: greyDark,
+    borderColor: primaryColor,
     borderWidth: 1,
-    marginVertical: spaceMore / 2,
+    // borderRadius: 25,
   },
   link: {
     color: primaryColor,
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
     padding: spaceNormal,
     borderColor: secondaryColor,
     borderWidth: 1,
-    marginVertical: spaceMore / 2,
+    marginBottom: spaceMore / 2,
   },
   attachmentsRowLabel: {
     flex: 1,
@@ -87,6 +87,7 @@ const styles = StyleSheet.create({
     paddingRight: spaceNormal * 2 + 1, // the padding space and the border
   },
   downloadButton: { marginLeft: 0, marginRight: 0 },
+  item2: { flexDirection: 'row', alignItems: 'flex-start' },
 });
 
 export { styles };

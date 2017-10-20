@@ -2,7 +2,7 @@ import { Linking, Text, TouchableHighlight, View } from 'react-native';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { grey } from '../../../globals/colors';
+import { greyLight } from '../../../globals/colors';
 import { styles } from './styles';
 
 const Link = ({ label, url }) => (
@@ -10,8 +10,9 @@ const Link = ({ label, url }) => (
     style={{
       alignSelf: 'flex-start',
     }}
-    underlayColor={grey}
+    underlayColor={greyLight}
     onPress={() => Linking.openURL(url)}
+    hitSlop={{ top: 15, bottom: 15, left: 15, right: 15 }}
   >
     <View>
       <Text selectable style={styles.label}>
