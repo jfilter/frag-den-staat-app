@@ -30,7 +30,8 @@ class Intro extends React.Component {
           icon={{ name: 'play-circle-outline', color: secondaryColor }}
           title={'Video ansehen'}
           backgroundColor={'white'}
-          borderRadius={5}
+          borderRadius={30}
+          containerViewStyle={{ borderRadius: 30 }}
           textStyle={{ color: secondaryColor }}
           onPress={() => {
             this.props.navigateToIntroVideo();
