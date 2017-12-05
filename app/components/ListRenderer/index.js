@@ -5,7 +5,6 @@ import moment from 'moment';
 import 'moment/locale/de';
 
 import { getPrintableStatus, shortenJurisdiction } from '../../utils';
-import { getPublicBodyNameAndJurisdiction } from '../../utils/fakeApi';
 import { primaryColor, primaryColorLight } from '../../globals/colors';
 import I18n from '../../i18n';
 import styles from './styles';
@@ -39,9 +38,9 @@ const renderItem = (item, onPress) => {
   const lastContact = item.last_message || item.first_message;
   const timeAgo = moment(lastContact).fromNow();
   let subtitle = `${I18n.t(realStatus)}, ${timeAgo}`;
-  const { publicBodyName, jurisdictionName } = getPublicBodyNameAndJurisdiction(
-    item.public_body
-  );
+
+  const publicBodyName = item.public_body.name;
+  const jurisdictionName = item.public_body.jurisdiction.name;
 
   if (publicBodyName && jurisdictionName) {
     subtitle += `\n${publicBodyName} (${shortenJurisdiction(

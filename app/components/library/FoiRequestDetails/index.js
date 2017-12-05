@@ -16,10 +16,6 @@ import moment from 'moment';
 
 import { ORIGIN } from '../../../globals';
 import { breakLongWords } from '../../../utils/strings';
-import {
-  getLawNameAndUrl,
-  getPublicBodyNameAndJurisdiction,
-} from '../../../utils/fakeApi';
 import { getPrintableStatus } from '../../../utils';
 import { greyLight, primaryColor } from '../../../globals/colors';
 import { spaceMore } from '../../../globals/content';
@@ -117,8 +113,10 @@ class FoiRequestDetails extends React.Component {
           </Text>
           <Text style={tableStyles.item2}>
             {
-              getPublicBodyNameAndJurisdiction(msg.recipient_public_body)
-                .publicBodyName
+              TODO
+              // TODO: get it working again with new API
+              // getPublicBodyNameAndJurisdiction(msg.recipient_public_body)
+              //   .publicBodyName
             }
           </Text>
         </View>
@@ -215,7 +213,7 @@ class FoiRequestDetails extends React.Component {
       });
     }
 
-    const { name: lawName, site_url: lawUrl } = getLawNameAndUrl(law);
+    const { name: lawName, resource_uri: lawUrl } = law;
 
     if (lawName && lawUrl) {
       tableData.push({
@@ -309,10 +307,12 @@ class FoiRequestDetails extends React.Component {
     );
     if (publicBody) {
       const {
-        publicBodyName,
-        jurisdictionName,
-        publicBodyId,
-      } = getPublicBodyNameAndJurisdiction(publicBody);
+        id: publicBodyId,
+        name: publicBodyName,
+        jurisdiction,
+      } = publicBody;
+      const { name: jurisdictionName } = jurisdiction;
+
       subheading = (
         <View>
           <TouchableHighlight
