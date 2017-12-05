@@ -1,4 +1,3 @@
-import { AppRegistry, AsyncStorage } from 'react-native';
 import HockeyApp from 'react-native-hockeyapp';
 import Instabug from 'instabug-reactnative';
 import React, { Component } from 'react';
@@ -8,7 +7,7 @@ import App from './app/App';
 
 console.disableYellowBox = true;
 
-class AndroidApp extends Component {
+export default class AndroidApp extends Component {
   async componentWillMount() {
     HockeyApp.configure(HockeyAppId, true);
 
@@ -35,5 +34,3 @@ class AndroidApp extends Component {
     return <App />;
   }
 }
-
-AppRegistry.registerComponent('FragDenStaat', () => AndroidApp);

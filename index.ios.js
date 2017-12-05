@@ -1,4 +1,3 @@
-import { AppRegistry, AsyncStorage } from 'react-native';
 import Instabug from 'instabug-reactnative';
 import React from 'react';
 
@@ -7,7 +6,7 @@ import App from './app/App';
 
 console.disableYellowBox = true;
 
-class iOSApp extends React.Component {
+export default class iOSApp extends React.Component {
   async componentWillMount() {
     const inAppReporting = await AsyncStorage.getItem(
       '@inAppBugReportingEnabled'
@@ -24,5 +23,3 @@ class iOSApp extends React.Component {
     return <App />;
   }
 }
-
-AppRegistry.registerComponent('FragDenStaat', () => iOSApp);
