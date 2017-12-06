@@ -39,10 +39,10 @@ const renderItem = (item, onPress) => {
   const timeAgo = moment(lastContact).fromNow();
   let subtitle = `${I18n.t(realStatus)}, ${timeAgo}`;
 
-  const publicBodyName = item.public_body.name;
-  const jurisdictionName = item.public_body.jurisdiction.name;
+  if (item.public_body) {
+    const publicBodyName = item.public_body.name;
+    const jurisdictionName = item.public_body.jurisdiction.name;
 
-  if (publicBodyName && jurisdictionName) {
     subtitle += `\n${publicBodyName} (${shortenJurisdiction(
       jurisdictionName
     )})`;

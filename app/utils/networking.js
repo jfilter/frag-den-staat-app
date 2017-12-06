@@ -54,4 +54,18 @@ function fetchAndDispatch(
     .catch(error => dispatch(onErrorFetch(error.message)));
 }
 
-export { fetchAndDispatch };
+function fetchMultipleAndDispatch(
+  urls,
+  dispatch,
+  beforeFetch,
+  onSuccessFetch,
+  onErrorFetch
+) {
+  dispatch(beforeFetch());
+
+  Promise.all(urls.map(getFromCacheOrFetch))
+    .then(onSuccessFetch)
+    .catch(error => dispatch(onErrorFetch(error.message)));
+}
+
+export { fetchAndDispatch, fetchMultipleAndDispatch };

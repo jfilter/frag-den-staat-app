@@ -34,6 +34,11 @@ class FoiRequestDetails extends React.Component {
   componentDidMount() {
     const locale = I18n.currentLocale().substring(0, 2);
     moment.locale(locale);
+
+    const { messages } = this.props.messages;
+    if (messages.length === 0) {
+      this.props.fetchMessages(this.props.request.messages);
+    }
   }
 
   _renderMessageHeader = msg => (
@@ -230,11 +235,14 @@ class FoiRequestDetails extends React.Component {
   };
 
   _renderMessages = () => {
-    const filtedMessages = this.props.request.messages.filter(
-      x => !x.not_publishable
-    );
+    const { messages } = this.props.messages;
+    if (messages.length === 0) {
+      return;
+    }
 
-    const messages = filtedMessages.map(
+    const filtedMessages = messages.filter(x => !x.not_publishable);
+
+    const messagesPrintable = filtedMessages.map(
       ({
         id,
         sender,
@@ -277,7 +285,7 @@ class FoiRequestDetails extends React.Component {
         <Accordion
           align={'center'}
           duration={1000}
-          sections={messages.reverse()} // show latest messages first
+          sections={messagesPrintable.reverse()} // show latest messages first
           renderHeader={this._renderMessageHeader}
           renderContent={this._renderMessageContent}
           underlayColor={greyLight}
@@ -346,7 +354,10 @@ class FoiRequestDetails extends React.Component {
         </View>
         {this._renderTable()}
         <View style={styles.summary}>
-          <Text selectable>{description}</Text>
+          <Text selectable>
+            {description ||
+              'The API currently does not provide a description but this will get fixed soon.'}
+          </Text>
         </View>
         {this._renderMessages()}
       </BlankContainer>
@@ -403,7 +414,7 @@ FoiRequestDetails.propTypes = {
   navigateToPdfViewer: PropTypes.func.isRequired,
   navigateToPublicBody: PropTypes.func.isRequired,
   request: PropTypes.shape({
-    public_body: PropTypes.string.isRequired,
+    public_body: PropTypes.object.isRequired,
     description: PropTypes.string.isRequired,
     costs: PropTypes.number,
     id: PropTypes.number.isRequired,
