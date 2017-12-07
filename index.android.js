@@ -1,3 +1,4 @@
+import { AppRegistry, AsyncStorage } from 'react-native';
 import HockeyApp from 'react-native-hockeyapp';
 import Instabug from 'instabug-reactnative';
 import React, { Component } from 'react';
@@ -34,3 +35,5 @@ export default class AndroidApp extends Component {
     return <App />;
   }
 }
+// hotfix, see index.js
+AppRegistry.registerComponent('FragDenStaat', () => AndroidApp);

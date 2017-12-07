@@ -1,3 +1,4 @@
+import { AppRegistry, AsyncStorage } from 'react-native';
 import Instabug from 'instabug-reactnative';
 import React from 'react';
 
@@ -23,3 +24,5 @@ export default class iOSApp extends React.Component {
     return <App />;
   }
 }
+// hotfix, see index.js
+AppRegistry.registerComponent('FragDenStaat', () => iOSApp);
