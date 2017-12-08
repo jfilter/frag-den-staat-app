@@ -47,14 +47,14 @@ const styles = StyleSheet.create({
     padding: spaceNormal,
     borderColor: primaryColor,
     borderWidth: 1,
-    // borderRadius: 25,
   },
   link: {
     color: primaryColor,
   },
   msgContent: {
     padding: spaceNormal,
-    borderColor: secondaryColor,
+    borderColor: primaryColor,
+    borderTopWidth: 0,
     borderWidth: 1,
     marginBottom: spaceMore / 2,
   },

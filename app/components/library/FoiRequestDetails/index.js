@@ -35,10 +35,7 @@ class FoiRequestDetails extends React.Component {
     const locale = I18n.currentLocale().substring(0, 2);
     moment.locale(locale);
 
-    const { messages } = this.props.messages;
-    if (messages.length === 0) {
-      this.props.fetchMessages(this.props.request.messages);
-    }
+    this.props.fetchMessages(this.props.request.messages);
   }
 
   _renderMessageHeader = msg => (
@@ -118,7 +115,6 @@ class FoiRequestDetails extends React.Component {
           </Text>
           <Text style={tableStyles.item2}>
             {
-              TODO
               // TODO: get it working again with new API
               // getPublicBodyNameAndJurisdiction(msg.recipient_public_body)
               //   .publicBodyName
@@ -239,6 +235,13 @@ class FoiRequestDetails extends React.Component {
     if (messages.length === 0) {
       return;
     }
+    // check if there are still old messages in state
+    const messageRequestId = parseInt(
+      messages[0].request.split('/').reverse()[1]
+    ); // second last element
+    if (messageRequestId !== this.props.request.id) {
+      return;
+    }
 
     const filtedMessages = messages.filter(x => !x.not_publishable);
 
@@ -292,7 +295,7 @@ class FoiRequestDetails extends React.Component {
           initiallyActiveSection={0}
           touchableProps={{
             style: {
-              marginVertical: spaceMore / 2,
+              marginTop: spaceMore / 2,
             },
             hitSlop: {
               top: spaceMore / 2,
