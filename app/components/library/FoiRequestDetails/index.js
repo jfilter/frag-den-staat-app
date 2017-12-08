@@ -31,6 +31,13 @@ import SubHeading from '../SubHeading';
 import Table from '../Table';
 
 class FoiRequestDetails extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      escalatedPublicBodyName: null,
+      fetchingEscaltedPublicBody: false,
+    };
+  }
   componentDidMount() {
     const locale = I18n.currentLocale().substring(0, 2);
     moment.locale(locale);
@@ -105,23 +112,32 @@ class FoiRequestDetails extends React.Component {
   };
 
   _renderMessageContent = msg => {
-    let escalation = null;
+    const escalation = msg.is_escalation && (
+      <View style={tableStyles.row}>
+        <Text style={tableStyles.item1}>
+          {I18n.t('foiRequestDetails.esclatedTo')}
+        </Text>
+        <Text style={tableStyles.item2}>
+          {this.state.escalatedPublicBodyName || '...'}
+        </Text>
+      </View>
+    );
 
     if (msg.is_escalation) {
-      escalation = (
-        <View style={tableStyles.row}>
-          <Text style={tableStyles.item1}>
-            {I18n.t('foiRequestDetails.esclatedTo')}
-          </Text>
-          <Text style={tableStyles.item2}>
-            {
-              // TODO: get it working again with new API
-              // getPublicBodyNameAndJurisdiction(msg.recipient_public_body)
-              //   .publicBodyName
-            }
-          </Text>
-        </View>
-      );
+      // very dirty solution, ideally, should be done without state but via redux
+      if (
+        !this.state.escalatedPublicBodyName &&
+        !this.state.fetchingEscaltedPublicBody
+      ) {
+        fetch(msg.recipient_public_body)
+          .then(response => response.json())
+          .then(responseJson => {
+            this.setState({
+              escalatedPublicBodyName: responseJson.name,
+              fetchingEscaltedPublicBody: false,
+            });
+          });
+      }
     }
 
     return (
