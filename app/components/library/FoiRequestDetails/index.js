@@ -8,6 +8,7 @@ import {
   Text,
   TouchableHighlight,
   View,
+  ScrollView,
 } from 'react-native';
 import Accordion from 'react-native-collapsible/Accordion';
 import PropTypes from 'prop-types';
@@ -37,6 +38,8 @@ class FoiRequestDetails extends React.Component {
     this.state = {
       escalatedPublicBodyName: null,
       fetchingEscaltedPublicBody: false,
+      scrollToYOffset: 0,
+      itemHeights: [],
     };
   }
   componentDidMount() {
@@ -47,7 +50,22 @@ class FoiRequestDetails extends React.Component {
   }
 
   _renderMessageHeader = msg => (
-    <View style={[tableStyles.row, styles.msgHeader]}>
+    <View
+      style={[tableStyles.row, styles.msgHeader]}
+      onLayout={event => {
+        event.persist(); // to use values later on
+        this.setState(({ itemHeights }) => {
+          const headerWidth = event.nativeEvent.layout.height + 10;
+          let oldHeight = 0;
+          const numHeights = itemHeights.length;
+          if (numHeights !== 0) {
+            oldHeight = itemHeights[numHeights - 1];
+          }
+          console.log(itemHeights.concat([headerWidth + oldHeight]));
+          return { itemHeights: itemHeights.concat([headerWidth + oldHeight]) };
+        });
+      }}
+    >
       <Text style={[tableStyles.item1, styles.link]}>
         {`${moment(msg.timestamp).format('DD.MM.YYYY')}`}
       </Text>
@@ -247,6 +265,18 @@ class FoiRequestDetails extends React.Component {
     );
   };
 
+  _onChange = index => {
+    setTimeout(
+      () =>
+        this.sv.scrollTo({
+          x: 0,
+          y: this.state.itemHeights[index] + this.state.scrollToYOffset,
+          animated: true,
+        }),
+      300
+    );
+  };
+
   _renderMessages = () => {
     const { messages } = this.props.messages;
     if (messages.length === 0) {
@@ -304,7 +334,8 @@ class FoiRequestDetails extends React.Component {
       <View style={styles.msgContainer}>
         <Accordion
           align={'center'}
-          duration={1000}
+          duration={300}
+          onChange={this._onChange}
           sections={messagesPrintable.reverse()} // show latest messages first
           renderHeader={this._renderMessageHeader}
           renderContent={this._renderMessageContent}
@@ -364,20 +395,26 @@ class FoiRequestDetails extends React.Component {
     }
 
     return (
-      <BlankContainer>
-        <Heading style={styles.heading}>{title}</Heading>
-        <View>
-          <Text style={styles.subheadingTo}>
-            {I18n.t('foiRequestDetails.to')}
-          </Text>
-          {subheading}
-        </View>
-        {this._renderTable()}
-        <View style={styles.summary}>
-          <Text selectable>{description}</Text>
+      <ScrollView ref={s => (this.sv = s)}>
+        <View
+          onLayout={event =>
+            this.setState({ scrollToYOffset: event.nativeEvent.layout.height })
+          }
+        >
+          <Heading style={styles.heading}>{title}</Heading>
+          <View>
+            <Text style={styles.subheadingTo}>
+              {I18n.t('foiRequestDetails.to')}
+            </Text>
+            {subheading}
+          </View>
+          {this._renderTable()}
+          <View style={styles.summary}>
+            <BodyText>{description}</BodyText>
+          </View>
         </View>
         {this._renderMessages()}
-      </BlankContainer>
+      </ScrollView>
     );
   }
 }
