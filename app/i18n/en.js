@@ -33,7 +33,7 @@ export default {
     refusalReason: 'Refusal Reason',
     costs: 'Costs',
     startedOn: 'Started on',
-    lastMessage: 'Last lastMessage',
+    lastMessage: 'Last Message',
     dueDate: 'Due Date',
     law: 'Law',
     notYetSpecified: 'Not Yet Specified',

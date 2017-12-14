@@ -373,10 +373,7 @@ class FoiRequestDetails extends React.Component {
         </View>
         {this._renderTable()}
         <View style={styles.summary}>
-          <Text selectable>
-            {description ||
-              'The API currently does not provide a description but this will get fixed soon.'}
-          </Text>
+          <Text selectable>{description}</Text>
         </View>
         {this._renderMessages()}
       </BlankContainer>
@@ -422,7 +419,7 @@ FoiRequestDetails.navigationOptions = ({ navigation }) => {
   }
 
   return {
-    title: `#${requestId}`,
+    title: I18n.t('request'),
     headerRight: (
       <NavBarIcon iconName={iconName} iconType={iconType} onPress={share} />
     ),
