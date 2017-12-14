@@ -22,6 +22,7 @@ import { spaceMore } from '../../../globals/content';
 import { styles } from './styles';
 import { styles as tableStyles } from '../Table/styles';
 import BlankContainer from '../BlankContainer';
+import BodyText from '../BodyText';
 import Heading from '../Heading';
 import I18n from '../../../i18n';
 import Link from '../Link';
@@ -169,11 +170,11 @@ class FoiRequestDetails extends React.Component {
           </Text>
         </View>
         <Divider style={styles.dividerBeforeMessageContent} />
-        <Text selectable>
+        <BodyText>
           {msg.content_hidden
             ? I18n.t('foiRequestDetails.notYetVisible')
             : msg.content.trim()}
-        </Text>
+        </BodyText>
       </View>
     );
   };
