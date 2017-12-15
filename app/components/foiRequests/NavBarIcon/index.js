@@ -6,6 +6,7 @@ import { primaryColor } from '../../../globals/colors';
 
 const NavBarIcon = ({ onPress, iconName, iconType }) => (
   <Icon
+    hitSlop={{ top: 20, bottom: 20, left: 20, right: 20 }}
     name={iconName}
     type={iconType}
     color={primaryColor}
