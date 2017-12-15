@@ -250,7 +250,7 @@ class FoiRequestDetails extends React.Component {
       });
     }
 
-    const { name: lawName, resource_uri: lawUrl } = law;
+    const { name: lawName, url: lawUrl } = law;
 
     if (lawName && lawUrl) {
       tableData.push({

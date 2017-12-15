@@ -38,12 +38,14 @@ const PublicBodyDetails = ({
     tags,
     number_of_requests: nRequests,
   } = publicBody;
-  const jurisdiction = (
-    <Link
-      label={publicBody.jurisdiction.name}
-      url={publicBody.jurisdiction.site_url}
-    />
-  );
+  // Because the API is not provding a site url right now
+  // const jurisdiction = (
+  //   <Link
+  //     label={publicBody.jurisdiction.name}
+  //     url={publicBody.jurisdiction.site_url}
+  //   />
+  // );
+  const jurisdiction = <Text selectable>{publicBody.jurisdiction.name}</Text>;
   const website = <Link label={url} url={url} />;
 
   const printableTags =
@@ -95,10 +97,10 @@ const PublicBodyDetails = ({
   return (
     <BlankContainer>
       <Heading style={styles.heading}>{name}</Heading>
-      <StandardButton
+      {/* <StandardButton
         icon={{ name: 'add-circle-outline' }}
         title="TODO: Create a Request"
-      />
+      /> */}
       {showRequestsButton}
       <Table data={tableData} />
     </BlankContainer>
