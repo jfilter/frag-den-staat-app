@@ -8,10 +8,11 @@ import {
   Text,
   TouchableHighlight,
   View,
-  ScrollView,
+  StyleSheet,
 } from 'react-native';
 import Accordion from 'react-native-collapsible/Accordion';
 import PropTypes from 'prop-types';
+import R from 'ramda';
 import React from 'react';
 import moment from 'moment';
 
@@ -32,6 +33,9 @@ import StandardButton from '../StandardButton';
 import SubHeading from '../SubHeading';
 import Table from '../Table';
 
+const stylesTouchableFlat = StyleSheet.flatten(styles.touchable);
+const stylesMsgHeaderFlat = StyleSheet.flatten(styles.msgHeader);
+
 class FoiRequestDetails extends React.Component {
   constructor(props) {
     super(props);
@@ -39,7 +43,7 @@ class FoiRequestDetails extends React.Component {
       escalatedPublicBodyName: null,
       fetchingEscaltedPublicBody: false,
       scrollToYOffset: 0,
-      itemHeights: [],
+      itemHeights: null,
     };
   }
   componentDidMount() {
@@ -49,20 +53,19 @@ class FoiRequestDetails extends React.Component {
     this.props.fetchMessages(this.props.request.messages);
   }
 
-  _renderMessageHeader = msg => (
+  _renderMessageHeader = (msg, index) => (
     <View
       style={[tableStyles.row, styles.msgHeader]}
       onLayout={event => {
         event.persist(); // to use values later on
-        this.setState(({ itemHeights }) => {
-          const headerWidth = event.nativeEvent.layout.height + 10;
-          let oldHeight = 0;
-          const numHeights = itemHeights.length;
-          if (numHeights !== 0) {
-            oldHeight = itemHeights[numHeights - 1];
-          }
-          console.log(itemHeights.concat([headerWidth + oldHeight]));
-          return { itemHeights: itemHeights.concat([headerWidth + oldHeight]) };
+        this.setState(({ itemHeights: oldItemHeights }) => {
+          const headerHeight = event.nativeEvent.layout.height;
+          const itemHeights = R.update(
+            index,
+            headerHeight,
+            oldItemHeights || new Array(this.props.messages.messages.length)
+          ); // init here because it means we have fetched the msgs and know the amount
+          return { itemHeights };
         });
       }}
     >
@@ -87,9 +90,7 @@ class FoiRequestDetails extends React.Component {
 
   _renderAttachments = attachments => {
     return attachments.map(att => {
-      const isPdf =
-        att.filetype === 'application/pdf' ||
-        att.name.toLowerCase().endsWith('.pdf'); // hotfix for #38
+      const isPdf = att.filetype === 'application/pdf';
       let viewPdfButton;
 
       if (isPdf) {
@@ -266,11 +267,24 @@ class FoiRequestDetails extends React.Component {
   };
 
   _onChange = index => {
+    if (index === false) return;
+    let itemsAbove = 0;
+    if (index > 0) {
+      itemsAbove = this.state.itemHeights
+        .slice(0, index)
+        .reduce((prev, cur) => prev + cur);
+    }
+
+    const additionalOffset =
+      index *
+        (stylesTouchableFlat.marginTop + 2 * stylesMsgHeaderFlat.borderWidth) +
+      stylesTouchableFlat.marginTop;
+
     setTimeout(
       () =>
-        this.sv.scrollTo({
+        this.scrollView.scrollTo({
           x: 0,
-          y: this.state.itemHeights[index] + this.state.scrollToYOffset,
+          y: itemsAbove + this.state.scrollToYOffset + additionalOffset,
           animated: true,
         }),
       300
@@ -342,9 +356,7 @@ class FoiRequestDetails extends React.Component {
           underlayColor={greyLight}
           initiallyActiveSection={0}
           touchableProps={{
-            style: {
-              marginTop: spaceMore / 2,
-            },
+            style: styles.touchable,
             hitSlop: {
               top: spaceMore / 2,
               bottom: spaceMore / 2,
@@ -395,7 +407,7 @@ class FoiRequestDetails extends React.Component {
     }
 
     return (
-      <ScrollView ref={s => (this.sv = s)}>
+      <BlankContainer scrollViewRef={el => (this.scrollView = el)}>
         <View
           onLayout={event =>
             this.setState({ scrollToYOffset: event.nativeEvent.layout.height })
@@ -414,7 +426,7 @@ class FoiRequestDetails extends React.Component {
           </View>
         </View>
         {this._renderMessages()}
-      </ScrollView>
+      </BlankContainer>
     );
   }
 }

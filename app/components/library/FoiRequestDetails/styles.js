@@ -48,6 +48,9 @@ const styles = StyleSheet.create({
     borderColor: primaryColor,
     borderWidth: 1,
   },
+  touchable: {
+    marginTop: spaceMore / 2, // I discovered this later, is very similar to msgHeader
+  },
   link: {
     color: primaryColor,
   },
