@@ -251,11 +251,16 @@ class FoiRequestDetails extends React.Component {
     }
 
     const { name: lawName, url: lawUrl } = law;
-
+    // currently, the API does not provide links for combined laws
     if (lawName && lawUrl) {
       tableData.push({
         label: I18n.t('foiRequestDetails.law'),
         value: <Link label={breakLongWords(lawName)} url={lawUrl} />,
+      });
+    } else if (lawName) {
+      tableData.push({
+        label: I18n.t('foiRequestDetails.law'),
+        value: <Text selectable>{lawName}</Text>,
       });
     }
 
