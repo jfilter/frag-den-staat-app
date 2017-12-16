@@ -75,7 +75,7 @@ export default {
   user_withdrew_costs: 'Zurückgezogen wegen Kosten',
   publicbody_needed: 'Behörde benötigt',
   awaiting_response: 'Warte auf Antwort',
-  awaiting_classification: 'Warte auf Klassification',
+  awaiting_classification: 'Anfrage muss klassifiziert werden',
   asleep: 'Eingeschlafen',
   not_held: 'Information nicht vorhanden',
   has_fee: 'Gebühr erhoben',

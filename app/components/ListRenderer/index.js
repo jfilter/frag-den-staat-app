@@ -52,15 +52,16 @@ const renderItem = (item, onPress) => {
     <ListItem
       key={item.id}
       title={item.title}
-      titleNumberOfLines={3}
+      titleNumberOfLines={4}
       subtitle={subtitle}
-      subtitleNumberOfLines={3}
+      subtitleNumberOfLines={4}
       leftIcon={
         <View
           style={{
             justifyContent: 'center',
             alignItems: 'center',
-            marginRight: 10,
+            marginRight: 20,
+            marginLeft: 10,
           }}
         >
           <Image
@@ -68,8 +69,8 @@ const renderItem = (item, onPress) => {
               uri: imagePath,
             }}
             style={{
-              height: 25,
-              width: 25,
+              height: 35,
+              width: 35,
             }}
           />
         </View>
