@@ -1,49 +1,29 @@
-// TODO: Everything, espcially styling and a share/export button.
-
-import {
-  StyleSheet,
-  TouchableHighlight,
-  Dimensions,
-  View,
-  Text,
-} from 'react-native';
+import { Dimensions, Platform, Share, StyleSheet, View } from 'react-native';
 import Pdf from 'react-native-pdf';
 import React from 'react';
 
-import { greyDark, primaryColor } from '../../../globals/colors';
+import I18n from '../../../i18n';
+import NavBarIcon from '../../foiRequests/NavBarIcon';
 
-export default class PDFExample extends React.Component {
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    backgroundColor: 'white',
+    height: '100%',
+  },
+  pdf: {
+    flex: 1,
+    width: Dimensions.get('window').width,
+  },
+});
+
+class PdfViewer extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      page: 1,
-      pageCount: 1,
-    };
     this.pdf = null;
   }
-
-  componentDidMount() {}
-
-  prePage = () => {
-    if (this.pdf) {
-      let prePage = this.state.page > 1 ? this.state.page - 1 : 1;
-      this.pdf.setNativeProps({ page: prePage });
-      this.setState({ page: prePage });
-      console.log(`prePage: ${prePage}`);
-    }
-  };
-
-  nextPage = () => {
-    if (this.pdf) {
-      let nextPage =
-        this.state.page + 1 > this.state.pageCount
-          ? this.state.pageCount
-          : this.state.page + 1;
-      this.pdf.setNativeProps({ page: nextPage });
-      this.setState({ page: nextPage });
-      console.log(`nextPage: ${nextPage}`);
-    }
-  };
 
   render() {
     const uri = this.props.navigation.state.params.uri;
@@ -54,26 +34,6 @@ export default class PDFExample extends React.Component {
 
     return (
       <View style={styles.container}>
-        <View style={{ flexDirection: 'row' }}>
-          <TouchableHighlight
-            disabled={this.state.page === 1}
-            style={this.state.page === 1 ? styles.btnDisable : styles.btn}
-            onPress={() => this.prePage()}
-          >
-            <Text style={styles.btnText}>{'Previous'}</Text>
-          </TouchableHighlight>
-          <TouchableHighlight
-            disabled={this.state.page === this.state.pageCount}
-            style={
-              this.state.page === this.state.pageCount
-                ? styles.btnDisable
-                : styles.btn
-            }
-            onPress={() => this.nextPage()}
-          >
-            <Text style={styles.btnText}>{'Next'}</Text>
-          </TouchableHighlight>
-        </View>
         <Pdf
           ref={pdf => {
             this.pdf = pdf;
@@ -82,16 +42,7 @@ export default class PDFExample extends React.Component {
           page={1}
           horizontal={false}
           enableAntialiasing={false}
-          fitWidth={true}
-          onLoadComplete={pageCount => {
-            this.setState({ pageCount: pageCount });
-          }}
-          onPageChanged={(page, pageCount) => {
-            this.setState({ page: page });
-          }}
-          onError={error => {
-            console.log(error);
-          }}
+          fitWidth
           style={styles.pdf}
         />
       </View>
@@ -99,29 +50,48 @@ export default class PDFExample extends React.Component {
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-    backgroundColor: 'white',
-    height: '100%',
-  },
-  btn: {
-    margin: 5,
-    padding: 5,
-    backgroundColor: primaryColor,
-  },
-  btnDisable: {
-    margin: 5,
-    padding: 5,
-    backgroundColor: greyDark,
-  },
-  btnText: {
-    color: '#FFF',
-  },
-  pdf: {
-    flex: 1,
-    width: Dimensions.get('window').width,
-  },
-});
+PdfViewer.navigationOptions = props => {
+  const url = props.navigation.state.params.uri;
+
+  function share() {
+    Share.share(
+      {
+        ...Platform.select({
+          ios: {
+            url,
+          },
+          android: {
+            message: url,
+          },
+        }),
+        title: 'FragDenStaat',
+      },
+      {
+        ...Platform.select({
+          android: {
+            // Android only:
+            dialogTitle: `Share: ${url}`,
+          },
+        }),
+      }
+    );
+  }
+
+  let iconName = 'share';
+  let iconType = 'material';
+
+  // platform specific share button
+  if (Platform.OS === 'ios') {
+    iconName = 'ios-share-outline';
+    iconType = 'ionicon';
+  }
+
+  return {
+    title: I18n.t('attachment'),
+    headerRight: (
+      <NavBarIcon iconName={iconName} iconType={iconType} onPress={share} />
+    ),
+  };
+};
+
+export default PdfViewer;

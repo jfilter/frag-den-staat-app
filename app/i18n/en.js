@@ -81,4 +81,5 @@ export default {
   has_fee: 'Fee charged',
   overdue: 'Response overdue',
   skipShort: 'Skip',
+  attachment: 'Attachment',
 };
