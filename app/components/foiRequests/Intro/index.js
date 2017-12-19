@@ -22,9 +22,12 @@ class Intro extends React.Component {
     const cta = (
       <View>
         <Text style={styles.text}>
-          {`Sieh' dir die Anfragen von anderen Personen an, erstell' eine eigene oder erfahr' erst mehr über Informationsfreiheit in unserem kurzen Video.
+          {`Sieh' dir die Anfragen von anderen Personen an oder erfahr' erst mehr über Informationsfreiheit in unserem kurzen Video.
 
           `}
+          {/* {`Sieh' dir die Anfragen von anderen Personen an, erstell' eine eigene oder erfahr' erst mehr über Informationsfreiheit in unserem kurzen Video.
+
+          `} */}
         </Text>
         <Button
           icon={{ name: 'play-circle-outline', color: secondaryColor }}
@@ -76,38 +79,38 @@ class Intro extends React.Component {
           />
         ),
       },
-      {
-        title: '1. Schritt',
-        subtitle:
-          "Stell' eine Anfrage. Wir leiten diese an die zuständige Behörde weiter.",
-        backgroundColor: primaryColorLight,
-        image: (
-          <Icon
-            name="paper-plane-o"
-            type="font-awesome"
-            size={50}
-            color="white"
-          />
-        ),
-      },
-      {
-        title: '2. Schritt',
-        subtitle:
-          'Du erhälst eine Benachrichtigung, sobald die Behörde auf deine Anfrage reagiert.',
-        backgroundColor: primaryColor,
-        image: (
-          <Icon name="bell-o" type="font-awesome" size={50} color="white" />
-        ),
-      },
-      {
-        title: '3. Schritt',
-        subtitle:
-          'Die Antwort wird für dich und auch für andere öffentlich einsehbar.',
-        backgroundColor: primaryColorDark,
-        image: (
-          <Icon name="globe" type="font-awesome" size={50} color="white" />
-        ),
-      },
+      // {
+      //   title: '1. Schritt',
+      //   subtitle:
+      //     "Stell' eine Anfrage. Wir leiten diese an die zuständige Behörde weiter.",
+      //   backgroundColor: primaryColorLight,
+      //   image: (
+      //     <Icon
+      //       name="paper-plane-o"
+      //       type="font-awesome"
+      //       size={50}
+      //       color="white"
+      //     />
+      //   ),
+      // },
+      // {
+      //   title: '2. Schritt',
+      //   subtitle:
+      //     'Du erhälst eine Benachrichtigung, sobald die Behörde auf deine Anfrage reagiert.',
+      //   backgroundColor: primaryColor,
+      //   image: (
+      //     <Icon name="bell-o" type="font-awesome" size={50} color="white" />
+      //   ),
+      // },
+      // {
+      //   title: '3. Schritt',
+      //   subtitle:
+      //     'Die Antwort wird für dich und auch für andere öffentlich einsehbar.',
+      //   backgroundColor: primaryColorDark,
+      //   image: (
+      //     <Icon name="globe" type="font-awesome" size={50} color="white" />
+      //   ),
+      // },
       {
         title: "Los Geht's!",
         subtitle: cta,
