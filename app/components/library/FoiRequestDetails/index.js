@@ -250,7 +250,7 @@ class FoiRequestDetails extends React.Component {
       });
     }
 
-    const { name: lawName, url: lawUrl } = law;
+    const { name: lawName, site_url: lawUrl } = law;
     // currently, the API does not provide links for combined laws
     if (lawName && lawUrl) {
       tableData.push({
@@ -282,7 +282,7 @@ class FoiRequestDetails extends React.Component {
 
     const additionalOffset =
       index *
-        (stylesTouchableFlat.marginTop + 2 * stylesMsgHeaderFlat.borderWidth) +
+      (stylesTouchableFlat.marginTop + 2 * stylesMsgHeaderFlat.borderWidth) +
       stylesTouchableFlat.marginTop;
 
     setTimeout(

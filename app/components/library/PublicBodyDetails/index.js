@@ -38,14 +38,12 @@ const PublicBodyDetails = ({
     tags,
     number_of_requests: nRequests,
   } = publicBody;
-  // Because the API is not provding a site url right now
-  // const jurisdiction = (
-  //   <Link
-  //     label={publicBody.jurisdiction.name}
-  //     url={publicBody.jurisdiction.site_url}
-  //   />
-  // );
-  const jurisdiction = <Text selectable>{publicBody.jurisdiction.name}</Text>;
+  const jurisdiction = (
+    <Link
+      label={publicBody.jurisdiction.name}
+      url={publicBody.jurisdiction.site_url}
+    />
+  );
   const website = <Link label={url} url={url} />;
 
   const printableTags =
