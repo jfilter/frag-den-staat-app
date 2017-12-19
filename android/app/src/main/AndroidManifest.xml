@@ -32,8 +32,6 @@
             android:windowSoftInputMode="adjustResize"
             />
       <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
-      <activity android:name="net.hockeyapp.android.UpdateActivity" />
-      <activity android:name="net.hockeyapp.android.FeedbackActivity" />
     </application>
 
 </manifest>
