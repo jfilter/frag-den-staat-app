@@ -1,6 +1,6 @@
 {
   "name": "FragDenStaat",
-  "version": "0.5.4",
+  "version": "0.6.0",
   "private": true,
   "license": "MIT",
   "author": "Johannes Filter <hi@jfilter.de> (https://johannesfilter.com)",
@@ -9,14 +9,15 @@
     "url": "https://github.com/jfilter/frag-den-staat-app"
   },
   "rnpm": {
-    "assets": ["./assets/fonts"]
+    "assets": [
+      "./assets/fonts"
+    ]
   },
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
     "postversion": "react-native-version",
-    "ackn":
-      "license-checker --json > credits.json && python3 helper_scripts/wrangle_credits.py && rm credits.json"
+    "ackn": "license-checker --json > credits.json && python3 helper_scripts/wrangle_credits.py && rm credits.json"
   },
   "dependencies": {
     "instabug-reactnative": "^2.0.15",
