@@ -106,7 +106,7 @@ const ProfileStartScreen = ({
             StoreReview.requestReview();
           }
           if (Platform.OS === 'android') {
-            // TODO: Link to app in playstore
+            Linking.openURL('https://play.google.com/store/apps/details?id=de.fragdenstaat.app');
           }
         }}
         rightIcon={{ name: 'chevron-right', color: 'white' }} // chevronHide shitfs the label to the left
