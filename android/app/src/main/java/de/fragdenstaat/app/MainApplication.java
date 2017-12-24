@@ -8,7 +8,6 @@ import io.realm.react.RealmReactPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import org.wonday.pdf.RCTPdfView;
 import com.RNFetchBlob.RNFetchBlobPackage;
-import com.instabug.reactlibrary.RNInstabugReactnativePackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
@@ -33,13 +32,7 @@ public class MainApplication extends Application implements ReactApplication {
             new RealmReactPackage(),
             new VectorIconsPackage(),
             new RCTPdfView(),
-            new RNFetchBlobPackage(),
-            		new RNInstabugReactnativePackage.Builder(Secrets.INSTABUG_ANDROID_ID,MainApplication.this)
-							.setInvocationEvent("shake")
-							.setPrimaryColor("#1D82DC")
-							.setFloatingEdge("left")
-							.setFloatingButtonOffsetFromTop(250)
-							.build()
+            new RNFetchBlobPackage()
       );
     }
   };

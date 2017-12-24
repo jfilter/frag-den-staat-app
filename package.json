@@ -20,7 +20,6 @@
     "ackn": "license-checker --json > credits.json && python3 helper_scripts/wrangle_credits.py && rm credits.json"
   },
   "dependencies": {
-    "instabug-reactnative": "^2.0.15",
     "moment": "^2.18.1",
     "prop-types": "^15.6.0",
     "ramda": "^0.25.0",

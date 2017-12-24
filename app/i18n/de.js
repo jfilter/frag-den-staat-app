@@ -54,8 +54,6 @@ export default {
     press: 'Presse',
     followTwitter: 'Folge uns auf Twitter',
     likeFacebook: 'Like uns auf Facebook',
-    inAppReporting: 'In-App Bug Reporting',
-    restartApp: 'Änderungen werden nur nach Neustart der App übernommen',
   },
   account: 'Account',
   information: 'Information',

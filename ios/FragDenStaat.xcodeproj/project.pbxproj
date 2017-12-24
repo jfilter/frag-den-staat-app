@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		007A77BFFECF45088565718B /* libRNInstabug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F4927522D0F2475891B387B3 /* libRNInstabug.a */; };
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
 		00C302E81ABCBA2D00DB3ED1 /* libRCTImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302C01ABCB91800DB3ED1 /* libRCTImage.a */; };
@@ -38,7 +37,6 @@
 		2DCD954D1E0B4F2C00145EB5 /* FragDenStaatTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* FragDenStaatTests.m */; };
 		3C353410348743A0B13CF27B /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 04D61BB2A69345C68B87D78C /* Zocial.ttf */; };
 		3EAC10D860194DE09740832B /* libRealmReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 848F9A840E974CDAAB67AD46 /* libRealmReact.a */; };
-		4875F39329CCA3B665F86E4B /* Instabug.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC661221FF31B08C455B98B5 /* Instabug.framework */; };
 		4CD395775158407998E6AAEC /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4561ADC3B0CC4C62A97D4AC1 /* MaterialIcons.ttf */; };
 		52904DDA5F3148C1AED77595 /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 535162664B244587BF1C2ECC /* Foundation.ttf */; };
 		5E9157361DD0AC6A00FF2AA8 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
@@ -46,7 +44,6 @@
 		68D9EA30FC2144649E5C21E5 /* libRNStoreReview.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 559A7BDEF8CA45AFAF9157D4 /* libRNStoreReview.a */; };
 		71E7DDC0D8624FB59F4C26F8 /* Kreon-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AA4D760316F54C17BA056203 /* Kreon-Regular.ttf */; };
 		74E64DAB5AAD417E953C1AB5 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9AC80F43C2A2452AB23C2CEF /* libc++.tbd */; };
-		7BC84C8D49060C34F26F23D9 /* Instabug.framework in Embed Instabug Framework */ = {isa = PBXBuildFile; fileRef = BC661221FF31B08C455B98B5 /* Instabug.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		922399FDBFC24C5EA9C57134 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F14DB8F61AAB4C55B82CC9A9 /* Entypo.ttf */; };
 		9B18FF5322154B78B3DD7091 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3460025441DF4153B2F928F3 /* Octicons.ttf */; };
@@ -359,13 +356,6 @@
 			remoteGlobalIDString = 6476C4051EEAA69700B10F51;
 			remoteInfo = "RNI18n-tvOS";
 		};
-		C3AD1C821FD7391D0010C609 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = DFD2195AE53542899D94BB4E /* RNInstabug.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 24DF11ED1DA3A2B90056F77C;
-			remoteInfo = RNInstabug;
-		};
 		C3AD1C851FD7391D0010C609 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9D9424CADFFA4164B19F836F /* RNStoreReview.xcodeproj */;
@@ -382,19 +372,6 @@
 		};
 /* End PBXContainerItemProxy section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		08343782A3A45EFE3CF1836D /* Embed Instabug Framework */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				7BC84C8D49060C34F26F23D9 /* Instabug.framework in Embed Instabug Framework */,
-			);
-			name = "Embed Instabug Framework";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
@@ -446,12 +423,9 @@
 		9FFB9C9F09454978819222AA /* RealmReact.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RealmReact.xcodeproj; path = "../node_modules/realm/react-native/ios/RealmReact.xcodeproj"; sourceTree = "<group>"; };
 		AA4D760316F54C17BA056203 /* Kreon-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Kreon-Regular.ttf"; path = "../assets/fonts/Kreon/Kreon-Regular.ttf"; sourceTree = "<group>"; };
 		ADBDB91F1DFEBF0600ED6528 /* RCTBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBlob.xcodeproj; path = "../node_modules/react-native/Libraries/Blob/RCTBlob.xcodeproj"; sourceTree = "<group>"; };
-		BC661221FF31B08C455B98B5 /* Instabug.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Instabug.framework; path = "../node_modules/instabug-reactnative/ios/Instabug.framework"; sourceTree = "<group>"; };
 		DB04EF746B8F4A918971A680 /* RNFetchBlob.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNFetchBlob.xcodeproj; path = "../node_modules/react-native-fetch-blob/ios/RNFetchBlob.xcodeproj"; sourceTree = "<group>"; };
-		DFD2195AE53542899D94BB4E /* RNInstabug.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNInstabug.xcodeproj; path = "../node_modules/instabug-reactnative/ios/RNInstabug.xcodeproj"; sourceTree = "<group>"; };
 		E514AA32654A42BE81FB0AA2 /* RNI18n.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNI18n.xcodeproj; path = "../node_modules/react-native-i18n/ios/RNI18n.xcodeproj"; sourceTree = "<group>"; };
 		F14DB8F61AAB4C55B82CC9A9 /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
-		F4927522D0F2475891B387B3 /* libRNInstabug.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNInstabug.a; sourceTree = "<group>"; };
 		F65E621DD99E43ADB3C2C106 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -481,8 +455,6 @@
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
-				007A77BFFECF45088565718B /* libRNInstabug.a in Frameworks */,
-				4875F39329CCA3B665F86E4B /* Instabug.framework in Frameworks */,
 				E6E49A1FDB3A4591A23D19A0 /* libRNFetchBlob.a in Frameworks */,
 				B472AD49E0364F7AAA90085E /* libRNI18n.a in Frameworks */,
 				1FF7F4831ED84261AC8EC347 /* libRCTPdf.a in Frameworks */,
@@ -666,7 +638,6 @@
 				832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */,
 				00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */,
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
-				DFD2195AE53542899D94BB4E /* RNInstabug.xcodeproj */,
 				DB04EF746B8F4A918971A680 /* RNFetchBlob.xcodeproj */,
 				E514AA32654A42BE81FB0AA2 /* RNI18n.xcodeproj */,
 				905D452A42BC44A3B5F6B3C2 /* RCTPdf.xcodeproj */,
@@ -746,7 +717,6 @@
 		BC639E6B211646391FAFDD07 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				BC661221FF31B08C455B98B5 /* Instabug.framework */,
 				9AC80F43C2A2452AB23C2CEF /* libc++.tbd */,
 				182A0ED4BA504EABB4141BFF /* libz.tbd */,
 			);
@@ -756,7 +726,6 @@
 		C3AD1C471FD7391C0010C609 /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
-				F4927522D0F2475891B387B3 /* libRNInstabug.a */,
 				3346C131F9464FEA992F698E /* libRNFetchBlob.a */,
 				85B46F90DD0D4B6D9C58C5CE /* libRNI18n.a */,
 				41A1351CDACD4BB5A75A0912 /* libRCTPdf.a */,
@@ -771,14 +740,6 @@
 			isa = PBXGroup;
 			children = (
 				C3AD1C891FD7391D0010C609 /* libRNVectorIcons.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		C3AD1C4B1FD7391D0010C609 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				C3AD1C831FD7391D0010C609 /* libRNInstabug.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -853,7 +814,6 @@
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				08343782A3A45EFE3CF1836D /* Embed Instabug Framework */,
 				17B8211AF6668FE883C0BD79 /* Strip Frameworks */,
 			);
 			buildRules = (
@@ -1003,10 +963,6 @@
 				{
 					ProductGroup = C3AD1C4F1FD7391D0010C609 /* Products */;
 					ProjectRef = E514AA32654A42BE81FB0AA2 /* RNI18n.xcodeproj */;
-				},
-				{
-					ProductGroup = C3AD1C4B1FD7391D0010C609 /* Products */;
-					ProjectRef = DFD2195AE53542899D94BB4E /* RNInstabug.xcodeproj */;
 				},
 				{
 					ProductGroup = C3AD1C531FD7391D0010C609 /* Products */;
@@ -1308,13 +1264,6 @@
 			remoteRef = C3AD1C7F1FD7391D0010C609 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		C3AD1C831FD7391D0010C609 /* libRNInstabug.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libRNInstabug.a;
-			remoteRef = C3AD1C821FD7391D0010C609 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		C3AD1C861FD7391D0010C609 /* libRNStoreReview.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -1406,7 +1355,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "bash \"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/Instabug.framework/Instabug.bundle/strip-frameworks.sh\"\n";
+			shellScript = "";
 		};
 		2D02E4CB1E0B4B27006451C7 /* Bundle React Native Code And Images */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1497,7 +1446,6 @@
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/../node_modules/instabug-reactnative/ios/RNInstabug/**",
 					"$(SRCROOT)/../node_modules/react-native-fetch-blob/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-i18n/ios",
 					"$(SRCROOT)/../node_modules/react-native-pdf/ios/RCTPdf/**",
@@ -1534,7 +1482,6 @@
 				COPY_PHASE_STRIP = NO;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/../node_modules/instabug-reactnative/ios/RNInstabug/**",
 					"$(SRCROOT)/../node_modules/react-native-fetch-blob/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-i18n/ios",
 					"$(SRCROOT)/../node_modules/react-native-pdf/ios/RCTPdf/**",
@@ -1573,11 +1520,9 @@
 				DEVELOPMENT_TEAM = 93C29USLP6;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"../node_modules/instabug-reactnative/ios",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/../node_modules/instabug-reactnative/ios/RNInstabug/**",
 					"$(SRCROOT)/../node_modules/react-native-fetch-blob/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-i18n/ios",
 					"$(SRCROOT)/../node_modules/react-native-pdf/ios/RCTPdf/**",
@@ -1607,11 +1552,9 @@
 				DEVELOPMENT_TEAM = 93C29USLP6;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"../node_modules/instabug-reactnative/ios",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/../node_modules/instabug-reactnative/ios/RNInstabug/**",
 					"$(SRCROOT)/../node_modules/react-native-fetch-blob/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-i18n/ios",
 					"$(SRCROOT)/../node_modules/react-native-pdf/ios/RCTPdf/**",
@@ -1647,7 +1590,6 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/../node_modules/instabug-reactnative/ios/RNInstabug/**",
 					"$(SRCROOT)/../node_modules/react-native-fetch-blob/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-i18n/ios",
 					"$(SRCROOT)/../node_modules/react-native-pdf/ios/RCTPdf/**",
@@ -1693,7 +1635,6 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/../node_modules/instabug-reactnative/ios/RNInstabug/**",
 					"$(SRCROOT)/../node_modules/react-native-fetch-blob/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-i18n/ios",
 					"$(SRCROOT)/../node_modules/react-native-pdf/ios/RCTPdf/**",
