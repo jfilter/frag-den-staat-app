@@ -13,16 +13,18 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     height: '100%',
   },
-  pdf: {
-    flex: 1,
-    width: Dimensions.get('window').width,
-  },
 });
 
 class PdfViewer extends React.Component {
   constructor(props) {
     super(props);
     this.pdf = null;
+    this.state = { width: 100, height: 100 }; // will get overriden on first rendering
+  }
+
+  _onLayout = () => {
+    const { width, height } = Dimensions.get('window');
+    this.setState({ width, height });
   }
 
   render() {
@@ -32,18 +34,18 @@ class PdfViewer extends React.Component {
       cache: true,
     };
 
+    const { width, height } = this.state;
     return (
-      <View style={styles.container}>
+      <View style={styles.container} onLayout={this._onLayout}>
         <Pdf
           ref={pdf => {
             this.pdf = pdf;
           }}
           source={source}
-          page={1}
           horizontal={false}
           enableAntialiasing={false}
-          fitWidth
-          style={styles.pdf}
+          fitPolicy={0} // this spans the pdf to full width for vertical & horizontal
+          style={{ flex: 1, width, height }}
         />
       </View>
     );
