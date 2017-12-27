@@ -1,7 +1,7 @@
 import 'moment/locale/de';
 
-import { Divider, Icon } from 'react-native-elements';
 import {
+  ActivityIndicator,
   Linking,
   Platform,
   Share,
@@ -10,6 +10,7 @@ import {
   View,
   StyleSheet,
 } from 'react-native';
+import { Divider, Icon } from 'react-native-elements';
 import Accordion from 'react-native-collapsible/Accordion';
 import PropTypes from 'prop-types';
 import R from 'ramda';
@@ -17,6 +18,7 @@ import React from 'react';
 import moment from 'moment';
 
 import { ORIGIN } from '../../../globals';
+import { primaryColorLight } from '../../../globals/colors';
 import { breakLongWords } from '../../../utils/strings';
 import { getPrintableStatus } from '../../../utils';
 import { greyLight, primaryColor } from '../../../globals/colors';
@@ -299,14 +301,14 @@ class FoiRequestDetails extends React.Component {
   _renderMessages = () => {
     const { messages } = this.props.messages;
     if (messages.length === 0) {
-      return;
+      return <ActivityIndicator animating size="large" color={primaryColorLight} />;
     }
     // check if there are still old messages in state
     const messageRequestId = parseInt(
       messages[0].request.split('/').reverse()[1]
     ); // second last element
     if (messageRequestId !== this.props.request.id) {
-      return;
+      return <ActivityIndicator animating size="large" color={primaryColorLight} />;
     }
 
     const filtedMessages = messages.filter(x => !x.not_publishable);
