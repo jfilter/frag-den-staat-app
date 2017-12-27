@@ -37,12 +37,6 @@
 			</dict>
 		</dict>
 	</dict>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string/>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>For now, only for bug reporting.</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>For now, only for bug reporting.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Kreon-Bold.ttf</string>
