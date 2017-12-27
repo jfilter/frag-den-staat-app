@@ -101,8 +101,8 @@ android {
         applicationId "de.fragdenstaat.app"
         minSdkVersion 16
         targetSdkVersion 22
-        versionCode 19
-        versionName "0.6.2"
+        versionCode 20
+        versionName "0.7.0"
         ndk {
             abiFilters "armeabi-v7a", "x86"
         }
