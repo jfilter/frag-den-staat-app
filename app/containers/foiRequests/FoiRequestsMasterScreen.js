@@ -217,9 +217,9 @@ FoiRequestsMasterScreen.navigationOptions = ({ navigation }) => {
     headerLeft: (
       <NavBarIcon onPress={navigateToIntro} iconName={'info-outline'} />
     ),
-    headerRight: (
-      <NavBarIcon onPress={navigateToFilter} iconName={'filter-list'} />
-    ),
+    // headerRight: (
+    //   <NavBarIcon onPress={navigateToFilter} iconName={'filter-list'} />
+    // ),
   };
 };
 
