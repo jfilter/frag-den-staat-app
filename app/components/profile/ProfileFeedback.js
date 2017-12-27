@@ -9,7 +9,7 @@ import LinkGroup from '../library/LinkGroup';
 const links = [
   {
     title: 'Github',
-    url: 'https://github.com/jfilter/frag-den-staat-app/issues,
+    url: 'https://github.com/jfilter/frag-den-staat-app/issues',
   },
   {
     title: 'hi@jfilter.de',
