@@ -1,3 +1,5 @@
+import 'moment/locale/de';
+
 import { ListItem } from 'react-native-elements';
 import { View, Text, ActivityIndicator, Image } from 'react-native';
 import React from 'react';
@@ -5,7 +7,7 @@ import moment from 'moment';
 import 'moment/locale/de';
 
 import { getPrintableStatus, shortenJurisdiction } from '../../utils';
-import { primaryColor, primaryColorLight } from '../../globals/colors';
+import { primaryColor, primaryColorLight, greyDark } from '../../globals/colors';
 import I18n from '../../i18n';
 import styles from './styles';
 
@@ -52,6 +54,8 @@ const renderItem = (item, onPress) => {
     <ListItem
       key={item.id}
       title={item.title}
+      titleStyle={{ fontSize: 15, fontWeight: 'bold' }}
+      subtitleStyle={{ fontSize: 13, fontWeight: 'bold', color: greyDark }}
       titleNumberOfLines={4}
       subtitle={subtitle}
       subtitleNumberOfLines={4}

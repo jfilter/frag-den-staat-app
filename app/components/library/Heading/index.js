@@ -9,7 +9,7 @@ const Heading = ({ style, children, ...rest }) => (
     selectable
     style={[
       {
-        fontSize: 20,
+        fontSize: 22,
         fontWeight: '600',
         textAlign: 'center',
         color: secondaryColor,

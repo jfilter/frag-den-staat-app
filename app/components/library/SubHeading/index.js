@@ -7,7 +7,7 @@ const SubHeading = ({ style, children, ...rest }) => (
     selectable
     style={[
       {
-        fontSize: 18,
+        fontSize: 20,
         textAlign: 'center',
       },
       style,
