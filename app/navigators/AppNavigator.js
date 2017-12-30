@@ -25,6 +25,7 @@ export const AppNavigator = TabNavigator(
   },
   {
     tabBarComponent: NavigationComponent,
+    swipeEnabled: false,
     tabBarPosition: 'bottom',
     lazy: true,
     tabBarOptions: {
