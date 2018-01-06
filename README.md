@@ -1,5 +1,5 @@
 <div align="center" >
-  <img  src="assets/FragDenStaatAppDemo.gif" alt="Previews Sublime in use with some of the used plugins.">
+<!--   <img  src="assets/FragDenStaatAppDemo.gif" alt="Previews Sublime in use with some of the used plugins."> -->
 </div>
 
 # FragDenStaat App
@@ -16,6 +16,10 @@ It is been developed with [React Native](https://facebook.github.io/react-native
 [![codebeat badge](https://codebeat.co/badges/1d7258e5-49a4-4450-97d4-1e044cbf1ce6)](https://codebeat.co/projects/github-com-jfilter-frag-den-staat-app-master)
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/jfilter/frag-den-staat-app/blob/master/LICENSE)
 [![chat](https://img.shields.io/badge/chat-on%20Slack-ad1457.svg)](https://openknowledgegermany.slack.com/messages/frag-den-staat-app)
+
+## Releases
+
+Get the app on the [App Store](https://itunes.apple.com/us/app/fragdenstaat-politik-ifg/id1327918030) or [Play Store](https://play.google.com/store/apps/details?id=de.fragdenstaat.app).
 
 ## Beta
 
