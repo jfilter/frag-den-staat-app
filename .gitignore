@@ -55,3 +55,4 @@ fastlane/screenshots
 secrets.json
 public_bodies_full.json
 Secrets.java
+.vscode
