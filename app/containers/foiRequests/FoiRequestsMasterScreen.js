@@ -21,14 +21,12 @@ import {
   foiRequestsErrorClearAction,
 } from '../../actions/foiRequests';
 import { primaryColor, primaryColorLight } from '../../globals/colors';
-import {
-  renderNumberOfResultHeader,
-  renderItem,
-  renderFooter,
-  renderSeparator,
-} from '../../components/library/ListRenderer'; // TODO
 import FoiRequestsListHeader from './FoiRequestsListHeader';
+import ListFooter from '../../components/library/ListFooter';
+import ListHeader from '../../components/library/ListHeader';
+import ListItem from '../../components/library/ListItem';
 import NavBarIcon from '../../components/foiRequests/NavBarIcon';
+import Seperator from '../../components/library/Seperator';
 
 const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
 
@@ -101,17 +99,16 @@ class FoiRequestsMasterScreen extends React.Component {
     this.props.refreshData();
   };
 
-  _renderNumberOfResultHeader = () =>
-    renderNumberOfResultHeader(this.props.nResults);
+  _renderNumberOfResultHeader = () => (
+    <ListHeader numResults={this.props.nResults} />
+  );
 
-  _renderFooter = () => renderFooter(this.props.isPending);
+  _renderFooter = () => <ListFooter isPending={this.props.isPending} />;
 
   _renderItem = ({ item }) => {
     const onPress = () => this.props.navigateToSingle({ request: item });
-    return renderItem(item, onPress);
+    return <ListItem item={item} onPress={onPress} />;
   };
-
-  _renderSeparator = () => renderSeparator();
 
   render() {
     const { clampedScroll } = this.state;
@@ -165,7 +162,7 @@ class FoiRequestsMasterScreen extends React.Component {
           onEndReachedThreshold={0.5}
           ListFooterComponent={this._renderFooter}
           ListHeaderComponent={this._renderNumberOfResultHeader}
-          ItemSeparatorComponent={this._renderSeparator}
+          ItemSeparatorComponent={Seperator}
           ref={ref => (this.listRef = ref)}
           onScroll={Animated.event(
             [{ nativeEvent: { contentOffset: { y: this.state.scrollAnim } } }],

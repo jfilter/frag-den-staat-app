@@ -1,4 +1,5 @@
 import { Image, View } from 'react-native';
+import { ListItem as ListItemRNElements } from 'react-native-elements';
 import React from 'react';
 import moment from 'moment';
 
@@ -10,7 +11,7 @@ import styles from './styles';
 const locale = I18n.currentLocale().substring(0, 2);
 moment.locale(locale);
 
-const ListItem = (item, onPress) => {
+const ListItem = ({ item, onPress }) => {
   const { statusName, realStatus } = getPrintableStatus(
     item.status,
     item.resolution
@@ -31,7 +32,7 @@ const ListItem = (item, onPress) => {
   }
 
   return (
-    <ListItem
+    <ListItemRNElements
       key={item.id}
       title={item.title}
       titleStyle={{ fontSize: 15, fontWeight: 'bold' }}
@@ -49,13 +50,8 @@ const ListItem = (item, onPress) => {
           }}
         >
           <Image
-            source={{
-              uri: imagePath,
-            }}
-            style={{
-              height: 35,
-              width: 35,
-            }}
+            source={{ uri: imagePath }}
+            style={{ height: 35, width: 35 }}
           />
         </View>
       }

@@ -4,7 +4,7 @@ import React from 'react';
 import { primaryColorLight } from '../../../globals/colors';
 import styles from './styles';
 
-const ListFooter = isPending => {
+const ListFooter = ({ isPending }) => {
   if (!isPending) return null;
 
   return (
