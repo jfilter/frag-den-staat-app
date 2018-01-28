@@ -35,7 +35,7 @@ const PublicBodyDetails = ({
     address,
     contact,
     description,
-    tags,
+    categories,
     number_of_requests: nRequests,
   } = publicBody;
   const jurisdiction = (
@@ -46,13 +46,13 @@ const PublicBodyDetails = ({
   );
   const website = <Link label={url} url={url} />;
 
-  const printableTags =
-    tags.length > 0 ? tags.map(x => x.name).join(', ') : null;
+  const printableCategories =
+    categories.length > 0 ? categories.map(x => x.name).join(', ') : null;
   const tableData = [
     { label: I18n.t('jurisdiction'), value: jurisdiction },
     {
       label: I18n.t('classification'),
-      value: <Text selectable>{classification}</Text>,
+      value: <Text selectable>{classification.name}</Text>,
     },
     { label: I18n.t('website'), value: website },
     {
@@ -73,7 +73,7 @@ const PublicBodyDetails = ({
     },
     {
       label: I18n.t('tags'),
-      value: <Text selectable>{printableTags}</Text>,
+      value: <Text selectable>{printableCategories}</Text>,
     },
   ];
 
@@ -110,7 +110,7 @@ PublicBodyDetails.propTypes = {
     name: PropTypes.string.isRequired,
     email: PropTypes.string.isRequired,
     address: PropTypes.string.isRequired,
-    classification: PropTypes.string.isRequired,
+    // classification: PropTypes.string.isRequired,
     url: PropTypes.string.isRequired,
     contact: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
