@@ -48,7 +48,7 @@ function search(state = initialState, action) {
       return {
         ...state,
         publicBodiesIsPending: false,
-        publicBodiesResults: action.results.objects,
+        publicBodiesResults: action.results.objects.results,
       };
     }
     case 'SEARCH_UPDATE_QUERY':
