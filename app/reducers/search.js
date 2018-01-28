@@ -28,7 +28,7 @@ function search(state = initialState, action) {
       return {
         ...state,
         foiRequestsIsPending: false,
-        foiRequestsResults: action.results.objects,
+        foiRequestsResults: action.results.objects.results,
       };
     }
     case 'SEARCH_PUBLIC_BODIES_ERROR':
@@ -48,7 +48,7 @@ function search(state = initialState, action) {
       return {
         ...state,
         publicBodiesIsPending: false,
-        publicBodiesResults: action.results.objects,
+        publicBodiesResults: action.results.objects.results,
       };
     }
     case 'SEARCH_UPDATE_QUERY':
