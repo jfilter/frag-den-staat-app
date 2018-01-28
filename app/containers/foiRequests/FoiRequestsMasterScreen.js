@@ -152,9 +152,13 @@ class FoiRequestsMasterScreen extends React.Component {
               tintColor={primaryColorLight}
               progressBackgroundColor={primaryColorLight}
             />
-          } // progresViewOffset for anodroid
-          contentInset={{ top: LIST_HEADER_HEIGHT }} // iOS
-          data={this.props.requests}
+          }
+          contentInset={
+            { top: LIST_HEADER_HEIGHT } // progresViewOffset for anodroid
+          }
+          data={
+            this.props.requests // iOS
+          }
           extraData={this.props.isPending}
           contentContainerStyle={androidContainerStyle}
           renderItem={this._renderItem}
@@ -165,11 +169,19 @@ class FoiRequestsMasterScreen extends React.Component {
           ItemSeparatorComponent={Seperator}
           ref={ref => (this.listRef = ref)}
           onScroll={Animated.event(
-            [{ nativeEvent: { contentOffset: { y: this.state.scrollAnim } } }],
+            [
+              {
+                nativeEvent: {
+                  contentOffset: { y: this.state.scrollAnim },
+                },
+              },
+            ],
             { useNativeDriver: true }
           )}
-          scrollEventThrottle={10} // iOS only, between onScroll calls are at least 500ms
-          style={{ backgroundColor: 'white' }} // this fixes a bug with not appearing activity spinner
+          scrollEventThrottle={10}
+          style={
+            { backgroundColor: 'white' } // this fixes a bug with not appearing activity spinner
+          }
         />
         <Animated.View
           style={[
