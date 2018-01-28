@@ -1,37 +1,34 @@
-import React from 'react';
-import { View, Text, FlatList } from 'react-native';
+import { FlatList, View } from 'react-native';
+import { Icon } from 'react-native-elements';
 import { NavigationActions } from 'react-navigation';
 import { connect } from 'react-redux';
-import { Icon } from 'react-native-elements';
+import React from 'react';
 
-import {
-  renderNumberOfResultHeader,
-  renderItem,
-  renderFooter,
-  renderSeparator,
-} from '../../components/ListRenderer';
 import {
   searchFoiRequests,
   searchFoiRequestsErrorClearAction,
 } from '../../actions/search';
 import { styles } from './styles';
+import ListFooter from '../../components/library/ListFooter';
+import ListHeader from '../../components/library/ListHeader';
+import ListItem from '../../components/library/ListItem';
+import Seperator from '../../components/library/Seperator';
 
 class SearchResultsFoiRequestsMasterScreen extends React.Component {
   componentDidMount() {
     this.props.doSearch();
   }
 
-  _renderNumberOfResultHeader = () =>
-    renderNumberOfResultHeader(this.props.results.length);
+  _renderNumberOfResultHeader = () => (
+    <ListHeader numResults={this.props.results.length} />
+  );
 
-  _renderFooter = () => renderFooter(this.props.isPending);
+  _renderFooter = () => <ListFooter isPending={this.props.isPending} />;
 
   _renderItem = ({ item }) => {
     const onPress = () => this.props.navigateToSingle({ request: item });
-    return renderItem(item, onPress);
+    return <ListItem item={item} onPress={onPress} />;
   };
-
-  _renderSeparator = () => renderSeparator();
 
   render() {
     return (
@@ -42,7 +39,7 @@ class SearchResultsFoiRequestsMasterScreen extends React.Component {
           renderItem={this._renderItem}
           ListFooterComponent={this._renderFooter}
           // ListHeaderComponent={this._renderNumberOfResultHeader}
-          ItemSeparatorComponent={this._renderSeparator}
+          ItemSeparatorComponent={Seperator}
         />
       </View>
     );

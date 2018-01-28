@@ -15,7 +15,7 @@ import FoiRequestsFilterStatusScreen from '../containers/foiRequests/FoiRequests
 import FoiRequestsIntroScreen from '../containers/foiRequests/FoiRequestsIntroScreen';
 import FoiRequestsMasterScreen from '../containers/foiRequests/FoiRequestsMasterScreen';
 import FoiRequestsPublicBodyScreen from '../containers/foiRequests/FoiRequestsPublicBodyScreen';
-import PdfViewer from '../components/library/PdfViewer';
+import PdfViewer from '../components/screens/PdfViewer';
 import navigateOnce from '../utils/navigateOnce';
 import I18n from '../i18n';
 

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import React from 'react';
 
 import { fetchMessages } from '../../actions/messages';
-import FoiRequestDetails from '../../components/library/FoiRequestDetails';
+import FoiRequestDetails from '../../components/screens/FoiRequestDetails';
 
 // eslint-disable-next-line react/prop-types
 const SearchFoiRequestDetails = ({

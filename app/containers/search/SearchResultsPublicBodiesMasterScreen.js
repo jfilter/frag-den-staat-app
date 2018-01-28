@@ -4,13 +4,14 @@ import { View, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 import React from 'react';
 
-import { renderFooter, renderSeparator } from '../../components/ListRenderer';
+import Seperator from '../../components/library/Seperator';
+import ListFooter from '../../components/library/ListFooter';
 import {
   searchPublicBodies,
   searchPublicBodiesErrorClearAction,
 } from '../../actions/search';
 import { styles } from './styles';
-import listItemStyles from '../../components/ListRenderer/styles';
+import listItemStyles from '../../components/library/ListItem/styles';
 import I18n from '../../i18n';
 
 class SearchResultsPublicBodiesMasterScreen extends React.Component {
@@ -34,9 +35,7 @@ class SearchResultsPublicBodiesMasterScreen extends React.Component {
     );
   };
 
-  _renderSeparator = () => renderSeparator();
-
-  _renderFooter = () => renderFooter(this.props.isPending);
+  _renderFooter = () => <ListFooter isPending={this.props.isPending} />;
 
   render() {
     return (
@@ -44,7 +43,7 @@ class SearchResultsPublicBodiesMasterScreen extends React.Component {
         <FlatList
           data={this.props.results}
           renderItem={this._renderItem}
-          ItemSeparatorComponent={this._renderSeparator}
+          ItemSeparatorComponent={Seperator}
           ListFooterComponent={this._renderFooter}
         />
       </View>

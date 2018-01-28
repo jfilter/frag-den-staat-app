@@ -18,22 +18,25 @@ import React from 'react';
 import moment from 'moment';
 
 import { ORIGIN } from '../../../globals';
-import { primaryColorLight } from '../../../globals/colors';
 import { breakLongWords } from '../../../utils/strings';
 import { getPrintableStatus } from '../../../utils';
-import { greyLight, primaryColor } from '../../../globals/colors';
+import {
+  greyLight,
+  primaryColor,
+  primaryColorLight,
+} from '../../../globals/colors';
 import { spaceMore } from '../../../globals/content';
 import { styles } from './styles';
-import { styles as tableStyles } from '../Table/styles';
-import BlankContainer from '../BlankContainer';
-import BodyText from '../BodyText';
-import Heading from '../Heading';
+import { styles as tableStyles } from '../../library/Table/styles';
+import BlankContainer from '../../library/BlankContainer';
+import BodyText from '../../library/BodyText';
+import Heading from '../../library/Heading';
 import I18n from '../../../i18n';
-import Link from '../Link';
+import Link from '../../library/Link';
 import NavBarIcon from '../../foiRequests/NavBarIcon';
-import StandardButton from '../StandardButton';
-import SubHeading from '../SubHeading';
-import Table from '../Table';
+import StandardButton from '../../library/StandardButton';
+import SubHeading from '../../library/SubHeading';
+import Table from '../../library/Table';
 
 const stylesTouchableFlat = StyleSheet.flatten(styles.touchable);
 const stylesMsgHeaderFlat = StyleSheet.flatten(styles.msgHeader);
@@ -284,7 +287,7 @@ class FoiRequestDetails extends React.Component {
 
     const additionalOffset =
       index *
-      (stylesTouchableFlat.marginTop + 2 * stylesMsgHeaderFlat.borderWidth) +
+        (stylesTouchableFlat.marginTop + 2 * stylesMsgHeaderFlat.borderWidth) +
       stylesTouchableFlat.marginTop;
 
     setTimeout(
@@ -301,14 +304,18 @@ class FoiRequestDetails extends React.Component {
   _renderMessages = () => {
     const { messages } = this.props.messages;
     if (messages.length === 0) {
-      return <ActivityIndicator animating size="large" color={primaryColorLight} />;
+      return (
+        <ActivityIndicator animating size="large" color={primaryColorLight} />
+      );
     }
     // check if there are still old messages in state
     const messageRequestId = parseInt(
       messages[0].request.split('/').reverse()[1]
     ); // second last element
     if (messageRequestId !== this.props.request.id) {
-      return <ActivityIndicator animating size="large" color={primaryColorLight} />;
+      return (
+        <ActivityIndicator animating size="large" color={primaryColorLight} />
+      );
     }
 
     const filtedMessages = messages.filter(x => !x.not_publishable);

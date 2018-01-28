@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import React from 'react';
 
 import { foiRequestsFilterChange } from '../../actions/foiRequests';
-import PublicBodyDetails from '../../components/library/PublicBodyDetails';
+import PublicBodyDetails from '../../components/screens/PublicBodyDetails';
 
 // eslint-disable-next-line react/prop-types
 const SearchPublicBodyDetails = ({

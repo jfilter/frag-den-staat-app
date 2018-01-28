@@ -8,7 +8,7 @@ import {
   iconColor,
   iconSize,
 } from './styles';
-import PdfViewer from '../components/library/PdfViewer';
+import PdfViewer from '../components/screens/PdfViewer';
 import SearchFoiRequestDetailsScreen from '../containers/search/SearchFoiRequestDetailsScreen';
 import SearchPublicBodyDetailsScreen from '../containers/search/SearchPublicBodyDetailsScreen';
 import SearchResultsFoiRequestsMasterScreen from '../containers/search/SearchResultsFoiRequestsMasterScreen';

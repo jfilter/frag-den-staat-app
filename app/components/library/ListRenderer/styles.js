@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { greyDark, greyLight } from '../../globals/colors';
+import { greyDark, greyLight } from '../../../globals/colors';
 
 export default StyleSheet.create({
   seperator: {

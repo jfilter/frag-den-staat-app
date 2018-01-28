@@ -4,7 +4,7 @@ import { NavigationActions } from 'react-navigation';
 import { connect } from 'react-redux';
 import React from 'react';
 
-import { renderSeparator } from '../../components/ListRenderer';
+import Seperator from '../../components/library/Seperator';
 import StandardButton from '../../components/library/StandardButton';
 import data from './FAQ';
 

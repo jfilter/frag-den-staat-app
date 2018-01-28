@@ -5,7 +5,7 @@ import React from 'react';
 
 import { foiRequestsFilterChange } from '../../actions/foiRequests';
 import { getItemById, shortenJurisdiction } from '../../utils';
-import { renderSeparator } from '../../components/ListRenderer';
+import Seperator from '../../components/library/Seperator';
 import { styles } from './styles';
 import I18n from '../../i18n';
 import ListItemRadioButton from '../../components/library/ListItemRadioButton';
@@ -46,7 +46,7 @@ class FoiRequestsFilterJurisdictionScreen extends React.Component {
           data={jurisdictionList}
           extraData={this.props.currentFilter}
           renderItem={this._renderItem}
-          ItemSeparatorComponent={renderSeparator}
+          ItemSeparatorComponent={Seperator}
         />
       </View>
     );

@@ -2,14 +2,13 @@ import { Text } from 'react-native';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { spaceMore } from '../../../globals/content';
 import { styles } from './styles';
-import BlankContainer from '../BlankContainer';
-import Heading from '../Heading';
+import BlankContainer from '../../library/BlankContainer';
+import Heading from '../../library/Heading';
 import I18n from '../../../i18n';
-import Link from '../Link';
-import StandardButton from '../StandardButton';
-import Table from '../Table';
+import Link from '../../library/Link';
+import StandardButton from '../../library/StandardButton';
+import Table from '../../library/Table';
 
 const PublicBodyDetails = ({
   publicBody,

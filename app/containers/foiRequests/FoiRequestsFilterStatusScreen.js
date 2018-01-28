@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import React from 'react';
 
 import { foiRequestsFilterChange } from '../../actions/foiRequests';
-import { renderSeparator } from '../../components/ListRenderer';
+import Seperator from '../../components/library/Seperator';
 import { styles } from './styles';
 import I18n from '../../i18n/';
 import ListItemRadioButton from '../../components/library/ListItemRadioButton';
@@ -42,7 +42,7 @@ class FoiRequestsFilterStatusScreen extends React.Component {
     return (
       <View style={styles.background}>
         <FlatList
-          ItemSeparatorComponent={renderSeparator}
+          ItemSeparatorComponent={Seperator}
           data={statusList}
           extraData={this.props.currentFilter}
           renderItem={this._renderItem}

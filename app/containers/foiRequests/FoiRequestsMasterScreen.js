@@ -26,7 +26,7 @@ import {
   renderItem,
   renderFooter,
   renderSeparator,
-} from '../../components/ListRenderer';
+} from '../../components/library/ListRenderer'; // TODO
 import FoiRequestsListHeader from './FoiRequestsListHeader';
 import NavBarIcon from '../../components/foiRequests/NavBarIcon';
 
@@ -130,8 +130,9 @@ class FoiRequestsMasterScreen extends React.Component {
 
     const hasError = this.props.error !== '';
     if (hasError) {
-      const errorText = `Sorry, there has been an error with the message: '${this
-        .props.error}'`;
+      const errorText = `Sorry, there has been an error with the message: '${
+        this.props.error
+      }'`;
       Alert.alert(
         'Error',
         errorText,

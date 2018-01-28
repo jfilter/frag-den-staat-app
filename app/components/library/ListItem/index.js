@@ -1,39 +1,16 @@
-import 'moment/locale/de';
-
-import { ListItem } from 'react-native-elements';
-import { View, Text, ActivityIndicator, Image } from 'react-native';
+import { Image, View } from 'react-native';
 import React from 'react';
 import moment from 'moment';
 
 import { getPrintableStatus, shortenJurisdiction } from '../../../utils';
-import {
-  primaryColor,
-  primaryColorLight,
-  greyDark,
-} from '../../../globals/colors';
+import { greyDark, primaryColor } from '../../../globals/colors';
 import I18n from '../../../i18n';
 import styles from './styles';
-
-const renderNumberOfResultHeader = nResults => (
-  <Text style={styles.nResults}>
-    {nResults >= 0 && I18n.t('countingRequests', { count: nResults })}
-  </Text>
-);
-
-const renderFooter = isPending => {
-  if (!isPending) return null;
-
-  return (
-    <View style={styles.footer}>
-      <ActivityIndicator animating size="large" color={primaryColorLight} />
-    </View>
-  );
-};
 
 const locale = I18n.currentLocale().substring(0, 2);
 moment.locale(locale);
 
-const renderItem = (item, onPress) => {
+const ListItem = (item, onPress) => {
   const { statusName, realStatus } = getPrintableStatus(
     item.status,
     item.resolution
@@ -89,13 +66,4 @@ const renderItem = (item, onPress) => {
   );
 };
 
-const renderSeparator = () => {
-  return <View style={styles.seperator} />;
-};
-
-export {
-  renderSeparator,
-  renderItem,
-  renderFooter,
-  renderNumberOfResultHeader,
-};
+export default ListItem;

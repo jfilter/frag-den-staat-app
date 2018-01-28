@@ -6,7 +6,7 @@ import React from 'react';
 import { fetchPublicBody } from '../../actions/publicBodies';
 import { foiRequestsFilterChange } from '../../actions/foiRequests';
 import { primaryColorLight } from '../../globals/colors';
-import PublicBodyDetails from '../../components/library/PublicBodyDetails';
+import PublicBodyDetails from '../../components/screens/PublicBodyDetails';
 
 // eslint-disable-next-line react/prop-types
 class FoiRequestPublicBodyScreen extends React.Component {
