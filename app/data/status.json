@@ -2,48 +2,50 @@
   {
     "id": "successful",
     "name": "Successful",
-    "title_long": "The request has been successful.",
+    "title_long": "The request has been successful."
   },
   {
     "id": "partially_successful",
     "name": "Partially successful",
-    "title_long": "The request has been partially successful (some information was provided, but not all)",
+    "title_long":
+      "The request has been partially successful (some information was provided, but not all)"
   },
   {
     "id": "refused",
     "name": "Refused",
-    "title_long": "The Public Body refuses to provide the information.",
+    "title_long": "The Public Body refuses to provide the information."
   },
   {
     "id": "user_withdrew",
     "name": "Withdrawn",
-    "title_long": "User withdrew the request for other reasons.",
+    "title_long": "User withdrew the request for other reasons."
   },
   {
     "id": "user_withdrew_costs",
     "name": "Withdrawn due to costs",
-    "title_long": "User withdrew the request due to the associated costs.",
+    "title_long": "User withdrew the request due to the associated costs."
   },
   { "id": "publicbody_needed", "name": "Public Body needed" },
   { "id": "awaiting_response", "name": "Awaiting response" },
   {
     "id": "awaiting_classification",
-    "name": "Awaits classification",
+    "name": "Awaits classification"
   },
   { "id": "asleep", "name": "Asleep" },
   {
     "id": "not_held",
     "name": "Information not held",
-    "title_long": "The Public Body stated that it does not possess the information.",
+    "title_long":
+      "The Public Body stated that it does not possess the information."
   },
   {
     "id": "has_fee",
     "name": "Fee charged",
-    "title_long": "This request is connected with a fee.",
+    "title_long": "This request is connected with a fee."
   },
   {
     "id": "overdue",
     "name": "Response overdue",
-    "title_long": "The request has not been answered in time.",
-  },
+    "title_long": "The request has not been answered in time."
+  }
 ]
