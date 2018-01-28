@@ -42,6 +42,7 @@ class FoiRequestsFilterStatusScreen extends React.Component {
     return (
       <View style={styles.background}>
         <FlatList
+          bounces={false}
           ItemSeparatorComponent={Seperator}
           data={statusList}
           extraData={this.props.currentFilter}

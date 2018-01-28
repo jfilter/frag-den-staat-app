@@ -2,14 +2,21 @@ import { Icon } from 'react-native-elements';
 import { NavigationActions } from 'react-navigation';
 import { Text, View, TouchableHighlight } from 'react-native';
 import { connect } from 'react-redux';
+import Collapsible from 'react-native-collapsible';
 import React from 'react';
 
 import { foiRequestsFilterChange } from '../../actions/foiRequests';
 import { grey, greyDark } from '../../globals/colors';
 import { styles } from './styles';
+import FoiRequestsFilterStatusScreen from './FoiRequestsFilterStatusScreen';
 import I18n from '../../i18n';
 
 class FoiRequestsListHeader extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { fuck: true };
+  }
+
   render() {
     const { jurisdiction, status, category, publicBody } = this.props.filter;
 
@@ -108,18 +115,17 @@ class FoiRequestsListHeader extends React.Component {
         </View>
       );
     }
-
     return (
       <View style={styles.container}>
-        <View
-          style={{
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-          }}
-        >
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
           <View style={[styles.item, styles.firstItem]}>
             <TouchableHighlight
-              onPress={this.props.navigateToFilterStatus}
+              onPress={() => {
+                // onPress={this.props.navigateToFilterStatus}
+                this.setState(oldState => {
+                  return { fuck: !oldState.fuck };
+                });
+              }}
               underlayColor={grey}
             >
               <View>
@@ -142,6 +148,13 @@ class FoiRequestsListHeader extends React.Component {
           {categoryTab}
           {publicBodyTab}
         </View>
+        <Collapsible
+          collapsed={this.state.fuck}
+          duration={300}
+          easing={'linear'}
+        >
+          <FoiRequestsFilterStatusScreen />
+        </Collapsible>
       </View>
     );
   }
