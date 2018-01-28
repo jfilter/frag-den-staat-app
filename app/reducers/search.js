@@ -28,7 +28,7 @@ function search(state = initialState, action) {
       return {
         ...state,
         foiRequestsIsPending: false,
-        foiRequestsResults: action.results.objects.results,
+        foiRequestsResults: action.results.objects,
       };
     }
     case 'SEARCH_PUBLIC_BODIES_ERROR':
