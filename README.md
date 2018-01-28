@@ -4,12 +4,13 @@
 
 # FragDenStaat App
 
-This app is a frontend for [FragDenStaat.de](https://fragdenstaat.de/), a website to simplify the process of sending and managing FOI requests to German public bodies.
+This app is for [FragDenStaat.de](https://fragdenstaat.de/), a platform to simplify the process of sending and managing FOI requests to German public bodies.
 
 The app should include basic functionalities of the website such as browsing through requests, searching, and creating new requests.
 
 It is been developed with [React Native](https://facebook.github.io/react-native/) for Android and iOS.
 
+[![Build Status](https://travis-ci.org/jfilter/frag-den-staat-app.svg?branch=development)](https://travis-ci.org/jfilter/frag-den-staat-app)
 [![dependencies Status](https://david-dm.org/jfilter/frag-den-staat-app/status.svg)](https://david-dm.org/jfilter/frag-den-staat-app)
 [![devDependency Status](https://david-dm.org/jfilter/frag-den-staat-app/dev-status.svg)](https://david-dm.org/jfilter/frag-den-staat-app#info=devDependencies)
 [![Code Climate](https://codeclimate.com/github/jfilter/frag-den-staat-app/badges/gpa.svg)](https://codeclimate.com/github/jfilter/frag-den-staat-app)
@@ -23,7 +24,7 @@ Get the app on the [App Store](https://itunes.apple.com/us/app/fragdenstaat-poli
 
 ## Beta
 
-If you want to join the beta, have a look at the [Wiki](https://github.com/jfilter/frag-den-staat-app/wiki/Beta).
+If you want to join the beta program, have a look at the [Wiki](https://github.com/jfilter/frag-den-staat-app/wiki/Beta).
 
 ## Contributing
 
