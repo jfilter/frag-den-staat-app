@@ -79,5 +79,6 @@ export default {
   has_fee: 'Gebühr erhoben',
   overdue: 'Verspätet',
   skipShort: 'Überspr.',
+  next: 'Weiter',
   attachment: 'Anhang',
 };

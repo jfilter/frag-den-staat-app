@@ -69,7 +69,7 @@ class Intro extends React.Component {
         title: 'Wie funktionert das?',
         subtitle:
           "Frag' über diese Plattform Behörden in Deutschland nach Informationen und Dokumenten.",
-        backgroundColor: secondaryColor,
+        backgroundColor: primaryColorDark,
         image: (
           <Icon
             name="file-text-o"
@@ -126,6 +126,7 @@ class Intro extends React.Component {
         onDone={this.continue}
         pages={pageArray}
         skipLabel={I18n.t('skipShort')}
+        nextLabel={I18n.t('next')}
       />
     );
   }
