@@ -51,7 +51,6 @@ export const styles = StyleSheet.create({
   selection: {
     color: primaryColor,
     fontSize: 12,
-    // paddingTop: 1,
   },
   align: {
     flexDirection: 'row',

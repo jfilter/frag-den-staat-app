@@ -55,10 +55,30 @@ function shortenJurisdiction(jurisdiction) {
   }
 }
 
+function shortenLabel(label, filterFor) {
+  if (filterFor === 'status') return label;
+  if (filterFor === 'jurisdiction') return shortenJurisdiction(label);
+  return label;
+}
+
+// remove 'overdue' and 'with costs' because it is not implemented yet.
+function getFilterableStatus() {
+  return statusFile.filter(x => !['overdue', 'with_costs'].includes(x.id));
+}
+
+// function
+
+//     if (!switched) {
+//       const label = shortenJurisdiction(
+//         jurisdictionList.find(getItemById(id)).name
+//       );
+
 export {
   mapToRealStatus,
   mapToFakeStatus,
   getItemById,
   getPrintableStatus,
+  getFilterableStatus,
   shortenJurisdiction,
+  shortenLabel,
 };

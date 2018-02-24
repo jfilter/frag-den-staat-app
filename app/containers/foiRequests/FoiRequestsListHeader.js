@@ -1,160 +1,117 @@
 import { Icon } from 'react-native-elements';
-import { NavigationActions } from 'react-navigation';
-import { Text, View, TouchableHighlight } from 'react-native';
+import { TouchableHighlight, View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import Collapsible from 'react-native-collapsible';
 import React from 'react';
 
 import { foiRequestsFilterChange } from '../../actions/foiRequests';
+import { getFilterableStatus, shortenLabel } from '../../utils';
 import { grey, greyDark } from '../../globals/colors';
 import { styles } from './styles';
-import FoiRequestsFilterStatusScreen from './FoiRequestsFilterStatusScreen';
+import FilterDropDown from '../../components/library/FilterDropDown';
+import FilterDropDownButton from '../../components/library/FilterDropDownButton';
 import I18n from '../../i18n';
+import jurisdictionList from '../../data/jurisdiction.json';
+
+const DROPDOWN_ANIMATION_DURATION = 300; // ms
+const DROPDOWN_ANIMATION_PAUSE_BETWEEN_CHANGE = 100; // ms
+
+const filterPossibilities = ['status', 'jurisdiction', 'category'];
+const filterOptionsData = {
+  status: getFilterableStatus().map(x => {
+    return { param: x.id, label: I18n.t(x.id) };
+  }),
+  jurisdiction: jurisdictionList.map(x => {
+    return { param: x.id, label: x.name };
+  }),
+  category: getFilterableStatus().map(x => {
+    return { param: x.id, label: I18n.t(x.id) };
+  }),
+};
 
 class FoiRequestsListHeader extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { fuck: true };
+    this.state = {
+      collapsed: null,
+    };
   }
 
   render() {
-    const { jurisdiction, status, category, publicBody } = this.props.filter;
+    const { filter, updateFilter } = this.props;
 
-    const jurisdictionLabel = jurisdiction
-      ? `${jurisdiction.label}`.toUpperCase()
-      : I18n.t('all').toUpperCase();
-
-    const statusLabel = status
-      ? `${status.label}`.toUpperCase()
-      : I18n.t('all').toUpperCase();
-
-    // TODO
-    const filterCategory = this.props.filter.category;
-    let filterCategoryText = I18n.t('all').toUpperCase();
-
-    if (filterCategory) {
-      // const categoryName = CategoryFile.find(getItemById(filterCategory)).name;
-      const categoryName = 'Category'; // TODO
-      filterCategoryText = `${categoryName}`.toUpperCase();
-    }
-
-    let jurisdictionTab = (
-      <View style={styles.item}>
-        <TouchableHighlight
-          onPress={this.props.navigateToFilterJurisdiction}
-          underlayColor={grey}
-        >
-          <View>
-            <View style={styles.align}>
-              <Text style={styles.label}>
-                {I18n.t('jurisdiction').toUpperCase()}
-              </Text>
-              <Icon
-                name="arrow-drop-down"
-                color={greyDark}
-                height={20}
-                width={20}
-              />
-            </View>
-            <Text style={styles.selection}>{jurisdictionLabel}</Text>
+    // special tab for public body, somehwat hacky
+    const publicBodyTab = filter.publicBody && (
+      <View style={[styles.item, styles.publicBody]}>
+        <View style={styles.align}>
+          <View style={styles.pbLabel}>
+            <Text style={styles.label}>
+              {I18n.t('publicBody').toUpperCase()}
+            </Text>
+            <Text style={styles.selection} numberOfLines={2}>
+              {filter.publicBody.label.toUpperCase()}
+            </Text>
           </View>
-        </TouchableHighlight>
-      </View>
-    );
-
-    let categoryTab = (
-      <View style={styles.item}>
-        <TouchableHighlight
-          onPress={this.props.navigateToFilterCategory}
-          underlayColor={grey}
-        >
-          <View>
-            <View style={styles.align}>
-              <Text style={styles.label}>
-                {I18n.t('category').toUpperCase()}
-              </Text>
-              <Icon
-                name="arrow-drop-down"
-                color={greyDark}
-                height={20}
-                width={20}
-              />
+          <TouchableHighlight
+            onPress={() => this.props.updateFilter({ publicBody: null })}
+            underlayColor={grey}
+            style={styles.pbCross}
+          >
+            <View>
+              <Icon name="clear" color={greyDark} height={20} width={20} />
             </View>
-            <Text style={styles.selection}>{filterCategoryText}</Text>
-          </View>
-        </TouchableHighlight>
-      </View>
-    );
-
-    let publicBodyTab;
-    if (publicBody) {
-      jurisdictionTab = null;
-      categoryTab = null;
-
-      publicBodyTab = (
-        <View style={[styles.item, styles.publicBody]}>
-          <View style={styles.align}>
-            <View style={styles.pbLabel}>
-              <Text style={styles.label}>
-                {I18n.t('publicBody').toUpperCase()}
-              </Text>
-              <Text style={styles.selection} numberOfLines={2}>
-                {publicBody.label.toUpperCase()}
-              </Text>
-            </View>
-            <TouchableHighlight
-              onPress={() => this.props.changeFilter({ publicBody: null })}
-              underlayColor={grey}
-              style={styles.pbCross}
-            >
-              <View>
-                <Icon name="clear" color={greyDark} height={20} width={20} />
-              </View>
-            </TouchableHighlight>
-          </View>
+          </TouchableHighlight>
         </View>
-      );
-    }
+      </View>
+    );
+
     return (
       <View style={styles.container}>
         <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-          <View style={[styles.item, styles.firstItem]}>
-            <TouchableHighlight
-              onPress={() => {
-                // onPress={this.props.navigateToFilterStatus}
-                this.setState(oldState => {
-                  return { fuck: !oldState.fuck };
-                });
-              }}
-              underlayColor={grey}
-            >
-              <View>
-                <View style={styles.align}>
-                  <Text style={styles.label}>
-                    {I18n.t('status').toUpperCase()}
-                  </Text>
-                  <Icon
-                    name="arrow-drop-down"
-                    color={greyDark}
-                    height={20}
-                    width={20}
-                  />
-                </View>
-                <Text style={styles.selection}>{statusLabel}</Text>
-              </View>
-            </TouchableHighlight>
-          </View>
-          {jurisdictionTab}
-          {categoryTab}
+          {filterPossibilities.map(
+            x =>
+              publicBodyTab && x !== 'status' ? null : (
+                <FilterDropDownButton
+                  containerStyles={styles.firstItem}
+                  filterFor={I18n.t(x)}
+                  selection={
+                    filter[x]
+                      ? `${shortenLabel(filter[x].label, x)}`
+                      : I18n.t('all')
+                  }
+                  onPress={() => {
+                    if (this.state.collapsed === x) {
+                      this.setState({ collapsed: null });
+                    } else if (this.state.collapsed === null) {
+                      this.setState({ collapsed: x });
+                    } else {
+                      this.setState({ collapsed: null });
+                      setTimeout(() => {
+                        this.setState({ collapsed: x });
+                      }, DROPDOWN_ANIMATION_DURATION + DROPDOWN_ANIMATION_PAUSE_BETWEEN_CHANGE);
+                    }
+                  }}
+                />
+              )
+          )}
           {publicBodyTab}
         </View>
-        <Collapsible
-          collapsed={this.state.fuck}
-          duration={300}
-          easing={'linear'}
-        >
-          <FoiRequestsFilterStatusScreen />
-        </Collapsible>
+        <View>
+          {filterPossibilities.map(x => (
+            <Collapsible
+              collapsed={!this.state.collapsed || this.state.collapsed !== x}
+              duration={DROPDOWN_ANIMATION_DURATION}
+              easing="linear"
+            >
+              <FilterDropDown
+                filterOptions={filterOptionsData[x]}
+                updateFilter={updateFilter}
+                currentFilter={filter[x]}
+                filterFor={x}
+              />
+            </Collapsible>
+          ))}
+        </View>
       </View>
     );
   }
@@ -169,21 +126,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    changeFilter: newFilter => dispatch(foiRequestsFilterChange(newFilter)),
-    navigateToFilterJurisdiction: () =>
-      dispatch(
-        NavigationActions.navigate({
-          routeName: 'FoiRequestsFilterJurisdiction',
-        })
-      ),
-    navigateToFilterStatus: () =>
-      dispatch(
-        NavigationActions.navigate({ routeName: 'FoiRequestsFilterStatus' })
-      ),
-    navigateToFilterCategory: () =>
-      dispatch(
-        NavigationActions.navigate({ routeName: 'FoiRequestsFilterCategory' })
-      ),
+    updateFilter: newFilter => dispatch(foiRequestsFilterChange(newFilter)),
   };
 };
 
