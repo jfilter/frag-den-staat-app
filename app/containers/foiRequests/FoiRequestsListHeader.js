@@ -12,6 +12,7 @@ import FilterDropDown from '../../components/library/FilterDropDown';
 import FilterDropDownButton from '../../components/library/FilterDropDownButton';
 import I18n from '../../i18n';
 import jurisdictionList from '../../data/jurisdiction.json';
+import categoryList from '../../data/category.json';
 
 const DROPDOWN_ANIMATION_DURATION = 300; // ms
 const DROPDOWN_ANIMATION_PAUSE_BETWEEN_CHANGE = 100; // ms
@@ -24,8 +25,8 @@ const filterOptionsData = {
   jurisdiction: jurisdictionList.map(x => {
     return { param: x.id, label: x.name };
   }),
-  category: getFilterableStatus().map(x => {
-    return { param: x.id, label: I18n.t(x.id) };
+  category: categoryList.map(x => {
+    return { param: x, label: x };
   }),
 };
 

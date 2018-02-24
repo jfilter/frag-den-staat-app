@@ -95,10 +95,9 @@ function buildUrl(getState) {
       params.set('jurisdiction', filter.jurisdiction.param);
     }
 
-    // TODO: Not supported by the API?
-    // if (filter.category) {
-    //   params += `&category=${filter.category}`;
-    // }
+    if (filter.category) {
+      params.set('categories', filter.category.param);
+    }
   }
 
   const paramsAsString = [...params].map(x => `${x[0]}=${x[1]}`).join('&');
