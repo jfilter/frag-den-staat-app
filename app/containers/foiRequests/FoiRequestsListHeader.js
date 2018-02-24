@@ -1,12 +1,12 @@
+import { Animated, Easing, TouchableHighlight, View, Text } from 'react-native';
 import { Icon } from 'react-native-elements';
-import { TouchableHighlight, View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import Collapsible from 'react-native-collapsible';
 import React from 'react';
 
 import { foiRequestsFilterChange } from '../../actions/foiRequests';
 import { getFilterableStatus, shortenLabel } from '../../utils';
-import { grey, greyDark } from '../../globals/colors';
+import { grey, greyDark, primaryColor, greyLight } from '../../globals/colors';
 import { styles } from './styles';
 import FilterDropDown from '../../components/library/FilterDropDown';
 import FilterDropDownButton from '../../components/library/FilterDropDownButton';
@@ -34,7 +34,85 @@ class FoiRequestsListHeader extends React.Component {
     super(props);
     this.state = {
       collapsed: null,
+      prevCollapsed: null,
+      dropdownAnim: new Animated.Value(0),
     };
+  }
+
+  startExpanding() {
+    Animated.timing(this.state.dropdownAnim, {
+      toValue: 1,
+      duration: DROPDOWN_ANIMATION_DURATION,
+      easing: Easing.linear,
+    }).start();
+  }
+
+  startCollapsing() {
+    Animated.timing(this.state.dropdownAnim, {
+      toValue: 0,
+      duration: DROPDOWN_ANIMATION_DURATION,
+      easing: Easing.linear,
+    }).start();
+  }
+
+  styleActiveTab(x) {
+    const border = this.state.dropdownAnim.interpolate({
+      inputRange: [0, 1],
+      outputRange: [0, 3],
+    });
+
+    if (
+      (this.state.collapsed === null && this.state.prevCollapsed === x) ||
+      this.state.collapsed === x
+    ) {
+      return { borderBottomWidth: border, borderBottomColor: primaryColor };
+    }
+
+    return {
+      borderBottomWidth: 1,
+      borderBottomColor: greyLight,
+    };
+  }
+
+  _onPress(x) {
+    if (this.state.collapsed === x) {
+      this.setState(
+        {
+          prevCollapsed: x,
+          collapsed: null,
+          dropdownAnim: new Animated.Value(1),
+        },
+        () => this.startCollapsing()
+      );
+    } else if (this.state.collapsed === null) {
+      this.setState(
+        {
+          prevCollapsed: null,
+          collapsed: x,
+          dropdownAnim: new Animated.Value(0),
+        },
+        () => this.startExpanding()
+      );
+    } else {
+      this.setState(
+        {
+          prevCollapsed: this.state.collapsed,
+          collapsed: null,
+          dropdownAnim: new Animated.Value(1),
+        },
+        () => this.startCollapsing()
+      );
+      setTimeout(() => {
+        this.setState(
+          {
+            prevCollapsed: null,
+            collapsed: x,
+            dropdownAnim: new Animated.Value(0),
+          },
+          () => this.startExpanding()
+        );
+      }, DROPDOWN_ANIMATION_DURATION + DROPDOWN_ANIMATION_PAUSE_BETWEEN_CHANGE);
+    }
   }
 
   render() {
@@ -72,25 +150,19 @@ class FoiRequestsListHeader extends React.Component {
             x =>
               publicBodyTab && x !== 'status' ? null : (
                 <FilterDropDownButton
-                  containerStyles={styles.firstItem}
+                  containerStyles={this.styleActiveTab(x)}
+                  dropdownAnim={
+                    (this.state.collapsed === x ||
+                      this.state.prevCollapsed === x) &&
+                    this.state.dropdownAnim
+                  }
                   filterFor={I18n.t(x)}
                   selection={
                     filter[x]
                       ? `${shortenLabel(filter[x].label, x)}`
                       : I18n.t('all')
                   }
-                  onPress={() => {
-                    if (this.state.collapsed === x) {
-                      this.setState({ collapsed: null });
-                    } else if (this.state.collapsed === null) {
-                      this.setState({ collapsed: x });
-                    } else {
-                      this.setState({ collapsed: null });
-                      setTimeout(() => {
-                        this.setState({ collapsed: x });
-                      }, DROPDOWN_ANIMATION_DURATION + DROPDOWN_ANIMATION_PAUSE_BETWEEN_CHANGE);
-                    }
-                  }}
+                  onPress={() => this._onPress(x)}
                 />
               )
           )}
