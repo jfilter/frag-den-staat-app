@@ -57,15 +57,16 @@ class FoiRequestsListHeader extends React.Component {
   }
 
   styleActiveTab(x) {
+    const { collapsed, prevCollapsed } = this.state;
+
+    if (collapsed === null && prevCollapsed !== x) return {};
+
     const border = this.state.dropdownAnim.interpolate({
       inputRange: [0, 1],
       outputRange: [0, 3],
     });
 
-    if (
-      (this.state.collapsed === null && this.state.prevCollapsed === x) ||
-      this.state.collapsed === x
-    ) {
+    if ((collapsed === null && prevCollapsed === x) || collapsed === x) {
       return { borderBottomWidth: border, borderBottomColor: primaryColor };
     }
 
