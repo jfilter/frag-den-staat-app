@@ -15,12 +15,7 @@ const mapDispatchToProps = dispatch => {
   return {
     navigateToIntroVideo: () =>
       dispatch(NavigationActions.navigate({ routeName: 'ProfileIntroVideo' })),
-    navigateToMain: () =>
-      dispatch(
-        NavigationActions.navigate({
-          routeName: 'FoiRequestsMaster',
-        })
-      ),
+    navigateToMain: () => dispatch(NavigationActions.back()),
   };
 };
 
