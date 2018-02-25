@@ -152,6 +152,7 @@ class FoiRequestsListHeader extends React.Component {
             x =>
               publicBodyTab && x !== 'status' ? null : (
                 <FilterDropDownButton
+                  key={x}
                   containerStyles={this.styleActiveTab(x)}
                   dropdownAnim={
                     (this.state.collapsed === x ||
@@ -173,6 +174,7 @@ class FoiRequestsListHeader extends React.Component {
         <View>
           {filterPossibilities.map(x => (
             <Collapsible
+              key={x}
               collapsed={!this.state.collapsed || this.state.collapsed !== x}
               duration={DROPDOWN_ANIMATION_DURATION}
               easing="linear"

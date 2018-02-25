@@ -11,7 +11,7 @@ export const styles = StyleSheet.create({
     top: 0,
     left: 0,
     right: 0,
-    height: LIST_HEADER_HEIGHT,
+    // height: LIST_HEADER_HEIGHT,
   },
   container: {
     backgroundColor: 'white',

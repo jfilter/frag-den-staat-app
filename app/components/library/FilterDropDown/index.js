@@ -36,8 +36,11 @@ class FilterDropDown extends React.Component {
     const { filterOptions, currentFilter } = this.props;
 
     const bottomBarHeight = 56;
+    const statusBarHeight =
+      Platform.OS === 'android' ? StatusBar.currentHeight : 0;
+
     const ScreenHeight =
-      Dimensions.get('window').height - bottomBarHeight - 100; // approx. offset to top
+      Dimensions.get('window').height - bottomBarHeight - 100 - statusBarHeight; // approx. offset to top
 
     return (
       <BlankContainer outerStyle={{ height: ScreenHeight }}>
