@@ -9,6 +9,10 @@ import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import PropTypes from 'prop-types';
 import React from 'react';
+import {
+  createReduxBoundAddListener,
+  createReactNavigationReduxMiddleware,
+} from 'react-navigation-redux-helpers';
 
 import { greyLight, primaryColor } from '../globals/colors';
 import NewRequestNavigator from './NewRequestNavigator';
@@ -58,7 +62,14 @@ export const AppNavigator = TabNavigator(
   }
 );
 
-class AppWithNavigationState extends React.Component {
+// Note: createReactNavigationReduxMiddleware must be run before createReduxBoundAddListener
+const middleware = createReactNavigationReduxMiddleware(
+  'root',
+  state => state.navigation
+);
+const addListener = createReduxBoundAddListener('root');
+
+class ReduxNavigation extends React.Component {
   componentDidMount() {
     BackHandler.addEventListener('hardwareBackPress', this.onBackPress);
   }
@@ -80,23 +91,22 @@ class AppWithNavigationState extends React.Component {
   };
 
   render() {
-    const { dispatch, navigation } = this.props;
-
     return (
       <AppNavigator
-        navigation={addNavigationHelpers({ dispatch, state: navigation })}
+        navigation={addNavigationHelpers({
+          dispatch: this.props.dispatch,
+          state: this.props.navigation,
+          addListener,
+        })}
       />
     );
   }
 }
 
-AppWithNavigationState.propTypes = {
-  dispatch: PropTypes.func.isRequired,
-  navigation: PropTypes.object.isRequired,
-};
-
 const mapStateToProps = state => ({
   navigation: state.navigation,
 });
 
-export default connect(mapStateToProps)(AppWithNavigationState);
+const AppWithNavigationState = connect(mapStateToProps)(ReduxNavigation);
+
+export default AppWithNavigationState;
