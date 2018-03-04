@@ -6,9 +6,8 @@ import PropTypes from 'prop-types';
 import { grey, primaryColor } from '../../../globals/colors';
 import styles from './styles';
 
-const ListItemRadioButton = ({ key, title, onSwitch, switched }) => (
+const ListItemRadioButton = ({ title, onSwitch, switched }) => (
   <ListItem
-    key={key}
     title={title}
     rightIcon={
       <RadioButton
@@ -25,7 +24,6 @@ const ListItemRadioButton = ({ key, title, onSwitch, switched }) => (
 );
 
 ListItemRadioButton.propTypes = {
-  key: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   onSwitch: PropTypes.func.isRequired,
   switched: PropTypes.bool.isRequired,
