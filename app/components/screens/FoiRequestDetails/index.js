@@ -68,7 +68,7 @@ class FoiRequestDetails extends React.Component {
           const itemHeights = R.update(
             index,
             headerHeight,
-            oldItemHeights || new Array(this.props.messages.messages.length)
+            oldItemHeights || new Array(this.props.messages.length)
           ); // init here because it means we have fetched the msgs and know the amount
           return { itemHeights };
         });
@@ -302,7 +302,7 @@ class FoiRequestDetails extends React.Component {
   };
 
   _renderMessages = () => {
-    const { messages } = this.props.messages;
+    const { messages } = this.props;
     if (messages.length === 0) {
       return (
         <ActivityIndicator animating size="large" color={primaryColorLight} />

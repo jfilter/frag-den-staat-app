@@ -27,7 +27,7 @@ SearchFoiRequestDetails.navigationOptions = FoiRequestDetails.navigationOptions;
 const mapStateToProps = (state, props) => {
   return {
     request: props.navigation.state.params.request,
-    messages: state.messages,
+    messages: state.messages.messages,
   };
 };
 
