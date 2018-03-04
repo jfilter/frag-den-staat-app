@@ -1,4 +1,8 @@
-import { ORIGIN } from '../globals';
+import {
+  ORIGIN,
+  SEARCH_FOI_REQUESTS_PATH,
+  SEARCH_PUBLIC_BODIES_PATH,
+} from '../globals';
 import { fetchAndDispatch } from '../utils/networking';
 
 function searchFoiRequestsErrorAction(error) {
@@ -66,9 +70,6 @@ function searchUpdatePastQueries(pastQueries) {
     pastQueries,
   };
 }
-
-const SEARCH_FOI_REQUESTS_PATH = '/api/v1/request/search/';
-const SEARCH_PUBLIC_BODIES_PATH = '/api/v1/publicbody/search/';
 
 function searchFoiRequests() {
   return (dispatch, getState) => {

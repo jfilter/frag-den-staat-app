@@ -1,4 +1,4 @@
-import { ORIGIN } from '../globals';
+import { ORIGIN, PUBLIC_BODY_PATH } from '../globals';
 import { fetchAndDispatch } from '../utils/networking';
 
 function publicBodiesPendingAction() {
@@ -21,11 +21,9 @@ function publicBodiesErrorAction(error) {
   };
 }
 
-const PATH = '/api/v1/publicbody/';
-
 function fetchPublicBody(publicBodyId) {
   return dispatch => {
-    const buildUrl = () => `${ORIGIN}${PATH}${publicBodyId}`;
+    const buildUrl = () => `${ORIGIN}${PUBLIC_BODY_PATH}${publicBodyId}`;
 
     const onSuccess = (innerDispatch => data =>
       innerDispatch(publicBodiesSuccessAction(data)))(dispatch);

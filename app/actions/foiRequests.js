@@ -1,6 +1,6 @@
 import R from 'ramda';
 
-import { ORIGIN } from '../globals';
+import { ORIGIN, FOI_REQUESTS_PAGE_SIZE, FOI_REQUESTS_PATH } from '../globals';
 import { fetchAndDispatch } from '../utils/networking';
 import { mapToFakeStatus } from '../utils';
 
@@ -56,22 +56,19 @@ function foiRequestsFilterChangeAction(filter) {
   };
 }
 
-const PAGE_SIZE = 20;
-const DEFAULT_PATH = '/api/v1/request/';
-
 function buildUrl(getState) {
   const { filter, nPage, isRefreshing } = getState().foiRequests;
-  let offset = PAGE_SIZE * nPage;
+  let offset = FOI_REQUESTS_PAGE_SIZE * nPage;
 
   // page is still the former value in case the refresh fails
   if (isRefreshing) {
     offset = 0;
   }
 
-  const url = `${ORIGIN}${DEFAULT_PATH}`;
+  const url = `${ORIGIN}${FOI_REQUESTS_PATH}`;
 
   const params = new Map([
-    ['limit', `${PAGE_SIZE}`],
+    ['limit', `${FOI_REQUESTS_PAGE_SIZE}`],
     ['offset', `${offset}`],
     ['is_foi', 'true'], // filter out crappy requests
   ]);
