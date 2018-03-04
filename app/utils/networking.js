@@ -9,25 +9,29 @@ const headers = {
 
 function getFromCacheOrFetch(url) {
   return new Promise((resolve, reject) => {
-    cache.get(url).then(value => {
-      if (value) {
-        resolve(value);
-      } else {
-        fetch(encodeURI(url), { headers })
-          .then(response => {
-            if (!response.ok) {
-              reject(response.status);
-            }
-            setTimeout(() => null, 0); // workaround for issue-6679
-            return response;
-          })
-          .then(response => response.json())
-          .then(response => {
-            cache.set(url, response);
-            resolve(response);
-          });
-      }
-    });
+    cache
+      .get(url)
+      .then(value => {
+        if (value) {
+          resolve(value);
+        } else {
+          fetch(encodeURI(url), { headers })
+            .then(response => {
+              if (!response.ok) {
+                reject(response.status);
+              }
+              setTimeout(() => null, 0); // workaround for issue-6679
+              return response;
+            })
+            .then(response => response.json())
+            .then(response => {
+              cache.set(url, response);
+              resolve(response);
+            })
+            .catch(error => reject(error));
+        }
+      })
+      .catch(error => reject(error));
   });
 }
 
