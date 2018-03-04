@@ -63,20 +63,47 @@ export const AppNavigator = TabNavigator(
 );
 
 // Note: createReactNavigationReduxMiddleware must be run before createReduxBoundAddListener
-const middleware = createReactNavigationReduxMiddleware(
+const navMiddleware = createReactNavigationReduxMiddleware(
   'root',
   state => state.navigation
 );
 const addListener = createReduxBoundAddListener('root');
 
 class ReduxNavigation extends React.Component {
-  componentDidMount() {
-    BackHandler.addEventListener('hardwareBackPress', this.onBackPress);
-  }
+  // componentDidMount() {
+  // BackHandler.addEventListener('hardwareBackPress', this.onBackPress);
+  //   if (Platform.OS === 'android') {
+  //     Linking.getInitialURL().then(url => {
+  //       this.navigate(url);
+  //     });
+  //   } else {
+  //     Linking.addEventListener('url', this.handleOpenURL);
+  //   }
+  // }
 
-  componentWillUnmount() {
-    BackHandler.removeEventListener('hardwareBackPress', this.onBackPress);
-  }
+  // componentWillUnmount() {
+  //   BackHandler.removeEventListener('hardwareBackPress', this.onBackPress);
+  //   Linking.removeEventListener('url', this.handleOpenURL);
+  // }
+
+  // handleOpenURL = event => {
+  //   // D
+  //   this.navigate(event.url);
+  // };
+
+  // navigate = url => {
+  //   // E
+  //   const { navigate } = this.props.navigation;
+  //   const route = url.replace(/.*?:\/\//g, '');
+  //   const id = route.match(/\/([^\/]+)\/?$/)[1];
+  //   const routeName = route.split('/')[0];
+
+  //   console.log(id, routeName);
+
+  //   if (routeName === 'foiRequest') {
+  //     navigate('FoiRequestsSingleFoiRequest', { id });
+  //   }
+  // };
 
   onBackPress = () => {
     const { dispatch, navigation } = this.props;
@@ -109,4 +136,4 @@ const mapStateToProps = state => ({
 
 const AppWithNavigationState = connect(mapStateToProps)(ReduxNavigation);
 
-export default AppWithNavigationState;
+export { AppWithNavigationState, navMiddleware };

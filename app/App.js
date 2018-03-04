@@ -1,16 +1,19 @@
-import React from 'react';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
-import thunkMiddleware from 'redux-thunk';
 import { createLogger } from 'redux-logger';
+import { createStore, applyMiddleware } from 'redux';
+import React from 'react';
+import thunkMiddleware from 'redux-thunk';
 
 import AppReducer from './reducers';
-import AppWithNavigationState from './navigators/AppNavigator';
+import {
+  AppWithNavigationState,
+  navMiddleware,
+} from './navigators/AppNavigator';
 
 // TODO: retrieve state from persistent storage for e.g. auth
 const initialState = {};
 
-let middleware = [thunkMiddleware];
+let middleware = [thunkMiddleware, navMiddleware];
 if (__DEV__) {
   middleware = [...middleware, createLogger()];
 }
