@@ -55,7 +55,9 @@ class FoiRequestDetails extends React.Component {
     const locale = I18n.currentLocale().substring(0, 2);
     moment.locale(locale);
 
-    this.props.fetchMessages(this.props.request.messages);
+    const { fetchMessages } = this.props;
+    if (fetchMessages !== null && fetchMessages !== undefined)
+      fetchMessages(this.props.request.messages);
   }
 
   _renderMessageHeader = (msg, index) => (
@@ -449,7 +451,16 @@ class FoiRequestDetails extends React.Component {
 }
 
 FoiRequestDetails.navigationOptions = ({ navigation }) => {
-  const requestId = navigation.state.params.request.id;
+  const { params } = navigation.state;
+  let requestId = null;
+
+  // sometimes we get the request via the nav prop and sometimes only the id
+  if (params.request != null) {
+    requestId = params.request.id;
+  } else if (params.foiRequestId != null) {
+    requestId = params.foiRequestId;
+  }
+
   const url = `${ORIGIN}/a/${requestId}`;
 
   function share() {

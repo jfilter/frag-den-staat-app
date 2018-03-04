@@ -1,4 +1,4 @@
-import { BackHandler } from 'react-native';
+import { BackHandler, Linking, Platform } from 'react-native';
 import { Icon } from 'react-native-elements';
 import {
   NavigationActions,
@@ -7,11 +7,11 @@ import {
 } from 'react-navigation';
 import { NavigationComponent } from 'react-native-material-bottom-navigation';
 import { connect } from 'react-redux';
-import React from 'react';
 import {
   createReduxBoundAddListener,
   createReactNavigationReduxMiddleware,
 } from 'react-navigation-redux-helpers';
+import React from 'react';
 
 import { greyLight, primaryColor } from '../globals/colors';
 import NewRequestNavigator from './NewRequestNavigator';
@@ -69,40 +69,21 @@ const navMiddleware = createReactNavigationReduxMiddleware(
 const addListener = createReduxBoundAddListener('root');
 
 class ReduxNavigation extends React.Component {
-  // componentDidMount() {
-  // BackHandler.addEventListener('hardwareBackPress', this.onBackPress);
-  //   if (Platform.OS === 'android') {
-  //     Linking.getInitialURL().then(url => {
-  //       this.navigate(url);
-  //     });
-  //   } else {
-  //     Linking.addEventListener('url', this.handleOpenURL);
-  //   }
-  // }
+  componentDidMount() {
+    BackHandler.addEventListener('hardwareBackPress', this.onBackPress);
+    if (Platform.OS === 'android') {
+      Linking.getInitialURL().then(url => {
+        this.navigate(url);
+      });
+    } else {
+      Linking.addEventListener('url', this.handleOpenURL);
+    }
+  }
 
-  // componentWillUnmount() {
-  //   BackHandler.removeEventListener('hardwareBackPress', this.onBackPress);
-  //   Linking.removeEventListener('url', this.handleOpenURL);
-  // }
-
-  // handleOpenURL = event => {
-  //   // D
-  //   this.navigate(event.url);
-  // };
-
-  // navigate = url => {
-  //   // E
-  //   const { navigate } = this.props.navigation;
-  //   const route = url.replace(/.*?:\/\//g, '');
-  //   const id = route.match(/\/([^\/]+)\/?$/)[1];
-  //   const routeName = route.split('/')[0];
-
-  //   console.log(id, routeName);
-
-  //   if (routeName === 'foiRequest') {
-  //     navigate('FoiRequestsSingleFoiRequest', { id });
-  //   }
-  // };
+  componentWillUnmount() {
+    BackHandler.removeEventListener('hardwareBackPress', this.onBackPress);
+    Linking.removeEventListener('url', this.handleOpenURL);
+  }
 
   onBackPress = () => {
     const { dispatch, navigation } = this.props;
@@ -114,6 +95,26 @@ class ReduxNavigation extends React.Component {
 
     dispatch(NavigationActions.back());
     return true;
+  };
+
+  handleOpenURL = event => {
+    this.navigate(event.url);
+  };
+
+  navigate = url => {
+    const { dispatch } = this.props;
+    const route = url.replace(/.*?:\/\//g, '');
+    const id = route.match(/\/([^\/]+)\/?$/)[1];
+    const routeName = route.split('/')[0];
+
+    if (routeName === 'a') {
+      dispatch(
+        NavigationActions.navigate({
+          routeName: 'FoiRequestsSingle',
+          params: { foiRequestId: id },
+        })
+      );
+    }
   };
 
   render() {

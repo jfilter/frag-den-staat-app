@@ -6,6 +6,7 @@ import messages from './messages';
 import navigation from './navigation';
 import publicBodies from './publicBodies';
 import search from './search';
+import singleFoiRequest from './singleFoiRequest';
 
 const AppReducer = combineReducers({
   navigation,
@@ -14,6 +15,7 @@ const AppReducer = combineReducers({
   search,
   publicBodies,
   messages,
+  singleFoiRequest,
 });
 
 export default AppReducer;
