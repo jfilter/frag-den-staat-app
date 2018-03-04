@@ -9,15 +9,14 @@
     "url": "https://github.com/jfilter/frag-den-staat-app"
   },
   "rnpm": {
-    "assets": [
-      "./assets/fonts"
-    ]
+    "assets": ["./assets/fonts"]
   },
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
     "postversion": "react-native-version",
-    "ackn": "license-checker --json > credits.json && python3 helper_scripts/wrangle_credits.py && rm credits.json"
+    "ackn":
+      "license-checker --json > credits.json && python3 helper_scripts/wrangle_credits.py && rm credits.json"
   },
   "dependencies": {
     "moment": "^2.20.1",
@@ -70,5 +69,40 @@
   "prettier": {
     "singleQuote": true,
     "trailingComma": "es5"
+  },
+  "babel": {
+      "presets": ["react-native"]
+  },
+  "eslintConfig": {
+    "parser": "babel-eslint",
+    "extends": ["airbnb", "prettier"],
+    "plugins": ["react", "react-native", "jsx-a11y", "import", "prettier"],
+    "parserOptions": {
+      "ecmaVersion": 6,
+      "ecmaFeatures": {
+        "jsx": true
+      },
+      "sourceType": "module"
+    },
+    "rules": {
+      "react/jsx-filename-extension": "off",
+      "no-underscore-dangle": "off",
+      "arrow-body-style": "off",
+      "react/jsx-wrap-multilines": "off",
+      "jsx-a11y/href-no-hash": "off",
+      "global-require": "off",
+      "prettier/prettier": [
+        "error",
+        {
+          "singleQuote": true,
+          "trailingComma": "es5"
+        }
+      ]
+    },
+    "globals": {
+      "fetch": false,
+      "require": false,
+      "__DEV__": false
+    }
   }
 }
