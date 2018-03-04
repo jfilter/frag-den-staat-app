@@ -1,7 +1,6 @@
 import { StackNavigator } from 'react-navigation';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import React from 'react';
-// import CardStackStyleInterpolator from 'react-navigation/src/views/CardStack/CardStackStyleInterpolator';
 
 import { commonNavigationOptions, iconColor, iconSize } from './styles';
 import FoiRequestsDetailsScreen from '../containers/foiRequests/FoiRequestsDetailsScreen';

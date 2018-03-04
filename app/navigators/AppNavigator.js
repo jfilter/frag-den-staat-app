@@ -1,4 +1,5 @@
 import { BackHandler } from 'react-native';
+import { Icon } from 'react-native-elements';
 import {
   NavigationActions,
   TabNavigator,
@@ -6,8 +7,6 @@ import {
 } from 'react-navigation';
 import { NavigationComponent } from 'react-native-material-bottom-navigation';
 import { connect } from 'react-redux';
-import Icon from 'react-native-vector-icons/MaterialIcons';
-import PropTypes from 'prop-types';
 import React from 'react';
 import {
   createReduxBoundAddListener,

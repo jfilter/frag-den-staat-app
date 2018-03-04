@@ -40,16 +40,15 @@ class FoiRequestPublicBodyScreen extends React.Component {
           <Text>Error: {error}</Text>
         </View>
       );
-    } else {
-      return (
-        <PublicBodyDetails
-          publicBody={publicBody}
-          navigateToFoiRequests1={navigateToFoiRequests1}
-          navigateToFoiRequests2={navigateToFoiRequests2}
-          changeFilter={changeFilter}
-        />
-      );
     }
+    return (
+      <PublicBodyDetails
+        publicBody={publicBody}
+        navigateToFoiRequests1={navigateToFoiRequests1}
+        navigateToFoiRequests2={navigateToFoiRequests2}
+        changeFilter={changeFilter}
+      />
+    );
   }
 }
 

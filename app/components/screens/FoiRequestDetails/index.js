@@ -308,10 +308,13 @@ class FoiRequestDetails extends React.Component {
         <ActivityIndicator animating size="large" color={primaryColorLight} />
       );
     }
+
     // check if there are still old messages in state
     const messageRequestId = parseInt(
-      messages[0].request.split('/').reverse()[1]
-    ); // second last element
+      messages[0].request.split('/').reverse()[1], // second last element
+      10
+    );
+
     if (messageRequestId !== this.props.request.id) {
       return (
         <ActivityIndicator animating size="large" color={primaryColorLight} />
@@ -361,7 +364,7 @@ class FoiRequestDetails extends React.Component {
     return (
       <View style={styles.msgContainer}>
         <Accordion
-          align={'center'}
+          align="center"
           duration={300}
           onChange={this._onChange}
           sections={messagesPrintable.reverse()} // show latest messages first
