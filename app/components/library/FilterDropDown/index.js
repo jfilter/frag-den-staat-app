@@ -67,8 +67,12 @@ FilterDropDown.propTypes = {
   currentFilter: PropTypes.shape({
     param: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
-  }).isRequired,
+  }),
   filterFor: PropTypes.string.isRequired,
+};
+
+FilterDropDown.defaultProps = {
+  currentFilter: null,
 };
 
 export default FilterDropDown;

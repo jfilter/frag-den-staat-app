@@ -20,10 +20,10 @@ const DROPDOWN_ANIMATION_PAUSE_BETWEEN_CHANGE = 100; // ms
 const filterPossibilities = ['status', 'jurisdiction', 'category'];
 const filterOptionsData = {
   status: getFilterableStatus().map(x => {
-    return { param: x.id, label: I18n.t(x.id) };
+    return { param: x.id.toString(), label: I18n.t(x.id) };
   }),
   jurisdiction: jurisdictionList.map(x => {
-    return { param: x.id, label: x.name };
+    return { param: x.id.toString(), label: x.name };
   }),
   category: categoryList.map(x => {
     return { param: x, label: x };
