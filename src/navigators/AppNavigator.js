@@ -13,7 +13,14 @@ import {
 } from 'react-navigation-redux-helpers';
 import React from 'react';
 
+import { OAUTH_REDIRECT_URI } from '../globals';
+import { errorAlert, successAlert } from '../utils/dropDownAlert';
+import { getParams } from '../utils/oauth';
 import { greyLight, primaryColor } from '../globals/colors';
+import {
+  receiveOauthRedirectError,
+  receiveOauthRedirectSuccess,
+} from '../actions/authentication';
 import NewRequestNavigator from './NewRequestNavigator';
 import ProfileNavigator from './ProfileNavigator';
 import SearchNavigator from './SearchNavigator';
@@ -98,7 +105,36 @@ class ReduxNavigation extends React.Component {
   };
 
   handleOpenURL = event => {
-    this.navigate(event.url);
+    const { url } = event;
+    console.log('url', url);
+    if (url.startsWith(OAUTH_REDIRECT_URI)) {
+      const paramString = url.substr(OAUTH_REDIRECT_URI.length);
+      const params = getParams(paramString);
+      console.log('params', params);
+
+      if (params.has('error')) {
+        const errorMessage =
+          params.get('error') +
+          (params.has('error_description')
+            ? `: ${params.get('error_description')}`
+            : '');
+        // Right now, we don't do the error handling via redux.
+        // There is just this alert and that's it. If we save the error in redux, we also have to clear it.
+        // this.props.redirectError(errorMessage);
+        errorAlert.getDropDown().alertWithType('error', 'Error', errorMessage);
+      } else {
+        successAlert
+          .getDropDown()
+          .alertWithType(
+            'success',
+            'Succesful Login',
+            'You can now check out your private requests'
+          );
+        this.props.redirectSuccess(params);
+      }
+    } else {
+      this.navigate(event.url);
+    }
   };
 
   navigate = url => {
@@ -107,6 +143,7 @@ class ReduxNavigation extends React.Component {
     const id = route.match(/\/([^\/]+)\/?$/)[1];
     const routeName = route.split('/')[0];
 
+    // a for anfrage
     if (routeName === 'a') {
       dispatch(
         NavigationActions.navigate({
@@ -134,6 +171,15 @@ const mapStateToProps = state => ({
   navigation: state.navigation,
 });
 
-const AppWithNavigationState = connect(mapStateToProps)(ReduxNavigation);
+const mapDispatchToProps = dispatch => ({
+  redirectSuccess: params => dispatch(receiveOauthRedirectSuccess(params)),
+  redirectError: errorMessage =>
+    dispatch(receiveOauthRedirectError(errorMessage)),
+  dispatch,
+});
+
+const AppWithNavigationState = connect(mapStateToProps, mapDispatchToProps)(
+  ReduxNavigation
+);
 
 export { AppWithNavigationState, navMiddleware };
