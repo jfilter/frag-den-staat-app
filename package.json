@@ -25,6 +25,7 @@
     "react": "^16.2.0",
     "react-native": "^0.51.1",
     "react-native-collapsible": "^0.10.0",
+    "react-native-dropdownalert": "^3.4.0",
     "react-native-elements": "^0.19.0",
     "react-native-fetch-blob": "^0.10.8",
     "react-native-i18n": "^2.0.12",
