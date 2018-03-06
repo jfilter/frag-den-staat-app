@@ -13,7 +13,7 @@ import AppReducer from './reducers';
 import {
   AppWithNavigationState,
   navMiddleware,
-} from './navigators/AppNavigator';
+} from './navigators/ReduxNavigation';
 
 // TODO: retrieve state from persistent storage for e.g. auth
 const initialState = {};

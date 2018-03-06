@@ -1,4 +1,4 @@
-import { AppNavigator } from '../navigators/AppNavigator';
+import AppNavigator from '../navigators/AppNavigator';
 
 // const initialNavState = AppNavigator.router.getStateForAction(
 //   NavigationActions.navigate({ routeName: 'Requests' })
