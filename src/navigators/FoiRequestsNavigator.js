@@ -25,7 +25,7 @@ const FoiRequestsNavigator = StackNavigator(
     navigationOptions: {
       ...commonNavigationOptions,
       tabBarLabel: I18n.t('requests'),
-      tabBarIcon: () => <Icon size={iconSize} color={iconColor} name="list" />,
+      tabBarIcon: () => <Icon size={iconSize} color={iconColor} name="home" />,
     },
     // https://github.com/react-navigation/react-navigation/issues/3217
     // transitionConfig: () => ({

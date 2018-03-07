@@ -11,6 +11,7 @@ const initialState = {
     jurisdiction: null,
     category: null,
     publicBody: null,
+    user: null,
   },
 };
 

@@ -57,7 +57,9 @@ function foiRequestsFilterChangeAction(filter) {
 }
 
 function buildUrl(getState) {
-  const { filter, nPage, isRefreshing } = getState().foiRequests;
+  const state = getState();
+  const { filter, nPage, isRefreshing } = state.foiRequests;
+
   let offset = FOI_REQUESTS_PAGE_SIZE * nPage;
 
   // page is still the former value in case the refresh fails
@@ -95,6 +97,11 @@ function buildUrl(getState) {
     if (filter.category) {
       params.set('categories', filter.category.param);
     }
+
+    // filter by own user id
+    if (filter.user) {
+      params.set('user', state.authentication.userId);
+    }
   }
 
   const paramsAsString = [...params].map(x => `${x[0]}=${x[1]}`).join('&');
@@ -123,13 +130,21 @@ function fetchRequests(beforeFetchDispatchedAction, onSuccessFetch) {
       };
     })(dispatch, getState, filter);
 
+    let addiontionalHeaders = {};
+    if (filter.user !== null) {
+      addiontionalHeaders = {
+        Authorization: `Bearer ${getState().authentication.accessToken}`,
+      };
+    }
+
     fetchAndDispatch(
       buildUrlFunc,
       dispatch,
       beforeFetchDispatchedAction,
       onSuccess,
       foiRequestsErrorAction,
-      filter
+      filter,
+      addiontionalHeaders
     );
   };
 }

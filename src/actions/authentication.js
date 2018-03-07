@@ -23,7 +23,6 @@ function oauthUserSucess(user) {
 }
 
 function getUserInformation() {
-  console.log('called getUI');
   return (dispatch, getState) => {
     fetchWithoutCache(`${ORIGIN}/${USER_PATH}`, {
       Authorization: `Bearer ${getState().authentication.accessToken}`,

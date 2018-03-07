@@ -36,7 +36,10 @@ class ReduxNavigation extends React.Component {
       Linking.addEventListener('url', this.handleOpenURL);
     }
     loadToken().then(
-      params => params !== null && this.props.redirectSuccess(params)
+      params =>
+        params !== null &&
+        this.props.redirectSuccess(params) &&
+        this.props.getUserInformation()
     );
   }
 

@@ -7,7 +7,7 @@ const headers = {
   'User-Agent': userAgent,
 };
 
-function getFromCacheOrFetch(url) {
+function getFromCacheOrFetch(url, additionalHeaders = {}) {
   return new Promise((resolve, reject) => {
     cache
       .get(url)
@@ -15,7 +15,9 @@ function getFromCacheOrFetch(url) {
         if (value) {
           resolve(value);
         } else {
-          fetch(encodeURI(url), { headers })
+          fetch(encodeURI(url), {
+            headers: Object.assign(headers, additionalHeaders),
+          })
             .then(response => {
               if (!response.ok) {
                 reject(response.status);
@@ -57,11 +59,12 @@ function fetchAndDispatch(
   dispatch,
   beforeFetch,
   onSuccessFetch,
-  onErrorFetch
+  onErrorFetch,
+  additionalHeaders
 ) {
   dispatch(beforeFetch());
   const url = buildUrl();
-  getFromCacheOrFetch(url)
+  getFromCacheOrFetch(url, additionalHeaders)
     .then(onSuccessFetch)
     .catch(error => dispatch(onErrorFetch(error.message)));
 }

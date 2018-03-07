@@ -8,6 +8,7 @@ import {
   Text,
   View,
 } from 'react-native';
+import { Button } from 'react-native-elements';
 import { NavigationActions } from 'react-navigation';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -198,11 +199,43 @@ class FoiRequestsMasterScreen extends React.Component {
   }
 }
 
-FoiRequestsMasterScreen.navigationOptions = ({ navigation }) => {
-  const navigateToFilter = () =>
-    navigation.dispatch(
-      NavigationActions.navigate({ routeName: 'FoiRequestsFilter' })
+// eslint-disable-next-line react/no-multi-comp
+class MyIconLeft extends React.Component {
+  navigateToFilter = () =>
+    this.props.dispatch(
+      NavigationActions.navigate({
+        routeName: 'DrawerToggle',
+        params: { filter: this.props.filter },
+      })
     );
+  render() {
+    const options = [
+      ['menu', null],
+      ['person', 'MEINE'],
+      ['star', 'gefolgten'],
+    ];
+
+    let i = 0;
+    if (this.props.filter.user !== null) i = 1;
+
+    return (
+      <NavBarIcon
+        onPress={this.navigateToFilter}
+        iconName={options[i][0]}
+        text={options[i][1]}
+      />
+    );
+  }
+}
+
+const MyConnectedIcon = connect(state => {
+  return {
+    filter: state.foiRequests.filter,
+  };
+})(MyIconLeft);
+
+FoiRequestsMasterScreen.navigationOptions = ({ navigation }) => {
+  if (navigation.state.params) console.log(navigation.state.params.filter);
 
   const navigateToIntro = () =>
     navigation.dispatch(
@@ -224,12 +257,10 @@ FoiRequestsMasterScreen.navigationOptions = ({ navigation }) => {
       </Text>
     ),
     headerBackTitle: null, // disables default
-    headerLeft: (
-      <NavBarIcon onPress={navigateToIntro} iconName={'info-outline'} />
+    headerRight: (
+      <NavBarIcon onPress={navigateToIntro} iconName="info-outline" />
     ),
-    // headerRight: (
-    //   <NavBarIcon onPress={navigateToFilter} iconName={'filter-list'} />
-    // ),
+    headerLeft: <MyConnectedIcon />,
   };
 };
 
