@@ -1,3 +1,6 @@
+import { ORIGIN, USER_PATH } from '../globals';
+import { fetchWithoutCache } from '../utils/networking';
+
 function receiveOauthRedirectSuccess(params) {
   return {
     type: 'RECEIVE_OAUTH_REDIRECT_SUCCESS',
@@ -12,4 +15,26 @@ function receiveOauthRedirectError(errorMessage) {
   };
 }
 
-export { receiveOauthRedirectSuccess, receiveOauthRedirectError };
+function oauthUserSucess(user) {
+  return {
+    type: 'OAUTH_USER_SUCCESS',
+    user,
+  };
+}
+
+function getUserInformation() {
+  console.log('called getUI');
+  return (dispatch, getState) => {
+    fetchWithoutCache(`${ORIGIN}/${USER_PATH}`, {
+      Authorization: `Bearer ${getState().authentication.accessToken}`,
+    })
+      .then(data => dispatch(oauthUserSucess(data)))
+      .catch(error => console.log(error));
+  };
+}
+
+export {
+  receiveOauthRedirectSuccess,
+  receiveOauthRedirectError,
+  getUserInformation,
+};

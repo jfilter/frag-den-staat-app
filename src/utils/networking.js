@@ -35,6 +35,14 @@ function getFromCacheOrFetch(url) {
   });
 }
 
+const fetchWithoutCache = async (url, additionalHeaders) => {
+  const response = await fetch(encodeURI(url), {
+    headers: Object.assign(headers, additionalHeaders),
+  });
+  const json = await response.json();
+  return json;
+};
+
 /**
  * Fetches data from the URL and dispatches action creators according to the state of the fetching process.
  *
@@ -72,4 +80,4 @@ function fetchMultipleAndDispatch(
     .catch(error => dispatch(onErrorFetch(error.message)));
 }
 
-export { fetchAndDispatch, fetchMultipleAndDispatch };
+export { fetchAndDispatch, fetchMultipleAndDispatch, fetchWithoutCache };

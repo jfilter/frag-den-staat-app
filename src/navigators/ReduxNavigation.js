@@ -7,14 +7,16 @@ import {
 } from 'react-navigation-redux-helpers';
 import React from 'react';
 
-import AppNavigator from './AppNavigator';
 import { OAUTH_REDIRECT_URI } from '../globals';
 import { errorAlert, successAlert } from '../utils/dropDownAlert';
 import { getParams } from '../utils/oauth';
 import {
+  getUserInformation,
   receiveOauthRedirectError,
   receiveOauthRedirectSuccess,
 } from '../actions/authentication';
+import { saveToken, loadToken } from '../utils/secureStorage';
+import AppNavigator from './AppNavigator';
 
 // Note: createReactNavigationReduxMiddleware must be run before createReduxBoundAddListener
 const navMiddleware = createReactNavigationReduxMiddleware(
@@ -33,6 +35,9 @@ class ReduxNavigation extends React.Component {
     } else {
       Linking.addEventListener('url', this.handleOpenURL);
     }
+    loadToken().then(
+      params => params !== null && this.props.redirectSuccess(params)
+    );
   }
 
   componentWillUnmount() {
@@ -58,6 +63,7 @@ class ReduxNavigation extends React.Component {
     if (url.startsWith(OAUTH_REDIRECT_URI)) {
       const paramString = url.substr(OAUTH_REDIRECT_URI.length);
       const params = getParams(paramString);
+      params.set('timeStamp', Date.now());
       console.log('params', params);
 
       if (params.has('error')) {
@@ -79,6 +85,9 @@ class ReduxNavigation extends React.Component {
             'You can now check out your private requests'
           );
         this.props.redirectSuccess(params);
+        this.props.getUserInformation();
+
+        saveToken(params);
       }
     } else {
       this.navigate(event.url);
@@ -123,6 +132,7 @@ const mapDispatchToProps = dispatch => ({
   redirectSuccess: params => dispatch(receiveOauthRedirectSuccess(params)),
   redirectError: errorMessage =>
     dispatch(receiveOauthRedirectError(errorMessage)),
+  getUserInformation: () => dispatch(getUserInformation()),
   dispatch,
 });
 
