@@ -55,22 +55,24 @@ class FoiRequestDetails extends React.Component {
     const locale = I18n.currentLocale().substring(0, 2);
     moment.locale(locale);
 
-    const { fetchMessages } = this.props;
-    if (fetchMessages !== null && fetchMessages !== undefined)
-      fetchMessages(this.props.request.messages);
+    const { fetchSingleFoiRequest } = this.props;
+    if (fetchSingleFoiRequest !== null && fetchSingleFoiRequest !== undefined)
+      fetchSingleFoiRequest(this.props.request.id);
   }
 
   _renderMessageHeader = (msg, index) => (
     <View
       style={[tableStyles.row, styles.msgHeader]}
       onLayout={event => {
+        const numMessages =
+          this.props.messages === null ? 0 : this.props.messages.length;
         event.persist(); // to use values later on
         this.setState(({ itemHeights: oldItemHeights }) => {
           const headerHeight = event.nativeEvent.layout.height;
           const itemHeights = R.update(
             index,
             headerHeight,
-            oldItemHeights || new Array(this.props.messages.length)
+            oldItemHeights || new Array(numMessages)
           ); // init here because it means we have fetched the msgs and know the amount
           return { itemHeights };
         });
@@ -305,7 +307,7 @@ class FoiRequestDetails extends React.Component {
 
   _renderMessages = () => {
     const { messages } = this.props;
-    if (messages.length === 0) {
+    if (messages === null) {
       return (
         <ActivityIndicator animating size="large" color={primaryColorLight} />
       );
@@ -541,6 +543,11 @@ FoiRequestDetails.propTypes = {
       })
     ).isRequired,
   }).isRequired,
+  fetchSingleFoiRequest: PropTypes.func,
+};
+
+FoiRequestDetails.defaultProps = {
+  fetchSingleFoiRequest: null,
 };
 
 export default FoiRequestDetails;
