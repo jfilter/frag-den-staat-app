@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -59,6 +58,7 @@
 		E77652A2CAE0445890E2AF29 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 182A0ED4BA504EABB4141BFF /* libz.tbd */; };
 		EA7110B71F0B405FB6EED605 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9D0C3D909A494841A87B4902 /* EvilIcons.ttf */; };
 		F447E2D0FDE949AEA1454052 /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BA44952342147C2AA7125E3 /* libRNVectorIcons.a */; };
+		B8706EB10311436DB0BFACCC /* libRNKeychain.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A75E4DD1F6140B0ABDF0E60 /* libRNKeychain.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -372,7 +372,6 @@
 		};
 /* End PBXContainerItemProxy section */
 
-
 /* Begin PBXFileReference section */
 		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
 		00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTActionSheet.xcodeproj; path = "../node_modules/react-native/Libraries/ActionSheetIOS/RCTActionSheet.xcodeproj"; sourceTree = "<group>"; };
@@ -427,6 +426,8 @@
 		E514AA32654A42BE81FB0AA2 /* RNI18n.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNI18n.xcodeproj; path = "../node_modules/react-native-i18n/ios/RNI18n.xcodeproj"; sourceTree = "<group>"; };
 		F14DB8F61AAB4C55B82CC9A9 /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
 		F65E621DD99E43ADB3C2C106 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
+		6E8148EAFEBB4D9BBFF63587 /* RNKeychain.xcodeproj */ = {isa = PBXFileReference; name = "RNKeychain.xcodeproj"; path = "../node_modules/react-native-keychain/RNKeychain.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		1A75E4DD1F6140B0ABDF0E60 /* libRNKeychain.a */ = {isa = PBXFileReference; name = "libRNKeychain.a"; path = "libRNKeychain.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -463,6 +464,7 @@
 				3EAC10D860194DE09740832B /* libRealmReact.a in Frameworks */,
 				74E64DAB5AAD417E953C1AB5 /* libc++.tbd in Frameworks */,
 				E77652A2CAE0445890E2AF29 /* libz.tbd in Frameworks */,
+				B8706EB10311436DB0BFACCC /* libRNKeychain.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -644,6 +646,7 @@
 				9D9424CADFFA4164B19F836F /* RNStoreReview.xcodeproj */,
 				92290034686941B68880EC31 /* RNVectorIcons.xcodeproj */,
 				9FFB9C9F09454978819222AA /* RealmReact.xcodeproj */,
+				6E8148EAFEBB4D9BBFF63587 /* RNKeychain.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1452,12 +1455,14 @@
 					"$(SRCROOT)/../node_modules/react-native-store-review/ios",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/realm/src/**",
+					"$(SRCROOT)/../node_modules/react-native-keychain/RNKeychainManager",
 				);
 				INFOPLIST_FILE = FragDenStaatTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1488,12 +1493,14 @@
 					"$(SRCROOT)/../node_modules/react-native-store-review/ios",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/realm/src/**",
+					"$(SRCROOT)/../node_modules/react-native-keychain/RNKeychainManager",
 				);
 				INFOPLIST_FILE = FragDenStaatTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1529,6 +1536,7 @@
 					"$(SRCROOT)/../node_modules/react-native-store-review/ios",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/realm/src/**",
+					"$(SRCROOT)/../node_modules/react-native-keychain/RNKeychainManager",
 				);
 				INFOPLIST_FILE = FragDenStaat/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1561,6 +1569,7 @@
 					"$(SRCROOT)/../node_modules/react-native-store-review/ios",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/realm/src/**",
+					"$(SRCROOT)/../node_modules/react-native-keychain/RNKeychainManager",
 				);
 				INFOPLIST_FILE = FragDenStaat/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1596,11 +1605,13 @@
 					"$(SRCROOT)/../node_modules/react-native-store-review/ios",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/realm/src/**",
+					"$(SRCROOT)/../node_modules/react-native-keychain/RNKeychainManager",
 				);
 				INFOPLIST_FILE = "FragDenStaat-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1641,11 +1652,13 @@
 					"$(SRCROOT)/../node_modules/react-native-store-review/ios",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/realm/src/**",
+					"$(SRCROOT)/../node_modules/react-native-keychain/RNKeychainManager",
 				);
 				INFOPLIST_FILE = "FragDenStaat-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1688,6 +1701,7 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.FragDenStaat-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1712,6 +1726,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",

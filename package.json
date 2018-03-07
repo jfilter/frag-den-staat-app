@@ -9,14 +9,15 @@
     "url": "https://github.com/jfilter/frag-den-staat-app"
   },
   "rnpm": {
-    "assets": ["./assets/fonts"]
+    "assets": [
+      "./assets/fonts"
+    ]
   },
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
     "postversion": "react-native-version",
-    "ackn":
-      "license-checker --json > credits.json && python3 helper_scripts/wrangle_credits.py && rm credits.json"
+    "ackn": "license-checker --json > credits.json && python3 helper_scripts/wrangle_credits.py && rm credits.json"
   },
   "dependencies": {
     "moment": "^2.20.1",
@@ -29,6 +30,7 @@
     "react-native-elements": "^0.19.0",
     "react-native-fetch-blob": "^0.10.8",
     "react-native-i18n": "^2.0.12",
+    "react-native-keychain": "^3.0.0-rc.3",
     "react-native-material-bottom-navigation": "^0.8.2",
     "react-native-modest-cache": "^1.0.2",
     "react-native-onboarding-swiper": "^0.4.1",
@@ -72,12 +74,23 @@
     "trailingComma": "es5"
   },
   "babel": {
-      "presets": ["react-native"]
+    "presets": [
+      "react-native"
+    ]
   },
   "eslintConfig": {
     "parser": "babel-eslint",
-    "extends": ["airbnb", "prettier"],
-    "plugins": ["react", "react-native", "jsx-a11y", "import", "prettier"],
+    "extends": [
+      "airbnb",
+      "prettier"
+    ],
+    "plugins": [
+      "react",
+      "react-native",
+      "jsx-a11y",
+      "import",
+      "prettier"
+    ],
     "parserOptions": {
       "ecmaVersion": 6,
       "ecmaFeatures": {
