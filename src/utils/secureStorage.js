@@ -2,7 +2,7 @@ import * as Keychain from 'react-native-keychain';
 
 const saveToken = async token => {
   const username = 'token';
-  const password = JSON.stringify(token);
+  const password = JSON.stringify([...token]);
 
   // Store the credentials
   await Keychain.setGenericPassword(username, password);
@@ -11,9 +11,9 @@ const saveToken = async token => {
 const loadToken = async () => {
   try {
     // Retreive the credentials
-    const credentials = Keychain.getGenericPassword();
+    const credentials = await Keychain.getGenericPassword();
     if (credentials) {
-      return JSON.parse(credentials.password);
+      return new Map(JSON.parse(credentials.password));
     }
   } catch (error) {
     console.log("Keychain couldn't be accessed!", error);
