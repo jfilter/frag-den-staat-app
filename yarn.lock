@@ -3374,6 +3374,10 @@ jsx-ast-utils@^2.0.0, jsx-ast-utils@^2.0.1:
   dependencies:
     array-includes "^3.0.3"
 
+keymirror@0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/keymirror/-/keymirror-0.1.1.tgz#918889ea13f8d0a42e7c557250eee713adc95c35"
+
 kind-of@^3.0.2:
   version "3.2.2"
   resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-3.2.2.tgz#31ea21a734bab9bbb0f32466d893aea51e4a3c64"
@@ -4533,6 +4537,17 @@ react-native-version@^2.4.1:
     p-settle "^2.0.0"
     pbxproj-dom "^1.0.11"
     plist "^2.1.0"
+
+react-native-video-player@^0.9.1:
+  version "0.9.1"
+  resolved "https://registry.yarnpkg.com/react-native-video-player/-/react-native-video-player-0.9.1.tgz#55f04039e074eb7ad500ca27c9630c5f2c63fde1"
+
+react-native-video@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/react-native-video/-/react-native-video-2.0.0.tgz#f33fa6fb7e7e3c93ab5787944cefd58bf7355867"
+  dependencies:
+    keymirror "0.1.1"
+    prop-types "^15.5.10"
 
 react-native@^0.51.1:
   version "0.51.1"

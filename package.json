@@ -39,6 +39,8 @@
     "react-native-radio-button": "^2.0.1",
     "react-native-store-review": "^0.1.5",
     "react-native-vector-icons": "^4.5.0",
+    "react-native-video": "^2.0.0",
+    "react-native-video-player": "^0.9.1",
     "react-navigation": "^1.1.2",
     "react-navigation-redux-helpers": "^1.0.1",
     "react-redux": "^5.0.7",

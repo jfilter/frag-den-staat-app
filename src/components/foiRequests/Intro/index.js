@@ -1,16 +1,16 @@
 import { AsyncStorage, StatusBar, Text, View } from 'react-native';
 import { Icon, Button } from 'react-native-elements';
 import React from 'react';
-import I18n from '../../../i18n';
-
 import Onboarding from 'react-native-onboarding-swiper';
 
+import I18n from '../../../i18n';
 import {
   primaryColor,
   primaryColorDark,
   primaryColorLight,
   secondaryColor,
 } from '../../../globals/colors';
+import PromoVideo from '../PromoVideo';
 
 class Intro extends React.Component {
   continue = async () => {
@@ -20,27 +20,14 @@ class Intro extends React.Component {
 
   render() {
     const cta = (
-      <View>
+      <View style={{ width: '97%' }}>
         <Text style={styles.text}>
           {`Sieh' dir die Anfragen von anderen Personen an oder erfahr' erst mehr über Informationsfreiheit in unserem kurzen Video.
 
           `}
-          {/* {`Sieh' dir die Anfragen von anderen Personen an, erstell' eine eigene oder erfahr' erst mehr über Informationsfreiheit in unserem kurzen Video.
-
-          `} */}
         </Text>
-        <Button
-          icon={{ name: 'play-circle-outline', color: secondaryColor }}
-          title={'Video ansehen'}
-          backgroundColor={'white'}
-          borderRadius={30}
-          containerViewStyle={{ borderRadius: 30 }}
-          textStyle={{ color: secondaryColor }}
-          onPress={() => {
-            this.props.navigateToIntroVideo();
-            StatusBar.setBarStyle('default');
-          }}
-        />
+
+        <PromoVideo />
       </View>
     );
 
@@ -69,7 +56,7 @@ class Intro extends React.Component {
         title: 'Wie funktionert das?',
         subtitle:
           "Frag' über diese Plattform Behörden in Deutschland nach Informationen und Dokumenten.",
-        backgroundColor: primaryColorDark,
+        backgroundColor: secondaryColor,
         image: (
           <Icon
             name="file-text-o"
@@ -114,7 +101,7 @@ class Intro extends React.Component {
       {
         title: "Los Geht's!",
         subtitle: cta,
-        backgroundColor: secondaryColor,
+        backgroundColor: primaryColorDark,
         image: (
           <Icon name="user-o" type="font-awesome" size={50} color="white" />
         ),
