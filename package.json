@@ -17,7 +17,7 @@
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
     "postversion": "react-native-version",
-    "ackn": "license-checker --json > credits.json && python3 helper_scripts/wrangle_credits.py && rm credits.json"
+    "ackn": "node node_modules/license-everything /users/filter/code/frag-den-staat-app /users/filter/code/frag-den-staat-app/src/data/ackn.json FragDenStaat"
   },
   "dependencies": {
     "moment": "^2.20.1",
@@ -62,6 +62,7 @@
     "eslint-plugin-react": "^7.7.0",
     "eslint-plugin-react-native": "^3.2.1",
     "jest": "^22.4.2",
+    "license-everything": "^0.1.0",
     "prettier": "^1.10.2",
     "react-native-version": "^2.4.1",
     "react-test-renderer": "^16.2.0"
