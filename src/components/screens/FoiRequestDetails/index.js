@@ -16,6 +16,7 @@ import PropTypes from 'prop-types';
 import R from 'ramda';
 import React from 'react';
 import moment from 'moment';
+import Hyperlink from 'react-native-hyperlink';
 
 import { ORIGIN } from '../../../globals';
 import { breakLongWords } from '../../../utils/strings';
@@ -198,11 +199,13 @@ class FoiRequestDetails extends React.Component {
           </Text>
         </View>
         <Divider style={styles.dividerBeforeMessageContent} />
-        <BodyText>
-          {msg.content_hidden
-            ? I18n.t('foiRequestDetails.notYetVisible')
-            : msg.content.trim()}
-        </BodyText>
+        <Hyperlink linkDefault linkStyle={{ color: primaryColor }}>
+          <BodyText>
+            {msg.content_hidden
+              ? I18n.t('foiRequestDetails.notYetVisible')
+              : msg.content.trim()}
+          </BodyText>
+        </Hyperlink>
       </View>
     );
   };
@@ -443,7 +446,9 @@ class FoiRequestDetails extends React.Component {
           </View>
           {this._renderTable()}
           <View style={styles.summary}>
-            <BodyText>{description}</BodyText>
+            <Hyperlink linkDefault linkStyle={{ color: primaryColor }}>
+              <BodyText>{description}</BodyText>
+            </Hyperlink>
           </View>
         </View>
         {this._renderMessages()}
