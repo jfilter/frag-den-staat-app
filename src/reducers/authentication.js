@@ -1,5 +1,6 @@
 const initialState = {
   accessToken: null,
+  refreshToken: null,
   expiresIn: null,
   errorMessage: null,
   timeStamp: null,
@@ -13,9 +14,7 @@ function authentication(state = initialState, action) {
     case 'RECEIVE_OAUTH_REDIRECT_SUCCESS':
       return {
         ...state,
-        accessToken: action.params.get('access_token'),
-        expiresIn: action.params.get('expires_in'),
-        timeStamp: action.params.get('timeStamp'),
+        ...action.params,
       };
     case 'RECEIVE_OAUTH_REDIRECT_ERROR':
       return { ...state, errorMessage: action.errorMessage };

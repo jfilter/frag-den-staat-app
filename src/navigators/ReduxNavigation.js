@@ -7,16 +7,17 @@ import {
 } from 'react-navigation-redux-helpers';
 import React from 'react';
 
-import { OAUTH_REDIRECT_URI } from '../globals';
 import { errorAlert, successAlert } from '../utils/dropDownAlert';
-import { getParams } from '../utils/oauth';
+import { OAUTH_REDIRECT_URI } from '../globals';
+
 import {
   getUserInformation,
   receiveOauthRedirectError,
   receiveOauthRedirectSuccess,
 } from '../actions/authentication';
-import { saveToken, loadToken } from '../utils/secureStorage';
+import { loadToken, saveToken } from '../utils/secureStorage';
 import AppNavigator from './AppNavigator';
+import { handleRedirectAfterLoginClick } from '../utils/oauth';
 
 // Note: createReactNavigationReduxMiddleware must be run before createReduxBoundAddListener
 const navMiddleware = createReactNavigationReduxMiddleware(
@@ -36,9 +37,9 @@ class ReduxNavigation extends React.Component {
       Linking.addEventListener('url', this.handleOpenURL);
     }
     loadToken().then(
-      params =>
-        params !== null &&
-        this.props.redirectSuccess(params) &&
+      token =>
+        token !== null &&
+        this.props.redirectSuccess(token) &&
         this.props.getUserInformation()
     );
   }
@@ -62,36 +63,25 @@ class ReduxNavigation extends React.Component {
 
   handleOpenURL = event => {
     const { url } = event;
-    console.log('url', url);
     if (url.startsWith(OAUTH_REDIRECT_URI)) {
-      const paramString = url.substr(OAUTH_REDIRECT_URI.length);
-      const params = getParams(paramString);
-      params.set('timeStamp', Date.now());
-      console.log('params', params);
-
-      if (params.has('error')) {
-        const errorMessage =
-          params.get('error') +
-          (params.has('error_description')
-            ? `: ${params.get('error_description')}`
-            : '');
-        // Right now, we don't do the error handling via redux.
-        // There is just this alert and that's it. If we save the error in redux, we also have to clear it.
-        // this.props.redirectError(errorMessage);
-        errorAlert.getDropDown().alertWithType('error', 'Error', errorMessage);
-      } else {
-        successAlert
-          .getDropDown()
-          .alertWithType(
-            'success',
-            'Succesful Login',
-            'You can now check out your private requests'
-          );
-        this.props.redirectSuccess(params);
-        this.props.getUserInformation();
-
-        saveToken(params);
-      }
+      handleRedirectAfterLoginClick(url)
+        .then(token => {
+          successAlert
+            .getDropDown()
+            .alertWithType(
+              'success',
+              'Succesful',
+              'You successfully logged in.'
+            );
+          this.props.redirectSuccess(token);
+          this.props.getUserInformation();
+          saveToken(token);
+        })
+        .catch(error =>
+          errorAlert
+            .getDropDown()
+            .alertWithType('error', 'Error', error.message)
+        );
     } else {
       this.navigate(event.url);
     }

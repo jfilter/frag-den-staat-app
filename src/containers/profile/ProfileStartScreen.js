@@ -7,7 +7,7 @@ import React from 'react';
 import * as StoreReview from 'react-native-store-review';
 
 import { clearError } from '../../actions/error';
-import { requestAuthUrl } from '../../utils/oauth';
+import { requestAuthUrlCode } from '../../utils/oauth';
 import { styles } from './styles';
 import BlankContainer from '../../components/library/BlankContainer';
 import I18n from '../../i18n';
@@ -41,7 +41,7 @@ class ProfileStartScreen extends React.Component {
           containerStyle={[styles.listItemContainer, styles.firstItemContainer]}
           title="Login"
           leftIcon={{ name: 'login-variant', type: 'material-community' }}
-          onPress={() => Linking.openURL(requestAuthUrl)}
+          onPress={() => Linking.openURL(requestAuthUrlCode)}
         />
         <ListItem
           containerStyle={[styles.listItemContainer]}
