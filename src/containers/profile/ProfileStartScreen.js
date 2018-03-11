@@ -31,11 +31,12 @@ class ProfileStartScreen extends React.Component {
       navigateToAcknowledgements,
       navigateToIntroVideo,
       navigateToTermsOfUse,
+      navigateToLoginScreen,
     } = this.props;
     return (
       <BlankContainer innerStyle={{ paddingHorizontal: 0 }}>
         <SectionHeading style={{ paddingTop: 0 }}>
-          {this.props.isLoggedIn
+          {this.props.firstName
             ? 'Welcome ' + this.props.firstName
             : I18n.t('account')}
         </SectionHeading>
@@ -61,7 +62,7 @@ class ProfileStartScreen extends React.Component {
             ]}
             title="Login"
             leftIcon={{ name: 'login-variant', type: 'material-community' }}
-            onPress={() => Linking.openURL(requestAuthToken)}
+            onPress={navigateToLoginScreen}
           />
         )}
         {!this.props.isLoggedIn && (
@@ -242,6 +243,8 @@ const mapDispatchToProps = dispatch => {
       dispatch(
         NavigationActions.navigate({ routeName: 'ProfileAcknowledgements' })
       ),
+    navigateToLoginScreen: () =>
+      dispatch(NavigationActions.navigate({ routeName: 'ProfileLogin' })),
     logout: () => dispatch(oauthLogout()),
   };
 };

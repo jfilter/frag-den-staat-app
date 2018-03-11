@@ -17,7 +17,7 @@ import {
 } from '../actions/authentication';
 import { loadToken, saveToken } from '../utils/secureStorage';
 import AppNavigator from './AppNavigator';
-import { handleRedirectAfterLoginClick } from '../utils/oauth';
+import { fetchInitialToken } from '../utils/oauth';
 
 // Note: createReactNavigationReduxMiddleware must be run before createReduxBoundAddListener
 const navMiddleware = createReactNavigationReduxMiddleware(
@@ -39,6 +39,7 @@ class ReduxNavigation extends React.Component {
     loadToken().then(
       token =>
         token !== null &&
+        Object.keys(token).length !== 0 &&
         this.props.updateToken(token) &&
         this.props.getUserInformation()
     );
@@ -64,27 +65,35 @@ class ReduxNavigation extends React.Component {
   handleOpenURL = event => {
     const { url } = event;
     if (url.startsWith(OAUTH_REDIRECT_URI)) {
-      handleRedirectAfterLoginClick(url)
-        .then(token => {
-          successAlert
-            .getDropDown()
-            .alertWithType(
-              'success',
-              'Succesful',
-              'You successfully logged in.'
-            );
-          this.props.updateToken(token);
-          this.props.getUserInformation();
-          saveToken(token);
-        })
-        .catch(error =>
-          errorAlert
-            .getDropDown()
-            .alertWithType('error', 'Error', error.message)
-        );
+      this.handleLoginRedirect(url);
     } else {
-      this.navigate(event.url);
+      this.navigate(url);
     }
+  };
+
+  handleLoginRedirect = url => {
+    fetchInitialToken(url)
+      .then(token => {
+        // 1. go back to page where clicked login
+        this.props.dispatch(NavigationActions.back());
+
+        // 2. show message on top
+        successAlert
+          .getDropDown()
+          .alertWithType('success', 'Succesful', 'You successfully logged in.');
+
+        // 3. update token in redux store
+        this.props.updateToken(token);
+
+        // 4. fetch information about user from server
+        this.props.getUserInformation();
+
+        // 5. persists token
+        saveToken(token);
+      })
+      .catch(error =>
+        errorAlert.getDropDown().alertWithType('error', 'Error', error.message)
+      );
   };
 
   navigate = url => {

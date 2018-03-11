@@ -4,7 +4,7 @@ import { getCurrentAccessTokenOrRefresh } from '../utils/oauth';
 
 function oauthUpdateToken(token) {
   return {
-    type: 'OUAUTH_UPDATE_TOKEN',
+    type: 'OAUTH_UPDATE_TOKEN',
     token,
   };
 }

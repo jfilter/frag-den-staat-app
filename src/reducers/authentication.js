@@ -11,7 +11,7 @@ const initialState = {
 
 function authentication(state = initialState, action) {
   switch (action.type) {
-    case 'OUAUTH_UPDATE_TOKEN':
+    case 'OAUTH_UPDATE_TOKEN':
       return {
         ...state,
         ...action.token,

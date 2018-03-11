@@ -33,7 +33,7 @@ const exchangeCodeForAuthToken = code => {
 };
 
 const refreshAccessToken = refreshToken => {
-  const url = `${OAUTH_PROXY_HOSTNAME}/account/token/?client_id=${OAUTH_CLIENT_ID}&client_secret=${OAUTH_CLIENT_SECRET}&grant_type=refresh_token&refresh_token=${refreshToken}`;
+  const url = `${OAUTH_PROXY_HOSTNAME}/account/token/?client_id=${OAUTH_CLIENT_ID}&client_secret=${OAUTH_CLIENT_SECRET}&grant_type=refresh_token&refresh_token=${refreshToken}&scope=${OAUTH_SCOPE}`;
   return fetch(url, { method: 'post ' });
 };
 
@@ -55,7 +55,7 @@ const getTokens = body => {
   };
 };
 
-const handleRedirectAfterLoginClick = url => {
+const fetchInitialToken = url => {
   return new Promise(async (resolve, reject) => {
     const paramString = url.substr(OAUTH_REDIRECT_URI.length);
     const params = getParams(paramString);
@@ -125,6 +125,6 @@ const getCurrentAccessTokenOrRefresh = (dispatch, getState) => {
 export {
   getParams,
   requestAuthToken,
-  handleRedirectAfterLoginClick,
+  fetchInitialToken,
   getCurrentAccessTokenOrRefresh,
 };
