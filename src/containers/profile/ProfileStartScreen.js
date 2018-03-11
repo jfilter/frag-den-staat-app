@@ -2,12 +2,12 @@ import { Linking, Platform } from 'react-native';
 import { ListItem } from 'react-native-elements';
 import { NavigationActions } from 'react-navigation';
 import { connect } from 'react-redux';
-import DropdownAlert from 'react-native-dropdownalert';
 import React from 'react';
 import * as StoreReview from 'react-native-store-review';
 
-import { clearError } from '../../actions/error';
-import { requestAuthUrlCode } from '../../utils/oauth';
+import { clearToken } from '../../utils/secureStorage';
+import { oauthLogout } from '../../actions/authentication';
+import { requestAuthToken } from '../../utils/oauth';
 import { styles } from './styles';
 import BlankContainer from '../../components/library/BlankContainer';
 import I18n from '../../i18n';
@@ -35,22 +35,45 @@ class ProfileStartScreen extends React.Component {
     return (
       <BlankContainer innerStyle={{ paddingHorizontal: 0 }}>
         <SectionHeading style={{ paddingTop: 0 }}>
-          {I18n.t('account')}
+          {this.props.isLoggedIn
+            ? 'Welcome ' + this.props.firstName
+            : I18n.t('account')}
         </SectionHeading>
-        <ListItem
-          containerStyle={[styles.listItemContainer, styles.firstItemContainer]}
-          title="Login"
-          leftIcon={{ name: 'login-variant', type: 'material-community' }}
-          onPress={() => Linking.openURL(requestAuthUrlCode)}
-        />
-        <ListItem
-          containerStyle={[styles.listItemContainer]}
-          title="Register"
-          leftIcon={{ name: 'account-plus', type: 'material-community' }}
-          onPress={() =>
-            Linking.openURL('https://fragdenstaat.de/account/login/')
-          }
-        />
+        {this.props.isLoggedIn && (
+          <ListItem
+            containerStyle={[
+              styles.listItemContainer,
+              styles.firstItemContainer,
+            ]}
+            title="Logout"
+            leftIcon={{ name: 'logout-variant', type: 'material-community' }}
+            onPress={() => {
+              this.props.logout();
+              clearToken();
+            }}
+          />
+        )}
+        {!this.props.isLoggedIn && (
+          <ListItem
+            containerStyle={[
+              styles.listItemContainer,
+              styles.firstItemContainer,
+            ]}
+            title="Login"
+            leftIcon={{ name: 'login-variant', type: 'material-community' }}
+            onPress={() => Linking.openURL(requestAuthToken)}
+          />
+        )}
+        {!this.props.isLoggedIn && (
+          <ListItem
+            containerStyle={[styles.listItemContainer]}
+            title="Register"
+            leftIcon={{ name: 'account-plus', type: 'material-community' }}
+            onPress={() =>
+              Linking.openURL('https://fragdenstaat.de/account/login/')
+            }
+          />
+        )}
         <SectionHeading>{I18n.t('information')}</SectionHeading>
         <ListItem
           containerStyle={[styles.listItemContainer, styles.firstItemContainer]}
@@ -190,7 +213,8 @@ ProfileStartScreen.navigationOptions = {
 
 const mapStateToProps = state => {
   return {
-    // errorMessage: state.authentication.errorMessage,
+    isLoggedIn: state.authentication.refreshToken !== null,
+    firstName: state.authentication.firstName,
   };
 };
 
@@ -218,7 +242,7 @@ const mapDispatchToProps = dispatch => {
       dispatch(
         NavigationActions.navigate({ routeName: 'ProfileAcknowledgements' })
       ),
-    // clearError: () => dispatch(clearError),
+    logout: () => dispatch(oauthLogout()),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(ProfileStartScreen);

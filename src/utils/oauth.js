@@ -1,9 +1,10 @@
 import {
   OAUTH_CLIENT_ID,
+  OAUTH_CLIENT_SECRET,
+  OAUTH_PROXY_HOSTNAME,
   OAUTH_REDIRECT_URI,
   OAUTH_SCOPE,
-  OAUTH_CLIENT_SECRET,
-  OAUTH_HOSTNAME,
+  ORIGIN,
 } from '../globals';
 
 // https://stackoverflow.com/a/3855394/4028896
@@ -22,12 +23,10 @@ const _getParams = query => {
 };
 const getParams = query => new Map(Object.entries(_getParams(query)));
 
-const requestAuthUrlImplicit = `${OAUTH_HOSTNAME}/account/authorize/?client_id=${OAUTH_CLIENT_ID}&scope=${OAUTH_SCOPE}&response_type=token`;
+const requestAuthToken = `${ORIGIN}/account/authorize/?client_id=${OAUTH_CLIENT_ID}&scope=${OAUTH_SCOPE}&response_type=code&redirect_uri=${OAUTH_REDIRECT_URI}`;
 
-const requestAuthUrlCode = `${OAUTH_HOSTNAME}/account/authorize/?client_id=${OAUTH_CLIENT_ID}&scope=${OAUTH_SCOPE}&response_type=code&redirect_uri=${OAUTH_REDIRECT_URI}`;
-
-const exchangeCodeForToken = code => {
-  const theUrl = `${OAUTH_HOSTNAME}/account/token/?client_id=${OAUTH_CLIENT_ID}&client_secret=${OAUTH_CLIENT_SECRET}&grant_type=authorization_code&code=${code}&redirect_uri=${OAUTH_REDIRECT_URI}`;
+const exchangeCodeForAuthToken = code => {
+  const theUrl = `${OAUTH_PROXY_HOSTNAME}/account/token/?client_id=${OAUTH_CLIENT_ID}&client_secret=${OAUTH_CLIENT_SECRET}&grant_type=authorization_code&code=${code}&redirect_uri=${OAUTH_REDIRECT_URI}`;
   return fetch(theUrl, { method: 'post' });
 };
 
@@ -62,7 +61,7 @@ const handleRedirectAfterLoginClick = url => {
 
     try {
       const code = params.get('code');
-      const exchangeTokenResponse = await exchangeCodeForToken(code);
+      const exchangeTokenResponse = await exchangeCodeForAuthToken(code);
       const exchangeTokenResponseJson = await exchangeTokenResponse.json();
       const token = getTokens(exchangeTokenResponseJson);
       resolve(token);
@@ -88,8 +87,7 @@ const getCurrentAccessTokenOrRefresh = (getState, dispatch) => {
 
 export {
   getParams,
-  requestAuthUrlCode,
-  requestAuthUrlImplicit,
+  requestAuthToken,
   handleRedirectAfterLoginClick,
   getCurrentAccessTokenOrRefresh,
 };

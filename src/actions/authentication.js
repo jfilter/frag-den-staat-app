@@ -22,6 +22,12 @@ function oauthUserSucess(user) {
   };
 }
 
+function oauthLogout() {
+  return {
+    type: 'OAUTH_LOGOUT',
+  };
+}
+
 function getUserInformation() {
   return (dispatch, getState) => {
     fetchWithoutCache(`${ORIGIN}/${USER_PATH}`, {
@@ -36,4 +42,5 @@ export {
   receiveOauthRedirectSuccess,
   receiveOauthRedirectError,
   getUserInformation,
+  oauthLogout,
 };

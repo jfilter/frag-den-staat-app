@@ -25,6 +25,8 @@ function authentication(state = initialState, action) {
         lastName: action.user.last_name,
         userId: action.user.id,
       };
+    case 'OAUTH_LOGOUT':
+      return { ...initialState };
     case 'CLEAR_ERROR':
       return { ...state, errorMessage: null };
     default:

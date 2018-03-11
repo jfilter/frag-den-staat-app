@@ -8,13 +8,11 @@ const SEARCH_FOI_REQUESTS_PATH = '/api/v1/request/search/';
 const SEARCH_PUBLIC_BODIES_PATH = '/api/v1/publicbody/search/';
 const USER_PATH = 'api/v1/user/';
 
-const OAUTH_HOSTNAME = 'https://fds-oauth-proxy.app.vis.one';
+const OAUTH_PROXY_HOSTNAME = 'https://fds-oauth-proxy.app.vis.one';
 const APP_URI_SCHEME = 'fragdenstaat';
 const OAUTH_REDIRECT_URI = `${APP_URI_SCHEME}://authorize`;
 
-// const OAUTH_CLIENT_ID = 'ix9pNpA5tGulUn07yktemIpMqpGersZjiThklyxQ';
-
-const OAUTH_CLIENT_ID = 'secret';
+const OAUTH_CLIENT_ID = 'WUNCyTgGhVpLrqilf5MrVOroD6oRDfttHFqbAt2X';
 const OAUTH_CLIENT_SECRET = 'secret';
 
 const OAUTH_SCOPES_AS_LIST = [
@@ -27,7 +25,7 @@ const OAUTH_SCOPES_AS_LIST = [
 const OAUTH_SCOPE = OAUTH_SCOPES_AS_LIST.join('%20');
 
 export {
-  OAUTH_HOSTNAME,
+  OAUTH_PROXY_HOSTNAME,
   OAUTH_REDIRECT_URI,
   ORIGIN,
   FOI_REQUESTS_PAGE_SIZE,

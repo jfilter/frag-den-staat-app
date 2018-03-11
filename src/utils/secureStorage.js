@@ -21,4 +21,6 @@ const loadToken = async () => {
   return null;
 };
 
-export { saveToken, loadToken };
+const clearToken = () => saveToken({});
+
+export { saveToken, loadToken, clearToken };
