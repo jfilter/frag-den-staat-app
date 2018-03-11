@@ -12,6 +12,7 @@ import { styles } from './styles';
 import BlankContainer from '../../components/library/BlankContainer';
 import I18n from '../../i18n';
 import SectionHeading from '../../components/library/SectionHeading';
+import { clearCache } from '../../utils/networking';
 
 class ProfileStartScreen extends React.Component {
   componentDidUpdate() {
@@ -51,6 +52,7 @@ class ProfileStartScreen extends React.Component {
             onPress={() => {
               this.props.logout();
               clearToken();
+              clearCache();
             }}
           />
         )}

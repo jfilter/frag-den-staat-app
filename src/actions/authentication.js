@@ -1,6 +1,6 @@
 import { ORIGIN, USER_PATH } from '../globals';
-import { fetchWithoutCache } from '../utils/networking';
 import { getCurrentAccessTokenOrRefresh } from '../utils/oauth';
+import { getFromCacheOrFetch } from '../utils/networking';
 
 function oauthUpdateToken(token) {
   return {
@@ -33,8 +33,7 @@ function getUserInformation() {
   return (dispatch, getState) => {
     getCurrentAccessTokenOrRefresh(dispatch, getState)
       .then(accessToken => {
-        console.log('accessToken', accessToken);
-        return fetchWithoutCache(`${ORIGIN}/${USER_PATH}`, {
+        return getFromCacheOrFetch(`${ORIGIN}/${USER_PATH}`, {
           Authorization: `Bearer ${accessToken}`,
         });
       })

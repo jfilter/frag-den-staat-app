@@ -72,10 +72,10 @@ class ReduxNavigation extends React.Component {
   };
 
   handleLoginRedirect = url => {
+    this.props.dispatch(NavigationActions.back());
     fetchInitialToken(url)
       .then(token => {
         // 1. go back to page where clicked login
-        this.props.dispatch(NavigationActions.back());
 
         // 2. show message on top
         successAlert

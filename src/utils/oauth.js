@@ -96,7 +96,7 @@ const getCurrentAccessTokenOrRefresh = (dispatch, getState) => {
         refreshToken,
       } = getState().authentication;
 
-      const secondsLeftBeforeRefreshing = 36000;
+      const secondsLeftBeforeRefreshing = 60;
 
       // is the token at least for X seconds valid?
       if (timeStamp + expiresIn > Date.now() + secondsLeftBeforeRefreshing) {
