@@ -11,10 +11,10 @@ const initialState = {
 
 function authentication(state = initialState, action) {
   switch (action.type) {
-    case 'RECEIVE_OAUTH_REDIRECT_SUCCESS':
+    case 'OUAUTH_UPDATE_TOKEN':
       return {
         ...state,
-        ...action.params,
+        ...action.token,
       };
     case 'RECEIVE_OAUTH_REDIRECT_ERROR':
       return { ...state, errorMessage: action.errorMessage };

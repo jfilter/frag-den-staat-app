@@ -1,10 +1,11 @@
 import { ORIGIN, USER_PATH } from '../globals';
 import { fetchWithoutCache } from '../utils/networking';
+import { getCurrentAccessTokenOrRefresh } from '../utils/oauth';
 
-function receiveOauthRedirectSuccess(params) {
+function oauthUpdateToken(token) {
   return {
-    type: 'RECEIVE_OAUTH_REDIRECT_SUCCESS',
-    params,
+    type: 'OUAUTH_UPDATE_TOKEN',
+    token,
   };
 }
 
@@ -30,16 +31,20 @@ function oauthLogout() {
 
 function getUserInformation() {
   return (dispatch, getState) => {
-    fetchWithoutCache(`${ORIGIN}/${USER_PATH}`, {
-      Authorization: `Bearer ${getState().authentication.accessToken}`,
-    })
+    getCurrentAccessTokenOrRefresh(dispatch, getState)
+      .then(accessToken => {
+        console.log('accessToken', accessToken);
+        return fetchWithoutCache(`${ORIGIN}/${USER_PATH}`, {
+          Authorization: `Bearer ${accessToken}`,
+        });
+      })
       .then(data => dispatch(oauthUserSucess(data)))
       .catch(error => console.log(error));
   };
 }
 
 export {
-  receiveOauthRedirectSuccess,
+  oauthUpdateToken,
   receiveOauthRedirectError,
   getUserInformation,
   oauthLogout,

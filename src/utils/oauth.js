@@ -6,6 +6,8 @@ import {
   OAUTH_SCOPE,
   ORIGIN,
 } from '../globals';
+import { oauthUpdateToken } from '../actions/authentication';
+import { saveToken } from './secureStorage';
 
 // https://stackoverflow.com/a/3855394/4028896
 const _getParams = query => {
@@ -26,8 +28,21 @@ const getParams = query => new Map(Object.entries(_getParams(query)));
 const requestAuthToken = `${ORIGIN}/account/authorize/?client_id=${OAUTH_CLIENT_ID}&scope=${OAUTH_SCOPE}&response_type=code&redirect_uri=${OAUTH_REDIRECT_URI}`;
 
 const exchangeCodeForAuthToken = code => {
-  const theUrl = `${OAUTH_PROXY_HOSTNAME}/account/token/?client_id=${OAUTH_CLIENT_ID}&client_secret=${OAUTH_CLIENT_SECRET}&grant_type=authorization_code&code=${code}&redirect_uri=${OAUTH_REDIRECT_URI}`;
-  return fetch(theUrl, { method: 'post' });
+  const url = `${OAUTH_PROXY_HOSTNAME}/account/token/?client_id=${OAUTH_CLIENT_ID}&client_secret=${OAUTH_CLIENT_SECRET}&grant_type=authorization_code&code=${code}&redirect_uri=${OAUTH_REDIRECT_URI}`;
+  return fetch(url, { method: 'post' });
+};
+
+const refreshAccessToken = refreshToken => {
+  const url = `${OAUTH_PROXY_HOSTNAME}/account/token/?client_id=${OAUTH_CLIENT_ID}&client_secret=${OAUTH_CLIENT_SECRET}&grant_type=refresh_token&refresh_token=${refreshToken}`;
+  return fetch(url, { method: 'post ' });
+};
+
+const getJsonOrThrow = async fetchingPromise => {
+  const response = await fetchingPromise;
+  if (!response.ok) {
+    throw new Error(`${response.status}: ${response}`);
+  }
+  return response.json();
 };
 
 // should be done in the reducer
@@ -44,7 +59,6 @@ const handleRedirectAfterLoginClick = url => {
   return new Promise(async (resolve, reject) => {
     const paramString = url.substr(OAUTH_REDIRECT_URI.length);
     const params = getParams(paramString);
-    console.log('params', params);
 
     if (params.has('error')) {
       const errorMessage =
@@ -61,8 +75,9 @@ const handleRedirectAfterLoginClick = url => {
 
     try {
       const code = params.get('code');
-      const exchangeTokenResponse = await exchangeCodeForAuthToken(code);
-      const exchangeTokenResponseJson = await exchangeTokenResponse.json();
+      const exchangeTokenResponseJson = await getJsonOrThrow(
+        exchangeCodeForAuthToken(code)
+      );
       const token = getTokens(exchangeTokenResponseJson);
       resolve(token);
     } catch (error) {
@@ -71,18 +86,40 @@ const handleRedirectAfterLoginClick = url => {
   });
 };
 
-const getCurrentAccessTokenOrRefresh = (getState, dispatch) => {
-  const { timeStamp, expiresIn, accessToken } = getState().authentication;
+const getCurrentAccessTokenOrRefresh = (dispatch, getState) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const {
+        timeStamp,
+        expiresIn,
+        accessToken,
+        refreshToken,
+      } = getState().authentication;
 
-  // is the token at least for 60s valid? if yes, return
-  if (timeStamp + expiresIn > Date.now() + 60) {
-    return accessToken;
-  } else {
-    // refresh the access token use the token right away
-    // data data
-    // dispatch action
-    // return access token
-  }
+      const secondsLeftBeforeRefreshing = 36000;
+
+      // is the token at least for X seconds valid?
+      if (timeStamp + expiresIn > Date.now() + secondsLeftBeforeRefreshing) {
+        // if yes, return
+        resolve(accessToken);
+      } else {
+        // if no,
+        // 1. refresh the access token
+        const refreshedToken = await getJsonOrThrow(
+          refreshAccessToken(refreshToken, accessToken, expiresIn)
+        );
+        const token = getTokens(refreshedToken);
+        // 2. update the access token in the redux store (async)
+        dispatch(oauthUpdateToken(token));
+        // 3. persist new token (async)
+        saveToken(token);
+        // 4. return the new access token
+        resolve(token.accessToken);
+      }
+    } catch (error) {
+      reject(error);
+    }
+  });
 };
 
 export {

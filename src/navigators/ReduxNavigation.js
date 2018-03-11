@@ -13,7 +13,7 @@ import { OAUTH_REDIRECT_URI } from '../globals';
 import {
   getUserInformation,
   receiveOauthRedirectError,
-  receiveOauthRedirectSuccess,
+  oauthUpdateToken,
 } from '../actions/authentication';
 import { loadToken, saveToken } from '../utils/secureStorage';
 import AppNavigator from './AppNavigator';
@@ -39,7 +39,7 @@ class ReduxNavigation extends React.Component {
     loadToken().then(
       token =>
         token !== null &&
-        this.props.redirectSuccess(token) &&
+        this.props.updateToken(token) &&
         this.props.getUserInformation()
     );
   }
@@ -73,7 +73,7 @@ class ReduxNavigation extends React.Component {
               'Succesful',
               'You successfully logged in.'
             );
-          this.props.redirectSuccess(token);
+          this.props.updateToken(token);
           this.props.getUserInformation();
           saveToken(token);
         })
@@ -122,7 +122,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  redirectSuccess: params => dispatch(receiveOauthRedirectSuccess(params)),
+  updateToken: token => dispatch(oauthUpdateToken(token)),
   redirectError: errorMessage =>
     dispatch(receiveOauthRedirectError(errorMessage)),
   getUserInformation: () => dispatch(getUserInformation()),
