@@ -33,7 +33,7 @@ function getUserInformation() {
   return (dispatch, getState) => {
     getCurrentAccessTokenOrRefresh(dispatch, getState)
       .then(accessToken => {
-        return getFromCacheOrFetch(`${ORIGIN}/${USER_PATH}`, {
+        return getFromCacheOrFetch(`${PROXY_HOSTNAME}${USER_PATH}`, {
           Authorization: `Bearer ${accessToken}`,
         });
       })
