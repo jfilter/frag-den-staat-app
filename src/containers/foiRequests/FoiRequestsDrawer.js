@@ -1,5 +1,6 @@
+import { Alert, ScrollView } from 'react-native';
 import { ListItem } from 'react-native-elements';
-import { ScrollView } from 'react-native';
+import { NavigationActions } from 'react-navigation';
 import { connect } from 'react-redux';
 import React from 'react';
 
@@ -10,6 +11,8 @@ const FoiRequestDrawer = ({
   filterChange,
   currentUserId,
   currentUserFilter,
+  navigateToLogin,
+  drawerClose,
 }) => (
   <ScrollView style={{ paddingTop: 100 }}>
     <ListItem
@@ -39,7 +42,28 @@ const FoiRequestDrawer = ({
       }}
       hideChevron
       title="Meine Anfragen"
-      onPress={() => filterChange({ user: currentUserId })}
+      onPress={() =>
+        currentUserId == null
+          ? Alert.alert(
+              'Du bist nicht eingeloggt.',
+              'Bitte logge dich ein.',
+              [
+                {
+                  text: 'Jetzt einloggen',
+                  onPress: () => {
+                    drawerClose();
+                    setTimeout(() => navigateToLogin(), 300);
+                  },
+                },
+                {
+                  text: 'Abbrechen',
+                  style: 'cancel',
+                },
+              ],
+              { cancelable: false }
+            )
+          : filterChange({ user: currentUserId })
+      }
       titleStyle={{
         color:
           currentUserId && currentUserFilter === currentUserId
@@ -81,6 +105,10 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     filterChange: filter => dispatch(foiRequestsFilterChange(filter)),
+    navigateToLogin: () =>
+      dispatch(NavigationActions.navigate({ routeName: 'ProfileLogin' })),
+    drawerClose: () =>
+      dispatch(NavigationActions.navigate({ routeName: 'DrawerClose' })),
   };
 };
 
