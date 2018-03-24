@@ -1,15 +1,14 @@
-import { Icon, ListItem } from 'react-native-elements';
+import { Icon } from 'react-native-elements';
 import { NavigationComponent } from 'react-native-material-bottom-navigation';
-import { ScrollView } from 'react-native';
 import { TabNavigator, DrawerNavigator } from 'react-navigation';
 import React from 'react';
 
 import { greyLight, primaryColor } from '../globals/colors';
+import FoiRequestsDrawer from '../containers/foiRequests/FoiRequestsDrawer';
 import NewRequestNavigator from './NewRequestNavigator';
 import ProfileNavigator from './ProfileNavigator';
 import SearchNavigator from './SearchNavigator';
 import foiRequestsNavigator from './FoiRequestsNavigator';
-import { foiRequestsFilterChange } from '../actions/foiRequests';
 
 const AppNavigator = TabNavigator(
   {
@@ -58,54 +57,7 @@ const Drawer = DrawerNavigator(
     AppNavigator: { screen: AppNavigator },
   },
   {
-    contentComponent: props => {
-      return (
-        <ScrollView style={{ paddingTop: 100 }}>
-          <ListItem
-            leftIcon={{ name: 'public' }}
-            hideChevron
-            title="Alle Anfragen"
-            containerStyle={{
-              borderTopWidth: 1,
-              borderTopColor: greyLight,
-              borderBottomColor: greyLight,
-            }}
-            onPress={() =>
-              props.navigation.dispatch(foiRequestsFilterChange({ user: null }))
-            }
-          />
-          <ListItem
-            leftIcon={{ name: 'person' }}
-            hideChevron
-            title="Meine Anfragen"
-            onPress={() =>
-              props.navigation.dispatch(foiRequestsFilterChange({ user: true }))
-            }
-            containerStyle={{
-              borderBottomColor: greyLight,
-              paddingVertical: 10,
-              backgroundColor:
-                props.navigation.state.params &&
-                props.navigation.state.params.filter.user !== null
-                  ? 'blue'
-                  : 'white',
-            }}
-          />
-          <ListItem
-            leftIcon={{ name: 'star' }}
-            hideChevron
-            title="Anfragen, denen ich folge"
-            onPress={() =>
-              props.navigation.dispatch(foiRequestsFilterChange({ user: true }))
-            }
-            containerStyle={{
-              borderBottomColor: greyLight,
-              paddingVertical: 20,
-            }}
-          />
-        </ScrollView>
-      );
-    },
+    contentComponent: FoiRequestsDrawer,
   }
 );
 

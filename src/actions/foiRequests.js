@@ -100,7 +100,7 @@ function buildUrl(getState) {
 
     // filter by own user id
     if (filter.user) {
-      params.set('user', state.authentication.userId);
+      params.set('user', filter.user);
     }
   }
 
