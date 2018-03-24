@@ -209,28 +209,30 @@ class MyIconLeft extends React.Component {
       })
     );
   render() {
-    const options = [
-      ['menu', null],
-      ['person', 'MEINE'],
-      ['star', 'gefolgten'],
-    ];
+    const { filterUser, currentUserId } = this.props;
+    let secondIcon = null;
 
-    let i = 0;
-    if (this.props.filter.user !== null) i = 1;
+    if (filterUser != null) {
+      if (currentUserId === filterUser) {
+        secondIcon = { iconName: 'person' };
+      } else {
+        secondIcon = { iconName: 'wrench', iconType: 'font-awesome' };
+      }
+    }
 
     return (
-      <NavBarIcon
-        onPress={this.navigateToFilter}
-        iconName={options[i][0]}
-        text={options[i][1]}
-      />
+      <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+        <NavBarIcon onPress={this.navigateToFilter} iconName="menu" />
+        <NavBarIcon onPress={this.navigateToFilter} {...secondIcon} />
+      </View>
     );
   }
 }
 
 const MyConnectedIcon = connect(state => {
   return {
-    filter: state.foiRequests.filter,
+    filterUser: state.foiRequests.filter.user,
+    currentUserId: state.authentication.userId,
   };
 })(MyIconLeft);
 
