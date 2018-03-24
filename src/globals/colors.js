@@ -11,6 +11,8 @@ const grey = '#d8d8d8';
 const greyLight = '#EEEEEE';
 const greyDark = '#9b9b9b';
 
+const fontColor = '#333';
+
 export {
   primaryColor,
   primaryColorLight,
@@ -19,4 +21,5 @@ export {
   grey,
   greyLight,
   greyDark,
+  fontColor,
 };
