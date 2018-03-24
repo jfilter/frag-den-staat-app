@@ -39,6 +39,7 @@ const SearchNavigator = StackNavigator(
   },
   {
     navigationOptions: {
+      drawerLockMode: 'locked-closed', // disable global drawer
       ...commonNavigationOptions,
       tabBarLabel: I18n.t('search'),
       tabBarIcon: () => (

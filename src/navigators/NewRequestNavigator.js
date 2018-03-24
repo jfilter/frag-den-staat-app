@@ -15,6 +15,7 @@ const NewRequestNavigator = StackNavigator(
   {
     navigationOptions: {
       ...commonNavigationOptions,
+      drawerLockMode: 'locked-closed', // disable global drawer
       tabBarLabel: I18n.t('new'),
       tabBarIcon: () => <Icon size={24} color={greyDark} name="add" />,
     },
