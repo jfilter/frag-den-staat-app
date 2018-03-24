@@ -41,6 +41,7 @@ const ProfileFAQMaster = ({ navigateToAboutFOIDetails, navigateToContact }) => (
 );
 
 ProfileFAQMaster.navigationOptions = {
+  drawerLockMode: 'locked-closed', // disable global drawer
   title: 'Fragen & Antworten',
 };
 

@@ -9,6 +9,7 @@ const FoiRequestsIntroScreen = props => <Intro {...props} />;
 FoiRequestsIntroScreen.navigationOptions = {
   header: null,
   tabBarVisible: false,
+  drawerLockMode: 'locked-closed', // disable global drawer
 };
 
 const mapDispatchToProps = dispatch => {

@@ -504,6 +504,7 @@ FoiRequestDetails.navigationOptions = ({ navigation }) => {
   }
 
   return {
+    drawerLockMode: 'locked-closed', // disable global drawer
     title: I18n.t('request'),
     headerRight: (
       <NavBarIcon iconName={iconName} iconType={iconType} onPress={share} />

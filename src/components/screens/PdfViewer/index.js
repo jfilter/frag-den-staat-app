@@ -25,7 +25,7 @@ class PdfViewer extends React.Component {
   _onLayout = () => {
     const { width, height } = Dimensions.get('window');
     this.setState({ width, height });
-  }
+  };
 
   render() {
     const uri = this.props.navigation.state.params.uri;
@@ -89,6 +89,7 @@ PdfViewer.navigationOptions = props => {
   }
 
   return {
+    drawerLockMode: 'locked-closed', // disable global drawer
     title: I18n.t('attachment'),
     headerRight: (
       <NavBarIcon iconName={iconName} iconType={iconType} onPress={share} />
