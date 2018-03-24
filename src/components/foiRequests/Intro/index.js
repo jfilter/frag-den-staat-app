@@ -24,17 +24,19 @@ class Intro extends React.Component {
         <Text style={styles.text}>
           {`Sieh' dir die Anfragen von anderen Personen an oder erfahr' erst mehr über Informationsfreiheit in unserem kurzen Video.
 
+
+
+
+
           `}
         </Text>
-
-        <PromoVideo />
       </View>
     );
 
     const pageArray = [
       {
         title: 'Hey!',
-        subtitle: 'Willkommen zu FragDenStaat.',
+        subtitle: 'Willkommen zu FragDenStaat.\n\n',
         backgroundColor: primaryColorDark,
         image: (
           <Icon
@@ -102,9 +104,16 @@ class Intro extends React.Component {
         title: "Los Geht's!",
         subtitle: cta,
         backgroundColor: primaryColorDark,
+        imageContainerStyles: { paddingBottom: 30 },
         image: (
-          <Icon name="user-o" type="font-awesome" size={50} color="white" />
+          <View style={{ width: '98%' }}>
+            <PromoVideo />
+          </View>
         ),
+
+        // image: (
+        //   <Icon name="user-o" type="font-awesome" size={50} color="white" />
+        // ),
       },
     ];
     return (
