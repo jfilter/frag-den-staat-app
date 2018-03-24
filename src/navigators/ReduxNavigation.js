@@ -29,13 +29,15 @@ const addListener = createReduxBoundAddListener('root');
 class ReduxNavigation extends React.Component {
   componentDidMount() {
     BackHandler.addEventListener('hardwareBackPress', this.onBackPress);
+
     if (Platform.OS === 'android') {
       Linking.getInitialURL().then(url => {
-        this.navigate(url);
+        if (url !== null) this.urlRouter(url);
       });
     } else {
-      Linking.addEventListener('url', this.handleOpenURL);
+      Linking.addEventListener('url', this.handleOpenURLiOS);
     }
+
     loadToken().then(
       token =>
         token !== null &&
@@ -47,7 +49,7 @@ class ReduxNavigation extends React.Component {
 
   componentWillUnmount() {
     BackHandler.removeEventListener('hardwareBackPress', this.onBackPress);
-    Linking.removeEventListener('url', this.handleOpenURL);
+    Linking.removeEventListener('url', this.handleOpenURLiOS);
   }
 
   onBackPress = () => {
@@ -62,8 +64,9 @@ class ReduxNavigation extends React.Component {
     return true;
   };
 
-  handleOpenURL = event => {
-    const { url } = event;
+  handleOpenURLiOS = event => this.urlRouter(event.url);
+
+  urlRouter = url => {
     if (url.startsWith(OAUTH_REDIRECT_URI)) {
       this.handleLoginRedirect(url);
     } else {
