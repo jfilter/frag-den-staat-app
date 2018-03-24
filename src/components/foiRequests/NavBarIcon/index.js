@@ -5,7 +5,14 @@ import React from 'react';
 
 import { primaryColor, greyLight } from '../../../globals/colors';
 
-const NavBarIcon = ({ onPress, iconName, iconType, text }) => (
+const NavBarIcon = ({
+  onPress,
+  iconName,
+  iconType,
+  text,
+  additionalStyles,
+  iconSize,
+}) => (
   <TouchableHighlight
     hitSlop={{ top: 20, bottom: 10, left: 20, right: 20 }}
     onPress={onPress}
@@ -23,10 +30,18 @@ const NavBarIcon = ({ onPress, iconName, iconType, text }) => (
         borderColor: primaryColor,
         borderWidth: text == null ? 0 : 1,
         borderRadius: 2,
+        ...additionalStyles,
       }}
     >
-      <Icon name={iconName} type={iconType} color={primaryColor} size={26} />
-      <Text style={{ color: primaryColor, paddingLeft: 4 }}>{text}</Text>
+      <Icon
+        name={iconName}
+        type={iconType}
+        color={primaryColor}
+        size={iconSize || 26}
+      />
+      {text && (
+        <Text style={{ color: primaryColor, paddingLeft: 4 }}>{text}</Text>
+      )}
     </View>
   </TouchableHighlight>
 );

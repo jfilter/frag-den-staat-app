@@ -222,8 +222,20 @@ class MyIconLeft extends React.Component {
 
     return (
       <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-        <NavBarIcon onPress={this.navigateToFilter} iconName="menu" />
-        <NavBarIcon onPress={this.navigateToFilter} {...secondIcon} />
+        <NavBarIcon
+          onPress={this.navigateToFilter}
+          iconName="menu"
+          additionalStyles={{ marginHorizontal: 0, marginLeft: 5 }}
+        />
+
+        {secondIcon && (
+          <NavBarIcon
+            onPress={this.navigateToFilter}
+            {...secondIcon}
+            additionalStyles={{ marginHorizontal: 0, paddingHorizontal: 0 }}
+            iconSize={20}
+          />
+        )}
       </View>
     );
   }
