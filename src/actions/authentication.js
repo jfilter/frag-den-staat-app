@@ -1,4 +1,4 @@
-import { ORIGIN, USER_PATH } from '../globals';
+import { PROXY_HOSTNAME, USER_PATH } from '../globals';
 import { getCurrentAccessTokenOrRefresh } from '../utils/oauth';
 import { getFromCacheOrFetch } from '../utils/networking';
 
@@ -16,16 +16,29 @@ function receiveOauthRedirectError(errorMessage) {
   };
 }
 
-function oauthUserSucess(user) {
+function oauthLogout() {
   return {
-    type: 'OAUTH_USER_SUCCESS',
+    type: 'OAUTH_LOGOUT',
+  };
+}
+
+function userInformationPendingAction() {
+  return {
+    type: 'USER_INFORMATION_PENDING',
+  };
+}
+
+function userInformationSucessAction(user) {
+  return {
+    type: 'USER_INFORMATION_SUCCESS',
     user,
   };
 }
 
-function oauthLogout() {
+function userInformationErrorAction(error) {
   return {
-    type: 'OAUTH_LOGOUT',
+    type: 'USER_INFORMATION_ERROR',
+    error,
   };
 }
 
@@ -33,12 +46,13 @@ function getUserInformation() {
   return (dispatch, getState) => {
     getCurrentAccessTokenOrRefresh(dispatch, getState)
       .then(accessToken => {
+        dispatch(userInformationPendingAction());
         return getFromCacheOrFetch(`${PROXY_HOSTNAME}${USER_PATH}`, {
           Authorization: `Bearer ${accessToken}`,
         });
       })
-      .then(data => dispatch(oauthUserSucess(data)))
-      .catch(error => console.log(error));
+      .then(data => dispatch(userInformationSucessAction(data)))
+      .catch(error => dispatch(userInformationErrorAction(error)));
   };
 }
 
