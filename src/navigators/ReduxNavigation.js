@@ -34,13 +34,14 @@ class ReduxNavigation extends React.Component {
   componentDidMount() {
     BackHandler.addEventListener('hardwareBackPress', this.onBackPress);
 
-    if (Platform.OS === 'android') {
-      Linking.getInitialURL().then(url => {
-        if (url !== null) this.urlRouter(url);
-      });
-    } else {
-      Linking.addEventListener('url', this.handleOpenURLiOS);
-    }
+    // universal linking, when app was closed
+    // (and all android calls)
+    Linking.getInitialURL().then(url => {
+      if (url !== null) this.urlRouter(url);
+    });
+
+    // deep linking (and all ios)
+    Linking.addEventListener('url', event => this.urlRouter(event.url));
 
     loadToken().then(
       token =>
@@ -67,8 +68,6 @@ class ReduxNavigation extends React.Component {
     dispatch(NavigationActions.back());
     return true;
   };
-
-  handleOpenURLiOS = event => this.urlRouter(event.url);
 
   urlRouter = url => {
     if (url.startsWith(OAUTH_REDIRECT_URI)) {
