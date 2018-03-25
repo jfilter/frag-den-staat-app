@@ -80,7 +80,7 @@ class ReduxNavigation extends React.Component {
 
   handleLoginRedirect = url => {
     // 1. go back to page where clicked login (on iOS)
-    if (Platform.OS === 'iOS') this.props.dispatch(NavigationActions.back());
+    if (Platform.OS === 'ios') this.props.dispatch(NavigationActions.back());
     fetchInitialToken(url)
       .then(token => {
         // 2. show message on top
