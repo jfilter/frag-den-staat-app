@@ -35,6 +35,13 @@ const commongTabBarOptions = {
           marginVertical: 5,
         }
       : { paddingBottom: 5 },
+  tabStyle: {
+    width: '100%',
+    borderLeftWidth: 0.5,
+    borderLeftColor: greyLight,
+    borderRightWidth: 0.5,
+    borderRightColor: greyLight,
+  },
   style: {
     elevation: 0,
     shadowOpacity: 0,
