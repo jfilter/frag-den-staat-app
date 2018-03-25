@@ -3,6 +3,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import React from 'react';
 
 import { commonNavigationOptions, iconColor, iconSize } from './styles';
+import FoiRequestsWebView from '../components/foiRequests/WebView';
 import FoiRequestsDetailsScreen from '../containers/foiRequests/FoiRequestsDetailsScreen';
 import FoiRequestsIntroScreen from '../containers/foiRequests/FoiRequestsIntroScreen';
 import FoiRequestsMasterScreen from '../containers/foiRequests/FoiRequestsMasterScreen';
@@ -20,6 +21,7 @@ const FoiRequestsNavigator = StackNavigator(
     FoiRequestsPublicBody: { screen: FoiRequestsPublicBodyScreen },
     FoiRequestsIntro: { screen: FoiRequestsIntroScreen },
     FoiRequestsSingle: { screen: FoiRequestsSingleScreen },
+    FoiRequestsWebView: { screen: FoiRequestsWebView },
   },
   {
     navigationOptions: {

@@ -11,6 +11,7 @@ import {
   StyleSheet,
 } from 'react-native';
 import { Divider, Icon } from 'react-native-elements';
+import { NavigationActions } from 'react-navigation';
 import Accordion from 'react-native-collapsible/Accordion';
 import PropTypes from 'prop-types';
 import R from 'ramda';
@@ -458,7 +459,7 @@ class FoiRequestDetails extends React.Component {
 }
 
 FoiRequestDetails.navigationOptions = ({ navigation }) => {
-  const { params } = navigation.state;
+  const { params, routeName } = navigation.state;
   let requestId = null;
 
   // sometimes we get the request via the nav prop and sometimes only the id
@@ -503,11 +504,35 @@ FoiRequestDetails.navigationOptions = ({ navigation }) => {
     iconType = 'ionicon';
   }
 
+  let openInBrowserIcon = { iconName: 'open-in-browser', iconType: 'material' };
+
+  if (Platform.OS === 'ios') {
+    openInBrowserIcon = {
+      iconName: 'ios-browsers-outline',
+      iconType: 'ionicon',
+    };
+  }
+
+  const openInBrowser = () =>
+    NavigationActions.navigate({
+      routeName: routeName.startsWith('Search') // hacky
+        ? 'SearchFoiRequestWebView'
+        : 'FoiRequestsWebView',
+      params: { uri: url },
+    });
+
   return {
+    headerBackTitle: null, // can't set specific title when going outside the app so remove it for now
     drawerLockMode: 'locked-closed', // disable global drawer
     title: I18n.t('request'),
     headerRight: (
-      <NavBarIcon iconName={iconName} iconType={iconType} onPress={share} />
+      <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
+        <NavBarIcon
+          {...openInBrowserIcon}
+          onPress={() => navigation.dispatch(openInBrowser())}
+        />
+        <NavBarIcon iconName={iconName} iconType={iconType} onPress={share} />
+      </View>
     ),
   };
 };

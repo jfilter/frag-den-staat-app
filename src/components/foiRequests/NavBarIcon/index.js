@@ -14,7 +14,7 @@ const NavBarIcon = ({
   iconSize,
 }) => (
   <TouchableHighlight
-    hitSlop={{ top: 20, bottom: 10, left: 20, right: 20 }}
+    hitSlop={{ top: 20, bottom: 10, left: 10, right: 10 }}
     onPress={onPress}
     underlayColor={greyLight}
   >

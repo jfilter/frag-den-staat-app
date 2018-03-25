@@ -8,6 +8,7 @@ import {
   iconColor,
   iconSize,
 } from './styles';
+import FoiRequestsWebView from '../components/foiRequests/WebView';
 import PdfViewer from '../components/screens/PdfViewer';
 import SearchFoiRequestDetailsScreen from '../containers/search/SearchFoiRequestDetailsScreen';
 import SearchPublicBodyDetailsScreen from '../containers/search/SearchPublicBodyDetailsScreen';
@@ -36,6 +37,7 @@ const SearchNavigator = StackNavigator(
     SearchFoiRequestDetails: { screen: SearchFoiRequestDetailsScreen },
     SearchPublicBodyDetails: { screen: SearchPublicBodyDetailsScreen },
     SearchPdfViewer: { screen: PdfViewer },
+    SearchFoiRequestWebView: { screen: FoiRequestsWebView },
   },
   {
     navigationOptions: {
