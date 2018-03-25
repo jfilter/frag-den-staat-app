@@ -10,6 +10,8 @@ const USER_PATH = '/api/v1/user/';
 
 const OAUTH_PROXY_HOSTNAME = 'https://fds-oauth-proxy.app.vis.one';
 const PROXY_HOSTNAME = 'https://fds-proxy.app.vis.one';
+const GET_REQUEST_ID_HOSTNAME =
+  'https://get-fds-request-id-by-slug.app.vis.one';
 
 const APP_URI_SCHEME = 'fragdenstaat';
 const OAUTH_REDIRECT_URI = `${APP_URI_SCHEME}://authorize`;
@@ -40,4 +42,5 @@ export {
   OAUTH_SCOPE,
   USER_PATH,
   PROXY_HOSTNAME,
+  GET_REQUEST_ID_HOSTNAME,
 };

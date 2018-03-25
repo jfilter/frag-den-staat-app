@@ -32,11 +32,23 @@
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
             android:windowSoftInputMode="adjustResize"
             >
-          <intent-filter android:label="filter_react_native">
+          <intent-filter android:label="FragDenStaat App">
             <action android:name="android.intent.action.VIEW" />
             <category android:name="android.intent.category.DEFAULT" />
             <category android:name="android.intent.category.BROWSABLE" />
-            <data android:scheme="fragdenstaat" />
+            <data android:scheme="https" android:host="fragdenstaat.de" android:pathPrefix="/anfrage/" />
+          </intent-filter>
+          <intent-filter android:label="FragDenStaat App">
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.DEFAULT" />
+            <category android:name="android.intent.category.BROWSABLE" />
+            <data android:scheme="https" android:host="fragdenstaat.de" android:pathPrefix="/a/" />
+          </intent-filter>
+          <intent-filter android:label="FragDenStaat App">
+            <action android:name="android.intent.action.VIEW" />
+            <category android:name="android.intent.category.DEFAULT" />
+            <category android:name="android.intent.category.BROWSABLE" />
+            <data android:scheme="fragdenstaat"/>
           </intent-filter>
         </activity>
       <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />

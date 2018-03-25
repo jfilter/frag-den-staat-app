@@ -7,8 +7,12 @@ import {
 } from 'react-navigation-redux-helpers';
 import React from 'react';
 
+import {
+  GET_REQUEST_ID_HOSTNAME,
+  OAUTH_REDIRECT_URI,
+  ORIGIN,
+} from '../globals';
 import { errorAlert, successAlert } from '../utils/dropDownAlert';
-import { OAUTH_REDIRECT_URI } from '../globals';
 
 import {
   getUserInformation,
@@ -98,14 +102,32 @@ class ReduxNavigation extends React.Component {
       );
   };
 
-  navigate = url => {
+  navigate = async url => {
     const { dispatch } = this.props;
-    const route = url.replace(/.*?:\/\//g, '');
-    const id = route.match(/\/([^\/]+)\/?$/)[1];
+
+    // difference for deep linking and unviversal linking
+    let route;
+    if (url.startsWith(ORIGIN)) {
+      route = url.replace(`${ORIGIN}/`, '');
+    } else {
+      route = url.replace(/.*?:\/\//g, '');
+    }
     const routeName = route.split('/')[0];
 
     // a for anfrage
     if (routeName === 'a') {
+      const id = route.match(/\/([^\/]+)\/?$/)[1];
+      dispatch(
+        NavigationActions.navigate({
+          routeName: 'FoiRequestsSingle',
+          params: { foiRequestId: id },
+        })
+      );
+    }
+
+    if (routeName === 'anfrage') {
+      const res = await fetch(`${GET_REQUEST_ID_HOSTNAME}/${route}`);
+      const id = await res.json();
       dispatch(
         NavigationActions.navigate({
           routeName: 'FoiRequestsSingle',
