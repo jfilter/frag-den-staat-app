@@ -71,6 +71,8 @@ function foiRequests(state = initialState, action) {
         ...state,
         error: '',
       };
+    case 'OAUTH_LOGOUT':
+      return initialState;
     default:
       return state;
   }
