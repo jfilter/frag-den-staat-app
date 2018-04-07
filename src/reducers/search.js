@@ -60,10 +60,10 @@ function search(state = initialState, action) {
       if (index >= 0) {
         pastQueries.splice(index, 1);
       }
-      pastQueries.push(query);
+      pastQueries.unshift(query);
 
       // only short the recent 50 queries
-      if (pastQueries.length > 50) pastQueries.shift();
+      if (pastQueries.length > 50) pastQueries.pop();
 
       return { ...state, query, pastQueries };
     }

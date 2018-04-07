@@ -10,7 +10,7 @@ import {
   searchPublicBodies,
   searchPublicBodiesErrorClearAction,
 } from '../../actions/search';
-import { styles } from './styles';
+import styles from './styles';
 import listItemStyles from '../../components/library/ListItem/styles';
 import I18n from '../../i18n';
 

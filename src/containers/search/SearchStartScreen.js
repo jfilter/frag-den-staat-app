@@ -6,8 +6,9 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import { searchUpdateQuery } from '../../actions/search';
-import { styles } from './styles';
+import styles from './styles';
 import I18n from '../../i18n';
+import { grey, greyDark, fontColor, primaryColor } from '../../globals/colors';
 
 class SearchStartScreen extends React.Component {
   _onSubmit = queryText => {
@@ -25,9 +26,10 @@ class SearchStartScreen extends React.Component {
       <ListItem
         key={query}
         title={query}
-        leftIcon={{ name: 'access-time' }}
-        rightIcon={{ name: 'search' }}
+        leftIcon={{ name: 'access-time', color: greyDark }}
+        rightIcon={{ name: 'search', color: primaryColor }}
         onPress={() => this._onSubmit(query)}
+        titleStyle={{ color: fontColor }}
       />
     );
   };
@@ -37,16 +39,24 @@ class SearchStartScreen extends React.Component {
       <View style={styles.background} keyboardShouldPersistTaps="handled">
         <SearchBar
           lightTheme
-          clearIcon={{ color: '#86939e', name: 'clear' }}
+          icon={{
+            type: 'material',
+            color: greyDark,
+            name: 'search',
+            size: 35,
+          }}
+          clearIcon={{ color: greyDark, name: 'clear', size: 35 }}
           textInputRef="searchInput"
-          placeholder={I18n.t('search')}
+          placeholder="Berlin, Schule, NSA..."
           onSubmitEditing={this._onSubmitSearchBar}
           autoFocus
           autoCorrect={false}
           containerStyle={styles.searchBarContainer}
+          inputStyle={styles.searchBarInput}
+          round
         />
         <FlatList
-          data={this.props.pastQueries.reverse()}
+          data={this.props.pastQueries}
           renderItem={this._renderItem}
           keyboardShouldPersistTaps="handled"
         />
@@ -57,7 +67,7 @@ class SearchStartScreen extends React.Component {
 
 SearchStartScreen.navigationOptions = {
   title: I18n.t('search'),
-  header: null,
+  // header: null,
 };
 
 SearchStartScreen.propTypes = {
