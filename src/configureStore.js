@@ -24,11 +24,20 @@ const configSettings = {
   storage,
 };
 
+const configSearch = {
+  key: 'search',
+  storage,
+  whitelist: ['pastQueries'],
+};
+
 const authenticationPersistedReducer = persistReducer(
   configAuthentication,
   authentication
 );
+
 const settingsPersistedReducer = persistReducer(configSettings, settings);
+
+const searchPersistedReducer = persistReducer(configSearch, search);
 
 // only persist selected reducers
 const rootReducer = combineReducers({
@@ -36,7 +45,7 @@ const rootReducer = combineReducers({
   settings: settingsPersistedReducer,
   navigation,
   foiRequests,
-  search,
+  search: searchPersistedReducer,
   publicBodies,
   singleFoiRequest,
 });

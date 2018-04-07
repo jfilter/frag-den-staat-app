@@ -2,22 +2,14 @@ import { FlatList, View } from 'react-native';
 import { NavigationActions } from 'react-navigation';
 import { SearchBar, ListItem } from 'react-native-elements';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import React from 'react';
 
-import { insertPastQuery, getPastQueries } from '../../data/db/dbHelper';
-import {
-  searchUpdateQuery,
-  searchUpdatePastQueries,
-} from '../../actions/search';
+import { searchUpdateQuery } from '../../actions/search';
 import { styles } from './styles';
 import I18n from '../../i18n';
 
 class SearchStartScreen extends React.Component {
-  componentDidMount() {
-    const pastQueries = getPastQueries();
-    this.props.updatePastQueries(pastQueries);
-  }
-
   _onSubmit = queryText => {
     this.props.navigateToResults({ query: queryText });
     this.props.updateQuery(queryText);
@@ -26,22 +18,16 @@ class SearchStartScreen extends React.Component {
   _onSubmitSearchBar = event => {
     const queryText = event.nativeEvent.text.trim();
     this._onSubmit(queryText);
-
-    // first dispatch the navigation action, then add the query to the DB
-
-    insertPastQuery(queryText);
-    const pastQueries = getPastQueries();
-    this.props.updatePastQueries(pastQueries);
   };
 
-  _renderItem = ({ item }) => {
+  _renderItem = ({ item: query }) => {
     return (
       <ListItem
-        key={item.createdAt}
-        title={item.query}
+        key={query}
+        title={query}
         leftIcon={{ name: 'access-time' }}
         rightIcon={{ name: 'search' }}
-        onPress={() => this._onSubmit(item.query)}
+        onPress={() => this._onSubmit(query)}
       />
     );
   };
@@ -53,7 +39,6 @@ class SearchStartScreen extends React.Component {
           lightTheme
           clearIcon={{ color: '#86939e', name: 'clear' }}
           textInputRef="searchInput"
-          // onChangeText={() => console.log('x')}
           placeholder={I18n.t('search')}
           onSubmitEditing={this._onSubmitSearchBar}
           autoFocus
@@ -61,7 +46,7 @@ class SearchStartScreen extends React.Component {
           containerStyle={styles.searchBarContainer}
         />
         <FlatList
-          data={this.props.pastQueries}
+          data={this.props.pastQueries.reverse()}
           renderItem={this._renderItem}
           keyboardShouldPersistTaps="handled"
         />
@@ -75,7 +60,11 @@ SearchStartScreen.navigationOptions = {
   header: null,
 };
 
-SearchStartScreen.propTypes = {};
+SearchStartScreen.propTypes = {
+  pastQueries: PropTypes.arrayOf(PropTypes.string).isRequired,
+  updateQuery: PropTypes.func.isRequired,
+  navigateToResults: PropTypes.func.isRequired,
+};
 
 const mapStateToProps = state => {
   return {
@@ -85,8 +74,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    updatePastQueries: pastQueries =>
-      dispatch(searchUpdatePastQueries(pastQueries)),
     updateQuery: query => dispatch(searchUpdateQuery(query)),
     navigateToResults: params =>
       dispatch(

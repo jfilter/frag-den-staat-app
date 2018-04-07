@@ -64,13 +64,6 @@ function searchUpdateQuery(query) {
   };
 }
 
-function searchUpdatePastQueries(pastQueries) {
-  return {
-    type: 'SEARCH_UPDATE_PAST_QUERIES',
-    pastQueries,
-  };
-}
-
 function searchFoiRequests() {
   return (dispatch, getState) => {
     const buildUrl = (function makeBuildUrl() {
@@ -117,5 +110,4 @@ export {
   searchPublicBodies,
   searchPublicBodiesErrorClearAction,
   searchUpdateQuery,
-  searchUpdatePastQueries,
 };

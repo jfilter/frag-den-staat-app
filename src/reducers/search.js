@@ -51,10 +51,22 @@ function search(state = initialState, action) {
         publicBodiesResults: action.results.objects.results,
       };
     }
-    case 'SEARCH_UPDATE_QUERY':
-      return { ...state, query: action.query };
-    case 'SEARCH_UPDATE_PAST_QUERIES':
-      return { ...state, pastQueries: action.pastQueries };
+    case 'SEARCH_UPDATE_QUERY': {
+      const { query } = action;
+      const pastQueries = [...state.pastQueries];
+
+      // we don't want duplicates so first remove the old ones
+      const index = pastQueries.indexOf(query);
+      if (index >= 0) {
+        pastQueries.splice(index, 1);
+      }
+      pastQueries.push(query);
+
+      // only short the recent 50 queries
+      if (pastQueries.length > 50) pastQueries.shift();
+
+      return { ...state, query, pastQueries };
+    }
     default:
       return state;
   }
