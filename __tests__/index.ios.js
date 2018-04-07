@@ -14,10 +14,6 @@ jest.mock('react-native-fetch-blob', () => {
 
 jest.mock('ScrollView', () => jest.genMockFromModule('ScrollView'));
 
-jest.mock('realm', () => {
-  return require('../mocks/realm');
-});
-
 it('renders correctly', () => {
   const tree = renderer.create(<Index />);
 });

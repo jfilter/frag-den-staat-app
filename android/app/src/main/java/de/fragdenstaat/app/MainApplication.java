@@ -6,7 +6,6 @@ import com.facebook.react.ReactApplication;
 import com.brentvatne.react.ReactVideoPackage;
 import com.oblador.keychain.KeychainPackage;
 import com.AlexanderZaytsev.RNI18n.RNI18nPackage;
-import io.realm.react.RealmReactPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import org.wonday.pdf.RCTPdfView;
 import com.RNFetchBlob.RNFetchBlobPackage;
@@ -33,7 +32,6 @@ public class MainApplication extends Application implements ReactApplication {
             new ReactVideoPackage(),
             new KeychainPackage(),
             new RNI18nPackage(),
-            new RealmReactPackage(),
             new VectorIconsPackage(),
             new RCTPdfView(),
             new RNFetchBlobPackage()
