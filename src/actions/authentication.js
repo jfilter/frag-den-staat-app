@@ -42,6 +42,18 @@ function userInformationErrorAction(error) {
   };
 }
 
+function refreshingTokenPendingAction() {
+  return {
+    type: 'REFRESHING_TOKEN_PENDING',
+  };
+}
+
+function refreshingTokenErrorAction() {
+  return {
+    type: 'REFRESHING_TOKEN_ERROR',
+  };
+}
+
 function getUserInformation() {
   return (dispatch, getState) => {
     getCurrentAccessTokenOrRefresh(dispatch, getState)
@@ -61,4 +73,6 @@ export {
   receiveOauthRedirectError,
   getUserInformation,
   oauthLogout,
+  refreshingTokenPendingAction,
+  refreshingTokenErrorAction,
 };

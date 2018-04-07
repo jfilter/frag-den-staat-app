@@ -6,7 +6,11 @@ import {
   OAUTH_SCOPE,
   ORIGIN,
 } from '../globals';
-import { oauthUpdateToken } from '../actions/authentication';
+import {
+  oauthUpdateToken,
+  refreshingTokenPendingAction,
+  refreshingTokenErrorAction,
+} from '../actions/authentication';
 import { saveToken } from './secureStorage';
 
 // https://stackoverflow.com/a/3855394/4028896
@@ -88,26 +92,29 @@ const fetchInitialToken = url => {
 
 const getCurrentAccessTokenOrRefresh = (dispatch, getState) => {
   return new Promise(async (resolve, reject) => {
-    try {
-      const {
-        timeStamp,
-        expiresIn,
-        accessToken,
-        refreshToken,
-      } = getState().authentication;
+    const {
+      timeStamp,
+      expiresIn,
+      accessToken,
+      refreshToken,
+    } = getState().authentication;
 
-      const secondsLeftBeforeRefreshing = 60;
+    const secondsLeftBeforeRefreshing = 60;
 
-      // is the token at least for X seconds valid?
-      if (timeStamp + expiresIn > Date.now() + secondsLeftBeforeRefreshing) {
-        // if yes, return
-        resolve(accessToken);
-      } else {
-        // if no,
+    // is the token at least for X seconds valid?
+    if (timeStamp + expiresIn > Date.now() + secondsLeftBeforeRefreshing) {
+      // if yes, return
+      resolve(accessToken);
+    } else {
+      // if no,
+      dispatch(refreshingTokenPendingAction());
+
+      try {
         // 1. refresh the access token
         const refreshedToken = await getJsonOrThrow(
           refreshAccessToken(refreshToken, accessToken, expiresIn)
         );
+
         const token = getTokens(refreshedToken);
         // 2. update the access token in the redux store (async)
         dispatch(oauthUpdateToken(token));
@@ -115,9 +122,10 @@ const getCurrentAccessTokenOrRefresh = (dispatch, getState) => {
         saveToken(token);
         // 4. return the new access token
         resolve(token.accessToken);
+      } catch (error) {
+        dispatch(refreshingTokenErrorAction(error));
+        reject(error);
       }
-    } catch (error) {
-      reject(error);
     }
   });
 };

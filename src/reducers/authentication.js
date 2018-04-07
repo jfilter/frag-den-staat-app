@@ -9,6 +9,8 @@ const initialState = {
   userId: null,
   userInformationPending: null,
   userInformationError: null,
+  refreshingTokenPending: null,
+  refreshingTokenError: null,
 };
 
 function authentication(state = initialState, action) {
@@ -17,6 +19,8 @@ function authentication(state = initialState, action) {
       return {
         ...state,
         ...action.token,
+        refreshingTokenPending: null,
+        refreshingTokenError: null,
       };
     case 'RECEIVE_OAUTH_REDIRECT_ERROR':
       return { ...state, errorMessage: action.errorMessage };
@@ -44,6 +48,17 @@ function authentication(state = initialState, action) {
       return { ...initialState };
     case 'CLEAR_ERROR':
       return { ...state, errorMessage: null };
+    case 'REFRESHING_TOKEN_PENDING':
+      return {
+        ...state,
+        refreshingTokenPending: true,
+      };
+    case 'REFRESHING_TOKEN_ERROR':
+      return {
+        ...state,
+        refreshingTokenPending: null,
+        refreshingTokenError: action.error,
+      };
     default:
       return state;
   }
