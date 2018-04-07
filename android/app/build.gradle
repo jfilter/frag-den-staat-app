@@ -151,7 +151,6 @@ dependencies {
     compile project(':react-native-video')
     compile project(':react-native-keychain')
     compile project(':react-native-i18n')
-    compile project(':realm')
     compile project(':react-native-vector-icons')
     compile project(':react-native-pdf')
     compile project(':react-native-fetch-blob')
