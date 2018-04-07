@@ -37,23 +37,25 @@ const PublicBodyDetails = ({
     categories,
     number_of_requests: nRequests,
   } = publicBody;
-  const jurisdiction = (
-    <Link
-      label={publicBody.jurisdiction.name}
-      url={publicBody.jurisdiction.site_url}
-    />
-  );
-  const website = <Link label={url} url={url} />;
 
   const printableCategories =
     categories.length > 0 ? categories.map(x => x.name).join(', ') : null;
+
   const tableData = [
-    { label: I18n.t('jurisdiction'), value: jurisdiction },
+    {
+      label: I18n.t('jurisdiction'),
+      value: (
+        <Link
+          label={publicBody.jurisdiction.name}
+          url={publicBody.jurisdiction.site_url}
+        />
+      ),
+    },
     {
       label: I18n.t('classification'),
       value: <Text selectable>{classification.name}</Text>,
     },
-    { label: I18n.t('website'), value: website },
+    { label: I18n.t('website'), value: <Link label={url} url={url} /> },
     {
       label: I18n.t('email'),
       value: <Text selectable>{email}</Text>,

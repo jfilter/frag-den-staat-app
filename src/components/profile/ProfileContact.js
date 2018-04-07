@@ -1,6 +1,7 @@
 import { Text } from 'react-native';
 import React from 'react';
 
+import { primaryColor } from '../../globals/colors';
 import BlankContainer from '../library/BlankContainer';
 import FloatingHeading from '../library/FloatingHeading';
 import Heading from '../library/Heading';
@@ -10,19 +11,27 @@ const links = [
   {
     title: 'Twitter',
     url: 'https://twitter.com/fragdenstaat',
-    icon: { name: 'twitter-box', type: 'material-community' },
+    icon: {
+      name: 'twitter-box',
+      type: 'material-community',
+      color: primaryColor,
+    },
   },
   {
     title: 'Facebook',
     url: 'https://www.facebook.com/fragdenstaat.de/',
-    icon: { name: 'facebook-box', type: 'material-community' },
+    icon: {
+      name: 'facebook-box',
+      type: 'material-community',
+      color: primaryColor,
+    },
   },
   {
     title: 'info@fragdenstaat.de',
     url: 'mailto:info@fragdenstaat.de?subject=App-Anfrage',
   },
   {
-    title: 'Öffentlichen Email-Verteiler',
+    title: 'Öffentlicher Email-Verteiler',
     url: 'https://lists.okfn.org/mailman/listinfo/fragdenstaat',
   },
 ];

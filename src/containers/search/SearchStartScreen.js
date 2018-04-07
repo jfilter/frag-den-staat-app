@@ -8,7 +8,7 @@ import React from 'react';
 import { searchUpdateQuery } from '../../actions/search';
 import styles from './styles';
 import I18n from '../../i18n';
-import { grey, greyDark, fontColor, primaryColor } from '../../globals/colors';
+import { greyDark, fontColor, primaryColor } from '../../globals/colors';
 
 class SearchStartScreen extends React.Component {
   _onSubmit = queryText => {
@@ -67,7 +67,6 @@ class SearchStartScreen extends React.Component {
 
 SearchStartScreen.navigationOptions = {
   title: I18n.t('search'),
-  // header: null,
 };
 
 SearchStartScreen.propTypes = {

@@ -12,8 +12,8 @@ const links = [
     url: 'https://github.com/jfilter/frag-den-staat-app/issues',
   },
   {
-    title: 'hi@jfilter.de',
-    url: 'mailto:hi@jfilter.de?subject=[FragDenStaatApp]',
+    title: 'Johannes.Filter@okfn.de',
+    url: 'mailto:Johannes.Filter@okfn.de?subject=[FragDenStaatApp]',
   },
 ];
 

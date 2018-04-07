@@ -8,7 +8,7 @@ import {
   searchFoiRequests,
   searchFoiRequestsErrorClearAction,
 } from '../../actions/search';
-import { styles } from './styles';
+import styles from './styles';
 import ListFooter from '../../components/library/ListFooter';
 import ListHeader from '../../components/library/ListHeader';
 import ListItem from '../../components/library/ListItem';
