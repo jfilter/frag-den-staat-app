@@ -56,10 +56,9 @@ class FoiRequestsMasterScreen extends React.Component {
     };
   }
 
-  async componentWillMount() {
-    const value = await AsyncStorage.getItem('@SKIP_INTRO');
-    if (value === null || value !== 'true') {
-      this.props.navigateToIntro();
+  componentWillMount() {
+    if (!this.props.onboardingFinished) {
+      this.props.navigateToOnboarding();
     }
   }
 
@@ -249,11 +248,9 @@ const MyConnectedIcon = connect(state => {
 })(MyIconLeft);
 
 FoiRequestsMasterScreen.navigationOptions = ({ navigation }) => {
-  if (navigation.state.params) console.log(navigation.state.params.filter);
-
-  const navigateToIntro = () =>
+  const navigateToOnboarding = () =>
     navigation.dispatch(
-      NavigationActions.navigate({ routeName: 'FoiRequestsIntro' })
+      NavigationActions.navigate({ routeName: 'FoiRequestsOnboarding' })
     );
 
   return {
@@ -272,7 +269,7 @@ FoiRequestsMasterScreen.navigationOptions = ({ navigation }) => {
     ),
     headerBackTitle: null, // disables default
     headerRight: (
-      <NavBarIcon onPress={navigateToIntro} iconName="info-outline" />
+      <NavBarIcon onPress={navigateToOnboarding} iconName="info-outline" />
     ),
     headerLeft: <MyConnectedIcon />,
   };
@@ -291,11 +288,13 @@ FoiRequestsMasterScreen.propTypes = {
   clearError: PropTypes.func.isRequired,
   refreshData: PropTypes.func.isRequired,
   navigateToSingle: PropTypes.func.isRequired,
+  onboardingFinished: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = state => {
   return {
     ...state.foiRequests,
+    onboardingFinished: state.settings.onboardingFinished,
   };
 };
 
@@ -304,8 +303,10 @@ const mapDispatchToProps = dispatch => {
     clearError: () => dispatch(foiRequestsErrorClearAction()),
     fetchData: () => dispatch(foiRequestsFetchData()),
     refreshData: () => dispatch(foiRequestsRefreshData()),
-    navigateToIntro: () =>
-      dispatch(NavigationActions.navigate({ routeName: 'FoiRequestsIntro' })),
+    navigateToOnboarding: () =>
+      dispatch(
+        NavigationActions.navigate({ routeName: 'FoiRequestsOnboarding' })
+      ),
     navigateToSingle: params =>
       dispatch(
         NavigationActions.navigate({ routeName: 'FoiRequestsDetails', params })

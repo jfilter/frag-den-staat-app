@@ -1,11 +1,11 @@
 const initialState = {
-  showOnboarding: true,
+  onboardingFinished: false,
 };
 
 function settings(state = initialState, action) {
   switch (action.type) {
     case 'ONBOARDING_FINISHED':
-      return { ...state, showOnboarding: false };
+      return { ...state, onboardingFinished: true };
     default:
       return state;
   }

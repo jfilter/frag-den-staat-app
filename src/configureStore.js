@@ -13,7 +13,6 @@ import search from './reducers/search';
 import singleFoiRequest from './reducers/singleFoiRequest';
 import settings from './reducers/settings';
 
-// config to not persist the *counterString* of the CounterReducer's slice of the global state.
 const configAuthentication = {
   key: 'authentication',
   storage,
@@ -25,14 +24,13 @@ const configSettings = {
   storage,
 };
 
-// We are only persisting the counterReducer and loginRducer
 const authenticationPersistedReducer = persistReducer(
   configAuthentication,
   authentication
 );
 const settingsPersistedReducer = persistReducer(configSettings, settings);
 
-// combineReducer applied on persisted(counterReducer) and NavigationReducer
+// only persist selected reducers
 const rootReducer = combineReducers({
   authentication: authenticationPersistedReducer,
   settings: settingsPersistedReducer,
@@ -45,13 +43,14 @@ const rootReducer = combineReducers({
 
 const configureStore = () => {
   let middleware = [thunkMiddleware, navMiddleware];
+
   if (__DEV__) {
     middleware = [...middleware, createLogger()];
   }
 
   const store = createStore(rootReducer, applyMiddleware(...middleware));
-
   const persistor = persistStore(store);
+
   return { persistor, store };
 };
 

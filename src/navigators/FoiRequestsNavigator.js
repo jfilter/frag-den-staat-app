@@ -3,12 +3,12 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import React from 'react';
 
 import { commonNavigationOptions, iconColor, iconSize } from './styles';
-import FoiRequestsWebView from '../components/foiRequests/WebView';
 import FoiRequestsDetailsScreen from '../containers/foiRequests/FoiRequestsDetailsScreen';
-import FoiRequestsIntroScreen from '../containers/foiRequests/FoiRequestsIntroScreen';
 import FoiRequestsMasterScreen from '../containers/foiRequests/FoiRequestsMasterScreen';
+import FoiRequestsOnboardingScreen from '../containers/foiRequests/FoiRequestsOnboardingScreen';
 import FoiRequestsPublicBodyScreen from '../containers/foiRequests/FoiRequestsPublicBodyScreen';
 import FoiRequestsSingleScreen from '../containers/foiRequests/FoiRequestsSingleScreen';
+import FoiRequestsWebView from '../components/foiRequests/WebView';
 import I18n from '../i18n';
 import PdfViewer from '../components/screens/PdfViewer';
 import navigateOnce from '../utils/navigateOnce';
@@ -19,7 +19,7 @@ const FoiRequestsNavigator = StackNavigator(
     FoiRequestsDetails: { screen: FoiRequestsDetailsScreen },
     FoiRequestsPdfViewer: { screen: PdfViewer },
     FoiRequestsPublicBody: { screen: FoiRequestsPublicBodyScreen },
-    FoiRequestsIntro: { screen: FoiRequestsIntroScreen },
+    FoiRequestsOnboarding: { screen: FoiRequestsOnboardingScreen },
     FoiRequestsSingle: { screen: FoiRequestsSingleScreen },
     FoiRequestsWebView: { screen: FoiRequestsWebView },
   },
@@ -29,24 +29,6 @@ const FoiRequestsNavigator = StackNavigator(
       tabBarLabel: I18n.t('requests'),
       tabBarIcon: () => <Icon size={iconSize} color={iconColor} name="home" />,
     },
-    // https://github.com/react-navigation/react-navigation/issues/3217
-    // transitionConfig: () => ({
-    //   screenInterpolator: props => {
-    //     // Transitioning to screen (navigate)
-    //     if (props.scene.route.routeName === 'FoiRequestsIntro') {
-    //       return CardStackStyleInterpolator.forFade(props);
-    //     }
-
-    //     const last = props.scenes[props.scenes.length - 1];
-
-    //     // Transitioning from screen (goBack)
-    //     if (last.route.routeName === 'FoiRequestsIntro') {
-    //       return CardStackStyleInterpolator.forFade(props);
-    //     }
-
-    //     return CardStackStyleInterpolator.forHorizontal(props);
-    //   },
-    // }),
   }
 );
 
