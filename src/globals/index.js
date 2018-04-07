@@ -22,7 +22,6 @@ const OAUTH_CLIENT_SECRET = 'secret';
 const OAUTH_SCOPES_AS_LIST = [
   'read:user',
   'read:profile',
-  'read:email',
   'read:request',
   'make:request',
 ];
