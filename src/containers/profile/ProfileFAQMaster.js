@@ -12,7 +12,7 @@ const ProfileFAQMaster = ({ navigateToAboutFOIDetails, navigateToContact }) => (
   <FlatList
     data={data}
     style={{ backgroundColor: 'white' }}
-    ItemSeparatorComponent={() => renderSeparator()}
+    ItemSeparatorComponent={Seperator}
     ListHeaderComponent={
       <View style={{ padding: 10 }}>
         <Text>Wir haben die Antworten für deine Fragen. Wenn nicht:</Text>

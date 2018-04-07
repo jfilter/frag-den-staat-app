@@ -4,7 +4,7 @@ import React from 'react';
 import moment from 'moment';
 
 import { getPrintableStatus, shortenJurisdiction } from '../../../utils';
-import { greyDark, primaryColor } from '../../../globals/colors';
+import { greyDark, primaryColor, fontColor } from '../../../globals/colors';
 import I18n from '../../../i18n';
 import styles from './styles';
 
@@ -35,7 +35,7 @@ const ListItem = ({ item, onPress }) => {
     <ListItemRNElements
       key={item.id}
       title={item.title}
-      titleStyle={{ fontSize: 15, fontWeight: 'bold' }}
+      titleStyle={{ fontSize: 15, fontWeight: 'bold', color: fontColor }}
       subtitleStyle={{ fontSize: 13, fontWeight: 'bold', color: greyDark }}
       titleNumberOfLines={4}
       subtitle={subtitle}
@@ -45,7 +45,7 @@ const ListItem = ({ item, onPress }) => {
           style={{
             justifyContent: 'center',
             alignItems: 'center',
-            marginRight: 20,
+            marginRight: 10,
             marginLeft: 10,
           }}
         >

@@ -5,14 +5,14 @@ import { connect } from 'react-redux';
 import React from 'react';
 import * as StoreReview from 'react-native-store-review';
 
+import { clearCache } from '../../utils/networking';
 import { clearToken } from '../../utils/secureStorage';
+import { greyDark } from '../../globals/colors';
 import { oauthLogout } from '../../actions/authentication';
-import { requestAuthToken } from '../../utils/oauth';
 import { styles } from './styles';
 import BlankContainer from '../../components/library/BlankContainer';
 import I18n from '../../i18n';
 import SectionHeading from '../../components/library/SectionHeading';
-import { clearCache } from '../../utils/networking';
 
 class ProfileStartScreen extends React.Component {
   componentDidUpdate() {
@@ -48,7 +48,11 @@ class ProfileStartScreen extends React.Component {
               styles.firstItemContainer,
             ]}
             title="Logout"
-            leftIcon={{ name: 'logout-variant', type: 'material-community' }}
+            leftIcon={{
+              color: greyDark,
+              name: 'logout-variant',
+              type: 'material-community',
+            }}
             onPress={() => {
               this.props.logout();
               clearToken();
@@ -63,7 +67,11 @@ class ProfileStartScreen extends React.Component {
               styles.firstItemContainer,
             ]}
             title="Login"
-            leftIcon={{ name: 'login-variant', type: 'material-community' }}
+            leftIcon={{
+              color: greyDark,
+              name: 'login-variant',
+              type: 'material-community',
+            }}
             onPress={navigateToLoginScreen}
           />
         )}
@@ -71,7 +79,11 @@ class ProfileStartScreen extends React.Component {
           <ListItem
             containerStyle={[styles.listItemContainer]}
             title="Register"
-            leftIcon={{ name: 'account-plus', type: 'material-community' }}
+            leftIcon={{
+              color: greyDark,
+              name: 'account-plus',
+              type: 'material-community',
+            }}
             onPress={() =>
               Linking.openURL('https://fragdenstaat.de/account/login/')
             }
@@ -81,62 +93,70 @@ class ProfileStartScreen extends React.Component {
         <ListItem
           containerStyle={[styles.listItemContainer, styles.firstItemContainer]}
           title={I18n.t('moreScreen.video')}
-          leftIcon={{ name: 'ondemand-video' }}
+          leftIcon={{ color: greyDark, name: 'ondemand-video' }}
           onPress={navigateToIntroVideo}
         />
         <ListItem
           containerStyle={[styles.listItemContainer]}
           title={I18n.t('moreScreen.aboutFDS')}
-          leftIcon={{ name: 'info' }}
+          leftIcon={{ color: greyDark, name: 'info' }}
           onPress={navigateToAboutApp}
         />
         <ListItem
           containerStyle={styles.listItemContainer}
           title={I18n.t('moreScreen.aboutFOI')}
-          leftIcon={{ name: 'info' }}
+          leftIcon={{ color: greyDark, name: 'info' }}
           onPress={navigateToAboutFOIMaster}
         />
         <ListItem
           containerStyle={styles.listItemContainer}
           title={I18n.t('moreScreen.faq')}
-          leftIcon={{ name: 'question-answer' }}
+          leftIcon={{ color: greyDark, name: 'question-answer' }}
           onPress={navigateToFAQ}
         />
         <SectionHeading>{I18n.t('miscellaneous')}</SectionHeading>
         <ListItem
           containerStyle={[styles.listItemContainer, styles.firstItemContainer]}
           title={I18n.t('moreScreen.contact')}
-          leftIcon={{ name: 'mail' }}
+          leftIcon={{ color: greyDark, name: 'mail' }}
           onPress={navigateToContact}
         />
         <ListItem
           containerStyle={styles.listItemContainer}
           title={I18n.t('moreScreen.dataUse')}
-          leftIcon={{ name: 'scale-balance', type: 'material-community' }}
+          leftIcon={{
+            color: greyDark,
+            name: 'scale-balance',
+            type: 'material-community',
+          }}
           onPress={navigateToDataUsePolicy}
         />
         <ListItem
           containerStyle={styles.listItemContainer}
           title={I18n.t('moreScreen.tos')}
-          leftIcon={{ name: 'scale-balance', type: 'material-community' }}
+          leftIcon={{
+            color: greyDark,
+            name: 'scale-balance',
+            type: 'material-community',
+          }}
           onPress={navigateToTermsOfUse}
         />
         <ListItem
           containerStyle={styles.listItemContainer}
           title={I18n.t('moreScreen.acknowledgements')}
-          leftIcon={{ name: 'copyright' }}
+          leftIcon={{ color: greyDark, name: 'copyright' }}
           onPress={navigateToAcknowledgements}
         />
         <ListItem
           containerStyle={styles.listItemContainer}
           title={I18n.t('moreScreen.feedback')}
-          leftIcon={{ name: 'feedback' }}
+          leftIcon={{ color: greyDark, name: 'feedback' }}
           onPress={navigateToFeedback}
         />
         <ListItem
           containerStyle={styles.listItemContainer}
           title={I18n.t('moreScreen.rate')}
-          leftIcon={{ name: 'star' }}
+          leftIcon={{ color: greyDark, name: 'star' }}
           onPress={() => {
             if (Platform.OS === 'ios' && StoreReview.isAvailable) {
               StoreReview.requestReview();
@@ -147,14 +167,14 @@ class ProfileStartScreen extends React.Component {
               );
             }
           }}
-          rightIcon={{ name: 'chevron-right', color: 'white' }} // chevronHide shitfs the label to the left
+          rightIcon={{ color: greyDark, name: 'chevron-right', color: 'white' }} // chevronHide shitfs the label to the left
         />
         <SectionHeading>Links</SectionHeading>
         <ListItem
           containerStyle={[styles.listItemContainer, styles.firstItemContainer]}
           title={I18n.t('moreScreen.donate')}
-          leftIcon={{ name: 'euro-symbol' }}
-          rightIcon={{ name: 'link' }}
+          leftIcon={{ color: greyDark, name: 'euro-symbol' }}
+          rightIcon={{ color: greyDark, name: 'link' }}
           onPress={() =>
             Linking.openURL('https://fragdenstaat.de/hilfe/spenden/')
           }
@@ -162,15 +182,19 @@ class ProfileStartScreen extends React.Component {
         <ListItem
           containerStyle={styles.listItemContainer}
           title={I18n.t('moreScreen.blog')}
-          leftIcon={{ name: 'library-books', type: 'material-community' }}
-          rightIcon={{ name: 'link' }}
+          leftIcon={{
+            color: greyDark,
+            name: 'library-books',
+            type: 'material-community',
+          }}
+          rightIcon={{ color: greyDark, name: 'link' }}
           onPress={() => Linking.openURL('http://blog.fragdenstaat.de')}
         />
         <ListItem
           containerStyle={styles.listItemContainer}
-          leftIcon={{ name: 'mic' }}
+          leftIcon={{ color: greyDark, name: 'mic' }}
           title={I18n.t('moreScreen.press')}
-          rightIcon={{ name: 'link' }}
+          rightIcon={{ color: greyDark, name: 'link' }}
           onPress={() =>
             Linking.openURL('https://fragdenstaat.de/hilfe/ueber/presse/')
           }
@@ -183,7 +207,7 @@ class ProfileStartScreen extends React.Component {
             color: '#1DA1F2',
           }}
           title={I18n.t('moreScreen.followTwitter')}
-          rightIcon={{ name: 'link' }}
+          rightIcon={{ color: greyDark, name: 'link' }}
           onPress={() => Linking.openURL('https://twitter.com/fragdenstaat')}
         />
         <ListItem
@@ -194,7 +218,7 @@ class ProfileStartScreen extends React.Component {
             color: '#3B5998',
           }}
           title={I18n.t('moreScreen.likeFacebook')}
-          rightIcon={{ name: 'link' }}
+          rightIcon={{ color: greyDark, name: 'link' }}
           onPress={() =>
             Linking.openURL('https://www.facebook.com/fragdenstaat.de/')
           }

@@ -4,15 +4,16 @@ import { View, FlatList } from 'react-native';
 import { connect } from 'react-redux';
 import React from 'react';
 
-import Seperator from '../../components/library/Seperator';
-import ListFooter from '../../components/library/ListFooter';
+import { fontColor, greyDark } from '../../globals/colors';
 import {
   searchPublicBodies,
   searchPublicBodiesErrorClearAction,
 } from '../../actions/search';
-import styles from './styles';
-import listItemStyles from '../../components/library/ListItem/styles';
 import I18n from '../../i18n';
+import ListFooter from '../../components/library/ListFooter';
+import Seperator from '../../components/library/Seperator';
+import listItemStyles from '../../components/library/ListItem/styles';
+import styles from './styles';
 
 class SearchResultsPublicBodiesMasterScreen extends React.Component {
   componentDidMount() {
@@ -30,6 +31,8 @@ class SearchResultsPublicBodiesMasterScreen extends React.Component {
         subtitle={subtittle}
         titleNumberOfLines={3}
         containerStyle={listItemStyles.listItemContainer}
+        titleStyle={{ fontSize: 15, fontWeight: 'bold', color: fontColor }}
+        subtitleStyle={{ fontSize: 13, fontWeight: 'bold', color: greyDark }}
         onPress={() => this.props.navigateToDetails({ publicBody: item })}
       />
     );
