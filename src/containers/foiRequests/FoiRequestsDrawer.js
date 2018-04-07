@@ -25,12 +25,10 @@ const FoiRequestDrawer = ({
       titleStyle={{
         color: currentUserFilter == null ? primaryColor : fontColor,
       }}
-      containerStyle={{
-        borderTopWidth: 1,
-        borderTopColor: greyLight,
-        borderBottomColor: greyLight,
+      onPress={() => {
+        filterChange({ user: null });
+        drawerClose();
       }}
-      onPress={() => filterChange({ user: null })}
     />
     <ListItem
       leftIcon={{
@@ -42,28 +40,31 @@ const FoiRequestDrawer = ({
       }}
       hideChevron
       title="Meine Anfragen"
-      onPress={() =>
-        currentUserId == null
-          ? Alert.alert(
-              'Du bist nicht eingeloggt.',
-              'Bitte logge dich ein.',
-              [
-                {
-                  text: 'Jetzt einloggen',
-                  onPress: () => {
-                    drawerClose();
-                    setTimeout(() => navigateToLogin(), 300);
-                  },
+      onPress={() => {
+        if (currentUserId == null) {
+          Alert.alert(
+            'Du bist nicht eingeloggt.',
+            'Bitte logge dich ein.',
+            [
+              {
+                text: 'Jetzt einloggen',
+                onPress: () => {
+                  drawerClose();
+                  setTimeout(() => navigateToLogin(), 300);
                 },
-                {
-                  text: 'Abbrechen',
-                  style: 'cancel',
-                },
-              ],
-              { cancelable: false }
-            )
-          : filterChange({ user: currentUserId })
-      }
+              },
+              {
+                text: 'Abbrechen',
+                style: 'cancel',
+              },
+            ],
+            { cancelable: false }
+          );
+        } else {
+          filterChange({ user: currentUserId });
+          drawerClose();
+        }
+      }}
       titleStyle={{
         color:
           currentUserId && currentUserFilter === currentUserId
@@ -71,7 +72,6 @@ const FoiRequestDrawer = ({
             : fontColor,
       }}
       containerStyle={{
-        borderBottomColor: greyLight,
         paddingVertical: 10,
       }}
     />
@@ -83,12 +83,14 @@ const FoiRequestDrawer = ({
       }}
       hideChevron
       title="Arnes Anfragen"
-      onPress={() => filterChange({ user: 4103 })} // Arne's FdS user id (which is publicly accisbile)
+      onPress={() => {
+        filterChange({ user: 4103 });
+        drawerClose();
+      }} // Arne's FdS user id (which is publicly accisbile)
       titleStyle={{
         color: currentUserFilter === 4103 ? primaryColor : fontColor,
       }}
       containerStyle={{
-        borderBottomColor: greyLight,
         paddingVertical: 20,
       }}
     />
