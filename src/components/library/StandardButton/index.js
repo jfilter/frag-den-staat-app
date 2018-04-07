@@ -1,11 +1,11 @@
 import { Button, Icon } from 'react-native-elements';
 import React from 'react';
 
-import { primaryColor } from '../../../globals/colors';
+import { greyDark, primaryColor } from '../../../globals/colors';
 
 const borderRadius = 30;
 
-const StandardButton = ({ containerViewStyle, icon, ...rest }) => (
+const StandardButton = ({ containerViewStyle, disabled, icon, ...rest }) => (
   <Button
     buttonStyle={{
       margin: 5,
@@ -13,8 +13,8 @@ const StandardButton = ({ containerViewStyle, icon, ...rest }) => (
       borderRadius,
       borderWidth: 2,
       borderColor: primaryColor,
-      ...containerViewStyle,
       backgroundColor: 'white',
+      ...containerViewStyle,
     }}
     titleStyle={{
       color: primaryColor,
@@ -23,12 +23,15 @@ const StandardButton = ({ containerViewStyle, icon, ...rest }) => (
       icon != null && (
         <Icon
           name={icon.name}
-          color={icon.color}
+          color={disabled ? greyDark : icon.color}
           size={icon.size}
           type={icon.type}
         />
       )
     }
+    disabled={disabled === true}
+    disabledTitleStyle={{ color: greyDark }}
+    disabledStyle={{ borderColor: greyDark }}
     {...rest}
   />
 );

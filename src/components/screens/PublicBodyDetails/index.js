@@ -9,6 +9,7 @@ import I18n from '../../../i18n';
 import Link from '../../library/Link';
 import StandardButton from '../../library/StandardButton';
 import Table from '../../library/Table';
+import { primaryColor } from '../../../globals/colors';
 
 const PublicBodyDetails = ({
   publicBody,
@@ -83,13 +84,18 @@ const PublicBodyDetails = ({
     I18n.t('countingRequests', {
       count: nRequests,
     });
+
+  const disabled = nRequests === 0;
+
   const showRequestsButton = (
     <StandardButton
-      disabled={nRequests === 0}
-      icon={{ name: 'mail' }}
+      disabled={disabled}
+      icon={{ name: 'mail', color: primaryColor }}
       title={title}
       onPress={_filterByPublicBody}
-      containerViewStyle={{ marginBottom: 20 }}
+      containerViewStyle={{
+        marginBottom: 20,
+      }}
     />
   );
 
