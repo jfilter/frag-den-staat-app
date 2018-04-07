@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "moment": "^2.20.1",
-    "prop-types": "^15.6.0",
+    "prop-types": "^15.6.1",
     "ramda": "^0.25.0",
     "react": "^16.2.0",
     "react-native": "^0.51.1",
@@ -47,6 +47,7 @@
     "realm": "^2.2.12",
     "redux": "^3.7.2",
     "redux-logger": "^3.0.6",
+    "redux-persist": "^5.9.1",
     "redux-thunk": "^2.2.0"
   },
   "devDependencies": {
