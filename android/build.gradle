@@ -22,3 +22,15 @@ allprojects {
         }
     }
 }
+
+// https://github.com/oblador/react-native-keychain/issues/68#issuecomment-304836725
+subprojects {
+    afterEvaluate {project ->
+        if (project.hasProperty("android")) {
+            android {
+                compileSdkVersion 25
+                buildToolsVersion '25.0.0'
+            }
+        }
+    }
+}
