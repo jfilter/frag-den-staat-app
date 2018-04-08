@@ -14,7 +14,6 @@ import { Divider, Icon } from 'react-native-elements';
 import { NavigationActions } from 'react-navigation';
 import Accordion from 'react-native-collapsible/Accordion';
 import PropTypes from 'prop-types';
-import R from 'ramda';
 import React from 'react';
 import moment from 'moment';
 import Hyperlink from 'react-native-hyperlink';
@@ -49,10 +48,9 @@ class FoiRequestDetails extends React.Component {
     this.state = {
       escalatedPublicBodyName: null,
       fetchingEscaltedPublicBody: false,
-      scrollToYOffset: 0,
-      itemHeights: null,
     };
   }
+
   componentDidMount() {
     const locale = I18n.currentLocale().substring(0, 2);
     moment.locale(locale);
@@ -62,23 +60,20 @@ class FoiRequestDetails extends React.Component {
       fetchSingleFoiRequest(this.props.request.id);
   }
 
+  // used to determine the correct height when expanding a message
+  itemHeights = new Map();
+  scrollToYOffset = 0;
+
+  _onLayout = (event, index) => {
+    event.persist(); // to use values later on
+    this.itemHeights.set(index, event.nativeEvent.layout.height);
+  };
+
   _renderMessageHeader = (msg, index) => (
     <View
+      key={msg.key}
       style={[tableStyles.row, styles.msgHeader]}
-      onLayout={event => {
-        const numMessages =
-          this.props.messages === null ? 0 : this.props.messages.length;
-        event.persist(); // to use values later on
-        this.setState(({ itemHeights: oldItemHeights }) => {
-          const headerHeight = event.nativeEvent.layout.height;
-          const itemHeights = R.update(
-            index,
-            headerHeight,
-            oldItemHeights || new Array(numMessages)
-          ); // init here because it means we have fetched the msgs and know the amount
-          return { itemHeights };
-        });
-      }}
+      onLayout={event => this._onLayout(event, index)}
     >
       <Text style={[tableStyles.item1, styles.link]}>
         {`${moment(msg.timestamp).format('DD.MM.YYYY')}`}
@@ -172,7 +167,7 @@ class FoiRequestDetails extends React.Component {
     }
 
     return (
-      <View style={styles.msgContent}>
+      <View key={msg.key} style={styles.msgContent}>
         {this._renderAttachments(msg.attachments)}
         <View style={tableStyles.row}>
           <Text style={tableStyles.item1}>
@@ -286,26 +281,27 @@ class FoiRequestDetails extends React.Component {
 
   _onChange = index => {
     if (index === false) return;
-    let itemsAbove = 0;
-    if (index > 0) {
-      itemsAbove = this.state.itemHeights
-        .slice(0, index)
-        .reduce((prev, cur) => prev + cur);
-    }
+
+    const itemsAbove = Array.from(this.itemHeights)
+      .sort((x, y) => x[0] - y[0]) // sort by index
+      .slice(0, index) // cut away items below
+      .map(x => x[1]); // select only heights
+
+    const itemsAboveHeigt =
+      index === 0 ? 0 : itemsAbove.reduce((prev, cur) => prev + cur); // sum up heights
 
     const additionalOffset =
       index *
         (stylesTouchableFlat.marginTop + 2 * stylesMsgHeaderFlat.borderWidth) +
       stylesTouchableFlat.marginTop;
-
     setTimeout(
       () =>
         this.scrollView.scrollTo({
           x: 0,
-          y: itemsAbove + this.state.scrollToYOffset + additionalOffset,
+          y: itemsAboveHeigt + this.scrollToYOffset + additionalOffset,
           animated: true,
         }),
-      300
+      700 // should be a little bit higher that the time for collapsing
     );
   };
 
@@ -432,11 +428,15 @@ class FoiRequestDetails extends React.Component {
     }
 
     return (
-      <BlankContainer scrollViewRef={el => (this.scrollView = el)}>
+      <BlankContainer
+        scrollViewRef={el => {
+          this.scrollView = el;
+        }}
+      >
         <View
-          onLayout={event =>
-            this.setState({ scrollToYOffset: event.nativeEvent.layout.height })
-          }
+          onLayout={event => {
+            this.scrollToYOffset = event.nativeEvent.layout.height;
+          }}
         >
           <Heading style={styles.heading}>{title}</Heading>
           <View>
