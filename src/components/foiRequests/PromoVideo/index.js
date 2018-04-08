@@ -4,6 +4,7 @@ import { secondaryColor } from '../../../globals/colors';
 
 const PromoVideo = ({ togglePlay }) => (
   <VideoPlayer
+    thumbnail={require('../../../../assets/videos/promo_video_thumbnail.png')}
     video={require('../../../../assets/videos/promo_video.mp4')}
     onPlayPress={togglePlay}
     onStart={togglePlay}
