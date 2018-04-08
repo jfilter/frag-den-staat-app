@@ -356,7 +356,11 @@ class FoiRequestDetails extends React.Component {
         } else {
           // cut away signature of FdS
           const lastIndex = content.lastIndexOf('--');
-          proccesedContent = content.substring(0, lastIndex).trim();
+          if (lastIndex !== -1) {
+            proccesedContent = content.substring(0, lastIndex).trim();
+          } else {
+            proccesedContent = content.trim();
+          }
         }
 
         return {
