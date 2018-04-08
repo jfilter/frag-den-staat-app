@@ -36,7 +36,6 @@ const commongTabBarOptions = {
         }
       : { paddingBottom: 5 },
   tabStyle: {
-    width: '100%',
     borderLeftWidth: 0.5,
     borderLeftColor: greyLight,
     borderRightWidth: 0.5,
@@ -52,6 +51,8 @@ const commongTabBarOptions = {
     height: Platform.OS === 'ios' ? 60 : 'auto',
   },
 };
+
+if (Platform.OS === 'ios') commongTabBarOptions.tabStyle.width = '100%';
 
 const tabBarConfig = {
   backBehavior: 'none',

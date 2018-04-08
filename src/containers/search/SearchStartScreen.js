@@ -1,4 +1,4 @@
-import { FlatList, View } from 'react-native';
+import { FlatList, View, Platform } from 'react-native';
 import { NavigationActions } from 'react-navigation';
 import { SearchBar, ListItem } from 'react-native-elements';
 import { connect } from 'react-redux';
@@ -35,6 +35,7 @@ class SearchStartScreen extends React.Component {
   };
 
   render() {
+    const size = Platform.os === 'ios' ? 35 : 26; // for icon
     return (
       <View style={styles.background} keyboardShouldPersistTaps="handled">
         <SearchBar
@@ -43,9 +44,13 @@ class SearchStartScreen extends React.Component {
             type: 'material',
             color: greyDark,
             name: 'search',
-            size: 35,
+            size,
           }}
-          clearIcon={{ color: greyDark, name: 'clear', size: 35 }}
+          clearIcon={{
+            color: greyDark,
+            name: 'clear',
+            size,
+          }}
           textInputRef="searchInput"
           placeholder="Berlin, Schule, NSA..."
           onSubmitEditing={this._onSubmitSearchBar}
