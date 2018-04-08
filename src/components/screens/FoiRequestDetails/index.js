@@ -138,7 +138,7 @@ class FoiRequestDetails extends React.Component {
   };
 
   _renderMessageContent = msg => {
-    const escalation = msg.is_escalation && (
+    const escalation = msg.isEscalation && (
       <View style={tableStyles.row}>
         <Text style={tableStyles.item1}>
           {I18n.t('foiRequestDetails.esclatedTo')}
@@ -149,13 +149,13 @@ class FoiRequestDetails extends React.Component {
       </View>
     );
 
-    if (msg.is_escalation) {
+    if (msg.isEscalation) {
       // very dirty solution, ideally, should be done without state but via redux
       if (
         !this.state.escalatedPublicBodyName &&
         !this.state.fetchingEscaltedPublicBody
       ) {
-        fetch(msg.recipient_public_body)
+        fetch(msg.recipientPublicBody)
           .then(response => response.json())
           .then(responseJson => {
             this.setState({
@@ -196,11 +196,7 @@ class FoiRequestDetails extends React.Component {
         </View>
         <Divider style={styles.dividerBeforeMessageContent} />
         <Hyperlink linkDefault linkStyle={{ color: primaryColor }}>
-          <BodyText>
-            {msg.content_hidden
-              ? I18n.t('foiRequestDetails.notYetVisible')
-              : msg.content.trim()}
-          </BodyText>
+          <BodyText>{msg.content}</BodyText>
         </Hyperlink>
       </View>
     );
@@ -334,11 +330,11 @@ class FoiRequestDetails extends React.Component {
         subject,
         content,
         timestamp,
-        is_response,
+        is_response: isRespsone,
         attachments,
-        content_hidden,
-        is_escalation,
-        recipient_public_body,
+        content_hidden: contentHidden,
+        is_escalation: isEscalation,
+        recipient_public_body: recipientPublicBody,
       }) => {
         const filteredAttachments = attachments
           .filter(x => x.approved)
@@ -350,16 +346,27 @@ class FoiRequestDetails extends React.Component {
               filetype: x.filetype,
             };
           });
+
+        let proccesedContent;
+        if (contentHidden) {
+          proccesedContent = I18n.t('foiRequestDetails.notYetVisible');
+        }
+        if (!contentHidden && isRespsone) {
+          proccesedContent = content.trim();
+        } else {
+          // cut away signature of FdS
+          const lastIndex = content.lastIndexOf('--');
+          proccesedContent = content.substring(0, lastIndex).trim();
+        }
+
         return {
           key: id,
           sender,
           subject,
-          content,
+          content: proccesedContent,
           timestamp,
-          content_hidden,
-          is_escalation,
-          recipient_public_body,
-          isRespsone: is_response,
+          isEscalation,
+          recipientPublicBody,
           attachments: filteredAttachments,
         };
       }
