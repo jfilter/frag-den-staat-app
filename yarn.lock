@@ -4356,9 +4356,9 @@ react-native-modest-storage@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/react-native-modest-storage/-/react-native-modest-storage-1.0.0.tgz#25a35d9bc497321e460ed63ba97f2d4033d15f8a"
 
-react-native-onboarding-swiper@^0.5.0:
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/react-native-onboarding-swiper/-/react-native-onboarding-swiper-0.5.0.tgz#25be94c3d577ed9b862684137d826bbdea5f49c5"
+react-native-onboarding-swiper@^0.6.0:
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/react-native-onboarding-swiper/-/react-native-onboarding-swiper-0.6.0.tgz#c9c63cbfec1c5d797a0f567268092892b1529ac6"
   dependencies:
     tinycolor2 "^1.4.1"
 

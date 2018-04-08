@@ -2,9 +2,11 @@ import React from 'react';
 import VideoPlayer from 'react-native-video-player';
 import { secondaryColor } from '../../../globals/colors';
 
-const PromoVideo = () => (
+const PromoVideo = ({ togglePlay }) => (
   <VideoPlayer
     video={require('../../../../assets/videos/promo_video.mp4')}
+    onPlayPress={togglePlay}
+    onStart={togglePlay}
     // styles are c & p from original props and only the colors are adjusted
     customStyles={{
       seekBarProgress: {

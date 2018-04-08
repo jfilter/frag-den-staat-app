@@ -23,6 +23,10 @@ const styles = {
 };
 
 class FoiRequestsOnboardingScreen extends React.Component {
+  state = {
+    scrollEnabled: true,
+  };
+
   continue = () => {
     this.props.onboardingFinished();
     this.props.navigateToMain();
@@ -85,7 +89,11 @@ class FoiRequestsOnboardingScreen extends React.Component {
         imageContainerStyles: { paddingBottom: 30 },
         image: (
           <View style={{ width: '98%' }}>
-            <PromoVideo />
+            <PromoVideo
+              togglePlay={() =>
+                this.setState({ scrollEnabled: !this.state.scrollEnabled })
+              }
+            />
           </View>
         ),
       },
@@ -97,6 +105,7 @@ class FoiRequestsOnboardingScreen extends React.Component {
         pages={pageArray}
         skipLabel={I18n.t('skipShort')}
         nextLabel={I18n.t('next')}
+        flatlistProps={{ ...this.state }}
       />
     );
   }
