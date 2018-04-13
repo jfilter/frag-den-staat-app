@@ -20,12 +20,25 @@ It is been developed with [React Native](https://facebook.github.io/react-native
 
 ## Releases
 
+### In Production
+
 Get the app on the [App Store](https://itunes.apple.com/us/app/fragdenstaat-politik-ifg/id1327918030) or [Play Store](https://play.google.com/store/apps/details?id=de.fragdenstaat.app).
 
-## Beta
+### Beta
 
-If you want to join the beta program, have a look at the [Wiki](https://github.com/jfilter/frag-den-staat-app/wiki/Beta).
+If you want to join the beta program, have a look at the [wiki](https://github.com/jfilter/frag-den-staat-app/wiki/Beta).
+
+## Developing
+
+1.  Install [yarn](https://yarnpkg.com/lang/en/docs/install/)
+2.  Set up your [development environment](https://facebook.github.io/react-native/docs/getting-started.html) ("Building Projects with Native Code")
+3.  `git clone https://github.com/jfilter/frag-den-staat-app && cd frag-den-staat-app && yarn install`
+4.  Run the app in a simulator with e.g. `react-native run-ios` or [on a device](https://facebook.github.io/react-native/docs/running-on-device.html).
 
 ## Contributing
 
-If you have a **question**, found a **bug** or want to propose a new **feature**, have a look at the [issues page](https://github.com/jfilter/frag-den-staat-app/issues).
+If you have a **question**, found a **bug** or want to propose a new **feature**, have a look at the [issues](https://github.com/jfilter/frag-den-staat-app/issues).
+
+## License
+
+MIT.
