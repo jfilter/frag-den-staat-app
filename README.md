@@ -22,7 +22,7 @@ It is been developed with [React Native](https://facebook.github.io/react-native
 
 ### In Production
 
-Get the app on the [App Store](https://itunes.apple.com/us/app/fragdenstaat-politik-ifg/id1327918030) or [Play Store](https://play.google.com/store/apps/details?id=de.fragdenstaat.app).
+Get the app on the [App Store](https://itunes.apple.com/us/app/fragdenstaat-politik-ifg/id1327918030), on the [Play Store](https://play.google.com/store/apps/details?id=de.fragdenstaat.app) or on [F-Droid](https://f-droid.org/packages/de.fragdenstaat.app/).
 
 ### Beta
 
