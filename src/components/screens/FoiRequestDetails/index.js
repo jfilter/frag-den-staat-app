@@ -1,5 +1,3 @@
-import 'moment/locale/de';
-
 import {
   ActivityIndicator,
   Linking,
@@ -53,7 +51,11 @@ class FoiRequestDetails extends React.Component {
 
   componentDidMount() {
     const locale = I18n.currentLocale().substring(0, 2);
-    moment.locale(locale);
+    if (locale === 'de') {
+      moment.locale('de');
+    } else {
+      moment.locale('en');
+    }
 
     const { fetchSingleFoiRequest } = this.props;
     if (fetchSingleFoiRequest !== null && fetchSingleFoiRequest !== undefined)

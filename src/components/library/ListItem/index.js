@@ -9,7 +9,11 @@ import I18n from '../../../i18n';
 import styles from './styles';
 
 const locale = I18n.currentLocale().substring(0, 2);
-moment.locale(locale);
+if (locale === 'de') {
+  moment.locale('de');
+} else {
+  moment.locale('en');
+}
 
 const ListItem = ({ item, onPress }) => {
   const { statusName, realStatus } = getPrintableStatus(
