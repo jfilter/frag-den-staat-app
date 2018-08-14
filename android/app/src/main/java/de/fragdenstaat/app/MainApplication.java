@@ -3,13 +3,7 @@ package de.fragdenstaat.app;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
-import com.RNFetchBlob.RNFetchBlobPackage;
-import com.brentvatne.react.ReactVideoPackage;
-import com.oblador.vectoricons.VectorIconsPackage;
 import org.wonday.pdf.RCTPdfView;
-import com.oblador.keychain.KeychainPackage;
-import com.AlexanderZaytsev.RNI18n.RNI18nPackage;
-import com.RNFetchBlob.RNFetchBlobPackage;
 import com.brentvatne.react.ReactVideoPackage;
 import com.oblador.keychain.KeychainPackage;
 import com.AlexanderZaytsev.RNI18n.RNI18nPackage;
@@ -36,16 +30,9 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
-            new RNFetchBlobPackage(),
             new ReactVideoPackage(),
-            new VectorIconsPackage(),
-            new RCTPdfView(),
-            new KeychainPackage(),
             new RNI18nPackage(),
-            new RNFetchBlobPackage(),
-            new ReactVideoPackage(),
             new KeychainPackage(),
-            new RNI18nPackage(),
             new VectorIconsPackage(),
             new RCTPdfView(),
             new RNFetchBlobPackage()
