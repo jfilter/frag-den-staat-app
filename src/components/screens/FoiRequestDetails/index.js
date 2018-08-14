@@ -103,7 +103,12 @@ class FoiRequestDetails extends React.Component {
         viewPdfButton = (
           <StandardButton
             title={I18n.t('foiRequestDetails.viewPdf')}
-            onPress={() => this.props.navigateToPdfViewer({ uri: att.url })}
+            onPress={() =>
+              this.props.navigateToPdfViewer({
+                url: att.url,
+                fileUrl: att.fileUrl,
+              })
+            }
             icon={{ name: 'remove-red-eye', color: primaryColor }}
           />
         );
@@ -126,7 +131,7 @@ class FoiRequestDetails extends React.Component {
               <StandardButton
                 title={I18n.t('foiRequestDetails.download')}
                 icon={{ name: 'file-download', color: primaryColor }}
-                onPress={() => Linking.openURL(att.url)}
+                onPress={() => Linking.openURL(att.fileUrl)}
               />
             </View>
             {viewPdfButton}
@@ -341,7 +346,8 @@ class FoiRequestDetails extends React.Component {
           .map(x => {
             return {
               key: x.id,
-              url: x.file_url,
+              url: x.site_url,
+              fileUrl: x.file_url,
               name: x.name,
               filetype: x.filetype,
             };

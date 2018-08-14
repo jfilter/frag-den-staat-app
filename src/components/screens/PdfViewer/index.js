@@ -28,9 +28,9 @@ class PdfViewer extends React.Component {
   };
 
   render() {
-    const { uri } = this.props.navigation.state.params;
+    const { fileUrl } = this.props.navigation.state.params;
     const source = {
-      uri,
+      uri: fileUrl,
       cache: true,
     };
 
@@ -53,7 +53,7 @@ class PdfViewer extends React.Component {
 }
 
 PdfViewer.navigationOptions = props => {
-  const url = props.navigation.state.params.uri;
+  const { url } = props.navigation.state.params;
 
   function share() {
     Share.share(
