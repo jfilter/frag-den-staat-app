@@ -3,7 +3,9 @@ import React, { Component } from 'react';
 
 import App from './src/App';
 
-console.disableYellowBox = true;
+if (__DEV__) {
+  console.disableYellowBox = true;
+}
 
 export default class AndroidApp extends Component {
   render() {

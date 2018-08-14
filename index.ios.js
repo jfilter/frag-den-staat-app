@@ -3,7 +3,9 @@ import React from 'react';
 
 import App from './src/App';
 
-console.disableYellowBox = true;
+if (__DEV__) {
+  console.disableYellowBox = true;
+}
 
 export default class iOSApp extends React.Component {
   render() {
