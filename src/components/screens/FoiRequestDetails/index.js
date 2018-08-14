@@ -337,7 +337,7 @@ class FoiRequestDetails extends React.Component {
         subject,
         content,
         timestamp,
-        is_response: isRespsone,
+        is_response: isResponse,
         attachments,
         content_hidden: contentHidden,
         is_escalation: isEscalation,
@@ -355,20 +355,20 @@ class FoiRequestDetails extends React.Component {
             };
           });
 
-        let proccesedContent;
+        let proccesedContent = content;
         if (contentHidden) {
           proccesedContent = I18n.t('foiRequestDetails.notYetVisible');
-        }
-        if (!contentHidden && isRespsone) {
-          proccesedContent = content.trim();
         } else {
-          // cut away signature of FdS
-          const lastIndex = content.lastIndexOf('--');
-          if (lastIndex !== -1) {
-            proccesedContent = content.substring(0, lastIndex).trim();
-          } else {
-            proccesedContent = content.trim();
+          if (isResponse) {
+            // cut away signature of FdS
+            const lastIndex = proccesedContent.lastIndexOf('--');
+            if (lastIndex !== -1) {
+              proccesedContent = proccesedContent.substring(0, lastIndex);
+            }
           }
+          // more than 2 line breaks to 2 line breaks
+          proccesedContent = proccesedContent.replace(/\n\s*\n\s*\n/g, '\n\n');
+          proccesedContent = proccesedContent.trim();
         }
 
         return {
