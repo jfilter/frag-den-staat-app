@@ -511,7 +511,7 @@ FoiRequestDetails.navigationOptions = ({ navigation }) => {
 
   // platform specific share button
   if (Platform.OS === 'ios') {
-    iconName = 'ios-share-outline';
+    iconName = 'ios-share';
     iconType = 'ionicon';
   }
 
@@ -519,7 +519,7 @@ FoiRequestDetails.navigationOptions = ({ navigation }) => {
 
   if (Platform.OS === 'ios') {
     openInBrowserIcon = {
-      iconName: 'ios-browsers-outline',
+      iconName: 'ios-browsers',
       iconType: 'ionicon',
     };
   }
