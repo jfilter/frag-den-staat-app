@@ -96,6 +96,7 @@ class FoiRequestsListHeader extends React.Component {
         () => this.startExpanding()
       );
     } else {
+      // first collapse
       this.setState(
         {
           prevCollapsed: this.state.collapsed,
@@ -104,6 +105,7 @@ class FoiRequestsListHeader extends React.Component {
         },
         () => this.startCollapsing()
       );
+      // second expand
       setTimeout(() => {
         this.setState(
           {
@@ -184,6 +186,16 @@ class FoiRequestsListHeader extends React.Component {
                 updateFilter={updateFilter}
                 currentFilter={filter[x]}
                 filterFor={x}
+                collapseAfterSwitch={() => {
+                  this.setState(
+                    {
+                      prevCollapsed: x,
+                      collapsed: null,
+                      dropdownAnim: new Animated.Value(1),
+                    },
+                    () => this.startCollapsing()
+                  );
+                }}
               />
             </Collapsible>
           ))}
@@ -206,6 +218,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(
-  FoiRequestsListHeader
-);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(FoiRequestsListHeader);
