@@ -36,9 +36,9 @@ const commongTabBarOptions = {
         }
       : { paddingBottom: 5 },
   tabStyle: {
-    borderLeftWidth: 0.5,
+    borderLeftWidth: 1, // smaller than 1 will break it
     borderLeftColor: greyLight,
-    borderRightWidth: 0.5,
+    borderRightWidth: 1, // smaller than 1 will break it
     borderRightColor: greyLight,
   },
   style: {
