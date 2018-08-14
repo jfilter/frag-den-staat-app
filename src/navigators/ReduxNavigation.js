@@ -61,9 +61,13 @@ class ReduxNavigation extends React.Component {
 
   onBackPress = () => {
     const { dispatch, navigation } = this.props;
-
     // close the app when pressing back button on initial screen
-    if (navigation.index === 0 && navigation.routes[0].index === 0) {
+    // because everything is wrapped in a Drawer, we need to go over this first
+    // navigator
+    if (
+      navigation.routes[0].routes[0].index === 0 &&
+      navigation.routes[0].routes[0].routes[0].index === 0
+    ) {
       return false;
     }
 
