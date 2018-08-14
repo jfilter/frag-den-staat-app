@@ -39,7 +39,7 @@ FoiRequestsWebView.navigationOptions = props => {
 
   // platform specific share button
   if (Platform.OS === 'ios') {
-    iconName = 'ios-share-outline';
+    iconName = 'ios-share';
     iconType = 'ionicon';
   }
 
