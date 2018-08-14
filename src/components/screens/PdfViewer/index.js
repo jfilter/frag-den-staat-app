@@ -28,8 +28,8 @@ class PdfViewer extends React.Component {
   };
 
   render() {
-    const uri = this.props.navigation.state.params.uri;
-    let source = {
+    const { uri } = this.props.navigation.state.params;
+    const source = {
       uri,
       cache: true,
     };

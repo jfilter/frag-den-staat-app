@@ -341,7 +341,7 @@ class FoiRequestDetails extends React.Component {
           .map(x => {
             return {
               key: x.id,
-              url: x.site_url,
+              url: x.file_url,
               name: x.name,
               filetype: x.filetype,
             };
@@ -579,7 +579,7 @@ FoiRequestDetails.propTypes = {
             approved: PropTypes.bool.isRequired,
             filetype: PropTypes.string.isRequired,
             name: PropTypes.string.isRequired,
-            site_url: PropTypes.string.isRequired,
+            file_url: PropTypes.string.isRequired,
           })
         ),
       })
