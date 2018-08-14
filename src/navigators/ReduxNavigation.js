@@ -41,7 +41,7 @@ class ReduxNavigation extends React.Component {
     });
 
     // deep linking (and all ios)
-    Linking.addEventListener('url', event => this.urlRouter(event.url));
+    Linking.addEventListener('url', this.handleUrlEvent);
 
     loadToken().then(
       token =>
@@ -54,8 +54,10 @@ class ReduxNavigation extends React.Component {
 
   componentWillUnmount() {
     BackHandler.removeEventListener('hardwareBackPress', this.onBackPress);
-    Linking.removeEventListener('url', this.handleOpenURLiOS);
+    Linking.removeEventListener('url', this.handleUrlEvent);
   }
+
+  handleUrlEvent = event => this.urlRouter(event.url);
 
   onBackPress = () => {
     const { dispatch, navigation } = this.props;
@@ -161,8 +163,9 @@ const mapDispatchToProps = dispatch => ({
   dispatch,
 });
 
-const AppWithNavigationState = connect(mapStateToProps, mapDispatchToProps)(
-  ReduxNavigation
-);
+const AppWithNavigationState = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ReduxNavigation);
 
 export { AppWithNavigationState, navMiddleware };
