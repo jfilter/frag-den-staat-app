@@ -27,7 +27,7 @@ const configSettings = {
 const configSearch = {
   key: 'search',
   storage,
-  whitelist: ['pastQueries'],
+  whitelist: ['pastQueries', 'alerts'],
 };
 
 const authenticationPersistedReducer = persistReducer(

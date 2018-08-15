@@ -7,6 +7,7 @@ const initialState = {
   publicBodiesError: '',
   query: '',
   pastQueries: [],
+  alerts: [],
 };
 
 function search(state = initialState, action) {
@@ -66,6 +67,19 @@ function search(state = initialState, action) {
       if (pastQueries.length > 50) pastQueries.pop();
 
       return { ...state, query, pastQueries };
+    }
+    case 'SEARCH_ADD_ALERT': {
+      const { query } = action;
+      const alerts = [...state.alerts, query];
+      return { ...state, alerts };
+    }
+    case 'SEARCH_REMOVE_ALERT': {
+      const { query } = action;
+      let alerts = [...state.alerts];
+      if (alerts.indexOf(query) >= 0) {
+        alerts.splice(alerts.indexOf(query), 1);
+      }
+      return { ...state, alerts };
     }
     default:
       return state;

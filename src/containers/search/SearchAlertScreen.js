@@ -4,17 +4,18 @@ import { SearchBar, ListItem } from 'react-native-elements';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
-import NavBarIcon from '../../components/foiRequests/NavBarIcon';
 
-import { searchUpdateQuery } from '../../actions/search';
+import {
+  searchRemoveAlertAction,
+  searchAddAlertAction,
+} from '../../actions/search';
 import styles from './styles';
 import I18n from '../../i18n';
 import { greyDark, fontColor, primaryColor } from '../../globals/colors';
 
 class SearchStartScreen extends React.Component {
   _onSubmit = queryText => {
-    this.props.navigateToResults({ query: queryText });
-    this.props.updateQuery(queryText);
+    this.props.addAlert(queryText);
   };
 
   _onSubmitSearchBar = event => {
@@ -27,42 +28,27 @@ class SearchStartScreen extends React.Component {
       <ListItem
         key={query}
         title={query}
-        leftIcon={{ name: 'access-time', color: greyDark }}
-        rightIcon={{ name: 'search', color: primaryColor }}
-        onPress={() => this._onSubmit(query)}
+        rightIcon={{ name: 'delete', color: primaryColor }}
+        onPress={() => this.props.removeAlert(query)}
         titleStyle={{ color: fontColor }}
       />
     );
   };
 
   render() {
-    const size = Platform.os === 'ios' ? 35 : 26; // for icon
     return (
       <View style={styles.background} keyboardShouldPersistTaps="handled">
         <SearchBar
           lightTheme
-          icon={{
-            type: 'material',
-            color: greyDark,
-            name: 'search',
-            size,
-          }}
-          clearIcon={{
-            color: greyDark,
-            name: 'clear',
-            size,
-          }}
           textInputRef="searchInput"
           placeholder="Berlin, Schule, NSA..."
           onSubmitEditing={this._onSubmitSearchBar}
           autoFocus
           autoCorrect={false}
           containerStyle={styles.searchBarContainer}
-          inputStyle={styles.searchBarInput}
-          round
         />
         <FlatList
-          data={this.props.pastQueries}
+          data={this.props.alerts}
           renderItem={this._renderItem}
           keyboardShouldPersistTaps="handled"
         />
@@ -71,34 +57,20 @@ class SearchStartScreen extends React.Component {
   }
 }
 
-SearchStartScreen.navigationOptions = ({ navigation }) => {
-  const navigateToAlerts = () =>
-    navigation.dispatch(
-      NavigationActions.navigate({ routeName: 'SearchAlerts' })
-    );
-  return {
-    title: I18n.t('search'),
-    headerRight: (
-      <NavBarIcon onPress={navigateToAlerts} iconName="notifications" />
-    ),
-  };
-};
-
-SearchStartScreen.propTypes = {
-  pastQueries: PropTypes.arrayOf(PropTypes.string).isRequired,
-  updateQuery: PropTypes.func.isRequired,
-  navigateToResults: PropTypes.func.isRequired,
+SearchStartScreen.navigationOptions = {
+  title: I18n.t('alerts'),
 };
 
 const mapStateToProps = state => {
   return {
-    pastQueries: state.search.pastQueries,
+    alerts: state.search.alerts,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    updateQuery: query => dispatch(searchUpdateQuery(query)),
+    addAlert: query => dispatch(searchAddAlertAction(query)),
+    removeAlert: query => dispatch(searchRemoveAlertAction(query)),
     navigateToResults: params =>
       dispatch(
         NavigationActions.navigate({ routeName: 'SearchResults', params })

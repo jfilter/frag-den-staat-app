@@ -61,7 +61,7 @@ export default {
   links: 'Links',
   description: 'Beschreibung',
   tags: 'Tags',
-  email: 'Email',
+  email: 'E-Mail',
   address: 'Adresse',
   classification: 'Klassifikation',
   contact: 'Kontakt',
@@ -81,4 +81,5 @@ export default {
   skipShort: 'Überspr.',
   next: 'Weiter',
   attachment: 'Anhang',
+  alerts: 'Alerts',
 };

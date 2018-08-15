@@ -81,4 +81,5 @@ export default {
   skipShort: 'Skip',
   next: 'Next',
   attachment: 'Attachment',
+  alerts: 'Alerts',
 };

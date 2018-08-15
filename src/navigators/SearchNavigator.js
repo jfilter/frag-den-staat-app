@@ -14,6 +14,7 @@ import SearchFoiRequestDetailsScreen from '../containers/search/SearchFoiRequest
 import SearchPublicBodyDetailsScreen from '../containers/search/SearchPublicBodyDetailsScreen';
 import SearchResultsFoiRequestsMasterScreen from '../containers/search/SearchResultsFoiRequestsMasterScreen';
 import SearchResultsPublicBodiesMasterScreen from '../containers/search/SearchResultsPublicBodiesMasterScreen';
+import SearchAlertScreen from '../containers/search/SearchAlertScreen';
 import SearchStartScreen from '../containers/search/SearchStartScreen';
 import navigateOnce from '../utils/navigateOnce';
 import I18n from '../i18n';
@@ -38,6 +39,7 @@ const SearchNavigator = StackNavigator(
     SearchPublicBodyDetails: { screen: SearchPublicBodyDetailsScreen },
     SearchPdfViewer: { screen: PdfViewer },
     SearchFoiRequestWebView: { screen: FoiRequestsWebView },
+    SearchAlerts: { screen: SearchAlertScreen },
   },
   {
     navigationOptions: {

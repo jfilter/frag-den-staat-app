@@ -64,6 +64,20 @@ function searchUpdateQuery(query) {
   };
 }
 
+function searchAddAlertAction(query) {
+  return {
+    type: 'SEARCH_ADD_ALERT',
+    query,
+  };
+}
+
+function searchRemoveAlertAction(query) {
+  return {
+    type: 'SEARCH_REMOVE_ALERT',
+    query,
+  };
+}
+
 function searchFoiRequests() {
   return (dispatch, getState) => {
     const buildUrl = (function makeBuildUrl() {
@@ -110,4 +124,6 @@ export {
   searchPublicBodies,
   searchPublicBodiesErrorClearAction,
   searchUpdateQuery,
+  searchAddAlertAction,
+  searchRemoveAlertAction,
 };
