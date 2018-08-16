@@ -3,6 +3,7 @@ package de.fragdenstaat.app;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.transistorsoft.rnbackgroundfetch.RNBackgroundFetchPackage;
 import org.wonday.pdf.RCTPdfView;
 import com.brentvatne.react.ReactVideoPackage;
 import com.oblador.keychain.KeychainPackage;
@@ -30,6 +31,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new RNBackgroundFetchPackage(),
             new ReactVideoPackage(),
             new RNI18nPackage(),
             new KeychainPackage(),

@@ -25,6 +25,7 @@
     "ramda": "^0.25.0",
     "react": "^16.2.0",
     "react-native": "^0.51.1",
+    "react-native-background-fetch": "^2.4.3",
     "react-native-collapsible": "^0.13.0",
     "react-native-dropdownalert": "^3.4.0",
     "react-native-elements": "1.0.0-beta4",

@@ -8,6 +8,7 @@ const initialState = {
   query: '',
   pastQueries: [],
   alerts: [],
+  pastAlertMatches: {},
 };
 
 function search(state = initialState, action) {
@@ -75,11 +76,16 @@ function search(state = initialState, action) {
     }
     case 'SEARCH_REMOVE_ALERT': {
       const { query } = action;
-      let alerts = [...state.alerts];
+      const alerts = [...state.alerts];
       if (alerts.indexOf(query) >= 0) {
         alerts.splice(alerts.indexOf(query), 1);
       }
       return { ...state, alerts };
+    }
+    case 'SEARCH_UPDATE_ALERT_MATCHES': {
+      const { term, ids } = action;
+      const pastAlertMatches = { ...state.pastAlertMatches, [term]: ids };
+      return { ...state, pastAlertMatches };
     }
     default:
       return state;

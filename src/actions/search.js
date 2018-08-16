@@ -78,6 +78,14 @@ function searchRemoveAlertAction(query) {
   };
 }
 
+function searchUpdateAlertMatchesAction(term, ids) {
+  return {
+    type: 'SEARCH_UPDATE_ALERT_MATCHES',
+    term,
+    ids,
+  };
+}
+
 function searchFoiRequests() {
   return (dispatch, getState) => {
     const buildUrl = (function makeBuildUrl() {
@@ -126,4 +134,5 @@ export {
   searchUpdateQuery,
   searchAddAlertAction,
   searchRemoveAlertAction,
+  searchUpdateAlertMatchesAction,
 };
