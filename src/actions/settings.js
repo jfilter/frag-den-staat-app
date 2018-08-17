@@ -4,4 +4,11 @@ function onboardingFinishedAction() {
   };
 }
 
-export { onboardingFinishedAction };
+function updateNotificationPermissionAction(hasNotificationPermission) {
+  return {
+    type: 'UPDATE_NOTIFICATION_PERMISSION',
+    hasNotificationPermission,
+  };
+}
+
+export { onboardingFinishedAction, updateNotificationPermissionAction };

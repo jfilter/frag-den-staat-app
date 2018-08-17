@@ -82,9 +82,14 @@ function search(state = initialState, action) {
       }
       return { ...state, alerts };
     }
-    case 'SEARCH_UPDATE_ALERT_MATCHES': {
-      const { term, ids } = action;
-      const pastAlertMatches = { ...state.pastAlertMatches, [term]: ids };
+    case 'SEARCH_ADD_ALERT_MATCHES': {
+      const { term, id } = action;
+      const newArr = [id, ...(state.pastAlertMatches[term] || [])];
+      newArr.length = Math.min(300, newArr.length); // limit to 300 items
+      const pastAlertMatches = {
+        ...state.pastAlertMatches,
+        [term]: newArr,
+      };
       return { ...state, pastAlertMatches };
     }
     default:

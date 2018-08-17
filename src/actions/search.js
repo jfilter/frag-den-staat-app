@@ -78,11 +78,11 @@ function searchRemoveAlertAction(query) {
   };
 }
 
-function searchUpdateAlertMatchesAction(term, ids) {
+function searchUpdateAlertMatchesAction(term, id) {
   return {
-    type: 'SEARCH_UPDATE_ALERT_MATCHES',
+    type: 'SEARCH_ADD_ALERT_MATCHES',
     term,
-    ids,
+    id,
   };
 }
 

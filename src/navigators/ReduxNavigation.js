@@ -23,6 +23,7 @@ import { loadToken, saveToken } from '../utils/secureStorage';
 import AppNavigator from './AppNavigator';
 import { fetchInitialToken } from '../utils/oauth';
 import { searchUpdateAlertMatchesAction } from '../actions/search';
+import { localNotif, setUp } from '../utils/notifications';
 
 // Note: createReactNavigationReduxMiddleware must be run before createReduxBoundAddListener
 const navMiddleware = createReactNavigationReduxMiddleware(
@@ -52,53 +53,16 @@ class ReduxNavigation extends React.Component {
         this.props.getUserInformation()
     );
 
-    // background stuff
-    BackgroundFetch.configure(
-      {
-        minimumFetchInterval: 15, // <-- minutes (15 is minimum allowed)
-        stopOnTerminate: false, // <-- Android-only,
-        startOnBoot: true, // <-- Android-only,
-        enableHeadless: true,
-      },
-      async () => {
-        console.log('[js] Received background-fetch event');
+    const nav = id => {
+      this.props.dispatch(
+        NavigationActions.navigate({
+          routeName: 'FoiRequestsSingle',
+          params: { foiRequestId: id },
+        })
+      );
+    };
 
-        const data = await Promise.all(
-          this.props.alerts.map(async x => {
-            const response = await fetch(
-              `https://fragdenstaat-alerts.app.vis.one/min/${x}`
-            );
-            console.log(response);
-            const responseJson = await response.json();
-            return responseJson;
-          })
-        );
-
-        console.log(data);
-
-        BackgroundFetch.finish(BackgroundFetch.FETCH_RESULT_NEW_DATA);
-      },
-      error => {
-        console.log('[js] RNBackgroundFetch failed to start', error);
-      }
-    );
-
-    // Optional: Query the authorization status.
-    BackgroundFetch.status(status => {
-      switch (status) {
-        case BackgroundFetch.STATUS_RESTRICTED:
-          console.log('BackgroundFetch restricted');
-          break;
-        case BackgroundFetch.STATUS_DENIED:
-          console.log('BackgroundFetch denied');
-          break;
-        case BackgroundFetch.STATUS_AVAILABLE:
-          console.log('BackgroundFetch is enabled');
-          break;
-        default:
-          console.log('default');
-      }
-    });
+    setUp(nav);
   }
 
   componentWillUnmount() {
@@ -192,6 +156,75 @@ class ReduxNavigation extends React.Component {
   };
 
   render() {
+    const {
+      pastAlertMatches,
+      alerts,
+      hasNotificationPermission,
+      searchUpdateAlertMatches,
+    } = this.props;
+    // background stuff
+    if (hasNotificationPermission && alerts.length) {
+      BackgroundFetch.configure(
+        {
+          minimumFetchInterval: 60, // <-- minutes (15 is minimum allowed)
+          stopOnTerminate: false, // <-- Android-only,
+          startOnBoot: true, // <-- Android-only,
+          enableHeadless: true,
+        },
+        async () => {
+          console.log('[js] Received background-fetch event');
+
+          const data = await Promise.all(
+            alerts.map(async x => {
+              const response = await fetch(
+                `https://fragdenstaat-alerts.app.vis.one/min/${x}`
+              );
+              console.log(response);
+              const responseJson = await response.json();
+              return { terms: x, res: responseJson };
+            })
+          );
+          console.log(pastAlertMatches);
+          data.forEach(x => {
+            x.res.forEach(({ id }) => {
+              // only works on request ids and not message ids.
+              if (
+                pastAlertMatches[x.terms] === undefined ||
+                pastAlertMatches[x.terms].indexOf(id) < 0
+              ) {
+                localNotif(`Neuer Treffer für "${x.terms}"`, id);
+              }
+              searchUpdateAlertMatches(x.terms, id);
+            });
+          });
+
+          console.log(data);
+
+          BackgroundFetch.finish(BackgroundFetch.FETCH_RESULT_NEW_DATA);
+        },
+        error => {
+          console.log('[js] RNBackgroundFetch failed to start', error);
+        }
+      );
+
+      // Optional: Query the authorization status.
+      BackgroundFetch.status(status => {
+        switch (status) {
+          case BackgroundFetch.STATUS_RESTRICTED:
+            console.log('BackgroundFetch restricted');
+            break;
+          case BackgroundFetch.STATUS_DENIED:
+            console.log('BackgroundFetch denied');
+            break;
+          case BackgroundFetch.STATUS_AVAILABLE:
+            console.log('BackgroundFetch is enabled');
+            break;
+          default:
+            console.log('default');
+        }
+      });
+    }
+
     return (
       <AppNavigator
         navigation={addNavigationHelpers({
@@ -207,7 +240,8 @@ class ReduxNavigation extends React.Component {
 const mapStateToProps = state => ({
   navigation: state.navigation,
   alerts: state.search.alerts,
-  pastAlertMachtes: state.search.pastAlertMachtes,
+  pastAlertMatches: state.search.pastAlertMatches,
+  hasNotificationPermission: state.settings.hasNotificationPermission,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -215,8 +249,8 @@ const mapDispatchToProps = dispatch => ({
   redirectError: errorMessage =>
     dispatch(receiveOauthRedirectError(errorMessage)),
   getUserInformation: () => dispatch(getUserInformation()),
-  searchUpdateAlertMatchesAction: (term, ids) =>
-    dispatch(searchUpdateAlertMatchesAction(term, ids)),
+  searchUpdateAlertMatches: (term, id) =>
+    dispatch(searchUpdateAlertMatchesAction(term, id)),
   dispatch,
 });
 

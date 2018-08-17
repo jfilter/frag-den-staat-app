@@ -4737,6 +4737,10 @@ react-native-pdf@^5.0.2:
     crypto-js "^3.1.9-1"
     prop-types "^15.5.10"
 
+react-native-push-notification@^3.1.1:
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/react-native-push-notification/-/react-native-push-notification-3.1.1.tgz#99ce426e78e95788c298f73750cc4e68db04d7ab"
+
 react-native-radio-button@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/react-native-radio-button/-/react-native-radio-button-2.0.1.tgz#d21fc52276f3c5c89691ff40cd8a62758888745b"
