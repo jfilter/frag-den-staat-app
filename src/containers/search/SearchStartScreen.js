@@ -36,7 +36,7 @@ class SearchStartScreen extends React.Component {
   };
 
   render() {
-    const size = Platform.os === 'ios' ? 35 : 26; // for icon
+    const size = Platform.OS === 'ios' ? 35 : 26; // for icon
     return (
       <View style={styles.background} keyboardShouldPersistTaps="handled">
         <SearchBar
