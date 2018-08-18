@@ -12,6 +12,10 @@ jest.mock('rn-fetch-blob', () => {
   };
 });
 
+jest.mock('react-native-background-fetch', () => {
+  return {};
+});
+
 jest.mock('ScrollView', () => jest.genMockFromModule('ScrollView'));
 
 it('renders correctly', () => {
