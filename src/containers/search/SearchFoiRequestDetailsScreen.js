@@ -1,3 +1,7 @@
+// not sure why this is needed here but the app crashes if if not
+// present (on Android)
+import 'moment/locale/de';
+
 import { NavigationActions } from 'react-navigation';
 import { connect } from 'react-redux';
 import React from 'react';
