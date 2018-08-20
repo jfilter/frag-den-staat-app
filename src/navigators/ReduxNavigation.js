@@ -254,9 +254,8 @@ const mapDispatchToProps = dispatch => ({
   dispatch,
 });
 
-const AppWithNavigationState = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ReduxNavigation);
+const AppWithNavigationState = connect(mapStateToProps, mapDispatchToProps)(
+  ReduxNavigation
+);
 
 export { AppWithNavigationState, navMiddleware };

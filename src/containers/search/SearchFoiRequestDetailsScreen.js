@@ -58,6 +58,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(
-  SearchFoiRequestDetails
-);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SearchFoiRequestDetails);
