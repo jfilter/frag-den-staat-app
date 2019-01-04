@@ -1,4 +1,5 @@
 import statusFile from '../data/status.json';
+import jurisdictionFile from '../data/jurisdiction.json';
 
 const mapToRealStatus = (fakeStatus, fakeResolution) =>
   fakeStatus === 'resolved' ? fakeResolution : fakeStatus;
@@ -55,6 +56,14 @@ function shortenJurisdiction(jurisdiction) {
   }
 }
 
+function jurisdictionNameFromUrl(url) {
+  let name = '';
+  jurisdictionFile.forEach(x => {
+    if (url.endsWith(x.resource_uri)) name = x.name;
+  });
+  return shortenJurisdiction(name);
+}
+
 function shortenLabel(label, filterFor) {
   if (filterFor === 'status') return label;
   if (filterFor === 'jurisdiction') return shortenJurisdiction(label);
@@ -81,4 +90,5 @@ export {
   getFilterableStatus,
   shortenJurisdiction,
   shortenLabel,
+  jurisdictionNameFromUrl,
 };

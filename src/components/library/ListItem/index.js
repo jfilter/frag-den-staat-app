@@ -3,7 +3,7 @@ import { ListItem as ListItemRNElements } from 'react-native-elements';
 import React from 'react';
 import moment from 'moment';
 
-import { getPrintableStatus, shortenJurisdiction } from '../../../utils';
+import { getPrintableStatus, jurisdictionNameFromUrl } from '../../../utils';
 import { greyDark, primaryColor, fontColor } from '../../../globals/colors';
 import I18n from '../../../i18n';
 import styles from './styles';
@@ -28,10 +28,11 @@ const ListItem = ({ item, onPress }) => {
 
   if (item.public_body) {
     const publicBodyName = item.public_body.name;
-    const jurisdictionName = item.public_body.jurisdiction.name;
 
-    subtitle += `\n${publicBodyName} (${shortenJurisdiction(
-      jurisdictionName
+    const jurisdictionUrl = item.public_body.jurisdiction;
+
+    subtitle += `\n${publicBodyName} (${jurisdictionNameFromUrl(
+      jurisdictionUrl
     )})`;
   }
 

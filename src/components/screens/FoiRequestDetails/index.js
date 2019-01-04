@@ -18,7 +18,7 @@ import Hyperlink from 'react-native-hyperlink';
 
 import { ORIGIN } from '../../../globals';
 import { breakLongWords } from '../../../utils/strings';
-import { getPrintableStatus } from '../../../utils';
+import { getPrintableStatus, jurisdictionNameFromUrl } from '../../../utils';
 import {
   greyLight,
   primaryColor,
@@ -422,7 +422,7 @@ class FoiRequestDetails extends React.Component {
         name: publicBodyName,
         jurisdiction,
       } = publicBody;
-      const { name: jurisdictionName } = jurisdiction;
+      const jurisdictionName = jurisdictionNameFromUrl(jurisdiction);
 
       subheading = (
         <View>
