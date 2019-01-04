@@ -57,7 +57,7 @@ function searchPublicBodiesSuccessAction(results) {
   };
 }
 
-function searchUpdateQuery(query) {
+function searchUpdateQueryAction(query) {
   return {
     type: 'SEARCH_UPDATE_QUERY',
     query,
@@ -131,7 +131,7 @@ export {
   searchFoiRequestsErrorClearAction,
   searchPublicBodies,
   searchPublicBodiesErrorClearAction,
-  searchUpdateQuery,
+  searchUpdateQueryAction,
   searchAddAlertAction,
   searchRemoveAlertAction,
   searchUpdateAlertMatchesAction,
