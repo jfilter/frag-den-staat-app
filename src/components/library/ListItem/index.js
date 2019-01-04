@@ -16,10 +16,7 @@ if (locale === 'de') {
 }
 
 const ListItem = ({ item, onPress }) => {
-  const { statusName, realStatus } = getPrintableStatus(
-    item.status,
-    item.resolution
-  );
+  const { realStatus } = getPrintableStatus(item.status, item.resolution);
   const imagePath = realStatus;
 
   const lastContact = item.last_message || item.first_message;

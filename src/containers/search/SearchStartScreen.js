@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import NavBarIcon from '../../components/foiRequests/NavBarIcon';
 
-import { searchUpdateQuery } from '../../actions/search';
+import { searchUpdateQueryAction } from '../../actions/search';
 import styles from './styles';
 import I18n from '../../i18n';
 import { greyDark, fontColor, primaryColor } from '../../globals/colors';
@@ -98,7 +98,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    updateQuery: query => dispatch(searchUpdateQuery(query)),
+    updateQuery: query => dispatch(searchUpdateQueryAction(query)),
     navigateToResults: params =>
       dispatch(
         NavigationActions.navigate({ routeName: 'SearchResults', params })

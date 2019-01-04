@@ -82,4 +82,18 @@ export default {
   next: 'Weiter',
   attachment: 'Anhang',
   alerts: 'Alerts',
+  newRequestScreen: {
+    choose: '1. Wähle eine Behörde',
+    write: '2. Schreibe deine Behörde',
+    sendTitle: '3. Anfragen versenden',
+    title: 'Betreff',
+    desc: 'Genaue Beschreibung',
+    send: 'Absenden',
+    success: 'Erfolgreich übermittelt',
+    fail: 'Übermittelung fehlgeschlagen. Noch mal versuchen.',
+    anon: 'Anonym',
+    confirm: 'Bestätigen',
+    expl:
+      'Schreibe deine Anfrage in einfacher, präziser Sprache und achte auf deine Rechtschreibung. Bitte verzichte auf Anrede, Grußformel etc. Diese fügen wir automatische hinzu. Im nächsten Schritt bestätigsts du die Anfrage.',
+  },
 };

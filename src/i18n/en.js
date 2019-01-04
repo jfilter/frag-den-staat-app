@@ -82,4 +82,18 @@ export default {
   next: 'Next',
   attachment: 'Attachment',
   alerts: 'Alerts',
+  newRequestScreen: {
+    choose: '1. Choose a Public Body',
+    write: '2. Write your Request',
+    sendTitle: '3. Send Request',
+    title: 'Subject',
+    desc: 'Detailed Description',
+    send: 'Send',
+    success: 'Success',
+    fail: 'Fail. Retry?',
+    anon: 'anonym',
+    confirm: 'Confirm',
+    expl:
+      'Schreibe deine Anfrage in einfacher, präziser Sprache und achte auf deine Rechtschreibung. Bitte verzichte auf Anrede, Grußformel, Verweise auf das IFG etc., da wir diese automatisiert hinzufügen.',
+  },
 };

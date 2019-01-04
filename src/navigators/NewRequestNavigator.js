@@ -2,15 +2,20 @@ import { StackNavigator } from 'react-navigation';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import React from 'react';
 
-import { NewRequestStartScreen } from '../containers/newRequest/NewRequestStartScreen';
 import { commonNavigationOptions } from './styles';
 import { greyDark } from '../globals/colors';
-import navigateOnce from '../utils/navigateOnce';
 import I18n from '../i18n';
+import NewRequestConfirmScreen from '../containers/newRequest/NewRequestConfirmScreen';
+import NewRequestStartScreen from '../containers/newRequest/NewRequestStartScreen';
+import NewRequestWriteScreen from '../containers/newRequest/NewRequestWriteScreen';
+
+import navigateOnce from '../utils/navigateOnce';
 
 const NewRequestNavigator = StackNavigator(
   {
     NewRequestStart: { screen: NewRequestStartScreen },
+    NewRequestWrite: { screen: NewRequestWriteScreen },
+    NewRequestConfirm: { screen: NewRequestConfirmScreen },
   },
   {
     navigationOptions: {

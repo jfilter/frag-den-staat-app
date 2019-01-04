@@ -314,6 +314,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(
-  FoiRequestsMasterScreen
-);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(FoiRequestsMasterScreen);
