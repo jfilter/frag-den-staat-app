@@ -78,9 +78,9 @@ SearchStartScreen.navigationOptions = ({ navigation }) => {
     );
   return {
     title: I18n.t('search'),
-    // headerRight: (
-    //   <NavBarIcon onPress={navigateToAlerts} iconName="notifications" />
-    // ),
+    headerRight: (
+      <NavBarIcon onPress={navigateToAlerts} iconName="notifications" />
+    ),
   };
 };
 
