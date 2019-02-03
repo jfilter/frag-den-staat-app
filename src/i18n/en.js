@@ -85,7 +85,7 @@ export default {
   newRequestScreen: {
     choose: '1. Choose a Public Body',
     write: '2. Write your Request',
-    sendTitle: '3. Send Request',
+    sendTitle: '3. Confirm',
     title: 'Subject',
     desc: 'Detailed Description',
     send: 'Send',

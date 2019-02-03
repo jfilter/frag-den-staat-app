@@ -1,4 +1,4 @@
-import { ActivityIndicator, View, Text } from 'react-native';
+import { ActivityIndicator, View, Text, Platform } from 'react-native';
 import { Icon, Button } from 'react-native-elements';
 import { connect } from 'react-redux';
 import React from 'react';
@@ -9,7 +9,6 @@ import BlankContainer from '../../components/library/BlankContainer';
 import Heading from '../../components/library/Heading';
 import I18n from '../../i18n';
 import StandardButton from '../../components/library/StandardButton';
-import SubHeading from '../../components/library/SubHeading';
 
 class NewRequestConfirmScreen extends React.Component {
   state = { sending: false, success: false, fail: false };
@@ -31,22 +30,39 @@ class NewRequestConfirmScreen extends React.Component {
       publicbodies: [publicBody.id],
       public: !anon,
       full_text: false,
-      reference: 'fds-mobile-app',
+      reference: `fds-mobile-app:${Platform.OS}`,
     };
+
+    // I am not 100% sure whther it currently really works.
+    // Maybe continue working on manually getting the CSRF token.
+    // const r = await fetch('https://fragdenstaat.de/account/login/');
+    // console.log(r);
+    // console.log(r.headers.map);
+    // let csrfString = r.headers.map['set-cookie'][0];
+    // csrfString = csrfString.split('csrftoken=')[0];
+    // csrfString = csrfString.split(';')[0];
+
+    // console.log(csrfString);
 
     fetch('https://fragdenstaat.de/api/v1/request/', {
       method: 'POST',
       headers: {
+        Accept: 'application/json',
         'Content-Type': 'application/json',
         Authorization: `Bearer ${accessToken}`,
-        referer: 'https://fragdenstaat.de/app',
+        Referer: 'https://fragdenstaat.de/app',
+        'User-Agent': 'FragDenStaat App',
       },
       body: JSON.stringify(data),
     })
       .then(res => res.json())
       .then(response => {
-        this.setState({ success: true });
-        console.log('Success:', JSON.stringify(response));
+        // weird status
+        if (response.status === 'success') {
+          this.setState({ success: true });
+        } else {
+          this.setState({ fail: true });
+        }
       })
       .catch(error => {
         this.setState({ fail: true });
@@ -68,7 +84,8 @@ class NewRequestConfirmScreen extends React.Component {
 
     const visibleName = anon ? '<< Anfragesteller/in >>' : name;
     const wholeText = [
-      title,
+      `An: ${publicBody.name}`,
+      `Betreff: ${title}`,
       letterStart,
       description,
       letterEnd,
@@ -81,9 +98,6 @@ class NewRequestConfirmScreen extends React.Component {
           {I18n.t('newRequestScreen.sendTitle')}
         </Heading>
 
-        <SubHeading style={{ marginBottom: spaceMore }}>
-          {I18n.t('foiRequestDetails.to')}: {publicBody.name}
-        </SubHeading>
         <Text>{wholeText}</Text>
 
         <View style={{ marginTop: spaceMore }} />

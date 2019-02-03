@@ -4,7 +4,7 @@ import { TextInput, Text } from 'react-native';
 import { connect } from 'react-redux';
 import React from 'react';
 
-import { spaceMore } from '../../globals/content';
+import { spaceMore, spaceNormal } from '../../globals/content';
 import BlankContainer from '../../components/library/BlankContainer';
 import Heading from '../../components/library/Heading';
 import I18n from '../../i18n';
@@ -62,6 +62,7 @@ class NewRequestWriteScreen extends React.Component {
             borderColor: 'gray',
             borderWidth: 1,
             borderRadius: 5,
+            padding: spaceNormal,
           }}
           onChangeText={title => this.setState({ title })}
           value={title}
@@ -80,6 +81,7 @@ class NewRequestWriteScreen extends React.Component {
             borderWidth: 1,
             borderRadius: 5,
             marginTop: spaceMore,
+            padding: spaceNormal,
           }}
           onChangeText={description => this.setState({ description })}
           value={description}
@@ -88,14 +90,15 @@ class NewRequestWriteScreen extends React.Component {
         <CheckBox
           title={I18n.t('newRequestScreen.anon')}
           checked={this.state.anon}
-          containerStyle={{ marginVertical: spaceMore }}
+          containerStyle={{ marginTop: spaceMore }}
           onPress={() => this.setState({ anon: !this.state.anon })}
           checkedColor={primaryColor}
         />
 
         <StandardButton
-          title={I18n.t('newRequestScreen.confirm')}
+          title={I18n.t('next')}
           containerViewStyle={{ marginTop: spaceMore }}
+          disabled={!this.state.title || !this.state.description}
           onPress={() =>
             this.props.dispatch(
               NavigationActions.navigate({

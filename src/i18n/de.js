@@ -85,7 +85,7 @@ export default {
   newRequestScreen: {
     choose: '1. Wähle eine Behörde',
     write: '2. Schreibe deine Behörde',
-    sendTitle: '3. Anfragen versenden',
+    sendTitle: '3. Bestätigen',
     title: 'Betreff',
     desc: 'Genaue Beschreibung',
     send: 'Absenden',
