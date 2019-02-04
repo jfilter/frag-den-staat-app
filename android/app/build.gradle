@@ -100,7 +100,7 @@ android {
     defaultConfig {
         applicationId "de.fragdenstaat.app"
         minSdkVersion 16
-        targetSdkVersion 22
+        targetSdkVersion 26
         versionCode 29
         versionName "0.9.1"
         ndk {
