@@ -37,6 +37,7 @@ const PublicBodyDetails = ({
     description,
     categories,
     number_of_requests: nRequests,
+    jurisdiction,
   } = publicBody;
 
   const printableCategories =
@@ -45,17 +46,13 @@ const PublicBodyDetails = ({
   const tableData = [
     {
       label: I18n.t('jurisdiction'),
-      value: (
-        <Link
-          label={publicBody.jurisdiction.name}
-          url={publicBody.jurisdiction.site_url}
-        />
-      ),
+      value: <Link label={jurisdiction.name} url={jurisdiction.site_url} />,
     },
-    {
-      label: I18n.t('classification'),
-      value: <Text selectable>{classification.name}</Text>,
-    },
+    // Stefan changed something
+    // {
+    //   label: I18n.t('classification'),
+    //   value: <Text selectable>{classification.name}</Text>,
+    // },
     { label: I18n.t('website'), value: <Link label={url} url={url} /> },
     {
       label: I18n.t('email'),
