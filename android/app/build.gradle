@@ -94,7 +94,7 @@ def enableSeparateBuildPerCPUArchitecture = false
 def enableProguardInReleaseBuilds = false
 
 android {
-    compileSdkVersion 23
+    compileSdkVersion 26
     buildToolsVersion '25.0.0'
 
     defaultConfig {
@@ -130,6 +130,13 @@ android {
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
             signingConfig signingConfigs.release
+
+            manifestPlaceholders = [isDebug:false]
+
+        }
+
+        debug {
+            manifestPlaceholders = [isDebug:true]
         }
     }
     // applicationVariants are e.g. debug, release
