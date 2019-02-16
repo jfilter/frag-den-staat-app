@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import React from 'react';
 
 import { foiRequestsFilterChange } from '../../actions/foiRequests';
-import { greyLight, primaryColor, fontColor } from '../../globals/colors';
+import { primaryColor, fontColor } from '../../globals/colors';
 
 const FoiRequestDrawer = ({
   filterChange,
@@ -75,6 +75,51 @@ const FoiRequestDrawer = ({
         paddingVertical: 10,
       }}
     />
+    {/* <ListItem
+      leftIcon={{
+        name: 'star',
+        color:
+          currentUserId && currentUserFilter === currentUserId
+            ? primaryColor
+            : fontColor,
+      }}
+      hideChevron
+      title="Anfragen, denen ich folge"
+      onPress={() => {
+        if (currentUserId == null) {
+          Alert.alert(
+            'Du bist nicht eingeloggt.',
+            'Bitte logge dich ein.',
+            [
+              {
+                text: 'Jetzt einloggen',
+                onPress: () => {
+                  drawerClose();
+                  setTimeout(() => navigateToLogin(), 300);
+                },
+              },
+              {
+                text: 'Abbrechen',
+                style: 'cancel',
+              },
+            ],
+            { cancelable: false }
+          );
+        } else {
+          filterChange({ user: currentUserId });
+          drawerClose();
+        }
+      }}
+      titleStyle={{
+        color:
+          currentUserId && currentUserFilter === currentUserId
+            ? primaryColor
+            : fontColor,
+      }}
+      containerStyle={{
+        paddingVertical: 10,
+      }}
+    /> */}
     <ListItem
       leftIcon={{
         name: 'wrench',
@@ -114,4 +159,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(FoiRequestDrawer);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(FoiRequestDrawer);
