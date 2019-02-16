@@ -30,7 +30,7 @@ class NewRequestConfirmScreen extends React.Component {
       publicbodies: [publicBody.id],
       public: !anon,
       full_text: false,
-      reference: `fds-mobile-app:${Platform.OS}`,
+      // reference: `fds-mobile-app:${Platform.OS}`,
     };
 
     // I am not 100% sure whther it currently really works.
