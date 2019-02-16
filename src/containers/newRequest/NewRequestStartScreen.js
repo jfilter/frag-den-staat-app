@@ -114,6 +114,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    dispatch,
     navigateToLogin: () =>
       dispatch(NavigationActions.navigate({ routeName: 'ProfileLogin' })),
   };
