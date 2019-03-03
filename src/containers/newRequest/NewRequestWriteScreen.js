@@ -1,6 +1,6 @@
 import { CheckBox } from 'react-native-elements';
 import { NavigationActions } from 'react-navigation';
-import { TextInput, Text, KeyboardAvoidingView } from 'react-native';
+import { TextInput, Text, KeyboardAvoidingView, Platform } from 'react-native';
 import { connect } from 'react-redux';
 import React from 'react';
 
@@ -46,83 +46,90 @@ class NewRequestWriteScreen extends React.Component {
     const { title, description, letterEnd, letterStart, anon } = this.state;
     const { publicBody } = this.props.navigation.state.params;
 
-    return (
-      <KeyboardAvoidingView
-        keyboardVerticalOffset={70}
-        behavior="padding"
-        enabled
-      >
-        <BlankContainer>
-          <Heading style={{ margin: spaceMore }}>
-            {I18n.t('newRequestScreen.write')}
-          </Heading>
+    const mainElements = (
+      <BlankContainer>
+        <Heading style={{ margin: spaceMore }}>
+          {I18n.t('newRequestScreen.write')}
+        </Heading>
 
-          <SubHeading style={{ marginBottom: spaceMore }}>
-            {I18n.t('newRequestScreen.title')}
-          </SubHeading>
+        <SubHeading style={{ marginBottom: spaceMore }}>
+          {I18n.t('newRequestScreen.title')}
+        </SubHeading>
 
-          <TextInput
-            style={{
-              height: 40,
-              borderColor: 'gray',
-              borderWidth: 1,
-              borderRadius: 5,
-              padding: spaceNormal,
-            }}
-            onChangeText={title => this.setState({ title })}
-            value={title}
-            maxLength={230}
-          />
+        <TextInput
+          style={{
+            height: 40,
+            borderColor: 'gray',
+            borderWidth: 1,
+            borderRadius: 5,
+            padding: spaceNormal,
+          }}
+          onChangeText={title => this.setState({ title })}
+          value={title}
+          maxLength={230}
+        />
 
-          <SubHeading style={{ marginTop: spaceMore, marginBottom: spaceMore }}>
-            {I18n.t('newRequestScreen.desc')}
-          </SubHeading>
-          <Text>{I18n.t('newRequestScreen.expl')}</Text>
+        <SubHeading style={{ marginTop: spaceMore, marginBottom: spaceMore }}>
+          {I18n.t('newRequestScreen.desc')}
+        </SubHeading>
+        <Text>{I18n.t('newRequestScreen.expl')}</Text>
 
-          <TextInput
-            style={{
-              height: 160,
-              borderColor: 'gray',
-              borderWidth: 1,
-              borderRadius: 5,
-              marginTop: spaceMore,
-              padding: spaceNormal,
-            }}
-            onChangeText={description => this.setState({ description })}
-            value={description}
-            multiline
-          />
-          <CheckBox
-            title={I18n.t('newRequestScreen.anon')}
-            checked={this.state.anon}
-            containerStyle={{ marginTop: spaceMore }}
-            onPress={() => this.setState({ anon: !this.state.anon })}
-            checkedColor={primaryColor}
-          />
+        <TextInput
+          style={{
+            height: 160,
+            borderColor: 'gray',
+            borderWidth: 1,
+            borderRadius: 5,
+            marginTop: spaceMore,
+            padding: spaceNormal,
+          }}
+          onChangeText={description => this.setState({ description })}
+          value={description}
+          multiline
+        />
+        <CheckBox
+          title={I18n.t('newRequestScreen.anon')}
+          checked={this.state.anon}
+          containerStyle={{ marginTop: spaceMore }}
+          onPress={() => this.setState({ anon: !this.state.anon })}
+          checkedColor={primaryColor}
+        />
 
-          <StandardButton
-            title={I18n.t('next')}
-            containerViewStyle={{ marginTop: spaceMore }}
-            disabled={!this.state.title || !this.state.description}
-            onPress={() =>
-              this.props.dispatch(
-                NavigationActions.navigate({
-                  routeName: 'NewRequestConfirm',
-                  params: {
-                    publicBody,
-                    title,
-                    description,
-                    letterStart,
-                    letterEnd,
-                    anon,
-                  },
-                })
-              )
-            }
-          />
-        </BlankContainer>
-      </KeyboardAvoidingView>
+        <StandardButton
+          title={I18n.t('next')}
+          containerViewStyle={{ marginTop: spaceMore }}
+          disabled={!this.state.title || !this.state.description}
+          onPress={() =>
+            this.props.dispatch(
+              NavigationActions.navigate({
+                routeName: 'NewRequestConfirm',
+                params: {
+                  publicBody,
+                  title,
+                  description,
+                  letterStart,
+                  letterEnd,
+                  anon,
+                },
+              })
+            )
+          }
+        />
+      </BlankContainer>
     );
+    // wrap for ios to keep buttons visible
+    if (Platform.OS === 'ios') {
+      return (
+        <KeyboardAvoidingView
+          keyboardVerticalOffset={70}
+          behavior="padding"
+          enabled
+        >
+          {mainElements}
+        </KeyboardAvoidingView>
+      );
+    }
+    return mainElements;
   }
 }
 
