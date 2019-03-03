@@ -56,12 +56,18 @@ function shortenJurisdiction(jurisdiction) {
   }
 }
 
+// there are different ways how the jurisdiction gets delievered via the API
 function jurisdictionNameFromUrl(url) {
-  let name = '';
-  jurisdictionFile.forEach(x => {
-    if (url.endsWith(x.resource_uri)) name = x.name;
-  });
-  return shortenJurisdiction(name);
+  if (typeof url === 'string' || url instanceof String) {
+    // an URL which indicates we need to get the jurisdiction via the JSON file
+    let name = '';
+    jurisdictionFile.forEach(x => {
+      if (url.endsWith(x.resource_uri)) name = x.name;
+    });
+    return shortenJurisdiction(name);
+  }
+  // it's not an URL but the whole jurisdiciton object so we need .name
+  return shortenJurisdiction(url.name);
 }
 
 function shortenLabel(label, filterFor) {
