@@ -8,11 +8,6 @@
     "type": "git",
     "url": "https://github.com/jfilter/frag-den-staat-app"
   },
-  "rnpm": {
-    "assets": [
-      "./assets/fonts"
-    ]
-  },
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
@@ -23,8 +18,8 @@
     "moment": "^2.22.2",
     "prop-types": "^15.6.1",
     "ramda": "^0.25.0",
-    "react": "^16.2.0",
-    "react-native": "^0.51.1",
+    "react": "16.8.3",
+    "react-native": "0.59.5",
     "react-native-background-fetch": "^2.4.3",
     "react-native-collapsible": "^0.13.0",
     "react-native-dropdownalert": "^3.4.0",
@@ -52,9 +47,9 @@
     "rn-fetch-blob": "^0.10.12"
   },
   "devDependencies": {
-    "babel-eslint": "^8.2.6",
-    "babel-jest": "^23.4.2",
-    "babel-preset-react-native": "^4.0.0",
+    "@babel/core": "^7.4.4",
+    "@babel/runtime": "^7.4.4",
+    "babel-jest": "^24.7.1",
     "eslint": "^5.3.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-prettier": "^3.0.1",
@@ -63,25 +58,23 @@
     "eslint-plugin-prettier": "^2.6.2",
     "eslint-plugin-react": "^7.11.0",
     "eslint-plugin-react-native": "^3.2.1",
-    "jest": "^23.5.0",
+    "jest": "^24.7.1",
     "license-everything": "^0.1.0",
+    "metro-react-native-babel-preset": "^0.54.0",
     "prettier": "^1.14.2",
     "react-native-version": "^2.4.1",
-    "react-test-renderer": "^16.4.2"
+    "react-test-renderer": "16.8.3"
   },
   "jest": {
-    "preset": "react-native",
-    "transformIgnorePatterns": [
-      "node_modules/(?!(jest-)?react-native|react-navigation)"
-    ]
+    "preset": "react-native"
   },
   "prettier": {
     "singleQuote": true,
     "trailingComma": "es5"
   },
-  "babel": {
-    "presets": [
-      "react-native"
+  "rnpm": {
+    "assets": [
+      "./assets/fonts/"
     ]
   },
   "eslintConfig": {
