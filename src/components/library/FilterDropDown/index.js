@@ -16,9 +16,7 @@ class FilterDropDown extends React.Component {
 
     this.props.updateFilter(newFilter);
 
-    if (!switched) {
-      this.props.collapseAfterSwitch();
-    }
+    this.props.collapseAfterSwitch();
   };
 
   _renderItem = ({ item }) => {
