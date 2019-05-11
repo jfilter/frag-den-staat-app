@@ -1,10 +1,8 @@
 import { Icon } from 'react-native-elements';
-import { createDrawerNavigator } from 'react-navigation';
-import React from 'react';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
+import React from 'react';
 
-import { greyLight, primaryColor, grey, greyDark } from '../globals/colors';
-import FoiRequestsDrawer from '../containers/foiRequests/FoiRequestsDrawer';
+import { greyDark, greyLight, primaryColor } from '../globals/colors';
 import NewRequestNavigator from './NewRequestNavigator';
 import ProfileNavigator from './ProfileNavigator';
 import SearchNavigator from './SearchNavigator';
@@ -14,10 +12,25 @@ const AppNavigator = createMaterialBottomTabNavigator(
   {
     Requests: {
       screen: foiRequestsNavigator,
-      navigationOptions: {
-        tabBarIcon: ({ tintColor }) => (
-          <Icon size={24} color={tintColor} name="home" />
-        ),
+      navigationOptions: state => {
+        // hide bottom on Onboarding screen
+        if (
+          state.navigation.state.routes[0].routes.length === 2 &&
+          state.navigation.state.routes[0].routes[1].routeName ==
+            'FoiRequestsOnboarding'
+        ) {
+          return {
+            tabBarIcon: ({ tintColor }) => (
+              <Icon size={24} color={tintColor} name="home" />
+            ),
+            tabBarVisible: false,
+          };
+        }
+        return {
+          tabBarIcon: ({ tintColor }) => (
+            <Icon size={24} color={tintColor} name="home" />
+          ),
+        };
       },
     },
     Search: {
@@ -57,14 +70,4 @@ const AppNavigator = createMaterialBottomTabNavigator(
   }
 );
 
-const Drawer = createDrawerNavigator(
-  {
-    AppNavigator: { screen: AppNavigator },
-  },
-  {
-    contentComponent: FoiRequestsDrawer,
-    edgeWidth: 0, // don't swipe in
-  }
-);
-
-export default Drawer;
+export default AppNavigator;

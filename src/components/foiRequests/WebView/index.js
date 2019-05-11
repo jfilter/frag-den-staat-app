@@ -1,4 +1,5 @@
-import { Platform, Share, WebView } from 'react-native';
+import { Platform, Share } from 'react-native';
+import { WebView } from 'react-native-webview';
 import React from 'react';
 
 import NavBarIcon from '../NavBarIcon';

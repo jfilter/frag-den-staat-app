@@ -38,6 +38,7 @@
     "react-native-vector-icons": "^6.4.2",
     "react-native-video": "^4.4.1",
     "react-native-video-player": "^0.10.0",
+    "react-native-webview": "^5.8.1",
     "react-navigation": "^3.9.1",
     "react-navigation-material-bottom-tabs": "^1.0.0",
     "react-navigation-redux-helpers": "^3.0.2",

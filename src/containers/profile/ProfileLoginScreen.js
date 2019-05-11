@@ -1,4 +1,4 @@
-import { WebView } from 'react-native';
+import { WebView } from 'react-native-webview';
 import React, { Component } from 'react';
 
 import { requestAuthToken } from '../../utils/oauth';

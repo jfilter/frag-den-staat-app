@@ -113,7 +113,6 @@ class FoiRequestsOnboardingScreen extends React.Component {
 
 FoiRequestsOnboardingScreen.navigationOptions = {
   header: null,
-  tabBarVisible: false,
 };
 
 const mapDispatchToProps = dispatch => {

@@ -593,13 +593,14 @@ FoiRequestDetails.propTypes = {
           })
         ),
       })
-    ).isRequired,
+    ),
   }).isRequired,
   fetchSingleFoiRequest: PropTypes.func,
 };
 
 FoiRequestDetails.defaultProps = {
   fetchSingleFoiRequest: null,
+  messages: [],
 };
 
 export default FoiRequestDetails;
