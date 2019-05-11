@@ -46,6 +46,7 @@ class FoiRequestDetails extends React.Component {
     this.state = {
       escalatedPublicBodyName: null,
       fetchingEscaltedPublicBody: false,
+      sections: [0],
     };
   }
 
@@ -282,8 +283,10 @@ class FoiRequestDetails extends React.Component {
     );
   };
 
-  _onChange = index => {
-    if (index === false) return;
+  _onChange = sections => {
+    if (sections.length === 0) return;
+    this.setState({ sections });
+    const index = sections[0];
 
     const itemsAbove = Array.from(this.itemHeights)
       .sort((x, y) => x[0] - y[0]) // sort by index
@@ -394,7 +397,7 @@ class FoiRequestDetails extends React.Component {
           renderHeader={this._renderMessageHeader}
           renderContent={this._renderMessageContent}
           underlayColor={greyLight}
-          activeSections={[0]}
+          activeSections={this.state.sections}
           touchableProps={{
             style: styles.touchable,
             hitSlop: {
