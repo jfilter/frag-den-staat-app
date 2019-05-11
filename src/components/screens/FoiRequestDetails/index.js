@@ -394,7 +394,7 @@ class FoiRequestDetails extends React.Component {
           renderHeader={this._renderMessageHeader}
           renderContent={this._renderMessageContent}
           underlayColor={greyLight}
-          initiallyActiveSection={0}
+          activeSections={[0]}
           touchableProps={{
             style: styles.touchable,
             hitSlop: {
