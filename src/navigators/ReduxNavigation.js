@@ -130,10 +130,12 @@ class ReduxNavigation extends React.Component {
     } else {
       route = url.replace(/.*?:\/\//g, '');
     }
-    const routeName = route.split('/')[0];
+    const routeParts = route.split('/');
+    const routeName = routeParts[0];
 
     // a for anfrage
     if (routeName === 'a') {
+      // short url with the request id
       const id = route.match(/\/([^\/]+)\/?$/)[1];
       dispatch(
         NavigationActions.navigate({
@@ -143,7 +145,8 @@ class ReduxNavigation extends React.Component {
       );
     }
 
-    if (routeName === 'anfrage') {
+    if (routeName === 'anfrage' && routeParts.length !== 5) {
+      // this is a single request with slug
       const res = await fetch(`${GET_REQUEST_ID_HOSTNAME}/${route}`);
       const id = await res.json();
       dispatch(
@@ -152,6 +155,37 @@ class ReduxNavigation extends React.Component {
           params: { foiRequestId: id },
         })
       );
+    }
+
+    if (
+      routeName === 'anfrage' &&
+      routeParts.length === 5 &&
+      !route.includes('#')
+    ) {
+      // an attachment
+      const messageId = routeParts[2];
+      const res = await fetch(
+        `https://fragdenstaat.de/api/v1/message/${messageId}`
+      );
+      const message = await res.json();
+      const id = message.request.split('/').reverse()[1];
+
+      message.attachments.forEach(x => {
+        console.log(x.name, routeParts[4].toLowerCase());
+        if (x.name.toLowerCase() === routeParts[4].toLowerCase()) {
+          const action1 = NavigationActions.navigate({
+            routeName: 'FoiRequestsSingle',
+            params: { foiRequestId: id },
+          });
+          // first to request, then to attachment
+          dispatch(action1);
+          const action2 = NavigationActions.navigate({
+            routeName: 'FoiRequestsPdfViewer',
+            params: { url: x.site_url, fileUrl: x.file_url },
+          });
+          dispatch(action2);
+        }
+      });
     }
   };
 
