@@ -44,7 +44,6 @@ FoiRequestsWebView.navigationOptions = props => {
   }
 
   return {
-    drawerLockMode: 'locked-closed', // disable global drawer
     title: 'Browser-Ansicht',
     tabBarVisible: false,
     headerRight: (

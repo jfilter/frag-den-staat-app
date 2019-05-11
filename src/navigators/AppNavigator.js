@@ -63,6 +63,7 @@ const Drawer = createDrawerNavigator(
   },
   {
     contentComponent: FoiRequestsDrawer,
+    edgeWidth: 0, // don't swipe in
   }
 );
 

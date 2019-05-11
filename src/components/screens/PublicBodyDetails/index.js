@@ -124,7 +124,6 @@ PublicBodyDetails.propTypes = {
 
 PublicBodyDetails.navigationOptions = {
   title: I18n.t('publicBody'),
-  drawerLockMode: 'locked-closed', // disable global drawer
 };
 
 export default PublicBodyDetails;

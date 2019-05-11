@@ -35,7 +35,6 @@ const ProfileNavigator = createStackNavigator(
   {
     navigationOptions: {
       ...commonNavigationOptions,
-      drawerLockMode: 'locked-closed', // disable global drawer
       tabBarLabel: I18n.t('more'),
       tabBarIcon: () => (
         <Icon size={iconSize} color={iconColor} name="more-horiz" />

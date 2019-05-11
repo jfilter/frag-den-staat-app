@@ -545,7 +545,6 @@ FoiRequestDetails.navigationOptions = ({ navigation }) => {
 
   return {
     headerBackTitle: null, // can't set specific title when going outside the app so remove it for now
-    drawerLockMode: 'locked-closed', // disable global drawer
     title: I18n.t('request'),
     headerRight: (
       <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>

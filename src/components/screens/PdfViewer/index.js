@@ -89,7 +89,6 @@ PdfViewer.navigationOptions = props => {
   }
 
   return {
-    drawerLockMode: 'locked-closed', // disable global drawer
     title: I18n.t('attachment'),
     headerRight: (
       <NavBarIcon iconName={iconName} iconType={iconType} onPress={share} />

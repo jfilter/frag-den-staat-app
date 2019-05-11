@@ -114,7 +114,6 @@ class FoiRequestsOnboardingScreen extends React.Component {
 FoiRequestsOnboardingScreen.navigationOptions = {
   header: null,
   tabBarVisible: false,
-  drawerLockMode: 'locked-closed', // disable global drawer
 };
 
 const mapDispatchToProps = dispatch => {
@@ -124,4 +123,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(FoiRequestsOnboardingScreen);
+export default connect(
+  null,
+  mapDispatchToProps
+)(FoiRequestsOnboardingScreen);
