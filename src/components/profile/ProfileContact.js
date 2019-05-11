@@ -31,8 +31,8 @@ const links = [
     url: 'mailto:info@fragdenstaat.de?subject=App-Anfrage',
   },
   {
-    title: 'Öffentlicher Email-Verteiler',
-    url: 'https://lists.okfn.org/mailman/listinfo/fragdenstaat',
+    title: 'Unser Support-Forum',
+    url: 'https://forum.okfn.de/c/fragdenstaat/ifg-support',
   },
 ];
 

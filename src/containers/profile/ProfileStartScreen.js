@@ -188,16 +188,7 @@ class ProfileStartScreen extends React.Component {
             type: 'material-community',
           }}
           rightIcon={{ color: greyDark, name: 'link' }}
-          onPress={() => Linking.openURL('http://blog.fragdenstaat.de')}
-        />
-        <ListItem
-          containerStyle={styles.listItemContainer}
-          leftIcon={{ color: greyDark, name: 'mic' }}
-          title={I18n.t('moreScreen.press')}
-          rightIcon={{ color: greyDark, name: 'link' }}
-          onPress={() =>
-            Linking.openURL('https://fragdenstaat.de/hilfe/ueber/presse/')
-          }
+          onPress={() => Linking.openURL('https://fragdenstaat.de/blog')}
         />
         <ListItem
           containerStyle={styles.listItemContainer}
@@ -274,4 +265,7 @@ const mapDispatchToProps = dispatch => {
     logout: () => dispatch(oauthLogout()),
   };
 };
-export default connect(mapStateToProps, mapDispatchToProps)(ProfileStartScreen);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ProfileStartScreen);

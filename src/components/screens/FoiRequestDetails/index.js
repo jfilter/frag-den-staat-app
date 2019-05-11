@@ -98,7 +98,7 @@ class FoiRequestDetails extends React.Component {
   );
 
   _renderAttachments = attachments => {
-    return attachments.map(att => {
+    return attachments.map((att, index) => {
       const isPdf = att.filetype === 'application/pdf';
       let viewPdfButton;
 
@@ -125,7 +125,10 @@ class FoiRequestDetails extends React.Component {
             </View>
             <View>
               <Text style={styles.hotfixTextPadding}>
-                {att.name.replace(/_|-/g, ' ')}
+                {index +
+                  1 +
+                  '. ' +
+                  att.name.replace(/_|-/g, ' ').replace('.pdf', '')}
               </Text>
             </View>
           </View>

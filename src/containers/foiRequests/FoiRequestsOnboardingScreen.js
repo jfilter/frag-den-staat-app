@@ -13,6 +13,7 @@ import {
 } from '../../globals/colors';
 import I18n from '../../i18n';
 import PromoVideo from '../../components/foiRequests/PromoVideo';
+import StandardButton from '../../components/library/StandardButton';
 
 const styles = {
   text: {
@@ -38,12 +39,13 @@ class FoiRequestsOnboardingScreen extends React.Component {
         <Text style={styles.text}>
           {`Sieh' dir die Anfragen von anderen Personen an oder erfahr' erst mehr über Informationsfreiheit in unserem kurzen Video.
 
-
-
-
-
           `}
         </Text>
+        <StandardButton
+          title="Anfragen ansehen"
+          onPress={this.continue}
+          containerViewStyle={{ borderColor: 'white' }}
+        />
       </View>
     );
 
@@ -64,14 +66,14 @@ class FoiRequestsOnboardingScreen extends React.Component {
       {
         title: 'FragDenStaat?',
         subtitle:
-          'Jede Person hat das Recht auf Informationen. FragDenStaat hilft dir dein Recht wahrzunehmen.',
+          'Jede Person hat das Recht auf staatliche Informationen. FragDenStaat hilft dir dein Recht wahrzunehmen.',
         backgroundColor: primaryColor,
         image: <Icon name="info" type="font-awesome" size={50} color="white" />,
       },
       {
         title: 'Wie funktionert das?',
         subtitle:
-          "Frag' über diese Plattform Behörden in Deutschland nach Informationen und Dokumenten.",
+          "Frag' über diese Plattform Behörden in Deutschland nach Akten und Dokumenten an.",
         backgroundColor: secondaryColor,
         image: (
           <Icon

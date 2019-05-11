@@ -7,7 +7,7 @@ const BodyText = ({ style, children, ...rest }) => (
     selectable
     style={[
       {
-        fontSize: 17,
+        fontSize: 15,
       },
       style,
     ]}
