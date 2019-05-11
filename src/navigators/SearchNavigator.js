@@ -1,4 +1,4 @@
-import { StackNavigator, TabNavigator } from 'react-navigation';
+import { createStackNavigator, createTabNavigator } from 'react-navigation';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import React from 'react';
 
@@ -16,10 +16,9 @@ import SearchResultsFoiRequestsMasterScreen from '../containers/search/SearchRes
 import SearchResultsPublicBodiesMasterScreen from '../containers/search/SearchResultsPublicBodiesMasterScreen';
 import SearchAlertScreen from '../containers/search/SearchAlertScreen';
 import SearchStartScreen from '../containers/search/SearchStartScreen';
-import navigateOnce from '../utils/navigateOnce';
 import I18n from '../i18n';
 
-const SearchResultsNavigator = TabNavigator(
+const SearchResultsNavigator = createTabNavigator(
   {
     SearchResultsFoiRequestsMaster: {
       screen: SearchResultsFoiRequestsMasterScreen,
@@ -31,7 +30,7 @@ const SearchResultsNavigator = TabNavigator(
   { ...tabBarConfig }
 );
 
-const SearchNavigator = StackNavigator(
+const SearchNavigator = createStackNavigator(
   {
     SearchStart: { screen: SearchStartScreen },
     SearchResults: { screen: SearchResultsNavigator },
@@ -51,10 +50,6 @@ const SearchNavigator = StackNavigator(
       ),
     },
   }
-);
-
-SearchNavigator.router.getStateForAction = navigateOnce(
-  SearchNavigator.router.getStateForAction
 );
 
 export default SearchNavigator;

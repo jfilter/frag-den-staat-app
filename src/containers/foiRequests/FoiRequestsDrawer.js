@@ -1,6 +1,6 @@
 import { Alert, ScrollView } from 'react-native';
 import { ListItem } from 'react-native-elements';
-import { NavigationActions } from 'react-navigation';
+import { NavigationActions, DrawerActions } from 'react-navigation';
 import { connect } from 'react-redux';
 import React from 'react';
 
@@ -154,8 +154,7 @@ const mapDispatchToProps = dispatch => {
     filterChange: filter => dispatch(foiRequestsFilterChange(filter)),
     navigateToLogin: () =>
       dispatch(NavigationActions.navigate({ routeName: 'ProfileLogin' })),
-    drawerClose: () =>
-      dispatch(NavigationActions.navigate({ routeName: 'DrawerClose' })),
+    drawerClose: () => dispatch(DrawerActions.closeDrawer()),
   };
 };
 

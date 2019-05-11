@@ -1,4 +1,4 @@
-import { StackNavigator } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import React from 'react';
 
@@ -11,9 +11,8 @@ import FoiRequestsSingleScreen from '../containers/foiRequests/FoiRequestsSingle
 import FoiRequestsWebView from '../components/foiRequests/WebView';
 import I18n from '../i18n';
 import PdfViewer from '../components/screens/PdfViewer';
-import navigateOnce from '../utils/navigateOnce';
 
-const FoiRequestsNavigator = StackNavigator(
+const FoiRequestsNavigator = createStackNavigator(
   {
     FoiRequestsMaster: { screen: FoiRequestsMasterScreen },
     FoiRequestsDetails: { screen: FoiRequestsDetailsScreen },
@@ -30,10 +29,6 @@ const FoiRequestsNavigator = StackNavigator(
       tabBarIcon: () => <Icon size={iconSize} color={iconColor} name="home" />,
     },
   }
-);
-
-FoiRequestsNavigator.router.getStateForAction = navigateOnce(
-  FoiRequestsNavigator.router.getStateForAction
 );
 
 export default FoiRequestsNavigator;

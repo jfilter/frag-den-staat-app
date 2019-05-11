@@ -3,7 +3,7 @@ import { NavigationActions, addNavigationHelpers } from 'react-navigation';
 import { connect } from 'react-redux';
 import {
   createReactNavigationReduxMiddleware,
-  createReduxBoundAddListener,
+  reduxifyNavigator,
 } from 'react-navigation-redux-helpers';
 import React from 'react';
 import BackgroundFetch from 'react-native-background-fetch';
@@ -30,7 +30,8 @@ const navMiddleware = createReactNavigationReduxMiddleware(
   'root',
   state => state.navigation
 );
-const addListener = createReduxBoundAddListener('root');
+
+const App = reduxifyNavigator(AppNavigator, 'root');
 
 class ReduxNavigation extends React.Component {
   componentDidMount() {
@@ -225,15 +226,9 @@ class ReduxNavigation extends React.Component {
       });
     }
 
-    return (
-      <AppNavigator
-        navigation={addNavigationHelpers({
-          dispatch: this.props.dispatch,
-          state: this.props.navigation,
-          addListener,
-        })}
-      />
-    );
+    const { navigation, dispatch } = this.props;
+
+    return <App state={navigation} dispatch={dispatch} />;
   }
 }
 
@@ -254,8 +249,9 @@ const mapDispatchToProps = dispatch => ({
   dispatch,
 });
 
-const AppWithNavigationState = connect(mapStateToProps, mapDispatchToProps)(
-  ReduxNavigation
-);
+const AppWithNavigationState = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ReduxNavigation);
 
 export { AppWithNavigationState, navMiddleware };

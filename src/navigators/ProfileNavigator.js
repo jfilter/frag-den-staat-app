@@ -1,4 +1,4 @@
-import { StackNavigator } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import React from 'react';
 
@@ -15,10 +15,9 @@ import ProfileIntroVideo from '../components/profile/ProfileIntroVideo';
 import ProfileLoginScreen from '../containers/profile/ProfileLoginScreen';
 import ProfileStartScreen from '../containers/profile/ProfileStartScreen';
 import ProfileTermsOfUse from '../components/profile/ProfileTermsOfUse';
-import navigateOnce from '../utils/navigateOnce';
 import I18n from '../i18n';
 
-const ProfileNavigator = StackNavigator(
+const ProfileNavigator = createStackNavigator(
   {
     ProfileStart: { screen: ProfileStartScreen },
     ProfileLogin: { screen: ProfileLoginScreen },
@@ -43,10 +42,6 @@ const ProfileNavigator = StackNavigator(
       ),
     },
   }
-);
-
-ProfileNavigator.router.getStateForAction = navigateOnce(
-  ProfileNavigator.router.getStateForAction
 );
 
 export default ProfileNavigator;

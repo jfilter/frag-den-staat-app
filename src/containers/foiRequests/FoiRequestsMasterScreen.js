@@ -9,7 +9,7 @@ import {
   View,
 } from 'react-native';
 import { Button } from 'react-native-elements';
-import { NavigationActions } from 'react-navigation';
+import { NavigationActions, DrawerActions } from 'react-navigation';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -202,8 +202,7 @@ class FoiRequestsMasterScreen extends React.Component {
 class MyIconLeft extends React.Component {
   navigateToFilter = () =>
     this.props.dispatch(
-      NavigationActions.navigate({
-        routeName: 'DrawerToggle',
+      DrawerActions.toggleDrawer({
         params: { filter: this.props.filter },
       })
     );

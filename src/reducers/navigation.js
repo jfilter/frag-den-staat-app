@@ -1,16 +1,4 @@
 import AppNavigator from '../navigators/AppNavigator';
+import { createNavigationReducer } from 'react-navigation-redux-helpers';
 
-// const initialNavState = AppNavigator.router.getStateForAction(
-//   NavigationActions.navigate({ routeName: 'Requests' })
-// );
-
-const initialState = AppNavigator.router.getStateForAction(
-  AppNavigator.router.getActionForPathAndParams('Requests')
-);
-
-function navigation(state = initialState, action) {
-  const nextState = AppNavigator.router.getStateForAction(action, state);
-  return nextState || state;
-}
-
-export default navigation;
+export default createNavigationReducer(AppNavigator);

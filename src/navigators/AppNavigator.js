@@ -1,6 +1,6 @@
 import { Icon } from 'react-native-elements';
-import { NavigationComponent } from 'react-native-material-bottom-navigation';
-import { TabNavigator, DrawerNavigator } from 'react-navigation';
+// import { NavigationComponent } from 'react-native-material-bottom-navigation';
+import { createTabNavigator, createDrawerNavigator } from 'react-navigation';
 import React from 'react';
 
 import { greyLight, primaryColor } from '../globals/colors';
@@ -10,7 +10,7 @@ import ProfileNavigator from './ProfileNavigator';
 import SearchNavigator from './SearchNavigator';
 import foiRequestsNavigator from './FoiRequestsNavigator';
 
-const AppNavigator = TabNavigator(
+const AppNavigator = createTabNavigator(
   {
     Requests: { screen: foiRequestsNavigator },
     Search: { screen: SearchNavigator },
@@ -18,7 +18,7 @@ const AppNavigator = TabNavigator(
     Profile: { screen: ProfileNavigator },
   },
   {
-    tabBarComponent: NavigationComponent,
+    // tabBarComponent: NavigationComponent,
     swipeEnabled: false,
     tabBarPosition: 'bottom',
     lazy: true,
@@ -52,7 +52,7 @@ const AppNavigator = TabNavigator(
   }
 );
 
-const Drawer = DrawerNavigator(
+const Drawer = createDrawerNavigator(
   {
     AppNavigator: { screen: AppNavigator },
   },

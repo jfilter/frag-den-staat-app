@@ -1,4 +1,4 @@
-import { StackNavigator } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import React from 'react';
 
@@ -9,9 +9,7 @@ import NewRequestConfirmScreen from '../containers/newRequest/NewRequestConfirmS
 import NewRequestStartScreen from '../containers/newRequest/NewRequestStartScreen';
 import NewRequestWriteScreen from '../containers/newRequest/NewRequestWriteScreen';
 
-import navigateOnce from '../utils/navigateOnce';
-
-const NewRequestNavigator = StackNavigator(
+const NewRequestNavigator = createStackNavigator(
   {
     NewRequestStart: { screen: NewRequestStartScreen },
     NewRequestWrite: { screen: NewRequestWriteScreen },
@@ -25,10 +23,6 @@ const NewRequestNavigator = StackNavigator(
       tabBarIcon: () => <Icon size={24} color={greyDark} name="add" />,
     },
   }
-);
-
-NewRequestNavigator.router.getStateForAction = navigateOnce(
-  NewRequestNavigator.router.getStateForAction
 );
 
 export default NewRequestNavigator;
