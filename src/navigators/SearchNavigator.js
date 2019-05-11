@@ -1,4 +1,7 @@
-import { createStackNavigator, createTabNavigator } from 'react-navigation';
+import {
+  createStackNavigator,
+  createMaterialTopTabNavigator,
+} from 'react-navigation';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import React from 'react';
 
@@ -18,7 +21,7 @@ import SearchAlertScreen from '../containers/search/SearchAlertScreen';
 import SearchStartScreen from '../containers/search/SearchStartScreen';
 import I18n from '../i18n';
 
-const SearchResultsNavigator = createTabNavigator(
+const SearchResultsNavigator = createMaterialTopTabNavigator(
   {
     SearchResultsFoiRequestsMaster: {
       screen: SearchResultsFoiRequestsMasterScreen,

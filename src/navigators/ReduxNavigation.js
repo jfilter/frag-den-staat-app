@@ -3,7 +3,7 @@ import { NavigationActions, addNavigationHelpers } from 'react-navigation';
 import { connect } from 'react-redux';
 import {
   createReactNavigationReduxMiddleware,
-  reduxifyNavigator,
+  createReduxContainer,
 } from 'react-navigation-redux-helpers';
 import React from 'react';
 import BackgroundFetch from 'react-native-background-fetch';
@@ -27,11 +27,10 @@ import { localNotif, setUp } from '../utils/notifications';
 
 // Note: createReactNavigationReduxMiddleware must be run before createReduxBoundAddListener
 const navMiddleware = createReactNavigationReduxMiddleware(
-  'root',
   state => state.navigation
 );
 
-const App = reduxifyNavigator(AppNavigator, 'root');
+const App = createReduxContainer(AppNavigator, 'root');
 
 class ReduxNavigation extends React.Component {
   componentDidMount() {

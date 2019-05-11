@@ -3,9 +3,10 @@ package com.fragdenstaat;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.oblador.vectoricons.VectorIconsPackage;
+import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import com.brentvatne.react.ReactVideoPackage;
 import com.RNFetchBlob.RNFetchBlobPackage;
-import com.oblador.vectoricons.VectorIconsPackage;
 import com.dieam.reactnativepushnotification.ReactNativePushNotificationPackage;
 import org.wonday.pdf.RCTPdfView;
 import com.oblador.keychain.KeychainPackage;
@@ -31,9 +32,10 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new VectorIconsPackage(),
+            new RNGestureHandlerPackage(),
             new ReactVideoPackage(),
             new RNFetchBlobPackage(),
-            new VectorIconsPackage(),
             new ReactNativePushNotificationPackage(),
             new RCTPdfView(),
             new KeychainPackage(),

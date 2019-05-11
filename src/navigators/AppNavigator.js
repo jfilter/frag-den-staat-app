@@ -1,53 +1,58 @@
 import { Icon } from 'react-native-elements';
-// import { NavigationComponent } from 'react-native-material-bottom-navigation';
-import { createTabNavigator, createDrawerNavigator } from 'react-navigation';
+import { createDrawerNavigator } from 'react-navigation';
 import React from 'react';
+import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
 
-import { greyLight, primaryColor } from '../globals/colors';
+import { greyLight, primaryColor, grey, greyDark } from '../globals/colors';
 import FoiRequestsDrawer from '../containers/foiRequests/FoiRequestsDrawer';
 import NewRequestNavigator from './NewRequestNavigator';
 import ProfileNavigator from './ProfileNavigator';
 import SearchNavigator from './SearchNavigator';
 import foiRequestsNavigator from './FoiRequestsNavigator';
 
-const AppNavigator = createTabNavigator(
+const AppNavigator = createMaterialBottomTabNavigator(
   {
-    Requests: { screen: foiRequestsNavigator },
-    Search: { screen: SearchNavigator },
-    NewRequest: { screen: NewRequestNavigator },
-    Profile: { screen: ProfileNavigator },
+    Requests: {
+      screen: foiRequestsNavigator,
+      navigationOptions: {
+        tabBarIcon: ({ tintColor }) => (
+          <Icon size={24} color={tintColor} name="home" />
+        ),
+      },
+    },
+    Search: {
+      screen: SearchNavigator,
+      navigationOptions: {
+        tabBarIcon: ({ tintColor }) => (
+          <Icon size={24} color={tintColor} name="search" />
+        ),
+      },
+    },
+    NewRequest: {
+      screen: NewRequestNavigator,
+      navigationOptions: {
+        tabBarIcon: ({ tintColor }) => (
+          <Icon size={24} color={tintColor} name="add" />
+        ),
+      },
+    },
+    Profile: {
+      screen: ProfileNavigator,
+      navigationOptions: {
+        tabBarIcon: ({ tintColor }) => (
+          <Icon size={24} color={tintColor} name="more-horiz" />
+        ),
+      },
+    },
   },
   {
-    // tabBarComponent: NavigationComponent,
-    swipeEnabled: false,
-    tabBarPosition: 'bottom',
-    lazy: true,
-    tabBarOptions: {
-      bottomNavigationOptions: {
-        labelColor: primaryColor,
-        rippleColor: 'white',
-        backgroundColor: 'white',
-        style: {
-          borderTopWidth: 1,
-          borderTopColor: greyLight,
-        },
-        tabs: {
-          Requests: {
-            activeIcon: <Icon size={24} color={primaryColor} name="home" />,
-          },
-          Search: {
-            activeIcon: <Icon size={24} color={primaryColor} name="search" />,
-          },
-          NewRequest: {
-            activeIcon: <Icon size={24} color={primaryColor} name="add" />,
-          },
-          Profile: {
-            activeIcon: (
-              <Icon size={24} color={primaryColor} name="more-horiz" />
-            ),
-          },
-        },
-      },
+    activeColor: primaryColor,
+    inactiveColor: greyDark,
+    barStyle: {
+      backgroundColor: 'white',
+      elevation: 0,
+      borderTopWidth: 1,
+      borderColor: greyLight,
     },
   }
 );
