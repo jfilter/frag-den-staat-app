@@ -56,13 +56,14 @@ class FoiRequestsMasterScreen extends React.Component {
     };
   }
 
-  componentWillMount() {
-    if (!this.props.onboardingFinished) {
-      this.props.navigateToOnboarding();
-    }
-  }
-
   componentDidMount() {
+    if (!this.props.onboardingFinished) {
+      // has to bone with some delay or otherwise it's broken on android
+      setTimeout(() => {
+        this.props.navigateToOnboarding();
+      }, 10);
+    }
+
     if (!this.props.isPending) {
       this.props.fetchData();
     }

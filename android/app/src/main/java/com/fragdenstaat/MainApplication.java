@@ -3,12 +3,12 @@ package com.fragdenstaat;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.dieam.reactnativepushnotification.ReactNativePushNotificationPackage;
 import com.reactnativecommunity.webview.RNCWebViewPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import com.brentvatne.react.ReactVideoPackage;
 import com.RNFetchBlob.RNFetchBlobPackage;
-import com.dieam.reactnativepushnotification.ReactNativePushNotificationPackage;
 import org.wonday.pdf.RCTPdfView;
 import com.oblador.keychain.KeychainPackage;
 import com.AlexanderZaytsev.RNI18n.RNI18nPackage;
@@ -33,12 +33,12 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new ReactNativePushNotificationPackage(),
             new RNCWebViewPackage(),
             new VectorIconsPackage(),
             new RNGestureHandlerPackage(),
             new ReactVideoPackage(),
             new RNFetchBlobPackage(),
-            new ReactNativePushNotificationPackage(),
             new RCTPdfView(),
             new KeychainPackage(),
             new RNI18nPackage(),

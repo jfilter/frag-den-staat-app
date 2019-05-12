@@ -5,29 +5,20 @@
 
     <application
       android:name=".MainApplication"
-      android:allowBackup="true"
       android:label="@string/app_name"
       android:icon="@mipmap/ic_launcher"
-      android:theme="@style/AppTheme"
-      android:usesCleartextTraffic="${isDebug}">
-
-
-        <activity
-        android:name=".SplashActivity"
+      android:allowBackup="false"
+      android:theme="@style/AppTheme">
+      <activity
+        android:name=".MainActivity"
         android:label="@string/app_name"
-        android:theme="@style/SplashTheme">
+        android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+        android:windowSoftInputMode="adjustResize">
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
             <category android:name="android.intent.category.LAUNCHER" />
-            <action android:name="android.intent.action.DOWNLOAD_COMPLETE"/>
         </intent-filter>
-
-      </activity>
-        <activity android:name=".MainActivity" android:exported="true"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
-            android:windowSoftInputMode="adjustResize"
-            >
-          <intent-filter android:label="FragDenStaat App">
+                  <intent-filter android:label="FragDenStaat App">
             <action android:name="android.intent.action.VIEW" />
             <category android:name="android.intent.category.DEFAULT" />
             <category android:name="android.intent.category.BROWSABLE" />
@@ -45,7 +36,7 @@
             <category android:name="android.intent.category.BROWSABLE" />
             <data android:scheme="fragdenstaat"/>
           </intent-filter>
-        </activity>
+      </activity>
       <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
     </application>
 
