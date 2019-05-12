@@ -9,9 +9,22 @@ import NavBarIcon from '../../components/foiRequests/NavBarIcon';
 import { searchUpdateQueryAction } from '../../actions/search';
 import styles from './styles';
 import I18n from '../../i18n';
-import { greyDark, fontColor, primaryColor } from '../../globals/colors';
+import {
+  greyDark,
+  fontColor,
+  primaryColor,
+  greyLight,
+} from '../../globals/colors';
 
 class SearchStartScreen extends React.Component {
+  state = {
+    search: '',
+  };
+
+  updateSearch = search => {
+    this.setState({ search });
+  };
+
   _onSubmit = queryText => {
     this.props.navigateToResults({ query: queryText });
     this.props.updateQuery(queryText);
@@ -37,6 +50,7 @@ class SearchStartScreen extends React.Component {
 
   render() {
     const size = Platform.OS === 'ios' ? 35 : 26; // for icon
+    const { search } = this.state;
     return (
       <View style={styles.background} keyboardShouldPersistTaps="handled">
         <SearchBar
@@ -58,8 +72,10 @@ class SearchStartScreen extends React.Component {
           autoFocus
           autoCorrect={false}
           containerStyle={styles.searchBarContainer}
-          inputStyle={styles.searchBarInput}
+          inputContainerStyle={{ backgroundColor: greyLight }}
           round
+          onChangeText={this.updateSearch}
+          value={search}
         />
         <FlatList
           data={this.props.pastQueries}

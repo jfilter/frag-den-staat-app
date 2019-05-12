@@ -1,5 +1,4 @@
 import { StyleSheet } from 'react-native';
-import { greyLight } from '../../globals/colors';
 
 const styles = StyleSheet.create({
   background: { backgroundColor: 'white', height: '100%' },
@@ -9,7 +8,6 @@ const styles = StyleSheet.create({
     borderBottomWidth: 0,
     borderTopWidth: 0,
   },
-  searchBarInput: { backgroundColor: greyLight, height: 50, paddingLeft: 45 },
 });
 
 export default styles;

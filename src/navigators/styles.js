@@ -52,8 +52,6 @@ const commongTabBarOptions = {
   },
 };
 
-if (Platform.OS === 'ios') commongTabBarOptions.tabStyle.width = '100%';
-
 const tabBarConfig = {
   backBehavior: 'none',
   tabBarPosition: 'top',

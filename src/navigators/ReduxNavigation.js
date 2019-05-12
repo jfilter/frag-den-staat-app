@@ -1,5 +1,5 @@
 import { BackHandler, Linking, Platform } from 'react-native';
-import { NavigationActions, addNavigationHelpers } from 'react-navigation';
+import { NavigationActions } from 'react-navigation';
 import { connect } from 'react-redux';
 import {
   createReactNavigationReduxMiddleware,
