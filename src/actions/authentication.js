@@ -48,9 +48,10 @@ function refreshingTokenPendingAction() {
   };
 }
 
-function refreshingTokenErrorAction() {
+function refreshingTokenErrorAction(error) {
   return {
     type: 'REFRESHING_TOKEN_ERROR',
+    error,
   };
 }
 

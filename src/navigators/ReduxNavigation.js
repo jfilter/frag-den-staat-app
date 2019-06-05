@@ -33,7 +33,7 @@ const navMiddleware = createReactNavigationReduxMiddleware(
 const App = createReduxContainer(AppNavigator, 'root');
 
 class ReduxNavigation extends React.Component {
-  componentDidMount() {
+  async componentDidMount() {
     BackHandler.addEventListener('hardwareBackPress', this.onBackPress);
 
     // universal linking, when app was closed
@@ -45,13 +45,11 @@ class ReduxNavigation extends React.Component {
     // deep linking (and all ios)
     Linking.addEventListener('url', this.handleUrlEvent);
 
-    loadToken().then(
-      token =>
-        token !== null &&
-        Object.keys(token).length !== 0 &&
-        this.props.updateToken(token) &&
-        this.props.getUserInformation()
-    );
+    const token = await loadToken();
+    if (token !== null && Object.keys(token).length !== 0) {
+      await this.props.updateToken(token);
+      this.props.getUserInformation();
+    }
 
     const nav = id => {
       this.props.dispatch(

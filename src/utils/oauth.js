@@ -38,13 +38,18 @@ const exchangeCodeForAuthToken = code => {
 
 const refreshAccessToken = refreshToken => {
   const url = `${OAUTH_PROXY_HOSTNAME}/account/token/?client_id=${OAUTH_CLIENT_ID}&client_secret=${OAUTH_CLIENT_SECRET}&grant_type=refresh_token&refresh_token=${refreshToken}&scope=${OAUTH_SCOPE}`;
-  return fetch(url, { method: 'post ' });
+  return fetch(url, {
+    method: 'post',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
 };
 
 const getJsonOrThrow = async fetchingPromise => {
   const response = await fetchingPromise;
   if (!response.ok) {
-    throw new Error(`${response.status}: ${response}`);
+    throw new Error(`${response.status}: ${response.url} ${response.body}`);
   }
   return response.json();
 };
@@ -99,10 +104,15 @@ const getCurrentAccessTokenOrRefresh = (dispatch, getState) => {
       refreshToken,
     } = getState().authentication;
 
-    const secondsLeftBeforeRefreshing = 60;
+    // JavaScript UTC is in milliseconds, normally UTC is in seconds
+    const milliSecondsLeftBeforeRefreshing = 60 * 1000;
+    const expiresInMS = expiresIn * 1000;
 
     // is the token at least for X seconds valid?
-    if (timeStamp + expiresIn > Date.now() + secondsLeftBeforeRefreshing) {
+    if (
+      timeStamp + expiresInMS >
+      Date.now() + milliSecondsLeftBeforeRefreshing
+    ) {
       // if yes, return
       resolve(accessToken);
     } else {
