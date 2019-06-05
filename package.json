@@ -10,7 +10,7 @@
   },
   "scripts": {
     "start": "node node_modules/react-native/local-cli/cli.js start",
-    "test": "jest",
+    "test": "jest --clearCache && jest",
     "postversion": "react-native-version",
     "ackn": "node node_modules/license-everything /users/filter/code/frag-den-staat-app /users/filter/code/frag-den-staat-app/src/data/ackn.json FragDenStaat"
   },
@@ -70,7 +70,10 @@
     "react-test-renderer": "16.8.6"
   },
   "jest": {
-    "preset": "react-native"
+    "preset": "react-native",
+    "transformIgnorePatterns": [
+      "node_modules/(?!react-native|react-navigation)/"
+    ]
   },
   "prettier": {
     "singleQuote": true,
