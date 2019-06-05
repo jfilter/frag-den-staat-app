@@ -90,9 +90,12 @@ export default {
     desc: 'Detailed Description',
     send: 'Send',
     success: 'Success',
-    fail: 'Fail. Retry?',
+    fail: 'Transmission failed. Retry?',
     anon: 'anonym',
     confirm: 'Confirm',
+    alertSuccessTitle: 'Success!',
+    alertSuccessMessage: 'The request was successfully transmitted.',
+    alertError: 'Error',
     expl:
       'Schreibe deine Anfrage in einfacher, präziser Sprache und achte auf deine Rechtschreibung. Bitte verzichte auf Anrede, Grußformel, Verweise auf das IFG etc., da wir diese automatisiert hinzufügen.',
   },

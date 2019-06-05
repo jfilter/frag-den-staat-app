@@ -1,4 +1,4 @@
-import { ActivityIndicator, View, Text, Platform } from 'react-native';
+import { ActivityIndicator, View, Text } from 'react-native';
 import { Icon, Button } from 'react-native-elements';
 import { connect } from 'react-redux';
 import React from 'react';
@@ -9,6 +9,8 @@ import BlankContainer from '../../components/library/BlankContainer';
 import Heading from '../../components/library/Heading';
 import I18n from '../../i18n';
 import StandardButton from '../../components/library/StandardButton';
+import { getCurrentAccessTokenOrRefresh } from '../../utils/oauth';
+import { errorAlert, successAlert } from '../../utils/dropDownAlert';
 
 class NewRequestConfirmScreen extends React.Component {
   state = { sending: false, success: false, fail: false };
@@ -16,7 +18,6 @@ class NewRequestConfirmScreen extends React.Component {
   sendRequest = async () => {
     this.setState({ sending: true, success: false, fail: false });
 
-    const { accessToken } = this.props;
     const {
       title,
       description,
@@ -43,6 +44,7 @@ class NewRequestConfirmScreen extends React.Component {
     // csrfString = csrfString.split(';')[0];
 
     // console.log(csrfString);
+    const accessToken = await this.props.getAccessToken();
 
     fetch('https://fragdenstaat.de/api/v1/request/', {
       method: 'POST',
@@ -59,14 +61,32 @@ class NewRequestConfirmScreen extends React.Component {
       .then(response => {
         // weird status
         if (response.status === 'success') {
+          successAlert
+            .getDropDown()
+            .alertWithType(
+              'success',
+              I18n.t('newRequestScreen.alertSuccessTitle'),
+              I18n.t('newRequestScreen.alertSuccessMessage')
+            );
+
           this.setState({ success: true });
         } else {
+          errorAlert
+            .getDropDown()
+            .alertWithType(
+              'error',
+              I18n.t('newRequestScreen.alertError'),
+              response.message
+            );
+
           this.setState({ fail: true });
         }
       })
       .catch(error => {
         this.setState({ fail: true });
-        console.error('Error:', error);
+        errorAlert
+          .getDropDown()
+          .alertWithType('error', I18n.t('newRequestScreen.alertError'), error);
       });
   };
 
@@ -102,28 +122,23 @@ class NewRequestConfirmScreen extends React.Component {
 
         <View style={{ marginTop: spaceMore }} />
 
-        {!sending &&
-          !success &&
-          !fail && (
-            <StandardButton
-              title={I18n.t('newRequestScreen.send')}
-              onPress={() => this.sendRequest()}
-            />
-          )}
-        {sending &&
-          !success &&
-          !fail && (
-            <ActivityIndicator
-              animating
-              size="large"
-              color={primaryColorLight}
-            />
-          )}
+        {!sending && !success && !fail && (
+          <StandardButton
+            title={I18n.t('newRequestScreen.send')}
+            onPress={() => this.sendRequest()}
+          />
+        )}
+        {sending && !success && !fail && (
+          <ActivityIndicator animating size="large" color={primaryColorLight} />
+        )}
         {success && (
           <Button
             icon={<Icon name="check" size={15} color="white" />}
-            buttonStyle={{
-              backgroundColor: 'green',
+            disabledStyle={{
+              backgroundColor: '#32A54A',
+            }}
+            disabledTitleStyle={{
+              color: 'white',
             }}
             iconRight
             title={I18n.t('newRequestScreen.success')}
@@ -134,7 +149,10 @@ class NewRequestConfirmScreen extends React.Component {
           <Button
             icon={<Icon name="repeat" size={15} color="white" />}
             buttonStyle={{
-              backgroundColor: 'red',
+              backgroundColor: '#cc3232',
+            }}
+            titleStyle={{
+              color: 'white',
             }}
             iconRight
             title={I18n.t('newRequestScreen.fail')}
@@ -153,8 +171,19 @@ NewRequestConfirmScreen.navigationOptions = {
 const mapStateToProps = state => {
   return {
     name: `${state.authentication.firstName} ${state.authentication.lastName}`,
-    accessToken: state.authentication.accessToken,
   };
 };
 
-export default connect(mapStateToProps)(NewRequestConfirmScreen);
+const mapDispatchToProps = dispatch => {
+  return {
+    getAccessToken: () =>
+      dispatch((innerDispatch, getState) =>
+        getCurrentAccessTokenOrRefresh(innerDispatch, getState)
+      ),
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(NewRequestConfirmScreen);

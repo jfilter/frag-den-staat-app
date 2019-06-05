@@ -90,9 +90,12 @@ export default {
     desc: 'Genaue Beschreibung',
     send: 'Absenden',
     success: 'Erfolgreich übermittelt',
-    fail: 'Übermittelung fehlgeschlagen. Noch mal versuchen.',
+    fail: 'Übermittelung fehlgeschlagen. Noch mal versuchen?',
     anon: 'Anonym',
     confirm: 'Bestätigen',
+    alertSuccessTitle: 'Erfolg!',
+    alertSuccessMessage: 'Die Anfrage wurde erfolgreich übermittelt',
+    alertError: 'Fehler',
     expl:
       'Schreibe deine Anfrage in einfacher, präziser Sprache und achte auf deine Rechtschreibung. Bitte verzichte auf Anrede, Grußformel etc. Diese fügen wir automatische hinzu. Im nächsten Schritt bestätigsts du die Anfrage.',
   },

@@ -4,7 +4,12 @@ import { SearchBar, ListItem } from 'react-native-elements';
 import { connect } from 'react-redux';
 import React from 'react';
 
-import { fontColor, greyDark, primaryColor } from '../../globals/colors';
+import {
+  fontColor,
+  greyDark,
+  greyLight,
+  primaryColor,
+} from '../../globals/colors';
 import {
   searchPublicBodies,
   searchUpdateQueryAction,
@@ -17,6 +22,10 @@ import StandardButton from '../../components/library/StandardButton';
 import styles from '../search/styles';
 
 class NewRequestStartScreen extends React.Component {
+  state = {
+    search: '',
+  };
+
   _onSubmit = queryText => {
     this.props.dispatch(searchUpdateQueryAction(queryText));
     this.props.dispatch(searchPublicBodies());
@@ -46,9 +55,14 @@ class NewRequestStartScreen extends React.Component {
     );
   };
 
+  updateSearch = search => {
+    this.setState({ search });
+  };
+
   render() {
     const size = Platform.OS === 'ios' ? 35 : 26; // for icon
     const { currentUserId, navigateToLogin } = this.props;
+    const { search } = this.state;
     return (
       <BlankContainer keyboardShouldPersistTaps="handled">
         {currentUserId && (
@@ -76,7 +90,10 @@ class NewRequestStartScreen extends React.Component {
               autoCorrect={false}
               containerStyle={styles.searchBarContainer}
               inputStyle={styles.searchBarInput}
+              inputContainerStyle={{ backgroundColor: greyLight }}
               round
+              onChangeText={this.updateSearch}
+              value={search}
             />
             <FlatList
               data={this.props.results}
