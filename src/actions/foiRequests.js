@@ -2,6 +2,7 @@ import R from 'ramda';
 
 import { ORIGIN, FOI_REQUESTS_PAGE_SIZE, FOI_REQUESTS_PATH } from '../globals';
 import { fetchAndDispatch } from '../utils/networking';
+import { getCurrentAccessTokenOrRefresh } from '../utils/oauth';
 import { mapToFakeStatus } from '../utils';
 
 function foiRequestsErrorAction(error) {
@@ -101,6 +102,13 @@ function buildUrl(getState) {
     // filter by own user id
     if (filter.user) {
       params.set('user', filter.user);
+      params.delete('is_foi');
+    }
+
+    // filter by requests the user follows
+    if (filter.follower) {
+      params.set('follower', filter.follower);
+      params.delete('is_foi');
     }
   }
 
@@ -110,7 +118,7 @@ function buildUrl(getState) {
 }
 
 function fetchRequests(beforeFetchDispatchedAction, onSuccessFetch) {
-  return (dispatch, getState) => {
+  return async (dispatch, getState) => {
     const { filter } = getState().foiRequests;
 
     const buildUrlFunc = (function makeBuildUrlFunc() {
@@ -131,9 +139,12 @@ function fetchRequests(beforeFetchDispatchedAction, onSuccessFetch) {
     })(dispatch, getState, filter);
 
     let addiontionalHeaders = {};
-    if (filter.user !== null) {
+    if (filter.user !== null || filter.follower !== null) {
       addiontionalHeaders = {
-        Authorization: `Bearer ${getState().authentication.accessToken}`,
+        Authorization: `Bearer ${await getCurrentAccessTokenOrRefresh(
+          dispatch,
+          getState
+        )}`,
       };
     }
 
