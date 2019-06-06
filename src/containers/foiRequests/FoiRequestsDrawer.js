@@ -37,8 +37,6 @@ const FoiRequestDrawer = ({
     chosenArnesFilter = true;
   }
 
-  console.log(chosenFollowingFilter, followingFilter, currentUserId);
-
   return (
     <ScrollView style={{ paddingTop: 100 }}>
       <ListItem

@@ -12,6 +12,7 @@ const initialState = {
     category: null,
     publicBody: null,
     user: null,
+    follower: null,
   },
 };
 

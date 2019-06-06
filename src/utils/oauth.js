@@ -104,6 +104,8 @@ const getCurrentAccessTokenOrRefresh = (dispatch, getState) => {
       refreshToken,
     } = getState().authentication;
 
+    if (refreshToken == null) reject('no valid refresh token');
+
     // JavaScript UTC is in milliseconds, normally UTC is in seconds
     const milliSecondsLeftBeforeRefreshing = 60 * 1000;
     const expiresInMS = expiresIn * 1000;
