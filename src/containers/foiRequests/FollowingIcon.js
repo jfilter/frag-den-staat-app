@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { ORIGIN } from '../../globals';
 import NavBarIcon from '../../components/foiRequests/NavBarIcon';
 import { getCurrentAccessTokenOrRefresh } from '../../utils/oauth';
+import { clearCache } from '../../utils/networking';
 
 class FollowingIcon extends React.Component {
   constructor(props) {
@@ -12,11 +13,15 @@ class FollowingIcon extends React.Component {
       canFollow: false,
       follows: false,
       follow_count: 0,
+      deleteUrl: null,
     };
   }
 
   async componentDidMount() {
-    const { id, getAccessToken } = this.props;
+    const { id, getAccessToken, currentUserId } = this.props;
+
+    if (currentUserId == null) return;
+
     const accesToken = await getAccessToken();
     const url = `${ORIGIN}/api/v1/following/?request=${id}`;
     const response = await fetch(url, {
@@ -29,6 +34,7 @@ class FollowingIcon extends React.Component {
     this.setState({
       canFollow: res.can_follow,
       follows: res.follows,
+      deleteUrl: res.resource_uri,
     });
   }
 
@@ -36,20 +42,40 @@ class FollowingIcon extends React.Component {
     try {
       const { id, getAccessToken } = this.props;
       const accesToken = await getAccessToken();
-      const response = await fetch(`${ORIGIN}/api/v1/following/`, {
-        method: 'post',
-        body: JSON.stringify({ request: id }),
-        headers: {
-          Authorization: `Bearer ${accesToken}`,
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-      });
-      // because the follower count is not done here, the following counter will net get updated.
-      // FIXME: put following stuff into redux store
-      const resJson = await response.json();
-      if (resJson.status === 'success') {
-        this.setState({ follows: !this.state.follows });
+
+      if (this.state.follows) {
+        const response = await fetch(this.state.deleteUrl, {
+          method: 'delete',
+          headers: {
+            Authorization: `Bearer ${accesToken}`,
+          },
+        });
+        // because the follower count is not done here, the following counter will net get updated.
+        // FIXME: put following stuff into redux store
+        if (response.status === 204) {
+          this.setState({ follows: !this.state.follows });
+        }
+        clearCache();
+      } else {
+        const response = await fetch(`${ORIGIN}/api/v1/following/`, {
+          method: 'post',
+          body: JSON.stringify({ request: id }),
+          headers: {
+            Authorization: `Bearer ${accesToken}`,
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+        });
+        // because the follower count is not done here, the following counter will net get updated.
+        // FIXME: put following stuff into redux store
+        const resJson = await response.json();
+        if (resJson.status === 'success') {
+          this.setState({
+            follows: !this.state.follows,
+            deleteUrl: resJson.url,
+          });
+          clearCache();
+        }
       }
     } catch (error) {
       console.log(error);
@@ -80,6 +106,12 @@ class FollowingIcon extends React.Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    currentUserId: state.authentication.userId,
+  };
+};
+
 const mapDispatchToProps = dispatch => {
   return {
     getAccessToken: () =>
@@ -90,6 +122,6 @@ const mapDispatchToProps = dispatch => {
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(FollowingIcon);
