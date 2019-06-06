@@ -50,7 +50,7 @@ const FoiRequestDrawer = ({
           color: chosenPublicFilter ? primaryColor : fontColor,
         }}
         onPress={() => {
-          filterChange({ user: null });
+          filterChange({ user: null, follower: null });
           drawerClose();
         }}
       />
