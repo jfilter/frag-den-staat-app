@@ -11,6 +11,7 @@ import I18n from '../../i18n';
 import StandardButton from '../../components/library/StandardButton';
 import { getCurrentAccessTokenOrRefresh } from '../../utils/oauth';
 import { errorAlert, successAlert } from '../../utils/dropDownAlert';
+import { clearCache } from '../../utils/networking';
 
 class NewRequestConfirmScreen extends React.Component {
   state = { sending: false, success: false, fail: false };
@@ -70,6 +71,7 @@ class NewRequestConfirmScreen extends React.Component {
             );
 
           this.setState({ success: true });
+          clearCache();
         } else {
           errorAlert
             .getDropDown()
