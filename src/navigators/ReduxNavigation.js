@@ -13,6 +13,8 @@ import {
   OAUTH_REDIRECT_URI,
   ORIGIN,
 } from '../globals';
+import I18n from '../i18n';
+
 import { errorAlert, successAlert } from '../utils/dropDownAlert';
 import {
   getUserInformation,
@@ -102,7 +104,11 @@ class ReduxNavigation extends React.Component {
         // 2. show message on top
         successAlert
           .getDropDown()
-          .alertWithType('success', 'Succesful', 'You successfully logged in.');
+          .alertWithType(
+            'success',
+            I18n.t('loginSuccess'),
+            I18n.t('loginSuccessMessage')
+          );
 
         // 3. update token in redux store
         this.props.updateToken(token);

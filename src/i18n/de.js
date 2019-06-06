@@ -16,6 +16,8 @@ export default {
   all: 'Alle',
   done: 'Fertig',
   skip: 'Übspr.',
+  loginSuccess: 'Erfolg',
+  loginSuccessMessage: 'Du hast dich erfolgreich angemeldet.',
   countingRequests: {
     one: '1 Anfrage',
     other: '{{count}} Anfragen',
