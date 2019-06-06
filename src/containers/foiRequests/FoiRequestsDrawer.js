@@ -137,7 +137,7 @@ const FoiRequestDrawer = ({
         hideChevron
         title="Arnes Anfragen"
         onPress={() => {
-          filterChange({ user: arnesUserid });
+          filterChange({ user: arnesUserid, follower: null });
           drawerClose();
         }} // Arne's FdS user id (which is publicly accisbile)
         titleStyle={{

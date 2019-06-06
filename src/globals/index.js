@@ -24,6 +24,7 @@ const OAUTH_SCOPES_AS_LIST = [
   'read:profile',
   'read:request',
   'make:request',
+  'follow:request',
 ];
 const OAUTH_SCOPE = OAUTH_SCOPES_AS_LIST.join('%20');
 
