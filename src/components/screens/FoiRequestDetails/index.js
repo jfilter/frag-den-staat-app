@@ -373,7 +373,7 @@ class FoiRequestDetails extends React.Component {
         if (contentHidden) {
           proccesedContent = I18n.t('foiRequestDetails.notYetVisible');
         } else {
-          if (isResponse) {
+          if (!isResponse) {
             // cut away signature of FdS
             const lastIndex = proccesedContent.lastIndexOf('--');
             if (lastIndex !== -1) {
