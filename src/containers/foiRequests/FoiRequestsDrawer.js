@@ -24,7 +24,7 @@ class FoiRequestDrawer extends React.Component {
     };
   }
 
-  pickerChange = async (itemValue, itemIndex) => {
+  pickerChange = async itemValue => {
     if (itemValue === 'tba') {
       const res = await fetch('https://fragdenstaat.de/api/v1/campaign/');
       const resJson = await res.json();
@@ -35,6 +35,7 @@ class FoiRequestDrawer extends React.Component {
         pickerItems: [...this.state.pickerItems.slice(0, 2), ...newItems],
       });
       this.setState({ pickerChosen: newItems[0][1] });
+      this.props.updateCampaign(newItems[0][1]);
     } else {
       this.setState({ pickerChosen: itemValue });
       this.props.updateCampaign(itemValue);
