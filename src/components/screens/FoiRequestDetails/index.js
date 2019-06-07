@@ -268,11 +268,6 @@ class FoiRequestDetails extends React.Component {
       });
     }
 
-    tableData.push({
-      label: 'Follower',
-      value: <FollowingNumber id={id} />,
-    });
-
     const { name: lawName, site_url: lawUrl } = law;
     // currently, the API does not provide links for combined laws
     if (lawName && lawUrl) {
@@ -286,6 +281,11 @@ class FoiRequestDetails extends React.Component {
         value: <Text selectable>{lawName}</Text>,
       });
     }
+
+    tableData.push({
+      label: 'Follower',
+      value: <FollowingNumber id={id} />,
+    });
 
     return (
       <View style={styles.table}>
