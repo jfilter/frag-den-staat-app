@@ -15,7 +15,10 @@ const initialState = {
     follower: null,
   },
   followerCounts: {},
+  campaign: '-',
 };
+
+// hide campaign requests as default
 
 function foiRequests(state = initialState, action) {
   switch (action.type) {
@@ -77,6 +80,11 @@ function foiRequests(state = initialState, action) {
       return {
         ...state,
         followerCounts: { ...state.followerCounts, ...action.followerCounts },
+      };
+    case 'FOI_REQUESTS_UPDATE_CAMPAIGN':
+      return {
+        ...state,
+        campaign: action.campaign,
       };
     case 'OAUTH_LOGOUT':
       return initialState;

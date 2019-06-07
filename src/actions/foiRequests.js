@@ -64,9 +64,16 @@ function foiRequestsUpdateFollowerCountsAction(followerCounts) {
   };
 }
 
+function foiRequestsUpdateCampaignAction(campaign) {
+  return {
+    type: 'FOI_REQUESTS_UPDATE_CAMPAIGN',
+    campaign,
+  };
+}
+
 function buildUrl(getState) {
   const state = getState();
-  const { filter, nPage, isRefreshing } = state.foiRequests;
+  const { filter, nPage, isRefreshing, campaign } = state.foiRequests;
 
   let offset = FOI_REQUESTS_PAGE_SIZE * nPage;
 
@@ -116,6 +123,10 @@ function buildUrl(getState) {
     if (filter.follower) {
       params.set('follower', filter.follower);
       params.delete('is_foi');
+    }
+
+    if (campaign !== null) {
+      params.set('campaign', campaign);
     }
   }
 
@@ -188,10 +199,21 @@ function foiRequestsFilterChange(filter) {
   };
 }
 
+function foiRequestsCampaignChange(camp) {
+  return dispatch => {
+    dispatch(foiRequestsUpdateCampaignAction(camp));
+    // first delete old data
+    dispatch(foiRequestsInvalidateDataAction());
+    //  and second fetch new one
+    dispatch(foiRequestsFetchData());
+  };
+}
+
 export {
   foiRequestsFetchData,
   foiRequestsRefreshData,
   foiRequestsFilterChange,
   foiRequestsErrorClearAction,
   foiRequestsUpdateFollowerCountsAction,
+  foiRequestsCampaignChange,
 };
