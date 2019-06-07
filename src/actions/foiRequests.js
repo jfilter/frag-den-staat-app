@@ -142,7 +142,10 @@ function buildUrl(getState) {
 
 function fetchRequests(beforeFetchDispatchedAction, onSuccessFetch) {
   return async (dispatch, getState) => {
-    const { filter } = getState().foiRequests;
+    const {
+      foiRequests: { filter },
+      authentication: { userId },
+    } = getState();
 
     const buildUrlFunc = (function makeBuildUrlFunc() {
       return () => buildUrl(getState);
@@ -162,7 +165,10 @@ function fetchRequests(beforeFetchDispatchedAction, onSuccessFetch) {
     })(dispatch, getState, filter);
 
     let addiontionalHeaders = {};
-    if (filter.user !== null || filter.follower !== null) {
+    if (
+      (filter.user !== null && filter.user === userId) ||
+      filter.follower !== null
+    ) {
       addiontionalHeaders = {
         Authorization: `Bearer ${await getCurrentAccessTokenOrRefresh(
           dispatch,
