@@ -91,12 +91,17 @@ function buildUrl(getState) {
   ]);
 
   if (filter.status) {
-    // fake status and resolition
     const { status, resolution } = mapToFakeStatus(filter.status.param);
 
-    params.set('status', status);
-    if (resolution) {
-      params.set('resolution', resolution);
+    if (status === 'has_fee') {
+      params.set('costs_min', 1);
+    } else {
+      // fake status and resolition
+
+      params.set('status', status);
+      if (resolution) {
+        params.set('resolution', resolution);
+      }
     }
   }
 

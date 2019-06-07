@@ -81,8 +81,7 @@ function shortenLabel(label, filterFor) {
 // remove 'overdue' and 'with costs' because it is not implemented yet.
 function getFilterableStatus() {
   return statusFile.filter(
-    x =>
-      !['overdue', 'with_costs', 'publicbody_needed', 'has_fee'].includes(x.id)
+    x => !['overdue', 'publicbody_needed'].includes(x.id)
   );
 }
 

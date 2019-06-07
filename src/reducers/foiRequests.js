@@ -13,6 +13,7 @@ const initialState = {
     publicBody: null,
     user: null,
     follower: null,
+    has_fee: null,
   },
   followerCounts: {},
   campaign: '-',
