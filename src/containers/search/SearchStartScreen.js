@@ -15,6 +15,7 @@ import {
   primaryColor,
   greyLight,
 } from '../../globals/colors';
+import { FDROID } from '../../globals';
 
 class SearchStartScreen extends React.Component {
   state = {
@@ -92,11 +93,16 @@ SearchStartScreen.navigationOptions = ({ navigation }) => {
     navigation.dispatch(
       NavigationActions.navigate({ routeName: 'SearchAlerts' })
     );
+  if (!FDROID) {
+    return {
+      title: I18n.t('search'),
+      headerRight: (
+        <NavBarIcon onPress={navigateToAlerts} iconName="notifications" />
+      ),
+    };
+  }
   return {
     title: I18n.t('search'),
-    headerRight: (
-      <NavBarIcon onPress={navigateToAlerts} iconName="notifications" />
-    ),
   };
 };
 

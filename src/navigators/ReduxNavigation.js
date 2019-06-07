@@ -12,6 +12,7 @@ import {
   GET_REQUEST_ID_HOSTNAME,
   OAUTH_REDIRECT_URI,
   ORIGIN,
+  FDROID,
 } from '../globals';
 import I18n from '../i18n';
 
@@ -62,7 +63,7 @@ class ReduxNavigation extends React.Component {
       );
     };
 
-    setUp(nav);
+    if (!FDROID) setUp(nav);
   }
 
   componentWillUnmount() {

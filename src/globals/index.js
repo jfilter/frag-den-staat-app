@@ -29,6 +29,8 @@ const OAUTH_SCOPES_AS_LIST = [
 ];
 const OAUTH_SCOPE = OAUTH_SCOPES_AS_LIST.join('%20');
 
+const FDROID = false;
+
 export {
   OAUTH_PROXY_HOSTNAME,
   OAUTH_REDIRECT_URI,
@@ -43,4 +45,5 @@ export {
   OAUTH_SCOPE,
   USER_PATH,
   PROXY_HOSTNAME,
+  FDROID,
 };
