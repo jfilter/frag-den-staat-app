@@ -1,4 +1,4 @@
-package com.fragdenstaat;
+package de.fragdenstaat.app;
 
 /**
  * Created by filter on 17.09.17.
