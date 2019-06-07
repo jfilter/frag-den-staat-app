@@ -79,8 +79,8 @@ class ReduxNavigation extends React.Component {
     // because everything is wrapped in a Drawer, we need to go over this first
     // navigator
     if (
-      navigation.routes[0].routes[0].index === 0 &&
-      navigation.routes[0].routes[0].routes[0].index === 0
+      navigation.routes[0].index === 0 &&
+      navigation.routes[0].routes[0].index === 0
     ) {
       return false;
     }
