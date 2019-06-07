@@ -151,5 +151,15 @@
     "resource_uri": "/api/v1/jurisdiction/10/",
     "site_url": "https://fragdenstaat.de/thueringen/",
     "slug": "thueringen"
+  },
+  {
+    "resource_uri": "https://fragdenstaat.de/api/v1/jurisdiction/107/",
+    "id": 107,
+    "name": "Europäische Union",
+    "rank": 3,
+    "description": "",
+    "slug": "europaeische-union",
+    "site_url": "https://fragdenstaat.de/zustaendigkeit/europaeische-union/",
+    "region": null
   }
 ]

@@ -51,6 +51,8 @@ function shortenJurisdiction(jurisdiction) {
       return 'NRW';
     case 'Baden-Württemberg':
       return 'Ba-Wü';
+    case 'Europäische Union':
+      return 'EU';
     default:
       return jurisdiction;
   }
