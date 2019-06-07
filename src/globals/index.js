@@ -9,14 +9,15 @@ const SEARCH_PUBLIC_BODIES_PATH = '/api/v1/publicbody/search/';
 const USER_PATH = '/api/v1/user/';
 
 const OAUTH_PROXY_HOSTNAME = 'https://fds-oauth-proxy.app.vis.one';
-const PROXY_HOSTNAME = 'https://fds-proxy.app.vis.one';
-const GET_REQUEST_ID_HOSTNAME =
-  'https://get-fds-request-id-by-slug.app.vis.one';
+// const PROXY_HOSTNAME = 'https://fds-proxy.app.vis.one';
+// not sure if the proxy is not required anymore
+const PROXY_HOSTNAME = ORIGIN;
 
 const APP_URI_SCHEME = 'fragdenstaat';
 const OAUTH_REDIRECT_URI = `${APP_URI_SCHEME}://authorize`;
 
 const OAUTH_CLIENT_ID = 'WUNCyTgGhVpLrqilf5MrVOroD6oRDfttHFqbAt2X';
+// this will get replace to the correct client secret with the proxy
 const OAUTH_CLIENT_SECRET = 'secret';
 
 const OAUTH_SCOPES_AS_LIST = [
@@ -42,5 +43,4 @@ export {
   OAUTH_SCOPE,
   USER_PATH,
   PROXY_HOSTNAME,
-  GET_REQUEST_ID_HOSTNAME,
 };

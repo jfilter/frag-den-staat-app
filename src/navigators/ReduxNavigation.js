@@ -150,9 +150,10 @@ class ReduxNavigation extends React.Component {
     }
 
     if (routeName === 'anfrage' && routeParts.length !== 5) {
-      // this is a single request with slug
-      const res = await fetch(`${GET_REQUEST_ID_HOSTNAME}/${route}`);
-      const id = await res.json();
+      // TODO: currently the same request is fetched twice
+      const slug = route.split('/').reverse()[0];
+      const res = await fetch(`${ORIGIN}/api/v1/request/?slug=${slug}`);
+      const id = (await res.json()).objects[0].id;
       dispatch(
         NavigationActions.navigate({
           routeName: 'FoiRequestsSingle',
