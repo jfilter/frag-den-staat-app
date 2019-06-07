@@ -28,6 +28,7 @@ import ListHeader from '../../components/library/ListHeader';
 import ListItem from '../../components/library/ListItem';
 import NavBarIcon from '../../components/foiRequests/NavBarIcon';
 import Seperator from '../../components/library/Seperator';
+import { clearCache } from '../../utils/networking';
 
 const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
 
@@ -134,7 +135,15 @@ class FoiRequestsMasterScreen extends React.Component {
       Alert.alert(
         'Error',
         errorText,
-        [{ text: 'OK', onPress: this.props.clearError }],
+        [
+          {
+            text: 'OK',
+            onPress: () => {
+              this.props.clearError();
+              clearCache();
+            },
+          },
+        ],
         { cancelable: false }
       );
     }
