@@ -217,7 +217,7 @@ class MyIconLeft extends React.Component {
       })
     );
   render() {
-    const { filterUser, currentUserId } = this.props;
+    const { filterUser, currentUserId, filterFollower } = this.props;
     let secondIcon = null;
 
     if (filterUser != null) {
@@ -225,6 +225,10 @@ class MyIconLeft extends React.Component {
         secondIcon = { iconName: 'person' };
       } else {
         secondIcon = { iconName: 'wrench', iconType: 'font-awesome' };
+      }
+    } else {
+      if (filterFollower != null) {
+        secondIcon = { iconName: 'star' };
       }
     }
 
@@ -252,6 +256,7 @@ class MyIconLeft extends React.Component {
 const MyConnectedIcon = connect(state => {
   return {
     filterUser: state.foiRequests.filter.user,
+    filterFollower: state.foiRequests.filter.follower,
     currentUserId: state.authentication.userId,
   };
 })(MyIconLeft);
