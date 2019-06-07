@@ -16,6 +16,7 @@ const PublicBodyDetails = ({
   changeFilter,
   navigateToFoiRequests1,
   navigateToFoiRequests2,
+  navigateToCreateRequest,
 }) => {
   const _filterByPublicBody = () => {
     // FIXME: It'a hack because there was another problem with react-navigation. It wasn't able to navigate to the Request stack when the stack was empty. This fixes it.
@@ -99,10 +100,11 @@ const PublicBodyDetails = ({
   return (
     <BlankContainer>
       <Heading style={styles.heading}>{name}</Heading>
-      {/* <StandardButton
-        icon={{ name: 'add-circle-outline' }}
-        title="TODO: Create a Request"
-      /> */}
+      <StandardButton
+        icon={{ name: 'add-circle-outline', color: primaryColor }}
+        title={I18n.t('newRequest')}
+        onPress={() => navigateToCreateRequest(publicBody)}
+      />
       {showRequestsButton}
       <Table data={tableData} />
     </BlankContainer>

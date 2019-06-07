@@ -11,12 +11,14 @@ const SearchPublicBodyDetails = ({
   changeFilter,
   navigateToFoiRequests1,
   navigateToFoiRequests2,
+  navigateToCreateRequest,
 }) => (
   <PublicBodyDetails
     publicBody={publicBody}
     changeFilter={changeFilter}
     navigateToFoiRequests1={navigateToFoiRequests1}
     navigateToFoiRequests2={navigateToFoiRequests2}
+    navigateToCreateRequest={navigateToCreateRequest}
   />
 );
 
@@ -39,9 +41,17 @@ const mapDispatchToProps = dispatch => {
           routeName: 'Requests',
         })
       ),
+    navigateToCreateRequest: publicBody =>
+      dispatch(
+        NavigationActions.navigate({
+          routeName: 'NewRequestWrite',
+          params: { publicBody },
+        })
+      ),
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(
-  SearchPublicBodyDetails
-);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SearchPublicBodyDetails);

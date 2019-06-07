@@ -25,6 +25,7 @@ class FoiRequestPublicBodyScreen extends React.Component {
       changeFilter,
       navigateToFoiRequests1,
       navigateToFoiRequests2,
+      navigateToCreateRequest,
     } = this.props;
     if (!publicBody || isPending) {
       return (
@@ -46,6 +47,7 @@ class FoiRequestPublicBodyScreen extends React.Component {
         publicBody={publicBody}
         navigateToFoiRequests1={navigateToFoiRequests1}
         navigateToFoiRequests2={navigateToFoiRequests2}
+        navigateToCreateRequest={navigateToCreateRequest}
         changeFilter={changeFilter}
       />
     );
@@ -76,9 +78,17 @@ const mapDispatchToProps = dispatch => {
       ),
     navigateToFoiRequests2: () =>
       dispatch(NavigationActions.navigate({ routeName: 'FoiRequestsMaster' })),
+    navigateToCreateRequest: publicBody =>
+      dispatch(
+        NavigationActions.navigate({
+          routeName: 'NewRequestWrite',
+          params: { publicBody },
+        })
+      ),
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(
-  FoiRequestPublicBodyScreen
-);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(FoiRequestPublicBodyScreen);
