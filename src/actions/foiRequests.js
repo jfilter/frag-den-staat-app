@@ -57,6 +57,13 @@ function foiRequestsFilterChangeAction(filter) {
   };
 }
 
+function foiRequestsUpdateFollowerCountsAction(followerCounts) {
+  return {
+    type: 'FOI_REQUESTS_UPDATE_FOLLOWER_COUNTS',
+    followerCounts,
+  };
+}
+
 function buildUrl(getState) {
   const state = getState();
   const { filter, nPage, isRefreshing } = state.foiRequests;
@@ -186,4 +193,5 @@ export {
   foiRequestsRefreshData,
   foiRequestsFilterChange,
   foiRequestsErrorClearAction,
+  foiRequestsUpdateFollowerCountsAction,
 };

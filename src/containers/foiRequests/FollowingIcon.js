@@ -5,6 +5,7 @@ import { ORIGIN } from '../../globals';
 import NavBarIcon from '../../components/foiRequests/NavBarIcon';
 import { getCurrentAccessTokenOrRefresh } from '../../utils/oauth';
 import { clearCache } from '../../utils/networking';
+import { foiRequestsUpdateFollowerCountsAction } from '../../actions/foiRequests';
 
 class FollowingIcon extends React.Component {
   constructor(props) {
@@ -12,13 +13,17 @@ class FollowingIcon extends React.Component {
     this.state = {
       canFollow: false,
       follows: false,
-      follow_count: 0,
       deleteUrl: null,
     };
   }
 
   async componentDidMount() {
-    const { id, getAccessToken, currentUserId } = this.props;
+    const {
+      id,
+      getAccessToken,
+      currentUserId,
+      updateFollowerCount,
+    } = this.props;
 
     if (currentUserId == null) return;
 
@@ -36,11 +41,18 @@ class FollowingIcon extends React.Component {
       follows: res.follows,
       deleteUrl: res.resource_uri,
     });
+
+    updateFollowerCount({ [id]: res.follow_count });
   }
 
   async toggleFollow() {
     try {
-      const { id, getAccessToken } = this.props;
+      const {
+        id,
+        getAccessToken,
+        followerCounts,
+        updateFollowerCount,
+      } = this.props;
       const accesToken = await getAccessToken();
 
       if (this.state.follows) {
@@ -56,6 +68,7 @@ class FollowingIcon extends React.Component {
           this.setState({ follows: !this.state.follows });
         }
         clearCache();
+        updateFollowerCount({ [id]: followerCounts[id] - 1 });
       } else {
         const response = await fetch(`${ORIGIN}/api/v1/following/`, {
           method: 'post',
@@ -75,6 +88,7 @@ class FollowingIcon extends React.Component {
             deleteUrl: resJson.url,
           });
           clearCache();
+          updateFollowerCount({ [id]: followerCounts[id] + 1 });
         }
       }
     } catch (error) {
@@ -109,11 +123,14 @@ class FollowingIcon extends React.Component {
 const mapStateToProps = state => {
   return {
     currentUserId: state.authentication.userId,
+    followerCounts: state.foiRequests.followerCounts,
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
+    updateFollowerCount: x =>
+      dispatch(foiRequestsUpdateFollowerCountsAction(x)),
     getAccessToken: () =>
       dispatch((innerDispatch, getState) =>
         getCurrentAccessTokenOrRefresh(innerDispatch, getState)

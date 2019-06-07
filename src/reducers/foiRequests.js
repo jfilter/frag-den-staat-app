@@ -14,6 +14,7 @@ const initialState = {
     user: null,
     follower: null,
   },
+  followerCounts: {},
 };
 
 function foiRequests(state = initialState, action) {
@@ -71,6 +72,11 @@ function foiRequests(state = initialState, action) {
       return {
         ...state,
         error: '',
+      };
+    case 'FOI_REQUESTS_UPDATE_FOLLOWER_COUNTS':
+      return {
+        ...state,
+        followerCounts: { ...state.followerCounts, ...action.followerCounts },
       };
     case 'OAUTH_LOGOUT':
       return initialState;

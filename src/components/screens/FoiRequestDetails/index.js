@@ -37,6 +37,7 @@ import StandardButton from '../../library/StandardButton';
 import SubHeading from '../../library/SubHeading';
 import Table from '../../library/Table';
 import FollowingIcon from '../../../containers/foiRequests/FollowingIcon';
+import FollowingNumber from '../../../containers/foiRequests/FollowingNumber';
 
 const stylesTouchableFlat = StyleSheet.flatten(styles.touchable);
 const stylesMsgHeaderFlat = StyleSheet.flatten(styles.msgHeader);
@@ -48,7 +49,6 @@ class FoiRequestDetails extends React.Component {
       escalatedPublicBodyName: null,
       fetchingEscaltedPublicBody: false,
       sections: [0],
-      followCount: null,
     };
   }
 
@@ -63,20 +63,6 @@ class FoiRequestDetails extends React.Component {
     const { fetchSingleFoiRequest } = this.props;
     if (fetchSingleFoiRequest !== null && fetchSingleFoiRequest !== undefined)
       fetchSingleFoiRequest(this.props.request.id);
-
-    // This is very hacky but it's the easiest way now. Normally, the following
-    // stuff should be done via redux as well but too much work now.
-    try {
-      const responseFollower = await fetch(
-        'https://fragdenstaat.de/api/v1/following/?request=' +
-          this.props.request.id
-      );
-      const followCount = (await responseFollower.json())['objects'][0]
-        .follow_count;
-      this.setState({ followCount });
-    } catch (error) {
-      console.error(error);
-    }
   }
 
   // used to determine the correct height when expanding a message
@@ -239,6 +225,7 @@ class FoiRequestDetails extends React.Component {
       first_message: firstMessage,
       due_date: dueDate,
       law,
+      id,
     } = this.props.request;
 
     const { realStatus } = getPrintableStatus(status, resolution);
@@ -281,17 +268,10 @@ class FoiRequestDetails extends React.Component {
       });
     }
 
-    if (this.state.followCount !== null) {
-      tableData.push({
-        label: 'Follower',
-        value: <Text selectable>{this.state.followCount}</Text>,
-      });
-    } else {
-      tableData.push({
-        label: 'Follower',
-        value: <Text selectable>..</Text>,
-      });
-    }
+    tableData.push({
+      label: 'Follower',
+      value: <FollowingNumber id={id} />,
+    });
 
     const { name: lawName, site_url: lawUrl } = law;
     // currently, the API does not provide links for combined laws
