@@ -135,9 +135,8 @@ class ReduxNavigation extends React.Component {
     } else {
       route = url.replace(/.*?:\/\//g, '');
     }
-    const routeParts = route.split('/');
+    const routeParts = route.split('#')[0].split('/');
     const routeName = routeParts[0];
-
     // a for anfrage
     if (routeName === 'a') {
       // short url with the request id
@@ -151,6 +150,7 @@ class ReduxNavigation extends React.Component {
     }
 
     if (routeName === 'anfrage' && routeParts.length !== 5) {
+      // open request (defined by slug) in app
       // TODO: currently the same request is fetched twice
       const slug = route.split('/').reverse()[0];
       const res = await fetch(`${ORIGIN}/api/v1/request/?slug=${slug}`);
@@ -163,12 +163,8 @@ class ReduxNavigation extends React.Component {
       );
     }
 
-    if (
-      routeName === 'anfrage' &&
-      routeParts.length === 5 &&
-      !route.includes('#')
-    ) {
-      // an attachment
+    if (routeName === 'anfrage' && routeParts.length === 5) {
+      // open an attachment in app
       const messageId = routeParts[2];
       const res = await fetch(
         `https://fragdenstaat.de/api/v1/message/${messageId}`
@@ -177,7 +173,6 @@ class ReduxNavigation extends React.Component {
       const id = message.request.split('/').reverse()[1];
 
       message.attachments.forEach(x => {
-        console.log(x.name, routeParts[4].toLowerCase());
         if (x.name.toLowerCase() === routeParts[4].toLowerCase()) {
           const action1 = NavigationActions.navigate({
             routeName: 'FoiRequestsSingle',
