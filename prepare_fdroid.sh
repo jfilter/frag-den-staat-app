@@ -8,4 +8,4 @@ set -x
 # sed -i '' 's/const FDROID = false;/const FDROID = true;/' src/globals/index.js &&
 sed -i 's/const FDROID = false;/const FDROID = true;/' src/globals/index.js &&
 react-native unlink react-native-push-notification &&
-npm uninstall react-native-push-notification
+yarn remove react-native-push-notification
