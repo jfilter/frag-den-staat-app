@@ -2,7 +2,7 @@
 let PushNotification = null;
 
 import { PushNotificationIOS } from 'react-native';
- 
+import PushNotification from 'react-native-push-notification';
 
 const setUp = navigate => {
   PushNotification.configure({
