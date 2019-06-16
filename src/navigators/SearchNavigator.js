@@ -33,6 +33,15 @@ const SearchResultsNavigator = createMaterialTopTabNavigator(
   { ...tabBarConfig }
 );
 
+SearchResultsNavigator.navigationOptions = ({ navigation }) => {
+  const query = navigation.getParam('query');
+  const headerTitle = `"${query}"`;
+
+  return {
+    headerTitle,
+  };
+};
+
 const SearchNavigator = createStackNavigator(
   {
     SearchStart: { screen: SearchStartScreen },

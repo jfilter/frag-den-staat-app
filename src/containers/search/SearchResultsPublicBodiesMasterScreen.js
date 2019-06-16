@@ -54,15 +54,11 @@ class SearchResultsPublicBodiesMasterScreen extends React.Component {
   }
 }
 
-SearchResultsPublicBodiesMasterScreen.navigationOptions = ({ navigation }) => {
-  const query = navigation.state.params.query;
-  return {
-    title: `"${query}"`,
-    tabBarLabel: I18n.t('publicBodies'),
-    tabBarIcon: ({ tintColor }) => (
-      <Icon name="account-balance" color={tintColor} />
-    ),
-  };
+SearchResultsPublicBodiesMasterScreen.navigationOptions = {
+  tabBarLabel: I18n.t('publicBodies'),
+  tabBarIcon: ({ tintColor }) => (
+    <Icon name="account-balance" color={tintColor} />
+  ),
 };
 
 const mapStateToProps = (state, props) => {

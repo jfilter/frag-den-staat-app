@@ -47,13 +47,9 @@ class SearchResultsFoiRequestsMasterScreen extends React.Component {
   }
 }
 
-SearchResultsFoiRequestsMasterScreen.navigationOptions = ({ navigation }) => {
-  const query = navigation.state.params.query;
-  return {
-    title: `"${query}"`,
-    tabBarLabel: I18n.t('requests'),
-    tabBarIcon: ({ tintColor }) => <Icon name="mail" color={tintColor} />,
-  };
+SearchResultsFoiRequestsMasterScreen.navigationOptions = {
+  tabBarLabel: I18n.t('requests'),
+  tabBarIcon: ({ tintColor }) => <Icon name="mail" color={tintColor} />,
 };
 
 const mapStateToProps = (state, props) => {
