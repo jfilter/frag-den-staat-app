@@ -58,7 +58,7 @@ SearchResultsPublicBodiesMasterScreen.navigationOptions = ({ navigation }) => {
   const query = navigation.state.params.query;
   return {
     title: `"${query}"`,
-    tabBarLabel: 'Public Bodies',
+    tabBarLabel: I18n.t('publicBodies'),
     tabBarIcon: ({ tintColor }) => (
       <Icon name="account-balance" color={tintColor} />
     ),
@@ -87,6 +87,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(
-  SearchResultsPublicBodiesMasterScreen
-);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SearchResultsPublicBodiesMasterScreen);

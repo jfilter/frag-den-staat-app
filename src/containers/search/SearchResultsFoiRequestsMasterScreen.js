@@ -13,6 +13,7 @@ import ListFooter from '../../components/library/ListFooter';
 import ListHeader from '../../components/library/ListHeader';
 import ListItem from '../../components/library/ListItem';
 import Seperator from '../../components/library/Seperator';
+import I18n from '../../i18n';
 
 class SearchResultsFoiRequestsMasterScreen extends React.Component {
   componentDidMount() {
@@ -50,7 +51,7 @@ SearchResultsFoiRequestsMasterScreen.navigationOptions = ({ navigation }) => {
   const query = navigation.state.params.query;
   return {
     title: `"${query}"`,
-    tabBarLabel: 'Requests',
+    tabBarLabel: I18n.t('requests'),
     tabBarIcon: ({ tintColor }) => <Icon name="mail" color={tintColor} />,
   };
 };
@@ -77,6 +78,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(
-  SearchResultsFoiRequestsMasterScreen
-);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SearchResultsFoiRequestsMasterScreen);
