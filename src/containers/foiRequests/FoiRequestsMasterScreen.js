@@ -1,14 +1,12 @@
 import {
   Alert,
   Animated,
-  AsyncStorage,
   FlatList,
   Platform,
   RefreshControl,
   Text,
   View,
 } from 'react-native';
-import { Button } from 'react-native-elements';
 import { NavigationActions, DrawerActions } from 'react-navigation';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -22,6 +20,7 @@ import {
   foiRequestsErrorClearAction,
 } from '../../actions/foiRequests';
 import { primaryColor, primaryColorLight } from '../../globals/colors';
+import { FOI_REQUESTS_PAGE_SIZE } from '../../globals';
 import FoiRequestsListHeader from './FoiRequestsListHeader';
 import ListFooter from '../../components/library/ListFooter';
 import ListHeader from '../../components/library/ListHeader';
@@ -74,7 +73,7 @@ class FoiRequestsMasterScreen extends React.Component {
     // https://github.com/facebook/react-native/issues/1878
     if (
       Platform.OS === 'ios' &&
-      this.props.requests.length <= 20 &&
+      this.props.requests.length <= FOI_REQUESTS_PAGE_SIZE &&
       !this.props.isRefreshing &&
       !(this.props.isPending && this.props.requests.length !== 0)
     ) {
@@ -87,11 +86,14 @@ class FoiRequestsMasterScreen extends React.Component {
 
   _fetchData = () => {
     if (!this.props.isPending) {
-      const timeDif = Date.now() - this.props.firstPageFetchedAt;
-      // Prevent fetching data twice on initalizition because the `onEndReachEd` event fires with an empy list
-      // value in mili seconds
-      if (timeDif > 1000) {
-        this.props.fetchData();
+      // only fetch if there is more data available
+      if (this.props.nResults > FOI_REQUESTS_PAGE_SIZE) {
+        const timeDif = Date.now() - this.props.firstPageFetchedAt;
+        // Prevent fetching data twice on initalizition because the `onEndReachEd` event fires with an empy list
+        // value in mili seconds
+        if (timeDif > 1000) {
+          this.props.fetchData();
+        }
       }
     }
   };
