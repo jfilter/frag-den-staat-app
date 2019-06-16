@@ -12,6 +12,6 @@ set -x
 # sed -i '' 's/const FDROID = false;/const FDROID = true;/' src/globals/index.js &&
 # sed -i '' "s/import PushNotification from 'react-native-push-notification';/ /" src/utils/notifications.js &&
 sed -i 's/const FDROID = false;/const FDROID = true;/' src/globals/index.js &&
-sed -i "s/import PushNotification from 'react-native-push-notification';/ /" src/utils/notifications.js &&
+sed -i "s/import PushNotification from 'react-native-push-notification';/let PushNotification = null;/" src/utils/notifications.js &&
 react-native unlink react-native-push-notification &&
 yarn remove react-native-push-notification

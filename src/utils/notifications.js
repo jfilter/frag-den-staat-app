@@ -1,6 +1,3 @@
-// so the module can be exported for fdroid build
-let PushNotification = null;
-
 import { PushNotificationIOS } from 'react-native';
 import PushNotification from 'react-native-push-notification';
 
