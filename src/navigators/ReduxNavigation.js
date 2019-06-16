@@ -135,8 +135,12 @@ class ReduxNavigation extends React.Component {
     } else {
       route = url.replace(/.*?:\/\//g, '');
     }
-    const routeParts = route.split('#')[0].split('/');
+    const routeParts = route
+      .split('#')[0]
+      .split('/')
+      .filter(x => x.length > 0);
     const routeName = routeParts[0];
+
     // a for anfrage
     if (routeName === 'a') {
       // short url with the request id
@@ -152,7 +156,7 @@ class ReduxNavigation extends React.Component {
     if (routeName === 'anfrage' && routeParts.length !== 5) {
       // open request (defined by slug) in app
       // TODO: currently the same request is fetched twice
-      const slug = route.split('/').reverse()[0];
+      const slug = routeParts.reverse()[0];
       const res = await fetch(`${ORIGIN}/api/v1/request/?slug=${slug}`);
       const id = (await res.json()).objects[0].id;
       dispatch(
