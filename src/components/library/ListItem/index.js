@@ -72,6 +72,12 @@ const images = {
       style={{ height: 35, width: 35 }}
     />
   ),
+  user_withdrew_costs: (
+    <Image
+      source={require('./status-images/costs_icon-user_withdrew.png')}
+      style={{ height: 35, width: 35 }}
+    />
+  ),
   costs_asleep: (
     <Image
       source={require('./status-images/costs_icon-asleep.png')}
