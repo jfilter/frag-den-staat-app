@@ -44,6 +44,7 @@ class FoiRequestSingle extends React.Component {
       <FoiRequestDetails
         request={foiRequest}
         messages={foiRequest.messages} // a hack
+        law={foiRequest.law}
         fetchMessages={null} // messages are already present
         navigateToPdfViewer={navigateToPdfViewer}
         navigateToPublicBody={navigateToPublicBody}
@@ -83,4 +84,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(FoiRequestSingle);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(FoiRequestSingle);

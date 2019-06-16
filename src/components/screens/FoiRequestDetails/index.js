@@ -224,9 +224,9 @@ class FoiRequestDetails extends React.Component {
       last_message: lastMessage,
       first_message: firstMessage,
       due_date: dueDate,
-      law,
       id,
     } = this.props.request;
+    const { law } = this.props;
 
     const { realStatus } = getPrintableStatus(status, resolution);
 
@@ -268,17 +268,24 @@ class FoiRequestDetails extends React.Component {
       });
     }
 
-    const { name: lawName, site_url: lawUrl } = law;
-    // currently, the API does not provide links for combined laws
-    if (lawName && lawUrl) {
+    if (law != null) {
+      const { name: lawName, site_url: lawUrl } = law;
+      // currently, the API does not provide links for combined laws
+      if (lawName && lawUrl) {
+        tableData.push({
+          label: I18n.t('foiRequestDetails.law'),
+          value: <Link label={breakLongWords(lawName)} url={lawUrl} />,
+        });
+      } else if (lawName) {
+        tableData.push({
+          label: I18n.t('foiRequestDetails.law'),
+          value: <Text selectable>{lawName}</Text>,
+        });
+      }
+    } else {
       tableData.push({
         label: I18n.t('foiRequestDetails.law'),
-        value: <Link label={breakLongWords(lawName)} url={lawUrl} />,
-      });
-    } else if (lawName) {
-      tableData.push({
-        label: I18n.t('foiRequestDetails.law'),
-        value: <Text selectable>{lawName}</Text>,
+        value: <Text>..</Text>,
       });
     }
 

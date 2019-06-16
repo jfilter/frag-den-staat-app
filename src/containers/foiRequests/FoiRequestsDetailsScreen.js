@@ -12,6 +12,7 @@ const FoiRequestsDetailsScreen = ({
   fetchSingleFoiRequest,
   navigateToPdfViewer,
   navigateToPublicBody,
+  law,
 }) => (
   <FoiRequestDetails
     request={request}
@@ -19,6 +20,7 @@ const FoiRequestsDetailsScreen = ({
     fetchSingleFoiRequest={fetchSingleFoiRequest}
     navigateToPdfViewer={navigateToPdfViewer}
     navigateToPublicBody={navigateToPublicBody}
+    law={law}
   />
 );
 
@@ -31,6 +33,10 @@ const mapStateToProps = (state, props) => {
     messages:
       state.singleFoiRequest.foiRequest != null
         ? state.singleFoiRequest.foiRequest.messages
+        : null,
+    law:
+      state.singleFoiRequest.foiRequest != null
+        ? state.singleFoiRequest.foiRequest.law
         : null,
   };
 };
@@ -55,6 +61,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(
-  FoiRequestsDetailsScreen
-);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(FoiRequestsDetailsScreen);
