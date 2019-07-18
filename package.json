@@ -50,6 +50,7 @@
     "rn-fetch-blob": "^0.10.12"
   },
   "devDependencies": {
+    "jetifier": "^1.6.3",
     "@babel/core": "^7.4.4",
     "@babel/runtime": "^7.4.4",
     "babel-eslint": "^10.0.1",
