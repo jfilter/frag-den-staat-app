@@ -21,6 +21,9 @@ const NewRequestNavigator = createStackNavigator(
       tabBarLabel: I18n.t('new'),
       tabBarIcon: () => <Icon size={24} color={greyDark} name="add" />,
     },
+    defaultNavigationOptions: {
+      ...commonNavigationOptions,
+    },
   }
 );
 

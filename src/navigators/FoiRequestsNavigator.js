@@ -29,6 +29,9 @@ const FoiRequestsNavigator = createStackNavigator(
       tabBarLabel: I18n.t('requests'),
       tabBarIcon: () => <Icon size={iconSize} color={iconColor} name="home" />,
     },
+    defaultNavigationOptions: {
+      ...commonNavigationOptions,
+    },
   }
 );
 

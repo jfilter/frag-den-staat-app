@@ -7,7 +7,7 @@ const initialState = {
 function singleFoiRequest(state = initialState, action) {
   switch (action.type) {
     case 'SINGLE_FOI_REQUEST_PENDING':
-      return { ...state, isPending: true };
+      return { foiRequest: null, error: null, isPending: true };
     case 'SINGLE_FOI_REQUEST_SUCCESS':
       return {
         ...state,

@@ -60,6 +60,9 @@ const SearchNavigator = createStackNavigator(
         <Icon size={iconSize} color={iconColor} name="search" />
       ),
     },
+    defaultNavigationOptions: {
+      ...commonNavigationOptions,
+    },
   }
 );
 

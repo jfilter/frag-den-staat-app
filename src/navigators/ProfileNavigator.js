@@ -40,6 +40,9 @@ const ProfileNavigator = createStackNavigator(
         <Icon size={iconSize} color={iconColor} name="more-horiz" />
       ),
     },
+    defaultNavigationOptions: {
+      ...commonNavigationOptions,
+    },
   }
 );
 
