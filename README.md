@@ -23,6 +23,10 @@ If you want to join the beta program, have a look at the [website](https://fragd
 3.  `git clone https://github.com/jfilter/frag-den-staat-app && cd frag-den-staat-app && yarn install`
 4.  Run the app in a simulator with e.g. `react-native run-ios` or [on a device](https://facebook.github.io/react-native/docs/running-on-device.html).
 
+### Building for Production
+
+Building the Android version for production is tricky. Recently, [jetifier](https://www.npmjs.com/package/jetifier) seems to fix some compilation issues (`npx jetify`).
+
 ## Contributing
 
 If you have a **question**, found a **bug** or want to propose a new **feature**, have a look at the [issues](https://github.com/jfilter/frag-den-staat-app/issues).
