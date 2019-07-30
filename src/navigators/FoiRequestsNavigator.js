@@ -26,7 +26,7 @@ const FoiRequestsNavigator = createStackNavigator(
   {
     navigationOptions: {
       ...commonNavigationOptions,
-      tabBarLabel: I18n.t('requests'),
+      tabBarLabel: I18n.t('requests'), // not considered because of the drawer
       tabBarIcon: () => <Icon size={iconSize} color={iconColor} name="home" />,
     },
     defaultNavigationOptions: {
@@ -42,6 +42,9 @@ const Drawer = createDrawerNavigator(
   {
     contentComponent: FoiRequestsDrawer,
     edgeWidth: 0, // don't swipe in
+    navigationOptions: {
+      tabBarLabel: I18n.t('requests'),
+    },
   }
 );
 
