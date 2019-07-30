@@ -105,8 +105,8 @@ android {
         applicationId "de.fragdenstaat.app"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 40
-        versionName "0.10.8"
+        versionCode 41
+        versionName "0.10.9"
     }
     signingConfigs {
         release {
