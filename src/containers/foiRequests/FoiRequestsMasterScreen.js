@@ -58,10 +58,16 @@ class FoiRequestsMasterScreen extends React.Component {
 
   componentDidMount() {
     if (!this.props.onboardingFinished) {
-      // has to bone with some delay or otherwise it's broken on android
-      setTimeout(() => {
-        this.props.navigateToOnboarding();
-      }, 10);
+      if (Platform.OS === 'android') {
+        // has to done with some delay or otherwise it's broken on android
+        setTimeout(() => {
+          this.props.navigateToOnboarding();
+        }, 200);
+      } else {
+        setTimeout(() => {
+          this.props.navigateToOnboarding();
+        }, 10);
+      }
     }
 
     if (!this.props.isPending) {
