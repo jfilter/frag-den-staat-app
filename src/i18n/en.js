@@ -93,7 +93,7 @@ export default {
     send: 'Send',
     success: 'Success',
     fail: 'Transmission failed. Retry?',
-    anon: 'anonym',
+    anon: 'Private Request',
     confirm: 'Confirm',
     alertSuccessTitle: 'Success!',
     alertSuccessMessage: 'The request was successfully transmitted.',

@@ -93,7 +93,7 @@ export default {
     send: 'Absenden',
     success: 'Erfolgreich übermittelt',
     fail: 'Übermittelung fehlgeschlagen. Noch mal versuchen?',
-    anon: 'Anonym',
+    anon: 'Private Anfrage',
     confirm: 'Bestätigen',
     alertSuccessTitle: 'Erfolg!',
     alertSuccessMessage: 'Die Anfrage wurde erfolgreich übermittelt',
