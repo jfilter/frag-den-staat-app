@@ -247,7 +247,7 @@ class FoiRequestDetails extends React.Component {
     if (costs && costs !== 0) {
       tableData.push({
         label: I18n.t('foiRequestDetails.costs'),
-        value: <Text selectable>{costs}</Text>,
+        value: <Text selectable>{costs} €</Text>,
       });
     }
 
