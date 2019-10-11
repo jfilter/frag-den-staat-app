@@ -153,10 +153,10 @@ android {
 }
 
 dependencies {
-    implementation project(':react-native-push-notification')
     implementation project(':react-native-webview')
-    implementation project(':react-native-vector-icons')
     implementation project(':react-native-gesture-handler')
+    implementation project(':react-native-push-notification')
+    implementation project(':react-native-vector-icons')
     implementation project(':react-native-video')
     implementation project(':rn-fetch-blob')
     implementation project(':react-native-pdf')
