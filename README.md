@@ -2,9 +2,13 @@
   <img  src="handarbeit.jpg" alt="Informationsfreiheit bleibt Handarbeit, Werbebanner mit der App">
 </div>
 
-# FragDenStaat App [![Build Status](https://travis-ci.org/jfilter/frag-den-staat-app.svg?branch=master)](https://travis-ci.org/jfilter/frag-den-staat-app) [![dependencies Status](https://david-dm.org/jfilter/frag-den-staat-app/status.svg)](https://david-dm.org/jfilter/frag-den-staat-app) [![devDependency Status](https://david-dm.org/jfilter/frag-den-staat-app/dev-status.svg)](https://david-dm.org/jfilter/frag-den-staat-app#info=devDependencies) [![chat](https://img.shields.io/badge/chat-on%20Slack-ad1457.svg)](https://openknowledgegermany.slack.com/messages/fragdenstaat-app)
+# FragDenStaat App [![Build Status](https://travis-ci.org/jfilter/frag-den-staat-app.svg?branch=master)](https://travis-ci.org/jfilter/frag-den-staat-app) [![dependencies Status](https://david-dm.org/jfilter/frag-den-staat-app/status.svg)](https://david-dm.org/jfilter/frag-den-staat-app) [![devDependency Status](https://david-dm.org/jfilter/frag-den-staat-app/dev-status.svg)](https://david-dm.org/jfilter/frag-den-staat-app#info=devDependencies)
 
 This app is for [FragDenStaat](https://fragdenstaat.de/), a platform to simplify the process of sending and managing FOI requests to German public bodies. The app includes basic functionalities of the website such as browsing through requests, searching, and creating new requests. It is been developed with [React Native](https://facebook.github.io/react-native/) for Android and iOS.
+
+## Looking for Contributors / Commiters
+
+There are currently no plans for further development ([see the blog post](https://fragdenstaat.de/blog/2020/03/27/die-fragdenstaat-app/)). If you want to help our or take over the development, please contact [@jfilter](//github.com/jfilter).
 
 ## Releases
 
